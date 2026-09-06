@@ -1,0 +1,4 @@
+Contact: mailto:ayudaparaelalumnouno@gmail.com
+Canonical: https://ayudaparaelalumno.com.ar/.well-known/security.txt
+Preferred-Languages: es
+Expires: 2027-09-06T00:00:00Z
