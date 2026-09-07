@@ -149,4 +149,28 @@ document.addEventListener('click',e=>{
 });
 function setKind(kind){S.kind=kind;$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.kind===kind));renderSources();$('#scheduleResults').innerHTML=''}$$('.tab').forEach(b=>b.onclick=()=>setKind(b.dataset.kind));$$('[data-open-schedule]').forEach(b=>b.onclick=()=>{go('aulas');setKind(b.dataset.openSchedule)});function bindSourceButtons(){$$('.openSource').forEach(b=>b.onclick=()=>{const u=b.dataset.url;if(u)window.location.assign(u)})}function renderSources(){const xs=S.sources.filter(x=>x.schedule_kind===S.kind);$('#sourceTitle').textContent=S.kind==='course'?'Materias · 2º cuatrimestre 2026':'Exámenes finales · última publicación oficial disponible: julio 2026';$('#sourceText').textContent=S.kind==='course'?'Elegí tu Escuela/carrera para abrir aulas, días, horarios y modalidad.':'La próxima publicación general está prevista para el 7 de diciembre de 2026. Mientras tanto podés consultar la última publicación oficial disponible y verificar novedades en la página de la UNO.';$('#officialGeneral').href=S.kind==='course'?'https://www.uno.edu.ar/estudiantes-uno/materias.html':'https://www.uno.edu.ar/estudiantes-uno/examenes.html';$('#scheduleSources').innerHTML=xs.map(x=>'<article class="sourceCard"><div class="meta"><span class="badge blue">'+(S.kind==='course'?'Materias':'Finales')+'</span><span class="badge">'+x.academic_year+'</span></div><h3>'+esc(x.career_label||x.school_label)+'</h3><p>'+esc(x.school_label)+'</p><div class="sourceActions"><button class="openSource" data-url="'+esc(x.source_url)+'">Abrir publicación oficial</button><a href="'+esc(x.source_page_url)+'">Ver en la página de la UNO →</a></div></article>').join('');bindSourceButtons()}async function schedule(){const q=$('#scheduleSearch').value.trim();if(!q)return;track('Schedule Search',{kind:S.kind});$('#scheduleResults').innerHTML='<div class="notice">Buscando…</div>';try{const rows=await rpc('search_academic_schedule',{search_text:q,schedule_kind:S.kind,result_limit:20});if(rows.length){$('#scheduleResults').innerHTML='<div class="grid3">'+rows.map(x=>'<article class="scheduleCard"><span class="badge blue">'+(x.kind==='final'?'Examen final':'Cursada')+'</span><h3>'+esc(x.subject_name)+'</h3><p>'+esc([x.event_date,x.day_of_week,x.start_time&&x.start_time.slice(0,5),x.end_time&&x.end_time.slice(0,5),x.classroom,x.campus,x.commission,x.modality].filter(Boolean).join(' · '))+'</p>'+(x.source_url?'<a href="'+esc(x.source_url)+'">Fuente →</a>':'')+'</article>').join('')+'</div>';return}const r=await rpc('resolve_academic_schedule_source',{search_text:q,schedule_kind_filter:S.kind});if(r.length){const x=r[0];$('#scheduleResults').innerHTML='<div class="notice"><b>Encontramos la publicación correspondiente</b><p><strong>'+esc(x.subject_name)+'</strong> · '+esc(x.career_name)+(x.study_year?' · '+x.study_year+'º año':'')+'.</p><button class="btn primary openResolved" data-url="'+esc(x.source_url)+'">Abrir publicación oficial</button> <a class="btn secondary" href="'+esc(x.source_page_url)+'">Ver página de la UNO</a></div>';$('.openResolved').onclick=()=>window.location.assign($('.openResolved').dataset.url);return}$('#scheduleResults').innerHTML='<div class="notice"><b>No encontramos esa materia en la consulta rápida.</b><p>Elegí tu Escuela/carrera en las publicaciones oficiales que aparecen abajo.</p></div>'}catch{$('#scheduleResults').innerHTML='<div class="notice">No pude consultar el buscador en este momento.</div>'}}$('#scheduleBtn').onclick=schedule;$('#scheduleSearch').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();schedule()}};
 
-async function load(){try{const [help,m,g,e,sources,drive]=await Promise.all([rpc('get_help_sections_v2'),api('materials?select=id,title,description,academic_year,storage_url,subjects(name)&status=eq.published&visibility=eq.public&limit=350'),api('whatsapp_communities?select=id,title,invite_url,verified,notes&active=eq.true'),api('student_events?select=*&published=eq.true&order=start_date.asc'),rpc('get_academic_schedule_sources',{kind_filter:'all'}),rpc('get_drive_material_hierarchy')]);S.help=help;S.m=m;S.g=g;S.e=e;S.sources=sources;S.drive=drive;renderFeatured();renderHelp();mat();renderCommunityMenus();groups();events();renderSources();populateDriveFilters();renderDrive()}catch(e){console.error(e)}}load();
+async function load(){
+  const jobs=await Promise.allSettled([
+    rpc('get_help_sections_v2'),
+    api('materials?select=id,title,description,academic_year,storage_url,subjects(name)&status=eq.published&visibility=eq.public&limit=350'),
+    api('whatsapp_communities?select=id,title,invite_url,verified,notes&active=eq.true'),
+    api('student_events?select=*&published=eq.true&order=start_date.asc'),
+    rpc('get_academic_schedule_sources',{kind_filter:'all'}),
+    rpc('get_drive_material_hierarchy')
+  ]);
+  const val=i=>jobs[i].status==='fulfilled'?jobs[i].value:null;
+  const help=val(0),m=val(1),g=val(2),e=val(3),sources=val(4),drive=val(5);
+
+  if(help){S.help=help;renderFeatured();renderHelp()}
+  else{console.error('No se pudo cargar el centro de ayuda');$('#featuredHelp').innerHTML='<div class="notice">No pudimos cargar los accesos destacados en este momento.</div>'}
+
+  if(m){S.m=m;mat()}else console.error('No se pudo cargar materiales');
+  if(g){S.g=g;renderCommunityMenus();groups()}else console.error('No se pudo cargar comunidades');
+
+  if(e){S.e=e;events()}
+  else{console.error('No se pudo cargar fechas');$('#homeEvents').innerHTML='<div class="notice">No pudimos cargar las fechas importantes en este momento.</div>'}
+
+  if(sources){S.sources=sources;renderSources()}else console.error('No se pudo cargar fuentes académicas');
+  if(drive){S.drive=drive;populateDriveFilters();renderDrive()}else console.error('No se pudo cargar Drive');
+}
+load();
