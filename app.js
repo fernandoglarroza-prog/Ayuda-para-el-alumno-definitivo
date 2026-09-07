@@ -47,7 +47,7 @@ function contribute(){
   $('#contributeForm').onsubmit=e=>{e.preventDefault();submitContribution(e.currentTarget)};
   loadContributionOptions();
 }
-$('[data-open="contribute"]').forEach(b=>b.onclick=contribute);$('#helpSearch').oninput=e=>renderHelp(e.target.value);
+document.querySelectorAll('[data-open="contribute"]').forEach(b=>b.onclick=contribute);$('#helpSearch').oninput=e=>renderHelp(e.target.value);
 
 function mat(q=''){q=q.toLowerCase();$('#materials').innerHTML=S.m.filter(x=>!q||[x.title,x.description,x.subjects?.name].some(v=>String(v||'').toLowerCase().includes(q))).map(x=>'<article class="item"><div class="meta">'+(x.academic_year?'<span class="badge">'+x.academic_year+'</span>':'')+'</div><h3>'+esc(x.title)+'</h3><p>'+esc(x.subjects?.name||x.description||'')+'</p>'+(x.storage_url?'<a href="'+esc(x.storage_url)+'">Descargar / abrir material →</a>':'')+'</article>').join('')||'<div class="notice">No encontramos material con ese criterio.</div>'}$('#matSearch').oninput=e=>mat(e.target.value);$('#matFocus').onclick=()=>$('#matSearch').focus();
 function driveFlat(){const out=[];for(const sc of S.drive)for(const c of sc.careers||[])for(const y of c.years||[])for(const s of y.subjects||[])out.push({school:sc.name,schoolSlug:sc.slug,career:c.name,careerSlug:c.slug,year:y.year,name:s.name,url:s.folder_url,indexed:s.indexed_files||0,published:s.published_materials||0});return out}
