@@ -28,3 +28,9 @@
 
 .featuredHelpSpot{padding:30px 0 10px}.featuredHelpSpot .sectionHead{margin-bottom:16px}
 @media(max-width:940px){.featuredHelpSpot{padding:24px 0 6px}}
+
+.homeDatesSpot{margin-top:26px;margin-bottom:10px;background:linear-gradient(135deg,#eef5ff,#fff);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+.homeDatesSpot .sectionHead{margin-bottom:18px}.homeDatesSpot .sectionHead p{margin:5px 0 0;color:var(--mut);font-size:14px}
+.homeEventsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.homeEvent{grid-template-columns:1fr;gap:8px;min-height:145px}.homeEvent .date{font-size:13px}.homeEvent b{font-size:17px;line-height:1.35}.homeEvent p{margin-top:8px}
+@media(max-width:940px){.featuredHelpSpot{padding-top:22px}.homeDatesSpot{margin-top:22px;padding:20px}.homeEventsGrid{grid-template-columns:1fr}.homeEvent{min-height:auto}}
