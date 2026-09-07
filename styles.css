@@ -25,12 +25,3 @@
 .footerDisclaimer{max-width:520px;margin:14px 0 8px;color:var(--muted,#667085);font-size:.9rem;line-height:1.5}.footerLegal{display:flex;gap:14px;flex-wrap:wrap}.footerLegal a{font-size:.9rem}.legalPage{min-height:100vh}.legalBrand{text-decoration:none}.legalWrap{max-width:900px;padding-top:56px;padding-bottom:80px}.legalBack{display:inline-block;margin-bottom:26px}.legalWrap h1{font-size:clamp(2rem,5vw,3.5rem);margin:.35rem 0 1rem}.legalLead{font-size:1.08rem;line-height:1.75;color:var(--muted,#667085);max-width:760px;margin-bottom:28px}.legalCard{background:var(--surface,#fff);border:1px solid var(--line,#e5e7eb);border-radius:18px;padding:24px;margin:16px 0}.legalCard h2{margin:0 0 10px;font-size:1.2rem}.legalCard p{line-height:1.75;margin:.55rem 0}.legalCard a,.legalBack{color:var(--primary,#0b4bb3)}.legalUpdated{margin-top:28px;color:var(--muted,#667085);font-size:.9rem}@media(max-width:700px){.legalWrap{padding-top:34px;padding-bottom:110px}.legalCard{padding:19px}.footerDisclaimer{font-size:.84rem}}
 .compactHero .heroGrid{grid-template-columns:1fr;min-height:320px}.compactHero .heroGrid>div{max-width:820px}.compactHero .actions{margin-bottom:0}
 @media(max-width:940px){.compactHero .heroGrid{min-height:auto;padding:30px 0 38px}.compactHero .actions{margin-top:20px}}
-
-.featuredHelpSpot{padding:30px 0 10px}.featuredHelpSpot .sectionHead{margin-bottom:16px}
-@media(max-width:940px){.featuredHelpSpot{padding:24px 0 6px}}
-
-.homeDatesSpot{margin-top:26px;margin-bottom:10px;background:linear-gradient(135deg,#eef5ff,#fff);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
-.homeDatesSpot .sectionHead{margin-bottom:18px}.homeDatesSpot .sectionHead p{margin:5px 0 0;color:var(--mut);font-size:14px}
-.homeEventsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.homeEvent{grid-template-columns:1fr;gap:8px;min-height:145px}.homeEvent .date{font-size:13px}.homeEvent b{font-size:17px;line-height:1.35}.homeEvent p{margin-top:8px}
-@media(max-width:940px){.featuredHelpSpot{padding-top:22px}.homeDatesSpot{margin-top:22px;padding:20px}.homeEventsGrid{grid-template-columns:1fr}.homeEvent{min-height:auto}}
