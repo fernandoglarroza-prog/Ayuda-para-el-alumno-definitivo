@@ -45,3 +45,5 @@ storyForm?.addEventListener('submit',async e=>{
   }finally{storySubmit.disabled=false}
 });
 loadMentalWall();
+
+/* voces-deploy-sync */
