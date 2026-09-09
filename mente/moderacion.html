@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Moderación · Una mente sana es posible</title>
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./moderacion.css">
+</head>
+<body class="moderationPage">
+<header class="siteHeader"><div class="wrap head">
+  <a class="brand" href="./"><img src="./logo.webp" alt=""><span><strong>Una mente sana es posible</strong><small>Moderación de relatos</small></span></a>
+  <a class="btn secondary" href="./">Volver al sitio</a>
+</div></header>
+<main class="wrap moderationMain">
+  <section id="loginBox" class="loginCard">
+    <span class="eyebrow">Acceso restringido</span>
+    <h1>Moderación del Muro de voces</h1>
+    <p>Ingresá con la cuenta autorizada del proyecto. Las credenciales se envían directamente a Supabase y la contraseña no se guarda en esta página.</p>
+    <form id="loginForm">
+      <label>Correo<input id="loginEmail" type="email" autocomplete="username" required></label>
+      <label>Contraseña<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+      <button class="btn primary" type="submit">Ingresar</button>
+      <div id="loginStatus" class="formStatus" role="status"></div>
+    </form>
+  </section>
+
+  <section id="moderationBox" hidden>
+    <div class="moderationTop">
+      <div><span class="eyebrow">Panel privado</span><h1>Relatos pendientes</h1><p>Antes de publicar, eliminá nombres, teléfonos, redes, instituciones concretas u otros datos que puedan identificar a alguien.</p></div>
+      <div class="topActions"><button id="refreshQueue" class="btn secondary">Actualizar</button><button id="logoutBtn" class="btn secondary">Cerrar sesión</button></div>
+    </div>
+    <div class="filterRow">
+      <button data-filter="pending" class="filter active">Pendientes</button>
+      <button data-filter="published" class="filter">Publicados</button>
+      <button data-filter="private" class="filter">Privados</button>
+      <button data-filter="rejected" class="filter">Rechazados</button>
+      <button data-filter="all" class="filter">Todos</button>
+    </div>
+    <div id="queueStatus" class="formStatus"></div>
+    <div id="storyQueue" class="moderationQueue"></div>
+  </section>
+</main>
+<script src="./moderacion.js"></script>
+</body>
+</html>
