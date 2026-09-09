@@ -8,6 +8,12 @@ async function mentalRpc(name,body){
   if(!r.ok)throw new Error(await r.text());
   return r.json();
 }
+async function submitMentalStory(body){
+  const r=await fetch(MENTAL_SUPA+'/functions/v1/mental-story-submit',{method:'POST',headers:MENTAL_HEADERS,body:JSON.stringify(body||{})});
+  const data=await r.json().catch(()=>null);
+  if(!r.ok)throw new Error(data?.error||'No pudimos enviar el mensaje.');
+  return data;
+}
 function wallEscape(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 async function loadMentalWall(){
   const box=document.querySelector('#wallStories');if(!box)return;
@@ -35,7 +41,7 @@ storyForm?.addEventListener('submit',async e=>{
   if(text.length<10){storyStatus.className='formStatus err';storyStatus.textContent='Escribí al menos unas palabras más para poder enviar el mensaje.';return}
   storySubmit.disabled=true;storyStatus.className='formStatus';storyStatus.textContent='Enviando de forma anónima…';
   try{
-    await mentalRpc('submit_mental_health_story',{story_text_input:text,publish_consent_input:document.querySelector('#publishConsent')?.checked===true});
+    await submitMentalStory({story_text:text,publish_consent:document.querySelector('#publishConsent')?.checked===true,website:document.querySelector('#storyWebsite')?.value||''});
     storyForm.reset();if(storyChars)storyChars.textContent='0';
     storyStatus.className='formStatus ok';
     storyStatus.textContent='Gracias por animarte a ponerlo en palabras. Tu mensaje fue recibido y quedó pendiente de revisión. Si autorizaste su publicación, solo podrá aparecer en el muro después de ser moderado.';
