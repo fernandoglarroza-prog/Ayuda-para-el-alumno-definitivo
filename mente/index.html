@@ -23,6 +23,7 @@
         <a href="#temas">Temas</a>
         <a href="#estudiantes">Estudiantes</a>
         <a href="#acompanar">Familia y vínculos</a>
+        <a href="#voces">Voces</a>
         <a href="#recursos">Recursos</a>
       </nav>
     </div>
@@ -161,6 +162,59 @@
               <li>Cargar con todo en soledad: quien acompaña también necesita apoyo.</li>
             </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="voces" class="section voicesSection">
+      <div class="wrap">
+        <div class="sectionHead">
+          <span class="eyebrow">Un espacio para decirlo</span>
+          <h2>Voces que se animaron a hablar</h2>
+          <p>Podés escribir lo que te está pasando sin poner tu nombre. Los relatos que se publican en el muro son anónimos y pasan siempre por una revisión previa.</p>
+        </div>
+
+        <div class="voicesGrid">
+          <article class="storyFormCard">
+            <span class="formIcon">✎</span>
+            <h3>Quiero contar lo que me pasa</h3>
+            <p>Este formulario no te pide nombre, correo, teléfono ni usuario. Escribí con tus palabras y evitá incluir datos que puedan identificarte a vos o a otra persona.</p>
+
+            <form id="storyForm">
+              <label for="storyText">Tu mensaje</label>
+              <textarea id="storyText" maxlength="6000" minlength="10" required placeholder="Podés escribir libremente acá..."></textarea>
+              <div class="charLine"><span id="storyChars">0</span>/6000</div>
+
+              <label class="checkLine">
+                <input id="storyAck" type="checkbox" required>
+                <span>Entiendo que este espacio no es un servicio de urgencias y que el mensaje será recibido de forma anónima para revisión.</span>
+              </label>
+
+              <label class="checkLine publishCheck">
+                <input id="publishConsent" type="checkbox">
+                <span><b>Autorizo que, luego de ser revisado y si corresponde, mi relato pueda publicarse de forma anónima en el Muro de voces.</b> Si hace falta, el equipo puede quitar detalles que permitan identificar a alguien sin cambiar el sentido del relato.</span>
+              </label>
+
+              <button id="storySubmit" class="btn primary" type="submit">Enviar de forma anónima</button>
+              <div id="storyStatus" class="formStatus" role="status" aria-live="polite"></div>
+            </form>
+
+            <div class="urgentMini">
+              <b>¿Estás en riesgo ahora?</b>
+              <p>No uses este formulario para esperar una respuesta. Llamá al <strong>911</strong>, al <strong>0800-999-0091</strong> o buscá una guardia. También podés consultar la sección <a href="#ayuda-ahora">Necesito ayuda ahora</a>.</p>
+            </div>
+          </article>
+
+          <div class="wallPanel">
+            <div class="wallHead">
+              <div><span class="eyebrow">Muro anónimo</span><h3>No estás solo/a</h3></div>
+              <span class="wallBadge">Relatos moderados</span>
+            </div>
+            <p class="wallIntro">Historias compartidas por personas que decidieron poner en palabras lo que estaban viviendo. No son consejos médicos ni diagnósticos: son experiencias humanas.</p>
+            <div id="wallStories" class="wallStories">
+              <div class="wallEmpty">Cargando relatos…</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
