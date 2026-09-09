@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#0b4bb3">
+  <title>Administración · Ayuda para el Alumno</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="shell">
+  <section class="brand">
+    <img src="../mente/logo.webp" alt="">
+    <div><b>Ayuda para el Alumno</b><span>Panel unificado de administración</span></div>
+  </section>
+
+  <section id="loginCard" class="card login">
+    <span class="ey">Acceso privado</span>
+    <h1>Moderación</h1>
+    <p>Ingresá con la cuenta administradora del proyecto. Desde acá podés moderar aportes académicos y relatos anónimos de salud mental.</p>
+    <label>Correo administrador
+      <input id="email" type="email" value="ayudaparaelalumnouno@gmail.com" readonly>
+    </label>
+    <label>Contraseña
+      <input id="password" type="password" autocomplete="current-password" placeholder="Tu contraseña">
+    </label>
+    <button id="login" class="btn primary">Ingresar</button>
+    <div id="authMsg"></div>
+  </section>
+
+  <section id="panel" class="hidden">
+    <div class="top">
+      <div><span class="ey">Administración</span><h1>Centro de moderación</h1><p>Un solo panel para los dos proyectos.</p></div>
+      <button id="logout" class="btn secondary">Cerrar sesión</button>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Secciones de moderación">
+      <button class="tab active" data-tab="materials" role="tab">📚 Aportes de estudiantes <span id="matPendingBadge" class="countBadge">0</span></button>
+      <button class="tab" data-tab="stories" role="tab">🧠 Relatos de salud mental <span id="storyPendingBadge" class="countBadge">0</span></button>
+    </div>
+
+    <section id="materialsTab" class="tabPanel">
+      <div id="materialOverview" class="stats"></div>
+      <div class="sectionHead">
+        <div><h2>Aportes de estudiantes</h2><p>Previsualizá el archivo antes de aprobarlo. Publicar lo vuelve visible en Material.</p></div>
+        <select id="materialStatus">
+          <option value="pending">Pendientes</option>
+          <option value="approved">Aprobados</option>
+          <option value="rejected">Rechazados</option>
+          <option value="published">Publicados</option>
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div id="materialQueue"></div>
+    </section>
+
+    <section id="storiesTab" class="tabPanel hidden">
+      <div id="storyOverview" class="stats"></div>
+      <div class="sectionHead">
+        <div><h2>Relatos anónimos</h2><p>Leé el relato original sólo para moderarlo. Si autorizó publicación, podés editar la versión pública antes de enviarla al muro.</p></div>
+        <select id="storyStatus">
+          <option value="pending">Pendientes</option>
+          <option value="published">Publicados</option>
+          <option value="private">Privados</option>
+          <option value="rejected">Rechazados</option>
+          <option value="all">Todos</option>
+        </select>
+      </div>
+      <div class="privacyNote"><b>Privacidad:</b> el relato original pendiente no es público. Al publicarlo, la base elimina el texto original y conserva únicamente la versión moderada.</div>
+      <div id="storyQueue"></div>
+    </section>
+  </section>
+</main>
+<script src="./app.js"></script>
+</body>
+</html>
