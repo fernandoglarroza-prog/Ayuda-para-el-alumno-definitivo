@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Moderación · Una mente sana es posible</title>
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="mentalAdmin">
+<header class="siteHeader"><div class="wrap head">
+  <a class="brand" href="./"><img src="./logo.webp" alt="Logo"><span><strong>Una mente sana es posible</strong><small>Moderación de relatos</small></span></a>
+</div></header>
+<main class="adminWrap wrap">
+  <section id="adminLogin" class="adminLoginCard">
+    <span class="eyebrow">Acceso restringido</span>
+    <h1>Moderación del Muro de voces</h1>
+    <p>Ingresá con la cuenta administradora del proyecto. Los relatos pendientes no son visibles públicamente.</p>
+    <form id="loginForm" class="adminForm">
+      <label>Correo<input id="adminEmail" type="email" autocomplete="username" required></label>
+      <label>Contraseña<input id="adminPassword" type="password" autocomplete="current-password" required></label>
+      <button class="btn primary" type="submit">Ingresar</button>
+      <div id="loginStatus" class="formStatus" role="status"></div>
+    </form>
+  </section>
+
+  <section id="adminPanel" hidden>
+    <div class="adminTop">
+      <div><span class="eyebrow">Muro anónimo</span><h1>Relatos para moderar</h1><p>Revisá el contenido antes de decidir. Si publicás, podés editar el texto para quitar datos identificatorios sin cambiar el sentido.</p></div>
+      <button id="logoutBtn" class="btn secondary">Cerrar sesión</button>
+    </div>
+    <div class="adminFilters">
+      <button data-status="pending" class="active">Pendientes</button>
+      <button data-status="published">Publicados</button>
+      <button data-status="private">Privados</button>
+      <button data-status="rejected">Rechazados</button>
+      <button data-status="all">Todos</button>
+    </div>
+    <div id="queueStatus" class="formStatus" role="status"></div>
+    <div id="storyQueue" class="storyQueue"></div>
+  </section>
+</main>
+<script src="./admin.js"></script>
+</body>
+</html>
