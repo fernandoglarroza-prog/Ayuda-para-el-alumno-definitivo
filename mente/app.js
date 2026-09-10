@@ -53,3 +53,4 @@ storyForm?.addEventListener('submit',async e=>{
 loadMentalWall();
 
 /* voces-deploy-sync */
+import('./uno-protocolo.js').catch(()=>{});
