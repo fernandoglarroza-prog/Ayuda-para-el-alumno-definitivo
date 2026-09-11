@@ -54,3 +54,4 @@ loadMentalWall();
 
 /* voces-deploy-sync */
 import('./uno-protocolo.js').catch(()=>{});
+import('./social-fix.js').catch(()=>{});
