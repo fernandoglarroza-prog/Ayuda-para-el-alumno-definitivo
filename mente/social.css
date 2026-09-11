@@ -12,6 +12,8 @@
 #redes .instagramMark,#redes .brandIcon{display:inline-flex!important;width:15px!important;height:15px!important;min-width:15px!important;max-width:15px!important;max-height:15px!important;flex:0 0 15px!important}
 #redes .instagramMark svg,#redes .brandIcon svg{display:block!important;width:15px!important;height:15px!important;max-width:15px!important;max-height:15px!important}
 #redes .socialActions{display:flex!important;gap:10px!important;align-items:center!important;flex-wrap:wrap!important;margin:0!important}
+.aboutSection .aboutMark{display:none!important}
+.aboutSection .aboutGrid{grid-template-columns:1fr!important;max-width:900px}
 @media(max-width:620px){
   #redes.section{padding:20px 0!important}
   #redes .sectionHead{margin-bottom:10px!important}
