@@ -8,11 +8,35 @@
   <link rel="canonical" href="https://ayudaparaelalumno.com.ar/mente/">
   <meta property="og:locale" content="es_AR">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Una mente sana es posible">
   <meta property="og:title" content="Una mente sana es posible">
   <meta property="og:description" content="Información, orientación y recursos sobre salud mental para estudiantes y su entorno.">
   <meta property="og:url" content="https://ayudaparaelalumno.com.ar/mente/">
+  <meta property="og:image" content="https://ayudaparaelalumno.com.ar/mente/logo.webp?v=20260911">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:alt" content="Logo de Una mente sana es posible">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Una mente sana es posible">
+  <meta name="twitter:description" content="Informar · acompañar · cuidar">
+  <meta name="twitter:image" content="https://ayudaparaelalumno.com.ar/mente/logo.webp?v=20260911">
   <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="icon" href="./logo.webp">
+  <link rel="apple-touch-icon" href="./logo.webp">
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    .socialSection{background:linear-gradient(180deg,#fffaf3,#eef8f5)}
+    .socialGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .socialCard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+    .socialCardLogo{width:84px;height:84px;border-radius:50%;object-fit:cover;border:1px solid #d9e9e4;background:#fff}
+    .socialCardIcon{width:84px;height:84px;border-radius:22px;display:grid;place-items:center;font-size:42px;background:linear-gradient(145deg,#dff3ec,#dff1fa)}
+    .socialCard h3{font-family:Georgia,serif;font-size:28px;margin:0 0 7px}
+    .socialCard p{margin:0;color:var(--mut);line-height:1.6}
+    .socialActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .socialActions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:850;border-radius:12px;padding:10px 13px;border:1px solid #cfe1dd;background:#fff;color:#277878}
+    .socialActions a.primarySocial{background:#168d99;color:#fff;border-color:#168d99}
+    .socialNote{margin-top:16px;color:#6e7e82;font-size:12px;line-height:1.55}
+    @media(max-width:760px){.socialGrid{grid-template-columns:1fr}.socialCard{grid-template-columns:1fr;text-align:center}.socialCardLogo,.socialCardIcon{margin:auto}.socialActions{justify-content:center}}
+  </style>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -347,10 +371,44 @@
           <p>Un espacio de información y sensibilización sobre salud mental pensado para acercar temas complejos de una manera humana, clara y accesible, con especial atención a la experiencia estudiantil.</p>
         </div>
         <div class="aboutMark">
-          <img src="./logo.webp" alt="">
+          <img src="./logo.webp" alt="Logo de Una mente sana es posible">
           <p>Un espacio vinculado a <strong>Ayuda para el Alumno</strong>.</p>
           <a href="../">Ir a Ayuda para el Alumno →</a>
         </div>
+      </div>
+    </section>
+
+    <section class="section socialSection" id="redes">
+      <div class="wrap">
+        <div class="sectionHead">
+          <span class="eyebrow">Seguinos y conectate</span>
+          <h2>Redes y comunidad</h2>
+          <p>También podés encontrar contenidos del espacio y mantenerte conectado con la comunidad estudiantil desde las redes.</p>
+        </div>
+        <div class="socialGrid">
+          <article class="socialCard">
+            <img class="socialCardLogo" src="./logo.webp" alt="Logo de Una mente sana es posible">
+            <div>
+              <h3>Una mente sana es posible</h3>
+              <p>Publicaciones, campañas y contenidos para hablar de salud mental de una manera cercana y responsable.</p>
+              <div class="socialActions">
+                <a class="primarySocial" href="https://www.instagram.com/unamentesanaesposible/" target="_blank" rel="noopener noreferrer">Instagram →</a>
+              </div>
+            </div>
+          </article>
+          <article class="socialCard">
+            <div class="socialCardIcon" aria-hidden="true">🎓</div>
+            <div>
+              <h3>Centro de Estudiantes</h3>
+              <p>Acceso a los canales del Centro de Estudiantes para información y comunicación con la representación estudiantil.</p>
+              <div class="socialActions">
+                <a href="https://www.instagram.com/ce.uno/" target="_blank" rel="noopener noreferrer">Instagram →</a>
+                <a href="https://www.facebook.com/CE.NuevaUNO/?locale=es_LA" target="_blank" rel="noopener noreferrer">Facebook →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p class="socialNote">El Centro de Estudiantes es un espacio externo a Una mente sana es posible. Los enlaces llevan directamente a sus redes.</p>
       </div>
     </section>
   </main>
