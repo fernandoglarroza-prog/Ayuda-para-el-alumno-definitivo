@@ -10,47 +10,64 @@
   grid.innerHTML=`
     <article class="socialCard socialCardMente">
       <img class="socialCardLogo mentalLogo" src="./logo.webp" alt="Logo de Una mente sana es posible">
-      <div class="compactSocialBody">
-        <a class="simpleInstagramLink" href="https://www.instagram.com/unamentesanaesposible/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Una mente sana es posible">
-          <span class="instagramMark">${instagramIcon}</span>
-          <b>Nuestro Instagram</b>
-        </a>
-      </div>
+      <a class="compactMainLink" href="https://www.instagram.com/unamentesanaesposible/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Una mente sana es posible">
+        <span class="brandIcon">${instagramIcon}</span>
+        <b>Nuestro Instagram</b>
+      </a>
     </article>
 
     <article class="socialCard socialCardCentro">
-      <img class="socialCardLogo ceLogo" src="./ce-logo.svg?v=20260911b" alt="Logo del Centro de Estudiantes de la Universidad Nacional del Oeste">
+      <img class="socialCardLogo ceLogo" src="./ce-logo.svg?v=20260911c" alt="Logo del Centro de Estudiantes de la Universidad Nacional del Oeste">
       <div class="compactSocialBody">
-        <h3>Centro de Estudiantes</h3>
-        <div class="socialActions socialActionsBrand">
-          <a href="https://www.instagram.com/ce.uno/" target="_blank" rel="noopener noreferrer" aria-label="Instagram del Centro de Estudiantes"><span class="brandIcon">${instagramIcon}</span>Instagram</a>
-          <a href="https://www.facebook.com/CE.NuevaUNO/?locale=es_LA" target="_blank" rel="noopener noreferrer" aria-label="Facebook del Centro de Estudiantes"><span class="brandIcon">${facebookIcon}</span>Facebook</a>
+        <b class="compactTitle">Centro de Estudiantes</b>
+        <div class="miniSocialLinks">
+          <a href="https://www.instagram.com/ce.uno/" target="_blank" rel="noopener noreferrer" aria-label="Instagram del Centro de Estudiantes"><span class="brandIcon">${instagramIcon}</span><span>Instagram</span></a>
+          <a href="https://www.facebook.com/CE.NuevaUNO/?locale=es_LA" target="_blank" rel="noopener noreferrer" aria-label="Facebook del Centro de Estudiantes"><span class="brandIcon">${facebookIcon}</span><span>Facebook</span></a>
         </div>
       </div>
     </article>`;
 
   section.querySelector('.socialNote')?.remove();
+  const sectionHead=section.querySelector('.sectionHead');
+  if(sectionHead){
+    const p=sectionHead.querySelector('p');
+    if(p)p.remove();
+  }
 
   const style=document.createElement('style');
   style.textContent=`
-    #redes .socialGrid{gap:12px!important}
-    #redes .socialCard{padding:14px 16px!important;border-radius:18px!important;min-height:108px!important;display:grid!important;grid-template-columns:68px 1fr!important;gap:14px!important;align-items:center!important;box-shadow:0 6px 18px rgba(31,66,70,.05)!important}
-    #redes .socialCardLogo{width:64px!important;height:64px!important;margin:0!important;object-fit:contain!important}
-    #redes .mentalLogo{border-radius:50%!important}
-    #redes .ceLogo{border-radius:50%!important;background:#f2fbfd!important;padding:2px!important;border:1px solid #d5e7ec!important}
-    #redes .compactSocialBody{min-width:0}
-    #redes .socialCard h3{font-size:20px!important;margin:0 0 8px!important;line-height:1.1!important}
-    #redes .simpleInstagramLink{display:inline-flex!important;align-items:center!important;gap:7px!important;margin:0!important;text-decoration:none!important;color:#235f69!important;font-size:14px!important}
-    #redes .instagramMark,#redes .brandIcon{display:inline-flex!important;width:18px!important;height:18px!important;flex:0 0 18px!important}
-    #redes .instagramMark svg,#redes .brandIcon svg{width:100%!important;height:100%!important}
-    #redes .socialActions{display:flex!important;gap:7px!important;flex-wrap:wrap!important;margin:0!important}
-    #redes .socialActions a{padding:7px 9px!important;border-radius:9px!important;font-size:12px!important;gap:6px!important}
+    #redes.section{padding:28px 0!important}
+    #redes .sectionHead{margin-bottom:10px!important}
+    #redes .sectionHead .eyebrow{font-size:11px!important}
+    #redes .sectionHead h2{font-size:25px!important;margin-bottom:0!important}
+    #redes .socialGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+    #redes .socialCard{padding:9px 12px!important;border-radius:14px!important;min-height:66px!important;display:grid!important;grid-template-columns:46px 1fr!important;gap:10px!important;align-items:center!important;box-shadow:none!important}
+    #redes .socialCardLogo{width:44px!important;height:44px!important;margin:0!important;object-fit:contain!important;flex:none!important}
+    #redes .mentalLogo,#redes .ceLogo{border-radius:50%!important;background:#fff!important;border:1px solid #dbe9e6!important;padding:1px!important}
+    #redes .compactMainLink{display:inline-flex!important;align-items:center!important;gap:7px!important;text-decoration:none!important;color:#235f69!important;font-size:13px!important;line-height:1.2!important;width:max-content!important;max-width:100%!important}
+    #redes .compactSocialBody{min-width:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+    #redes .compactTitle{font-family:inherit!important;font-size:14px!important;line-height:1.2!important;white-space:nowrap!important}
+    #redes .miniSocialLinks{display:flex!important;gap:5px!important;flex-wrap:nowrap!important}
+    #redes .miniSocialLinks a{display:inline-flex!important;align-items:center!important;gap:4px!important;padding:5px 7px!important;border:1px solid #d9e5e2!important;border-radius:8px!important;text-decoration:none!important;color:#2b6870!important;font-size:11px!important;font-weight:800!important;line-height:1!important;background:#fff!important}
+    #redes .brandIcon{display:inline-flex!important;width:14px!important;height:14px!important;flex:0 0 14px!important}
+    #redes .brandIcon svg{width:100%!important;height:100%!important}
     @media(max-width:760px){
-      #redes .socialGrid{grid-template-columns:1fr!important}
-      #redes .socialCard{grid-template-columns:58px 1fr!important;padding:12px 14px!important;gap:12px!important;min-height:92px!important;text-align:left!important}
-      #redes .socialCardLogo{width:54px!important;height:54px!important}
-      #redes .socialCard h3{font-size:18px!important}
-      #redes .socialActions{justify-content:flex-start!important}
+      #redes.section{padding:22px 0!important}
+      #redes .sectionHead{margin-bottom:8px!important}
+      #redes .sectionHead .eyebrow{display:none!important}
+      #redes .sectionHead h2{font-size:21px!important}
+      #redes .socialGrid{grid-template-columns:1fr!important;gap:7px!important}
+      #redes .socialCard{grid-template-columns:42px 1fr!important;min-height:58px!important;padding:7px 10px!important;gap:9px!important;text-align:left!important}
+      #redes .socialCardLogo{width:40px!important;height:40px!important}
+      #redes .compactSocialBody{gap:7px!important}
+      #redes .compactTitle{font-size:13px!important}
+      #redes .miniSocialLinks a{padding:4px 6px!important;font-size:10.5px!important}
+      #redes .brandIcon{width:13px!important;height:13px!important;flex-basis:13px!important}
+    }
+    @media(max-width:420px){
+      #redes .miniSocialLinks a span:last-child{display:none!important}
+      #redes .miniSocialLinks a{width:30px!important;height:28px!important;justify-content:center!important;padding:0!important}
+      #redes .brandIcon{width:15px!important;height:15px!important;flex-basis:15px!important}
     }
   `;
   document.head.appendChild(style);
