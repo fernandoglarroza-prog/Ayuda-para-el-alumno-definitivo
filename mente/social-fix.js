@@ -7,13 +7,14 @@
   if(!document.querySelector('link[data-social-compact]')){
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='./social.css?v=20260911d';
+    link.href='./social.css?v=20260911e';
     link.dataset.socialCompact='1';
     document.head.appendChild(link);
   }
 
   const instagramIcon=`<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.8" r="1.2" fill="currentColor"/></svg>`;
   const facebookIcon=`<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.8 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H8.2v3h2.6v8h3z"/></svg>`;
+  const ceLogo='https://raw.githubusercontent.com/fernandoglarroza-prog/Ayuda-para-el-alumno-definitivo/ae0636ab5fd24e77b5ec0c58b7bcb8e7b47bd915/mente/ce-logo.svg';
 
   grid.innerHTML=`
     <article class="socialCard socialCardMente">
@@ -27,7 +28,7 @@
     </article>
 
     <article class="socialCard socialCardCentro">
-      <img class="socialCardLogo ceLogo" src="./ce-logo.svg?v=20260911d" width="48" height="48" alt="Logo del Centro de Estudiantes de la Universidad Nacional del Oeste">
+      <img class="socialCardLogo ceLogo" src="${ceLogo}" width="48" height="48" alt="Logo del Centro de Estudiantes de la Universidad Nacional del Oeste">
       <div class="compactSocialBody">
         <h3>Centro de Estudiantes</h3>
         <div class="socialActions socialActionsBrand">
