@@ -1,0 +1,25 @@
+#redes.section{padding:26px 0!important}
+#redes .sectionHead{margin-bottom:12px!important}
+#redes .sectionHead p{display:none!important}
+#redes .sectionHead h2{font-size:clamp(26px,3vw,34px)!important;margin-bottom:0!important}
+#redes .socialGrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+#redes .socialCard{background:#fff!important;border:1px solid var(--line)!important;border-radius:14px!important;padding:9px 11px!important;box-shadow:0 3px 10px rgba(31,66,70,.04)!important;display:flex!important;align-items:center!important;gap:10px!important;min-height:62px!important;text-align:left!important}
+#redes .socialCardLogo{display:block!important;width:44px!important;height:44px!important;min-width:44px!important;max-width:44px!important;max-height:44px!important;object-fit:contain!important;margin:0!important;border-radius:50%!important;background:#fff!important}
+#redes .ceLogo{width:48px!important;height:48px!important;min-width:48px!important;max-width:48px!important;max-height:48px!important;padding:0!important;border:1px solid #dce9ec!important}
+#redes .compactSocialBody{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;gap:4px!important}
+#redes .compactSocialBody h3{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif!important;font-size:14px!important;line-height:1.15!important;margin:0!important;font-weight:800!important}
+#redes .simpleInstagramLink,#redes .socialActions a{display:inline-flex!important;align-items:center!important;gap:5px!important;text-decoration:none!important;color:#245c67!important;font-size:12px!important;font-weight:750!important;line-height:1.2!important;padding:0!important;border:0!important;background:transparent!important;border-radius:0!important}
+#redes .instagramMark,#redes .brandIcon{display:inline-flex!important;width:15px!important;height:15px!important;min-width:15px!important;max-width:15px!important;max-height:15px!important;flex:0 0 15px!important}
+#redes .instagramMark svg,#redes .brandIcon svg{display:block!important;width:15px!important;height:15px!important;max-width:15px!important;max-height:15px!important}
+#redes .socialActions{display:flex!important;gap:10px!important;align-items:center!important;flex-wrap:wrap!important;margin:0!important}
+@media(max-width:620px){
+  #redes.section{padding:20px 0!important}
+  #redes .sectionHead{margin-bottom:10px!important}
+  #redes .sectionHead h2{font-size:26px!important}
+  #redes .socialGrid{grid-template-columns:1fr!important;gap:7px!important}
+  #redes .socialCard{min-height:56px!important;padding:7px 9px!important;gap:9px!important}
+  #redes .socialCardLogo{width:40px!important;height:40px!important;min-width:40px!important;max-width:40px!important;max-height:40px!important}
+  #redes .ceLogo{width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;max-height:42px!important}
+  #redes .compactSocialBody h3{font-size:13px!important}
+  #redes .simpleInstagramLink,#redes .socialActions a{font-size:11.5px!important}
+}
