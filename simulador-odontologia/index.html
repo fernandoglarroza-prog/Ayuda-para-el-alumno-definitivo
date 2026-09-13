@@ -10,7 +10,6 @@
   <link rel="icon" href="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/simulador-odontologia/simulador.css">
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
 </head>
 <body class="simBody">
   <header class="simHeader">
@@ -28,7 +27,7 @@
       <div>
         <span class="simEy">Odontología · Anatomía</span>
         <h1>Simulador de Odontología – Cráneo 3D</h1>
-        <p>Explorá el cráneo en tres dimensiones, cambiá de vista y consultá fichas anatómicas. Esta es la primera versión funcional del simulador.</p>
+        <p>Explorá huesos reales del cráneo en tres dimensiones, seleccioná estructuras directamente sobre el modelo y consultá sus fichas anatómicas.</p>
       </div>
       <span class="simBeta">VERSIÓN DE PRUEBA</span>
     </section>
@@ -53,50 +52,47 @@
         <div class="simViewerCard">
           <div class="simViewerTop">
             <div>
-              <span class="simEy">Visor anatómico</span>
+              <span class="simEy">Atlas anatómico interactivo</span>
               <h2 id="viewerTitle">Cráneo humano</h2>
             </div>
-            <span id="viewerStatus" class="simStatus">Cargando modelo 3D…</span>
+            <span id="viewerStatus" class="simStatus">Preparando atlas 3D…</span>
           </div>
 
-          <model-viewer
-            id="skullViewer"
-            class="skullViewer"
-            src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ScatteringSkull/glTF-Binary/ScatteringSkull.glb"
-            alt="Modelo tridimensional de un cráneo humano"
-            camera-controls
-            touch-action="pan-y"
-            interaction-prompt="auto"
-            shadow-intensity="0.7"
-            exposure="1"
-            camera-orbit="0deg 75deg 105%"
-            min-camera-orbit="auto auto 65%"
-            max-camera-orbit="auto auto 180%">
-            <div class="simLoading" slot="poster">
-              <div class="simSpinner" aria-hidden="true"></div>
-              <b>Preparando el cráneo 3D</b>
-              <span>La primera carga puede tardar unos segundos.</span>
+          <div id="skullStage" class="skullStage" aria-label="Visor tridimensional interactivo del cráneo humano">
+            <canvas id="skullCanvas" class="skullCanvas"></canvas>
+            <div class="simLoading stageLoading" aria-hidden="true">
+              <div class="simSpinner"></div>
+              <b>Cargando huesos del cráneo</b>
+              <span>Estamos preparando las piezas anatómicas seleccionables.</span>
             </div>
-          </model-viewer>
+            <p id="viewerError" class="viewerError" hidden></p>
+          </div>
 
           <div class="simViews" aria-label="Vistas anatómicas">
-            <button type="button" class="simView active" data-orbit="0deg 75deg 105%" data-view="Anterior">Anterior</button>
-            <button type="button" class="simView" data-orbit="-90deg 75deg 105%" data-view="Lateral">Lateral</button>
-            <button type="button" class="simView" data-orbit="180deg 75deg 105%" data-view="Posterior">Posterior</button>
-            <button type="button" class="simView" data-orbit="0deg 5deg 105%" data-view="Superior">Superior</button>
-            <button type="button" class="simView" data-orbit="0deg 165deg 105%" data-view="Inferior">Inferior</button>
+            <button type="button" class="simView active" data-view="Anterior">Anterior</button>
+            <button type="button" class="simView" data-view="Lateral">Lateral</button>
+            <button type="button" class="simView" data-view="Posterior">Posterior</button>
+            <button type="button" class="simView" data-view="Superior">Superior</button>
+            <button type="button" class="simView" data-view="Inferior">Inferior</button>
+          </div>
+
+          <div class="simModelActions" aria-label="Acciones sobre el modelo">
+            <button id="isolateBone" type="button">Aislar seleccionado</button>
+            <button id="contextBone" type="button">Atenuar los demás</button>
+            <button id="resetSkull" type="button">Restablecer cráneo</button>
           </div>
 
           <div class="simViewerHint">
             <span>🖱️ Arrastrá para rotar</span>
             <span>🔍 Pellizcá o usá la rueda para acercar</span>
+            <span>👆 Tocá un hueso para seleccionarlo</span>
             <span id="currentView">Vista: anterior</span>
           </div>
         </div>
 
         <div class="simStructurePanel">
           <div class="simSectionTitle">
-            <div><span class="simEy">Acceso rápido</span><h2>Estructuras de esta versión</h2></div>
+            <div><span class="simEy">Acceso rápido</span><h2>Estructuras del simulador</h2></div>
           </div>
           <div id="structureButtons" class="simStructureButtons"></div>
         </div>
@@ -106,7 +102,7 @@
         <div id="practiceBox" class="simPractice" hidden>
           <span class="simEy">Modo práctica</span>
           <h2 id="practiceQuestion">Identificá la estructura indicada.</h2>
-          <p id="practiceFeedback">Elegí una estructura de la lista.</p>
+          <p id="practiceFeedback">Elegí una estructura de la lista o tocala en el modelo.</p>
           <button id="nextQuestion" type="button">Nueva pregunta</button>
         </div>
 
@@ -140,20 +136,21 @@
     </section>
 
     <section class="simRoadmap">
-      <span class="simEy">Siguiente etapa</span>
-      <h2>De visor 3D a atlas anatómico interactivo</h2>
-      <p>Esta primera versión valida el visor 3D, la navegación y las fichas. La siguiente incorporará un modelo segmentado para seleccionar, resaltar, aislar y ocultar huesos directamente sobre el cráneo.</p>
+      <span class="simEy">Estado del desarrollo</span>
+      <h2>Ya estamos trabajando sobre huesos separados</h2>
+      <p>Esta versión carga geometría anatómica segmentada basada en BodyParts3D: cada hueso es una pieza independiente y puede seleccionarse, resaltarse y aislarse. El próximo nivel será marcar accidentes anatómicos pequeños —forámenes, conductos, fosas y apófisis— sobre esas piezas.</p>
       <div class="simRoadmapGrid">
-        <div><b>1</b><span>Selección directa de huesos</span></div>
+        <div><b>✓</b><span>Selección directa de huesos</span></div>
         <div><b>2</b><span>Accidentes anatómicos y conductos</span></div>
         <div><b>3</b><span>Nervios, vasos y relaciones</span></div>
         <div><b>4</b><span>Autoevaluación sobre el modelo</span></div>
       </div>
     </section>
 
-    <p class="simAttribution">Modelo 3D de prueba: “ScatteringSkull”, Vladimir Petkovic, CC0 1.0, distribuido por Khronos glTF Sample Assets. El contenido académico del simulador se irá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. Uso educativo; no es una herramienta clínica. El contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
   </main>
 
   <script src="/simulador-odontologia/app.js" defer></script>
+  <script type="module" src="/simulador-odontologia/viewer.js"></script>
 </body>
 </html>
