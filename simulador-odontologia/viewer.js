@@ -7,6 +7,7 @@ const MODEL_BASE = 'https://raw.githubusercontent.com/slorksmo/Human-Atlas/main/
 const canvas = document.getElementById('skullCanvas');
 const stage = document.getElementById('skullStage');
 const status = document.getElementById('viewerStatus');
+const focusButton = document.getElementById('focusBone');
 const isolateButton = document.getElementById('isolateBone');
 const contextButton = document.getElementById('contextBone');
 const resetButton = document.getElementById('resetSkull');
@@ -147,7 +148,7 @@ function applyVisualState() {
     const isSelected = selectedKey && mesh.userData.infoKey === selectedKey;
     const isHovered = hovered === mesh && !isSelected;
     mesh.visible = !isolated || isSelected;
-    mesh.material.opacity = contextDimmed && selectedKey && !isSelected ? 0.17 : 1;
+    mesh.material.opacity = contextDimmed && selectedKey && !isSelected ? 0.14 : 1;
     mesh.material.depthWrite = mesh.material.opacity > 0.5;
     if (isSelected) mesh.material.color.setHex(SELECTED_BONE);
     else if (isHovered) mesh.material.color.setHex(HOVER_BONE);
@@ -191,6 +192,30 @@ function fitCamera() {
   camera.far = Math.max(maxDim * 20, 5);
   camera.updateProjectionMatrix();
   controls.update();
+}
+
+function selectedBox() {
+  if (!selectedKey) return null;
+  const selectedMeshes = meshes.filter((mesh) => mesh.userData.infoKey === selectedKey && mesh.visible);
+  if (!selectedMeshes.length) return null;
+  const box = new THREE.Box3();
+  selectedMeshes.forEach((mesh) => box.expandByObject(mesh));
+  return box.isEmpty() ? null : box;
+}
+
+function focusSelection() {
+  const box = selectedBox();
+  if (!box) return false;
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const direction = camera.position.clone().sub(controls.target).normalize();
+  if (!Number.isFinite(direction.x) || direction.lengthSq() < 0.1) direction.set(0, 0, 1);
+  const distance = Math.max(maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5))) * 1.9, maxDim * 2.1, 0.08);
+  controls.target.copy(center);
+  camera.position.copy(center).add(direction.multiplyScalar(distance));
+  controls.update();
+  return true;
 }
 
 async function loadAtlas() {
@@ -258,6 +283,17 @@ function hitTest(event) {
   return hits[0]?.object || null;
 }
 
+function emitHover(mesh, event) {
+  const rect = stage.getBoundingClientRect();
+  document.dispatchEvent(new CustomEvent('simulator:hover', {
+    detail: mesh ? {
+      key: mesh.userData.infoKey,
+      x: Math.max(0, Math.min(rect.width - 20, event.clientX - rect.left)),
+      y: Math.max(0, Math.min(rect.height - 20, event.clientY - rect.top))
+    } : { key: null }
+  }));
+}
+
 canvas.addEventListener('pointerdown', (event) => {
   pointerStart = { x: event.clientX, y: event.clientY };
 });
@@ -275,17 +311,33 @@ canvas.addEventListener('pointerup', (event) => {
 canvas.addEventListener('pointermove', (event) => {
   if (event.buttons) return;
   const next = hitTest(event);
-  if (next === hovered) return;
-  hovered = next;
-  canvas.style.cursor = hovered ? 'pointer' : 'grab';
-  applyVisualState();
+  if (next !== hovered) {
+    hovered = next;
+    canvas.style.cursor = hovered ? 'pointer' : 'grab';
+    applyVisualState();
+  }
+  emitHover(next, event);
 });
 
 canvas.addEventListener('pointerleave', () => {
   hovered = null;
   canvas.style.cursor = 'grab';
   applyVisualState();
+  document.dispatchEvent(new CustomEvent('simulator:hover', { detail: { key: null } }));
 });
+
+canvas.addEventListener('keydown', (event) => {
+  if (event.key.toLowerCase() === 'r') {
+    event.preventDefault();
+    resetButton?.click();
+  }
+  if (event.key.toLowerCase() === 'f') {
+    event.preventDefault();
+    focusSelection();
+  }
+});
+
+focusButton?.addEventListener('click', () => focusSelection());
 
 isolateButton?.addEventListener('click', () => {
   if (!selectedKey) return;
@@ -311,6 +363,7 @@ resetButton?.addEventListener('click', () => {
 });
 
 window.skull3dSelectByKey = (key) => selectKey(key, false);
+window.skull3dFocusSelection = focusSelection;
 window.skull3dIsolate = () => {
   if (!selectedKey) return false;
   isolated = true;
