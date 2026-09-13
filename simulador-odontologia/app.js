@@ -1,317 +1,111 @@
 (() => {
-  const booksGeneral = 'Figún y Garino · Anatomía Odontológica; Pró · Anatomía Clínica; Latarjet y Ruiz Liard · Anatomía Humana. Ediciones y páginas específicas: a validar con la cátedra.';
+  const books = 'Figún y Garino · Anatomía Odontológica; Pró · Anatomía Clínica; Latarjet y Ruiz Liard · Anatomía Humana. Ediciones y páginas específicas: a validar con la cátedra.';
+  const S = (name, type, group, summary, location, parts, relations, clinical, tips, related = [], extra = {}) => ({ name, type, group, summary, location, parts, relations, clinical, tips, related, books, ...extra });
 
   const structures = {
-    craneo: {
-      name: 'Cráneo humano',
-      summary: 'Conjunto óseo de la cabeza que protege el encéfalo y forma gran parte del esqueleto facial.',
-      location: 'Se divide de manera general en neurocráneo y viscerocráneo. Para reconocerlo conviene orientarlo por las órbitas hacia anterior y el foramen magno hacia inferior.',
-      parts: 'Incluye huesos pares e impares del neurocráneo y de la cara. En el simulador se incorporan progresivamente los huesos y, después, sus accidentes anatómicos.',
-      relations: 'La mayoría de los huesos craneales se unen mediante suturas. La mandíbula es el hueso móvil y se articula con ambos temporales formando las articulaciones temporomandibulares.',
-      clinical: 'Es la base para comprender anestesia odontológica, cirugía oral y maxilofacial, implantología, ATM y diagnóstico por imágenes.',
-      books: booksGeneral
-    },
-    mandibula: {
-      name: 'Mandíbula',
-      summary: 'Hueso impar y móvil que forma la porción inferior del esqueleto facial y sostiene la arcada dentaria inferior.',
-      location: 'Se reconoce por su cuerpo en forma de herradura y dos ramas ascendentes. Cada rama termina superiormente en una apófisis coronoides y un proceso condilar.',
-      parts: 'Cuerpo, ramas, ángulos, proceso condilar, apófisis coronoides, escotadura mandibular, foramen mandibular, conducto mandibular, foramen mentoniano y proceso alveolar.',
-      relations: 'El proceso condilar se articula con el hueso temporal. El conducto mandibular aloja el paquete neurovascular alveolar inferior.',
-      clinical: 'Fundamental en anestesia del nervio alveolar inferior, extracción de terceros molares, implantología, cirugía y evaluación radiográfica.',
-      books: booksGeneral
-    },
-    maxilar: {
-      name: 'Maxilar',
-      summary: 'Hueso par del macizo facial que participa en la órbita, la cavidad nasal, el paladar duro y la arcada dentaria superior.',
-      location: 'Se encuentra en la región central de la cara, a ambos lados de la cavidad nasal y por debajo de las órbitas.',
-      parts: 'Cuerpo, procesos frontal, cigomático, palatino y alveolar; seno maxilar, foramen infraorbitario y fosa canina.',
-      relations: 'Se articula con varios huesos del macizo facial y contiene el seno maxilar, íntimamente relacionado con dientes posteriores superiores.',
-      clinical: 'Importante en anestesia local, cirugía, implantología, endodoncia y estudio de la relación entre raíces dentarias y seno maxilar.',
-      books: booksGeneral
-    },
-    temporal: {
-      name: 'Hueso temporal',
-      summary: 'Hueso par situado en la región lateral e inferior del cráneo.',
-      location: 'Se ubica lateralmente, por debajo del parietal y por delante del occipital. Participa en la base del cráneo.',
-      parts: 'Porciones escamosa, petrosa, mastoidea y timpánica; proceso mastoides, proceso estiloides, fosa mandibular y conductos relacionados.',
-      relations: 'Se articula con parietal, occipital, esfenoides, cigomático y mandíbula. La fosa mandibular participa en la ATM.',
-      clinical: 'Es clave para comprender la articulación temporomandibular y las relaciones de la región preauricular y de la base craneal.',
-      books: booksGeneral
-    },
-    esfenoides: {
-      name: 'Esfenoides',
-      summary: 'Hueso impar de la base del cráneo relacionado con numerosas estructuras del neurocráneo y de la cara.',
-      location: 'Está situado en la parte media de la base craneal, por detrás de las órbitas.',
-      parts: 'Cuerpo, alas menores, alas mayores y procesos pterigoideos. Presenta múltiples orificios y conductos de importancia neurovascular.',
-      relations: 'Se articula con numerosos huesos. Sus alas y procesos participan en las órbitas y en las fosas temporal, infratemporal y pterigopalatina.',
-      clinical: 'Especialmente relevante para comprender vías nerviosas y vasculares profundas relacionadas con anestesia y cirugía.',
-      books: booksGeneral
-    },
-    frontal: {
-      name: 'Hueso frontal',
-      summary: 'Hueso impar que forma la frente y participa en el techo de las órbitas y en la fosa craneal anterior.',
-      location: 'Ocupa la región anterosuperior del cráneo.',
-      parts: 'Escama frontal, porciones orbitarias, porción nasal, seno frontal, borde supraorbitario y foramen o incisura supraorbitaria.',
-      relations: 'Se articula con parietales, esfenoides, etmoides y varios huesos faciales.',
-      clinical: 'Importante como referencia en anatomía orbitofacial, senos paranasales y evaluación por imágenes.',
-      books: booksGeneral
-    },
-    occipital: {
-      name: 'Hueso occipital',
-      summary: 'Hueso impar que forma gran parte de la región posterior y de la base del cráneo.',
-      location: 'Se encuentra en la región posteroinferior del cráneo.',
-      parts: 'Escama, porciones laterales y basilar, foramen magno, cóndilos occipitales y líneas nucales.',
-      relations: 'Se articula con parietales, temporales, esfenoides y atlas. El foramen magno comunica la cavidad craneal con el conducto vertebral.',
-      clinical: 'Ayuda a comprender la base craneal, las relaciones cervicocraneales y referencias radiológicas de cabeza y cuello.',
-      books: booksGeneral
-    },
-    cigomatico: {
-      name: 'Hueso cigomático',
-      summary: 'Hueso par que forma la prominencia de la mejilla y participa en la pared lateral y el piso de la órbita.',
-      location: 'Se ubica en la región superolateral de la cara.',
-      parts: 'Caras lateral, temporal y orbitaria; procesos frontal, temporal y maxilar; forámenes cigomaticofacial y cigomaticotemporal.',
-      relations: 'Se articula con frontal, esfenoides, temporal y maxilar, y participa en el arco cigomático.',
-      clinical: 'Importante en traumatología facial, cirugía maxilofacial, anestesia y orientación anatómica de la órbita y el maxilar.',
-      books: booksGeneral
-    },
-    parietal: {
-      name: 'Hueso parietal',
-      summary: 'Hueso par que forma buena parte de las paredes superior y lateral del neurocráneo.',
-      location: 'Se ubica por detrás del frontal, por delante del occipital y por encima del temporal.',
-      parts: 'Presenta caras externa e interna, cuatro bordes y cuatro ángulos; participa en varias suturas craneales.',
-      relations: 'Se articula con frontal, occipital, temporal, esfenoides y el parietal opuesto.',
-      clinical: 'Es una referencia útil para orientación topográfica, suturas, traumatología y lectura de imágenes craneofaciales.',
-      books: booksGeneral
-    },
-    etmoides: {
-      name: 'Etmoides',
-      summary: 'Hueso impar y delicado que participa en la base craneal anterior, cavidad nasal y paredes mediales de las órbitas.',
-      location: 'Se encuentra entre las órbitas, por debajo del frontal y por delante del esfenoides.',
-      parts: 'Lámina cribosa, crista galli, lámina perpendicular y laberintos etmoidales con celdillas y conchas nasales superior y media.',
-      relations: 'Se relaciona con frontal, esfenoides, vómer y diversos huesos de la cara y de la cavidad nasal.',
-      clinical: 'Importante en anatomía nasosinusal, órbita y comprensión de comunicaciones de la base craneal.',
-      books: booksGeneral
-    },
-    nasal: {
-      name: 'Hueso nasal',
-      summary: 'Pequeño hueso par que forma el puente óseo de la nariz.',
-      location: 'Se ubica en la línea media facial, inferior al frontal y entre los procesos frontales de los maxilares.',
-      parts: 'Presenta caras anterior y posterior y bordes que contribuyen a sus articulaciones.',
-      relations: 'Se articula con frontal, maxilar, etmoides y el nasal opuesto.',
-      clinical: 'Referencia del macizo facial anterior y frecuente región de traumatismos.',
-      books: booksGeneral
-    },
-    lagrimal: {
-      name: 'Hueso lagrimal',
-      summary: 'Hueso par pequeño de la pared medial de la órbita.',
-      location: 'Se ubica entre el proceso frontal del maxilar y el etmoides.',
-      parts: 'Presenta cresta lagrimal posterior y contribuye a la fosa del saco lagrimal.',
-      relations: 'Se articula con frontal, etmoides, maxilar y concha nasal inferior.',
-      clinical: 'Importante para comprender la pared medial de la órbita y la vía lagrimal.',
-      books: booksGeneral
-    },
-    palatino: {
-      name: 'Hueso palatino',
-      summary: 'Hueso par de forma compleja que participa en el paladar duro, cavidad nasal y regiones profundas de la cara.',
-      location: 'Se encuentra por detrás del maxilar.',
-      parts: 'Láminas horizontal y perpendicular, procesos y forámenes relacionados con la región palatina.',
-      relations: 'Se articula con maxilar, esfenoides, etmoides, concha nasal inferior, vómer y palatino opuesto.',
-      clinical: 'Importante para anestesia palatina, cirugía oral y comprensión de la fosa pterigopalatina.',
-      books: booksGeneral
-    },
-    vomer: {
-      name: 'Vómer',
-      summary: 'Hueso impar que forma parte de la porción posteroinferior del tabique nasal óseo.',
-      location: 'Se sitúa en la línea media de la cavidad nasal.',
-      parts: 'Lámina del vómer y alas superiores.',
-      relations: 'Se relaciona principalmente con esfenoides, etmoides, maxilares y palatinos.',
-      clinical: 'Útil para la orientación anatómica de la cavidad nasal y del tabique óseo.',
-      books: booksGeneral
-    },
-    concha_inferior: {
-      name: 'Concha nasal inferior',
-      summary: 'Hueso par independiente que forma parte de la pared lateral de la cavidad nasal.',
-      location: 'Se encuentra en la porción inferior de la pared lateral de cada cavidad nasal.',
-      parts: 'Lámina curva con procesos lagrimal, maxilar y etmoidal.',
-      relations: 'Se articula con maxilar, lagrimal, etmoides y palatino.',
-      clinical: 'Importante para comprender la anatomía de la cavidad nasal y las relaciones nasosinusales.',
-      books: booksGeneral
-    },
-    foramen_mentoniano: {
-      name: 'Foramen mentoniano',
-      summary: 'Abertura en la superficie externa del cuerpo mandibular por donde emerge el paquete vasculonervioso mentoniano.',
-      location: 'Se localiza en la cara externa del cuerpo de la mandíbula. Su posición exacta puede variar entre individuos.',
-      parts: 'Se continúa con el conducto mandibular y constituye una referencia anatómica del cuerpo mandibular.',
-      relations: 'Se relaciona con el nervio mentoniano y vasos mentonianos, ramas terminales del paquete alveolar inferior.',
-      clinical: 'Referencia relevante en anestesia, implantología y cirugía; su posición debe evaluarse individualmente mediante anatomía e imágenes clínicas.',
-      books: booksGeneral
-    },
-    foramen_mandibular: {
-      name: 'Foramen mandibular',
-      summary: 'Abertura situada en la cara medial de la rama mandibular que da entrada al conducto mandibular.',
-      location: 'Se encuentra en la superficie medial de la rama de la mandíbula, próximo a la língula mandibular.',
-      parts: 'Marca el comienzo del conducto mandibular y se relaciona estrechamente con la língula.',
-      relations: 'Por él ingresan el nervio alveolar inferior y vasos acompañantes hacia el conducto mandibular.',
-      clinical: 'Referencia anatómica fundamental para la anestesia troncular del nervio alveolar inferior.',
-      books: booksGeneral
-    }
+    craneo: S('Cráneo humano','Conjunto óseo','general','Conjunto óseo de la cabeza que protege el encéfalo y forma gran parte del esqueleto facial.','Se organiza en neurocráneo y viscerocráneo. Para orientarlo, ubicá las órbitas hacia anterior y el foramen magno hacia inferior.','Huesos del neurocráneo y de la cara, unidos en su mayoría por suturas; la mandíbula es el principal hueso móvil.','La base craneal comunica regiones mediante numerosos forámenes y conductos; la mandíbula se articula con ambos temporales.','Base anatómica para anestesia, cirugía oral y maxilofacial, implantología, ATM y diagnóstico por imágenes.',['Orientá primero la pieza antes de buscar detalles.','Separá mentalmente neurocráneo y viscerocráneo.','Usá órbitas, arco cigomático, mandíbula y foramen magno como referencias.'],['mandibula','maxilar','temporal','esfenoides'],{kind:'region'}),
+    mandibula: S('Mandíbula','Hueso impar','viscero','Hueso móvil que forma la porción inferior del esqueleto facial y sostiene la arcada dentaria inferior.','Cuerpo en forma de herradura y dos ramas ascendentes. Cada rama termina en proceso condilar y apófisis coronoides.','Cuerpo, ramas, ángulos, proceso condilar, coronoides, escotadura, foramen y conducto mandibulares, foramen mentoniano y proceso alveolar.','El proceso condilar se articula con el temporal. El conducto mandibular contiene el paquete neurovascular alveolar inferior.','Fundamental para anestesia del alveolar inferior, terceros molares, cirugía, implantología e imágenes.',['Cóndilo posterior; coronoides anterior.','Diferenciá cara medial y lateral de la rama.','Relacioná foramen mandibular → conducto mandibular → foramen mentoniano.'],['condilo_mandibular','coronoides_mandibular','foramen_mandibular','conducto_mandibular','foramen_mentoniano','angulo_mandibular'],{kind:'bone',modelKey:'mandibula',synonyms:['maxilar inferior']}),
+    maxilar: S('Maxilar','Hueso par','viscero','Hueso central del macizo facial; participa en órbita, cavidad nasal, paladar duro y arcada superior.','A ambos lados de la cavidad nasal y debajo de las órbitas.','Cuerpo, procesos frontal, cigomático, palatino y alveolar; seno maxilar, foramen infraorbitario y fosa canina.','Se articula con múltiples huesos; el seno maxilar se relaciona estrechamente con dientes posteriores superiores.','Clave en anestesia, cirugía, implantología, endodoncia y relaciones dento-sinusales.',['Ubicá el seno dentro del cuerpo.','Reconocé proceso alveolar inferior y palatino medial.','Relacioná piso del seno con raíces posteriores.'],['seno_maxilar','foramen_infraorbitario','proceso_alveolar_maxilar','cigomatico','palatino'],{kind:'bone',modelKey:'maxilar'}),
+    temporal: S('Hueso temporal','Hueso par','neuro','Hueso lateral e inferior del cráneo, importante en la base craneal.','Inferior al parietal y anterior al occipital.','Porciones escamosa, petrosa, mastoidea y timpánica; mastoides, estiloides, fosa mandibular y meato acústico externo.','Se articula con parietal, occipital, esfenoides, cigomático y mandíbula; la fosa mandibular participa en la ATM.','Clave para ATM, región preauricular y relaciones profundas de la base del cráneo.',['Buscá mastoides, meato acústico externo y fosa mandibular.','Relacioná fosa mandibular con cóndilo mandibular.','La porción petrosa se dirige anteromedialmente.'],['mandibula','condilo_mandibular','cigomatico','esfenoides'],{kind:'bone',modelKey:'temporal'}),
+    esfenoides: S('Esfenoides','Hueso impar','neuro','Hueso central de la base del cráneo relacionado con numerosas estructuras neurovasculares.','Parte media de la base craneal, detrás de las órbitas.','Cuerpo, alas menores y mayores, procesos pterigoideos y múltiples forámenes.','Participa en órbitas y fosas temporal, infratemporal y pterigopalatina.','Muy relevante para trayectos de V2, V3 y vasos de la base craneal.',['Reconocé su aspecto de mariposa.','Diferenciá alas mayores, menores y pterigoides.','Redondo = V2; oval = V3; espinoso = meníngea media.'],['foramen_redondo','foramen_oval','foramen_espinoso','temporal','etmoides'],{kind:'bone',modelKey:'esfenoides'}),
+    frontal: S('Hueso frontal','Hueso impar','neuro','Forma la frente, el techo orbitario y parte de la fosa craneal anterior.','Región anterosuperior del cráneo.','Escama, porciones orbitarias, porción nasal, seno frontal y borde supraorbitario.','Se articula con parietales, esfenoides, etmoides y huesos faciales.','Referencia en anatomía orbitofacial, senos y diagnóstico por imágenes.',['El borde supraorbitario orienta hacia anterior.','Las porciones orbitarias forman el techo de la órbita.'],['parietal','etmoides','esfenoides','nasal'],{kind:'bone',modelKey:'frontal'}),
+    occipital: S('Hueso occipital','Hueso impar','neuro','Forma gran parte de la región posterior y de la base del cráneo.','Región posteroinferior.','Escama, porciones laterales y basilar, foramen magno y cóndilos occipitales.','Se articula con parietales, temporales, esfenoides y atlas.','Útil para comprender base craneal y relaciones cervicocraneales.',['Usá el foramen magno para orientarlo.','Los cóndilos están a ambos lados del foramen magno.'],['temporal','parietal','esfenoides'],{kind:'bone',modelKey:'occipital'}),
+    cigomatico: S('Hueso cigomático','Hueso par','viscero','Forma la prominencia de la mejilla y parte de la órbita.','Región superolateral de la cara.','Caras lateral, temporal y orbitaria; procesos frontal, temporal y maxilar.','Se articula con frontal, esfenoides, temporal y maxilar; participa en el arco cigomático.','Importante en traumatología facial y orientación orbitomaxilar.',['Seguí el arco cigomático hacia temporal.','Ubicá su aporte al reborde orbitario lateral.'],['maxilar','temporal','frontal','esfenoides'],{kind:'bone',modelKey:'cigomatico',synonyms:['malar']}),
+    parietal: S('Hueso parietal','Hueso par','neuro','Forma gran parte de las paredes superior y lateral del neurocráneo.','Entre frontal, occipital y temporal.','Caras externa e interna, cuatro bordes y cuatro ángulos.','Participa en suturas coronal, sagital, lambdoidea y escamosa.','Referencia topográfica y radiológica.',['Ubicá borde sagital superior y escamoso inferior.','Seguí las suturas para reconocerlo.'],['frontal','occipital','temporal'],{kind:'bone',modelKey:'parietal'}),
+    etmoides: S('Etmoides','Hueso impar','neuro','Participa en base craneal anterior, cavidad nasal y pared medial de órbitas.','Entre las órbitas, debajo del frontal y delante del esfenoides.','Lámina cribosa, crista galli, lámina perpendicular y laberintos etmoidales.','Se relaciona con frontal, esfenoides, vómer y huesos faciales.','Importante en anatomía nasosinusal y orbitaria.',['Buscá crista galli y lámina cribosa.','Relacioná lámina perpendicular con tabique nasal.'],['frontal','esfenoides','vomer'],{kind:'bone',modelKey:'etmoides'}),
+    nasal: S('Hueso nasal','Hueso par','viscero','Pequeño hueso que forma el puente óseo nasal.','Línea media facial, inferior al frontal.','Caras anterior/posterior y bordes articulares.','Se articula con frontal, maxilar, etmoides y nasal opuesto.','Referencia del macizo facial anterior.',['Es pequeño y rectangular en el puente nasal.'],['frontal','maxilar','etmoides'],{kind:'bone',modelKey:'nasal'}),
+    lagrimal: S('Hueso lagrimal','Hueso par','viscero','Pequeño hueso de la pared medial de la órbita.','Entre maxilar y etmoides.','Cresta lagrimal posterior y aporte a la fosa del saco lagrimal.','Se articula con frontal, etmoides, maxilar y concha nasal inferior.','Relaciona órbita y vía lagrimal.',['Buscalo en la pared medial de la órbita.'],['maxilar','etmoides','concha_inferior'],{kind:'bone',modelKey:'lagrimal'}),
+    palatino: S('Hueso palatino','Hueso par','viscero','Participa en paladar duro, cavidad nasal y regiones profundas de la cara.','Posterior al maxilar.','Láminas horizontal y perpendicular, procesos y forámenes palatinos.','Se articula con maxilar, esfenoides, etmoides, concha inferior, vómer y palatino opuesto.','Relevante para anestesia palatina y fosa pterigopalatina.',['La lámina horizontal forma paladar duro posterior.'],['maxilar','esfenoides','vomer'],{kind:'bone',modelKey:'palatino'}),
+    vomer: S('Vómer','Hueso impar','viscero','Forma parte posteroinferior del tabique nasal óseo.','Línea media de la cavidad nasal.','Lámina y alas superiores.','Se relaciona con esfenoides, etmoides, maxilares y palatinos.','Útil para orientación del tabique nasal.',['Es una lámina media y vertical.'],['etmoides','esfenoides','palatino'],{kind:'bone',modelKey:'vomer'}),
+    concha_inferior: S('Concha nasal inferior','Hueso par','viscero','Hueso independiente de la pared lateral nasal.','Porción inferior de la pared lateral de cada cavidad nasal.','Lámina curva y procesos lagrimal, maxilar y etmoidal.','Se articula con maxilar, lagrimal, etmoides y palatino.','Importante en anatomía nasal y nasosinusal.',['No la confundas con conchas superior y media, que pertenecen al etmoides.'],['maxilar','lagrimal','etmoides','palatino'],{kind:'bone',modelKey:'concha_inferior'}),
+
+    condilo_mandibular: S('Proceso condilar de la mandíbula','Accidente anatómico','mandibula','Extremo posteriosuperior de la rama mandibular que participa en la ATM.','Posterior a la escotadura mandibular.','Cabeza y cuello del proceso condilar.','La cabeza se articula con temporal mediante disco articular.','Esencial para comprender ATM, movimientos mandibulares y traumatismos.',['Es posterior a la coronoides.','Su cabeza articular mira superomedialmente.'],['mandibula','temporal','coronoides_mandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    coronoides_mandibular: S('Apófisis coronoides','Accidente anatómico','mandibula','Proyección anterosuperior de la rama mandibular.','Anterior a la escotadura mandibular.','Apófisis triangular de inserción muscular.','Recibe inserción importante del temporal.','Referencia en función masticatoria y cirugía.',['Coronoides anterior; cóndilo posterior.'],['mandibula','condilo_mandibular','escotadura_mandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    escotadura_mandibular: S('Escotadura mandibular','Accidente anatómico','mandibula','Concavidad superior de la rama.','Entre coronoides y proceso condilar.','Borde curvo superior.','La atraviesan vasos y nervio masetéricos.','Referencia topográfica de la rama mandibular.',['Siempre está entre coronoides y cóndilo.'],['condilo_mandibular','coronoides_mandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    foramen_mandibular: S('Foramen mandibular','Foramen','mandibula','Entrada al conducto mandibular.','Cara medial de la rama, próximo a la língula.','Abertura que continúa con el conducto mandibular.','Ingresan nervio alveolar inferior y vasos acompañantes.','Referencia fundamental para anestesia troncular del alveolar inferior.',['Está en cara medial, no lateral.','Buscá la língula inmediatamente próxima.'],['lingula_mandibular','conducto_mandibular','foramen_mentoniano'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    lingula_mandibular: S('Língula mandibular','Accidente anatómico','mandibula','Pequeña proyección ósea junto al foramen mandibular.','Cara medial de la rama, anterior/superior al foramen mandibular.','Espícula ósea de inserción del ligamento esfenomandibular.','Íntimamente relacionada con la entrada del conducto mandibular.','Referencia para anestesia y cirugía mandibular.',['Identificala pegada al foramen mandibular.'],['foramen_mandibular','conducto_mandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    conducto_mandibular: S('Conducto mandibular','Conducto','mandibula','Trayecto intraóseo del paquete alveolar inferior.','Desde foramen mandibular a región anterior del cuerpo, con continuidad hacia foramen mentoniano.','Conducto dentro de rama y cuerpo mandibular.','Contiene nervio alveolar inferior y vasos; emite ramas dentales.','Crítico en implantología, cirugía y lectura radiográfica.',['Pensalo como un trayecto, no como un punto.','Seguí foramen mandibular → cuerpo → foramen mentoniano.'],['foramen_mandibular','foramen_mentoniano','mandibula'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    foramen_mentoniano: S('Foramen mentoniano','Foramen','mandibula','Salida del paquete vasculonervioso mentoniano.','Cara externa del cuerpo mandibular; su posición varía entre individuos.','Abertura en continuidad con el conducto mandibular.','Emergen nervio y vasos mentonianos.','Referencia relevante en anestesia, cirugía e implantología.',['Buscalo en cara externa del cuerpo.','No asumas una posición exacta idéntica en todos los pacientes.'],['conducto_mandibular','foramen_mandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    angulo_mandibular: S('Ángulo mandibular','Accidente anatómico','mandibula','Unión entre cuerpo y rama mandibular.','Región posteroinferior de la mandíbula.','Cambio de dirección entre cuerpo horizontal y rama ascendente.','Zona de inserciones musculares masticatorias.','Referencia clínica y radiográfica.',['Ubicalo en transición cuerpo-rama.'],['mandibula','linea_milohioidea'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    linea_milohioidea: S('Línea milohioidea','Accidente anatómico','mandibula','Cresta oblicua de la cara medial del cuerpo mandibular.','Cara interna, desde región molar hacia sínfisis.','Línea de inserción del músculo milohioideo.','Separa referencias para fosas sublingual y submandibular.','Importante para anatomía del piso de boca.',['Por encima: fosa sublingual; por debajo: fosa submandibular.'],['fosa_sublingual','fosa_submandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    fosa_sublingual: S('Fosa sublingual','Depresión','mandibula','Depresión relacionada con glándula sublingual.','Cara medial del cuerpo mandibular, por encima de la línea milohioidea.','Depresión poco profunda.','Contacta con glándula sublingual.','Ayuda a comprender piso de boca y relaciones glandulares.',['Está por encima de la línea milohioidea.'],['linea_milohioidea','fosa_submandibular'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    fosa_submandibular: S('Fosa submandibular','Depresión','mandibula','Depresión relacionada con glándula submandibular.','Cara medial del cuerpo, por debajo de la línea milohioidea.','Depresión amplia de la superficie medial.','Contacta con la glándula submandibular.','Referencia del piso de boca y espacios cervicales.',['Está por debajo de la línea milohioidea.'],['linea_milohioidea','fosa_sublingual'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+    proceso_alveolar_mandibular: S('Proceso alveolar mandibular','Accidente anatómico','mandibula','Porción que contiene los alvéolos de dientes inferiores.','Borde superior del cuerpo mandibular.','Alvéolos y tabiques interalveolares/interradiculares.','Se remodela con erupción, función y pérdida dentaria.','Esencial en periodoncia, cirugía, prótesis e implantología.',['Seguí la arcada inferior; es la porción dentada del cuerpo.'],['mandibula'],{kind:'accident',parent:'mandibula',modelKey:'mandibula'}),
+
+    seno_maxilar: S('Seno maxilar','Cavidad neumática','maxilar','Mayor seno paranasal, dentro del cuerpo del maxilar.','Lateral a cavidad nasal e inferior a órbita.','Paredes, piso, techo y ostium; volumen variable.','Su piso puede estar próximo a raíces de premolares y molares superiores.','Muy importante en endodoncia, cirugía, implantología y sinusopatías.',['Ubicalo dentro del cuerpo del maxilar.','Relacioná su piso con dientes posteriores.'],['maxilar','proceso_alveolar_maxilar'],{kind:'accident',parent:'maxilar',modelKey:'maxilar'}),
+    foramen_infraorbitario: S('Foramen infraorbitario','Foramen','maxilar','Salida del conducto infraorbitario.','Cara anterior del maxilar, debajo del reborde orbitario.','Abertura terminal del conducto infraorbitario.','Emergen nervio y vasos infraorbitarios.','Referencia para anestesia regional y cirugía facial.',['Está por debajo de la órbita en cara anterior del maxilar.'],['maxilar'],{kind:'accident',parent:'maxilar',modelKey:'maxilar'}),
+    proceso_alveolar_maxilar: S('Proceso alveolar del maxilar','Accidente anatómico','maxilar','Porción que contiene alvéolos de dientes superiores.','Borde inferior del maxilar.','Alvéolos y tabiques; se continúa con proceso del lado opuesto.','Muy próximo al seno maxilar en región posterior.','Central en cirugía, periodoncia, prótesis e implantología.',['Es la porción dentada del maxilar.'],['maxilar','seno_maxilar'],{kind:'accident',parent:'maxilar',modelKey:'maxilar'}),
+
+    foramen_redondo: S('Foramen redondo','Foramen','esfenoides','Orificio del ala mayor del esfenoides.','Base craneal media, relacionado con fosa pterigopalatina.','Conducto corto que comunica regiones profundas.','Transmite el nervio maxilar (V2).','Clave para comprender distribución sensitiva del territorio maxilar.',['Asociación principal: V2.'],['esfenoides','foramen_oval','foramen_espinoso'],{kind:'accident',parent:'esfenoides',modelKey:'esfenoides',synonyms:['foramen rotundum']}),
+    foramen_oval: S('Foramen oval','Foramen','esfenoides','Orificio del ala mayor del esfenoides.','Base craneal media, posterolateral al foramen redondo.','Abertura ovalada de tamaño variable.','Transmite principalmente el nervio mandibular (V3), además de otras estructuras variables.','Muy relevante para vías sensitivas/motoras del territorio mandibular.',['Asociación principal: V3.','Comparalo con redondo y espinoso.'],['esfenoides','foramen_redondo','foramen_espinoso'],{kind:'accident',parent:'esfenoides',modelKey:'esfenoides',synonyms:['foramen ovale']}),
+    foramen_espinoso: S('Foramen espinoso','Foramen','esfenoides','Pequeño orificio del ala mayor del esfenoides.','Posterolateral al foramen oval.','Orificio pequeño próximo a la espina del esfenoides.','Da paso principalmente a la arteria meníngea media y vasos acompañantes.','Referencia de base craneal y relaciones vasculares.',['Asociación principal: arteria meníngea media.'],['esfenoides','foramen_oval','foramen_redondo'],{kind:'accident',parent:'esfenoides',modelKey:'esfenoides',synonyms:['foramen spinosum']})
   };
 
   const modelKeys = new Set(['mandibula','maxilar','temporal','esfenoides','frontal','occipital','cigomatico','parietal','etmoides','nasal','lagrimal','palatino','vomer','concha_inferior']);
-  const status = document.getElementById('viewerStatus');
-  const title = document.getElementById('viewerTitle');
-  const buttonsWrap = document.getElementById('structureButtons');
-  const search = document.getElementById('structureSearch');
-  const searchBtn = document.getElementById('structureSearchBtn');
-  const suggestions = document.getElementById('searchSuggestions');
-  const practiceBox = document.getElementById('practiceBox');
-  const practiceQuestion = document.getElementById('practiceQuestion');
-  const practiceFeedback = document.getElementById('practiceFeedback');
-  const nextQuestion = document.getElementById('nextQuestion');
-  let mode = 'explorar';
-  let currentKey = 'craneo';
-  let practiceTarget = null;
+  const practiceKeys = [...modelKeys];
+  const studySequence = ['craneo','mandibula','condilo_mandibular','foramen_mandibular','conducto_mandibular','foramen_mentoniano','maxilar','seno_maxilar','temporal','esfenoides','foramen_redondo','foramen_oval','foramen_espinoso','cigomatico'];
+  const $ = (id) => document.getElementById(id);
+  const buttonsWrap = $('structureButtons');
+  const search = $('structureSearch');
+  const suggestions = $('searchSuggestions');
+  const infoBox = $('infoBox');
+  const practiceBox = $('practiceBox');
+  const studyGuide = $('studyGuide');
+  const hoverTooltip = $('viewerTooltip');
+  const filterButtons = [...document.querySelectorAll('[data-structure-filter]')];
+  let mode = 'explorar', currentKey = 'craneo', structureFilter = 'all', studyIndex = 0;
+  const studySeen = new Set();
+  let practicePool = [], practiceIndex = 0, practiceCorrect = 0, practiceTarget = null, practiceAnswered = false;
 
-  const normalize = (value) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const normalize = (v='') => v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+  const shuffle = (a) => [...a].sort(() => Math.random() - .5);
+  const modelKeyFor = (key) => structures[key]?.modelKey || (modelKeys.has(key) ? key : null);
+  const parentName = (d) => d.parent ? structures[d.parent]?.name : '';
 
-  function renderInfo(key, options = {}) {
-    const data = structures[key];
-    if (!data) return;
-    currentKey = key;
-    title.textContent = data.name;
-    document.getElementById('infoTitle').textContent = data.name;
-    document.getElementById('infoSummary').textContent = data.summary;
-    document.getElementById('infoLocation').textContent = data.location;
-    document.getElementById('infoParts').textContent = data.parts;
-    document.getElementById('infoRelations').textContent = data.relations;
-    document.getElementById('infoClinical').textContent = data.clinical;
-    document.getElementById('infoBooks').textContent = data.books;
-    buttonsWrap.querySelectorAll('button').forEach((button) => button.classList.toggle('active', button.dataset.key === key));
-
-    if (!options.fromViewer && modelKeys.has(key) && typeof window.skull3dSelectByKey === 'function') {
-      window.skull3dSelectByKey(key);
-    }
-    if (key === 'craneo' && !options.fromViewer && typeof window.skull3dSelectByKey === 'function') {
-      window.skull3dSelectByKey(null);
-    }
-    if (mode === 'practicar') evaluatePractice(key);
+  function renderRelated(keys=[]) {
+    const el = $('infoRelated'); el.innerHTML = '';
+    if (!keys.length) { el.innerHTML = '<span class="simMuted">Sin relaciones cargadas todavía.</span>'; return; }
+    keys.filter(k=>structures[k]).forEach(k => { const b=document.createElement('button'); b.type='button'; b.textContent=structures[k].name; b.addEventListener('click',()=>renderInfo(k)); el.appendChild(b); });
   }
 
-  function makeStructureButtons() {
-    buttonsWrap.innerHTML = '';
-    Object.entries(structures).forEach(([key, data]) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.dataset.key = key;
-      button.textContent = data.name;
-      button.addEventListener('click', () => renderInfo(key));
-      buttonsWrap.appendChild(button);
-    });
+  function renderInfo(key, options={}) {
+    const d=structures[key]; if(!d) return; currentKey=key;
+    $('viewerTitle').textContent=d.name; $('infoTitle').textContent=d.name; $('infoSummary').textContent=d.summary;
+    $('infoLocation').textContent=d.location; $('infoParts').textContent=d.parts; $('infoRelations').textContent=d.relations; $('infoClinical').textContent=d.clinical; $('infoBooks').textContent=d.books;
+    $('infoMeta').textContent=d.type; const bc=$('infoBreadcrumb'); bc.hidden=!d.parent; bc.textContent=d.parent?`${parentName(d)} → ${d.name}`:'';
+    const tips=$('infoExamTips'); tips.innerHTML=''; (d.tips||[]).forEach(t=>{const li=document.createElement('li');li.textContent=t;tips.appendChild(li)}); renderRelated(d.related);
+    buttonsWrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===key));
+    const mk=modelKeyFor(key); if(!options.fromViewer && mk) window.skull3dSelectByKey?.(mk); if(key==='craneo'&&!options.fromViewer) window.skull3dSelectByKey?.(null);
   }
 
-  function findMatches(value) {
-    const q = normalize(value);
-    if (!q) return [];
-    return Object.entries(structures).filter(([key, data]) => normalize(key.replaceAll('_', ' ') + ' ' + data.name).includes(q));
-  }
+  function matchesFilter(d) { return structureFilter==='all'||(structureFilter==='neuro'&&d.group==='neuro')||(structureFilter==='viscero'&&d.group==='viscero')||(structureFilter==='mandibula'&&(d.group==='mandibula'||d.name==='Mandíbula'))||(structureFilter==='accidents'&&d.kind==='accident'); }
+  function makeStructureButtons(){buttonsWrap.innerHTML='';Object.entries(structures).filter(([,d])=>matchesFilter(d)).forEach(([k,d])=>{const b=document.createElement('button');b.type='button';b.dataset.key=k;b.classList.toggle('isAccident',d.kind==='accident');const s=document.createElement('span');s.textContent=d.name;b.appendChild(s);if(d.kind==='accident'){const sm=document.createElement('small');sm.textContent=parentName(d)||'Accidente';b.appendChild(sm)}b.addEventListener('click',()=>renderInfo(k));buttonsWrap.appendChild(b)});buttonsWrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===currentKey));}
+  const searchable=(k,d)=>[k.replaceAll('_',' '),d.name,d.type,parentName(d),...(d.synonyms||[])].filter(Boolean).join(' ');
+  const findMatches=(v)=>{const q=normalize(v);return q?Object.entries(structures).filter(([k,d])=>normalize(searchable(k,d)).includes(q)):[]};
+  function selectSearch(){const m=findMatches(search.value);if(m.length){renderInfo(m[0][0]);suggestions.hidden=true}else{suggestions.hidden=false;suggestions.innerHTML='<span>No encontramos esa estructura en esta versión.</span>'}}
+  function updateSuggestions(){const m=findMatches(search.value).slice(0,8);suggestions.innerHTML='';if(!search.value.trim()){suggestions.hidden=true;return}suggestions.hidden=false;if(!m.length){suggestions.innerHTML='<span>No disponible todavía.</span>';return}m.forEach(([k,d])=>{const b=document.createElement('button');b.type='button';b.textContent=d.name;b.addEventListener('click',()=>{search.value=d.name;renderInfo(k);suggestions.hidden=true});suggestions.appendChild(b)})}
 
-  function selectFromSearch() {
-    const matches = findMatches(search.value);
-    if (matches.length) {
-      renderInfo(matches[0][0]);
-      suggestions.hidden = true;
-      return;
-    }
-    suggestions.hidden = false;
-    suggestions.innerHTML = '<span>No encontramos esa estructura en esta versión.</span>';
-  }
+  function updateStudy(){const k=studySequence[studyIndex],d=structures[k];$('studyTitle').textContent=`${studyIndex+1}. ${d.name}`;$('studyProgress').textContent=`${studySeen.size} de ${studySequence.length} estructuras repasadas`;$('studyBar').style.width=`${Math.round(studySeen.size/studySequence.length*100)}%`;$('studyPrev').disabled=studyIndex===0;$('studyNext').disabled=studyIndex===studySequence.length-1;$('studyMark').textContent=studySeen.has(k)?'✓ Repasado · continuar':'Marcar repasado y continuar';renderInfo(k)}
+  function moveStudy(n){studyIndex=Math.max(0,Math.min(studySequence.length-1,studyIndex+n));updateStudy()}
+  function markStudy(){studySeen.add(studySequence[studyIndex]);if(studyIndex<studySequence.length-1)studyIndex++;updateStudy()}
 
-  function updateSuggestions() {
-    const matches = findMatches(search.value).slice(0, 7);
-    suggestions.innerHTML = '';
-    if (!search.value.trim()) {
-      suggestions.hidden = true;
-      return;
-    }
-    suggestions.hidden = false;
-    if (!matches.length) {
-      suggestions.innerHTML = '<span>No disponible todavía.</span>';
-      return;
-    }
-    matches.forEach(([key, data]) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = data.name;
-      button.addEventListener('click', () => {
-        search.value = data.name;
-        renderInfo(key);
-        suggestions.hidden = true;
-      });
-      suggestions.appendChild(button);
-    });
-  }
+  function stats(){ $('practiceProgress').textContent=practiceIndex<practicePool.length?`Pregunta ${practiceIndex+1} de ${practicePool.length}`:`Sesión completada · ${practicePool.length} preguntas`; $('practiceScore').textContent=`${practiceCorrect} correctas`; }
+  function startPractice(){practicePool=shuffle(practiceKeys).slice(0,10);practiceIndex=0;practiceCorrect=0;nextPractice()}
+  function nextPractice(){if(practiceIndex>=practicePool.length){practiceTarget=null;const pct=Math.round(practiceCorrect/practicePool.length*100);$('practiceQuestion').textContent=`Sesión terminada: ${practiceCorrect}/${practicePool.length}`;$('practiceFeedback').textContent=pct>=80?`Excelente: ${pct}% de aciertos.`:`Resultado: ${pct}%. Repetí la sesión para reforzar reconocimiento.`;$('practiceFeedback').className=pct>=80?'practiceCorrect':'';$('nextQuestion').textContent='Nueva sesión';stats();return}practiceTarget=practicePool[practiceIndex];practiceAnswered=false;$('practiceQuestion').textContent=`Identificá en el cráneo: ${structures[practiceTarget].name}`;$('practiceFeedback').textContent='Tocá directamente el hueso correcto en el modelo 3D.';$('practiceFeedback').className='';$('nextQuestion').textContent='Omitir pregunta';window.skull3dSelectByKey?.(null);stats()}
+  function evaluate(key){if(!practiceTarget||practiceAnswered||!modelKeys.has(key))return;practiceAnswered=true;if(key===practiceTarget){practiceCorrect++;$('practiceFeedback').textContent='✓ Correcto.';$('practiceFeedback').className='practiceCorrect'}else{$('practiceFeedback').textContent=`✕ Elegiste ${structures[key].name}. La respuesta correcta era ${structures[practiceTarget].name}.`;$('practiceFeedback').className='practiceWrong';setTimeout(()=>window.skull3dSelectByKey?.(practiceTarget),300)}$('nextQuestion').textContent=practiceIndex===practicePool.length-1?'Ver resultado':'Siguiente pregunta';stats()}
+  function advancePractice(){if(practiceIndex>=practicePool.length){startPractice();return}if(!practiceAnswered){$('practiceFeedback').textContent=`Omitida. La respuesta era ${structures[practiceTarget].name}.`;window.skull3dSelectByKey?.(practiceTarget);practiceAnswered=true;$('nextQuestion').textContent=practiceIndex===practicePool.length-1?'Ver resultado':'Siguiente pregunta';return}practiceIndex++;nextPractice()}
 
-  function newPracticeQuestion() {
-    const keys = [...modelKeys];
-    let key = keys[Math.floor(Math.random() * keys.length)];
-    if (keys.length > 1 && key === practiceTarget) key = keys[(keys.indexOf(key) + 1) % keys.length];
-    practiceTarget = key;
-    practiceQuestion.textContent = `Identificá en el cráneo: ${structures[key].name}`;
-    practiceFeedback.textContent = 'Tocá el hueso correcto en el modelo o elegilo de la lista.';
-    practiceFeedback.className = '';
-  }
+  function setMode(m){mode=m;document.body.dataset.simMode=m;document.querySelectorAll('.simMode').forEach(b=>b.classList.toggle('active',b.dataset.mode===m));practiceBox.hidden=m!=='practicar';studyGuide.hidden=m!=='estudiar';infoBox.hidden=m==='practicar';if(m==='practicar')startPractice();else if(m==='estudiar')updateStudy();else renderInfo(currentKey)}
 
-  function evaluatePractice(key) {
-    if (!practiceTarget || !modelKeys.has(key)) return;
-    if (key === practiceTarget) {
-      practiceFeedback.textContent = '✓ Correcto. Muy bien.';
-      practiceFeedback.className = 'practiceCorrect';
-    } else {
-      practiceFeedback.textContent = `✕ Esa estructura es ${structures[key].name}. Intentá nuevamente.`;
-      practiceFeedback.className = 'practiceWrong';
-    }
-  }
+  document.querySelectorAll('.simMode').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+  document.querySelectorAll('.simView').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.simView').forEach(x=>x.classList.toggle('active',x===b));$('currentView').textContent=`Vista: ${b.dataset.view.toLowerCase()}`;window.skull3dSetView?.(b.dataset.view)}));
+  filterButtons.forEach(b=>b.addEventListener('click',()=>{structureFilter=b.dataset.structureFilter;filterButtons.forEach(x=>x.classList.toggle('active',x===b));makeStructureButtons()}));
+  search.addEventListener('input',updateSuggestions);search.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();selectSearch()}});$('structureSearchBtn').addEventListener('click',selectSearch);
+  $('studyPrev').addEventListener('click',()=>moveStudy(-1));$('studyNext').addEventListener('click',()=>moveStudy(1));$('studyMark').addEventListener('click',markStudy);$('nextQuestion').addEventListener('click',advancePractice);
 
-  function setMode(newMode) {
-    mode = newMode;
-    document.querySelectorAll('.simMode').forEach((button) => button.classList.toggle('active', button.dataset.mode === mode));
-    practiceBox.hidden = mode === 'explorar';
-    nextQuestion.hidden = mode !== 'practicar';
+  document.addEventListener('simulator:select',e=>{const k=e.detail?.key;if(!k||!structures[k])return;if(mode==='practicar'){evaluate(k);return}renderInfo(k,{fromViewer:true})});
+  document.addEventListener('simulator:hover',e=>{const {key,x,y}=e.detail||{};if(!key||!structures[key]||mode==='practicar'){hoverTooltip.hidden=true;return}hoverTooltip.textContent=structures[key].name;hoverTooltip.style.left=`${x}px`;hoverTooltip.style.top=`${y}px`;hoverTooltip.hidden=false});
+  document.addEventListener('simulator:viewer-ready',()=>{const mk=modelKeyFor(currentKey);if(mk)window.skull3dSelectByKey?.(mk)});
 
-    if (mode === 'practicar') newPracticeQuestion();
-    if (mode === 'estudiar') {
-      practiceQuestion.textContent = 'Modo estudio guiado';
-      practiceFeedback.textContent = 'Seleccioná un hueso en el modelo y repasá ubicación, partes, relaciones e importancia odontológica en la ficha.';
-      practiceFeedback.className = '';
-    }
-  }
-
-  document.querySelectorAll('.simMode').forEach((button) => button.addEventListener('click', () => setMode(button.dataset.mode)));
-  document.querySelectorAll('.simView').forEach((button) => button.addEventListener('click', () => {
-    document.querySelectorAll('.simView').forEach((item) => item.classList.toggle('active', item === button));
-    document.getElementById('currentView').textContent = `Vista: ${button.dataset.view.toLowerCase()}`;
-    if (typeof window.skull3dSetView === 'function') window.skull3dSetView(button.dataset.view);
-  }));
-
-  search.addEventListener('input', updateSuggestions);
-  search.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      selectFromSearch();
-    }
-  });
-  searchBtn.addEventListener('click', selectFromSearch);
-  nextQuestion.addEventListener('click', newPracticeQuestion);
-
-  document.addEventListener('simulator:select', (event) => {
-    const key = event.detail?.key;
-    if (key && structures[key]) renderInfo(key, { fromViewer: true });
-  });
-
-  document.addEventListener('simulator:viewer-ready', () => {
-    if (modelKeys.has(currentKey) && typeof window.skull3dSelectByKey === 'function') window.skull3dSelectByKey(currentKey);
-  });
-
-  makeStructureButtons();
-  renderInfo('craneo');
+  makeStructureButtons(); renderInfo('craneo'); setMode('explorar');
 })();
