@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b4bb3">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Simulador de Odontología – Cráneo 3D | Ayuda para el Alumno</title>
+  <meta name="description" content="Simulador interactivo para explorar el cráneo humano en 3D y estudiar anatomía aplicada a Odontología.">
+  <link rel="icon" href="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/simulador-odontologia/simulador.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
+</head>
+<body class="simBody">
+  <header class="simHeader">
+    <div class="wrap simHead">
+      <a class="simBrand" href="/" aria-label="Volver a Ayuda para el Alumno">
+        <img src="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo" alt="Logo de Ayuda para el Alumno">
+        <span><b>Ayuda para el Alumno</b><small>De estudiantes, para estudiantes.</small></span>
+      </a>
+      <a class="simBack" href="/">← Volver al sitio</a>
+    </div>
+  </header>
+
+  <main class="wrap simMain">
+    <section class="simIntro">
+      <div>
+        <span class="simEy">Odontología · Anatomía</span>
+        <h1>Simulador de Odontología – Cráneo 3D</h1>
+        <p>Explorá el cráneo en tres dimensiones, cambiá de vista y consultá fichas anatómicas. Esta es la primera versión funcional del simulador.</p>
+      </div>
+      <span class="simBeta">VERSIÓN DE PRUEBA</span>
+    </section>
+
+    <nav class="simModes" aria-label="Modo del simulador">
+      <button class="simMode active" data-mode="explorar">Explorar</button>
+      <button class="simMode" data-mode="estudiar">Estudiar</button>
+      <button class="simMode" data-mode="practicar">Practicar</button>
+    </nav>
+
+    <section class="simLayout">
+      <div class="simViewerColumn">
+        <div class="simToolbar">
+          <label class="simSearchLabel" for="structureSearch">Buscar estructura</label>
+          <div class="simSearchRow">
+            <input id="structureSearch" type="search" placeholder="Ej: mandíbula, temporal, foramen mentoniano" autocomplete="off">
+            <button id="structureSearchBtn" type="button">Buscar</button>
+          </div>
+          <div id="searchSuggestions" class="simSuggestions" hidden></div>
+        </div>
+
+        <div class="simViewerCard">
+          <div class="simViewerTop">
+            <div>
+              <span class="simEy">Visor anatómico</span>
+              <h2 id="viewerTitle">Cráneo humano</h2>
+            </div>
+            <span id="viewerStatus" class="simStatus">Cargando modelo 3D…</span>
+          </div>
+
+          <model-viewer
+            id="skullViewer"
+            class="skullViewer"
+            src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ScatteringSkull/glTF-Binary/ScatteringSkull.glb"
+            alt="Modelo tridimensional de un cráneo humano"
+            camera-controls
+            touch-action="pan-y"
+            interaction-prompt="auto"
+            shadow-intensity="0.7"
+            exposure="1"
+            camera-orbit="0deg 75deg 105%"
+            min-camera-orbit="auto auto 65%"
+            max-camera-orbit="auto auto 180%">
+            <div class="simLoading" slot="poster">
+              <div class="simSpinner" aria-hidden="true"></div>
+              <b>Preparando el cráneo 3D</b>
+              <span>La primera carga puede tardar unos segundos.</span>
+            </div>
+          </model-viewer>
+
+          <div class="simViews" aria-label="Vistas anatómicas">
+            <button type="button" class="simView active" data-orbit="0deg 75deg 105%" data-view="Anterior">Anterior</button>
+            <button type="button" class="simView" data-orbit="-90deg 75deg 105%" data-view="Lateral">Lateral</button>
+            <button type="button" class="simView" data-orbit="180deg 75deg 105%" data-view="Posterior">Posterior</button>
+            <button type="button" class="simView" data-orbit="0deg 5deg 105%" data-view="Superior">Superior</button>
+            <button type="button" class="simView" data-orbit="0deg 165deg 105%" data-view="Inferior">Inferior</button>
+          </div>
+
+          <div class="simViewerHint">
+            <span>🖱️ Arrastrá para rotar</span>
+            <span>🔍 Pellizcá o usá la rueda para acercar</span>
+            <span id="currentView">Vista: anterior</span>
+          </div>
+        </div>
+
+        <div class="simStructurePanel">
+          <div class="simSectionTitle">
+            <div><span class="simEy">Acceso rápido</span><h2>Estructuras de esta versión</h2></div>
+          </div>
+          <div id="structureButtons" class="simStructureButtons"></div>
+        </div>
+      </div>
+
+      <aside class="simInfoCard" aria-live="polite">
+        <div id="practiceBox" class="simPractice" hidden>
+          <span class="simEy">Modo práctica</span>
+          <h2 id="practiceQuestion">Identificá la estructura indicada.</h2>
+          <p id="practiceFeedback">Elegí una estructura de la lista.</p>
+          <button id="nextQuestion" type="button">Nueva pregunta</button>
+        </div>
+
+        <div id="infoBox">
+          <span class="simEy">Estructura seleccionada</span>
+          <h2 id="infoTitle">Cráneo humano</h2>
+          <p id="infoSummary" class="simSummary"></p>
+
+          <div class="simInfoSection">
+            <h3>📍 Ubicación y reconocimiento</h3>
+            <p id="infoLocation"></p>
+          </div>
+          <div class="simInfoSection">
+            <h3>🦴 Partes y accidentes anatómicos</h3>
+            <p id="infoParts"></p>
+          </div>
+          <div class="simInfoSection">
+            <h3>🔗 Relaciones anatómicas</h3>
+            <p id="infoRelations"></p>
+          </div>
+          <div class="simInfoSection">
+            <h3>🦷 Importancia odontológica</h3>
+            <p id="infoClinical"></p>
+          </div>
+          <div class="simInfoSection simBibliography">
+            <h3>📚 Bibliografía de referencia</h3>
+            <p id="infoBooks"></p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="simRoadmap">
+      <span class="simEy">Siguiente etapa</span>
+      <h2>De visor 3D a atlas anatómico interactivo</h2>
+      <p>Esta primera versión valida el visor 3D, la navegación y las fichas. La siguiente incorporará un modelo segmentado para seleccionar, resaltar, aislar y ocultar huesos directamente sobre el cráneo.</p>
+      <div class="simRoadmapGrid">
+        <div><b>1</b><span>Selección directa de huesos</span></div>
+        <div><b>2</b><span>Accidentes anatómicos y conductos</span></div>
+        <div><b>3</b><span>Nervios, vasos y relaciones</span></div>
+        <div><b>4</b><span>Autoevaluación sobre el modelo</span></div>
+      </div>
+    </section>
+
+    <p class="simAttribution">Modelo 3D de prueba: “ScatteringSkull”, Vladimir Petkovic, CC0 1.0, distribuido por Khronos glTF Sample Assets. El contenido académico del simulador se irá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+  </main>
+
+  <script src="/simulador-odontologia/app.js" defer></script>
+</body>
+</html>
