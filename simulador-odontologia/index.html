@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/simulador-odontologia/simulador.css">
 </head>
-<body class="simBody">
+<body class="simBody" data-sim-mode="explorar">
   <header class="simHeader">
     <div class="wrap simHead">
       <a class="simBrand" href="/" aria-label="Volver a Ayuda para el Alumno">
@@ -27,15 +27,15 @@
       <div>
         <span class="simEy">Odontología · Anatomía</span>
         <h1>Simulador de Odontología – Cráneo 3D</h1>
-        <p>Explorá huesos reales del cráneo en tres dimensiones, seleccioná estructuras directamente sobre el modelo y consultá sus fichas anatómicas.</p>
+        <p>Explorá huesos reales del cráneo en tres dimensiones, seleccioná estructuras directamente sobre el modelo, repasá relaciones anatómicas y practicá reconocimiento como en un parcial.</p>
       </div>
       <span class="simBeta">VERSIÓN DE PRUEBA</span>
     </section>
 
     <nav class="simModes" aria-label="Modo del simulador">
-      <button class="simMode active" data-mode="explorar">Explorar</button>
-      <button class="simMode" data-mode="estudiar">Estudiar</button>
-      <button class="simMode" data-mode="practicar">Practicar</button>
+      <button class="simMode active" data-mode="explorar" type="button">Explorar</button>
+      <button class="simMode" data-mode="estudiar" type="button">Estudiar</button>
+      <button class="simMode" data-mode="practicar" type="button">Practicar</button>
     </nav>
 
     <section class="simLayout">
@@ -43,7 +43,7 @@
         <div class="simToolbar">
           <label class="simSearchLabel" for="structureSearch">Buscar estructura</label>
           <div class="simSearchRow">
-            <input id="structureSearch" type="search" placeholder="Ej: mandíbula, temporal, foramen mentoniano" autocomplete="off">
+            <input id="structureSearch" type="search" placeholder="Ej: mandíbula, seno maxilar, foramen oval" autocomplete="off">
             <button id="structureSearchBtn" type="button">Buscar</button>
           </div>
           <div id="searchSuggestions" class="simSuggestions" hidden></div>
@@ -59,7 +59,8 @@
           </div>
 
           <div id="skullStage" class="skullStage" aria-label="Visor tridimensional interactivo del cráneo humano">
-            <canvas id="skullCanvas" class="skullCanvas"></canvas>
+            <canvas id="skullCanvas" class="skullCanvas" tabindex="0" aria-label="Modelo 3D del cráneo. Arrastrá para rotar y tocá un hueso para seleccionarlo."></canvas>
+            <div id="viewerTooltip" class="viewerTooltip" hidden></div>
             <div class="simLoading stageLoading" aria-hidden="true">
               <div class="simSpinner"></div>
               <b>Cargando huesos del cráneo</b>
@@ -77,6 +78,7 @@
           </div>
 
           <div class="simModelActions" aria-label="Acciones sobre el modelo">
+            <button id="focusBone" type="button">Enfocar seleccionado</button>
             <button id="isolateBone" type="button">Aislar seleccionado</button>
             <button id="contextBone" type="button">Atenuar los demás</button>
             <button id="resetSkull" type="button">Restablecer cráneo</button>
@@ -86,27 +88,57 @@
             <span>🖱️ Arrastrá para rotar</span>
             <span>🔍 Pellizcá o usá la rueda para acercar</span>
             <span>👆 Tocá un hueso para seleccionarlo</span>
+            <span>⌨️ R restablece · F enfoca</span>
             <span id="currentView">Vista: anterior</span>
+          </div>
+        </div>
+
+        <div id="studyGuide" class="simStudyGuide" hidden>
+          <div class="simSectionTitle">
+            <div><span class="simEy">Ruta guiada</span><h2 id="studyTitle">1. Cráneo humano</h2></div>
+            <span id="studyProgress" class="simStudyCount">0 de 14 estructuras repasadas</span>
+          </div>
+          <div class="simProgressTrack" aria-hidden="true"><span id="studyBar"></span></div>
+          <p>La ruta prioriza estructuras especialmente útiles para Odontología: mandíbula, conducto mandibular, seno maxilar y forámenes del esfenoides.</p>
+          <div class="simStudyActions">
+            <button id="studyPrev" type="button">← Anterior</button>
+            <button id="studyMark" type="button" class="primary">Marcar repasado y continuar</button>
+            <button id="studyNext" type="button">Siguiente →</button>
           </div>
         </div>
 
         <div class="simStructurePanel">
           <div class="simSectionTitle">
             <div><span class="simEy">Acceso rápido</span><h2>Estructuras del simulador</h2></div>
+            <span class="simCountNote">Huesos + accidentes anatómicos</span>
+          </div>
+          <div class="simFilters" aria-label="Filtrar estructuras">
+            <button type="button" class="active" data-structure-filter="all">Todas</button>
+            <button type="button" data-structure-filter="neuro">Neurocráneo</button>
+            <button type="button" data-structure-filter="viscero">Viscerocráneo</button>
+            <button type="button" data-structure-filter="mandibula">Mandíbula</button>
+            <button type="button" data-structure-filter="accidents">Accidentes</button>
           </div>
           <div id="structureButtons" class="simStructureButtons"></div>
+          <p class="simStructureNote">Los accidentes anatómicos ya tienen fichas y resaltan su hueso de origen. Su marcación puntual sobre la superficie 3D se incorporará progresivamente.</p>
         </div>
       </div>
 
       <aside class="simInfoCard" aria-live="polite">
         <div id="practiceBox" class="simPractice" hidden>
-          <span class="simEy">Modo práctica</span>
+          <span class="simEy">Modo práctica · identificación 3D</span>
+          <div class="simPracticeStats"><span id="practiceProgress">Pregunta 1 de 10</span><b id="practiceScore">0 correctas</b></div>
           <h2 id="practiceQuestion">Identificá la estructura indicada.</h2>
-          <p id="practiceFeedback">Elegí una estructura de la lista o tocala en el modelo.</p>
-          <button id="nextQuestion" type="button">Nueva pregunta</button>
+          <p id="practiceFeedback">Tocá directamente el hueso correcto en el modelo.</p>
+          <button id="nextQuestion" type="button">Omitir pregunta</button>
+          <small>Durante la práctica se ocultan el buscador, las fichas y la lista para que la respuesta salga del modelo, no del texto.</small>
         </div>
 
         <div id="infoBox">
+          <div class="simInfoHead">
+            <span id="infoMeta" class="simInfoMeta">Conjunto óseo</span>
+            <span id="infoBreadcrumb" class="simBreadcrumb" hidden></span>
+          </div>
           <span class="simEy">Estructura seleccionada</span>
           <h2 id="infoTitle">Cráneo humano</h2>
           <p id="infoSummary" class="simSummary"></p>
@@ -127,9 +159,18 @@
             <h3>🦷 Importancia odontológica</h3>
             <p id="infoClinical"></p>
           </div>
+          <div class="simInfoSection simExamTips">
+            <h3>🎯 Claves para reconocerla en un parcial</h3>
+            <ul id="infoExamTips"></ul>
+          </div>
+          <div class="simInfoSection">
+            <h3>🧭 Estructuras relacionadas</h3>
+            <div id="infoRelated" class="simRelated"></div>
+          </div>
           <div class="simInfoSection simBibliography">
             <h3>📚 Bibliografía de referencia</h3>
             <p id="infoBooks"></p>
+            <small>Contenido educativo en revisión progresiva. La edición y página exactas se agregarán cuando queden confirmadas con la cátedra.</small>
           </div>
         </div>
       </aside>
@@ -137,17 +178,19 @@
 
     <section class="simRoadmap">
       <span class="simEy">Estado del desarrollo</span>
-      <h2>Ya estamos trabajando sobre huesos separados</h2>
-      <p>Esta versión carga geometría anatómica segmentada basada en BodyParts3D: cada hueso es una pieza independiente y puede seleccionarse, resaltarse y aislarse. El próximo nivel será marcar accidentes anatómicos pequeños —forámenes, conductos, fosas y apófisis— sobre esas piezas.</p>
+      <h2>La base del atlas ya está lista para crecer por capas</h2>
+      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio y práctica de identificación. El desarrollo sigue una lógica incremental para que cada nueva capa reutilice el mismo cráneo y la misma base de conocimiento.</p>
       <div class="simRoadmapGrid">
-        <div><b>✓</b><span>Selección directa de huesos</span></div>
-        <div><b>2</b><span>Accidentes anatómicos y conductos</span></div>
-        <div><b>3</b><span>Nervios, vasos y relaciones</span></div>
-        <div><b>4</b><span>Autoevaluación sobre el modelo</span></div>
+        <div class="done"><b>✓</b><span>Huesos seleccionables + fichas</span></div>
+        <div class="done"><b>✓</b><span>Estudio guiado + práctica 3D</span></div>
+        <div><b>3</b><span>Marcadores precisos de forámenes, fosas y conductos</span></div>
+        <div><b>4</b><span>Nervios, vasos, músculos y ATM</span></div>
+        <div><b>5</b><span>Radiografías y correlación por imágenes</span></div>
+        <div><b>6</b><span>Banco ampliado de preguntas y progreso</span></div>
       </div>
     </section>
 
-    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. Uso educativo; no es una herramienta clínica. El contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
   </main>
 
   <script src="/simulador-odontologia/app.js" defer></script>
