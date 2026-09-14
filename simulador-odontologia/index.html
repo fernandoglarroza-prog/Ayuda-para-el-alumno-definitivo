@@ -84,6 +84,7 @@
             <button id="toggleLandmarks" type="button" class="active" aria-pressed="true">Accidentes 3D: visibles</button>
             <button id="toggleCanal" type="button" class="active" aria-pressed="true">Conducto mandibular: visible</button>
             <button id="toggleNerves" type="button" aria-pressed="false">Nervios: ocultos</button>
+            <button id="toggleVessels" type="button" aria-pressed="false">Arterias: ocultas</button>
             <button id="toggleTMJ" type="button" aria-pressed="false">ATM: oculta</button>
             <button id="resetSkull" type="button">Restablecer cráneo</button>
           </div>
@@ -95,6 +96,7 @@
             <span>🟠 Marcador = accidente calculado</span>
             <span>🔵 Conducto = trayecto intraóseo educativo</span>
             <span>🟡 Nervios = trayectos esquemáticos educativos</span>
+            <span>🔴 Arterias = trayectos esquemáticos educativos</span>
             <span>🟣 ATM = disco articular esquemático</span>
             <span>⌨️ R restablece · F enfoca</span>
             <span id="currentView">Vista: anterior</span>
@@ -128,7 +130,7 @@
             <button type="button" data-structure-filter="accidents">Accidentes</button>
           </div>
           <div id="structureButtons" class="simStructureButtons"></div>
-          <p class="simStructureNote">Los marcadores puntuales de cóndilo, coronoides, ángulo, forámenes mandibular, mentoniano, infraorbitario y oval se calculan sobre la geometría de este mismo atlas. El conducto mandibular y las capas de nervios/ATM son reconstrucciones educativas ancladas a esas referencias y a los dientes del modelo.</p>
+          <p class="simStructureNote">Los marcadores puntuales de cóndilo, coronoides, ángulo, forámenes mandibular, mentoniano, infraorbitario y oval se calculan sobre la geometría de este mismo atlas. El conducto mandibular y las capas de nervios, arterias y ATM son reconstrucciones educativas ancladas a esas referencias y a los dientes del modelo.</p>
         </div>
       </div>
 
@@ -150,31 +152,12 @@
           <span class="simEy">Estructura seleccionada</span>
           <h2 id="infoTitle">Cráneo humano</h2>
           <p id="infoSummary" class="simSummary"></p>
-
-          <div class="simInfoSection">
-            <h3>📍 Ubicación y reconocimiento</h3>
-            <p id="infoLocation"></p>
-          </div>
-          <div class="simInfoSection">
-            <h3>🦴 Partes y accidentes anatómicos</h3>
-            <p id="infoParts"></p>
-          </div>
-          <div class="simInfoSection">
-            <h3>🔗 Relaciones anatómicas</h3>
-            <p id="infoRelations"></p>
-          </div>
-          <div class="simInfoSection">
-            <h3>🦷 Importancia odontológica</h3>
-            <p id="infoClinical"></p>
-          </div>
-          <div class="simInfoSection simExamTips">
-            <h3>🎯 Claves para reconocerla en un parcial</h3>
-            <ul id="infoExamTips"></ul>
-          </div>
-          <div class="simInfoSection">
-            <h3>🧭 Estructuras relacionadas</h3>
-            <div id="infoRelated" class="simRelated"></div>
-          </div>
+          <div class="simInfoSection"><h3>📍 Ubicación y reconocimiento</h3><p id="infoLocation"></p></div>
+          <div class="simInfoSection"><h3>🦴 Partes y accidentes anatómicos</h3><p id="infoParts"></p></div>
+          <div class="simInfoSection"><h3>🔗 Relaciones anatómicas</h3><p id="infoRelations"></p></div>
+          <div class="simInfoSection"><h3>🦷 Importancia odontológica</h3><p id="infoClinical"></p></div>
+          <div class="simInfoSection simExamTips"><h3>🎯 Claves para reconocerla en un parcial</h3><ul id="infoExamTips"></ul></div>
+          <div class="simInfoSection"><h3>🧭 Estructuras relacionadas</h3><div id="infoRelated" class="simRelated"></div></div>
           <div class="simInfoSection simBibliography">
             <h3>📚 Bibliografía de referencia</h3>
             <p id="infoBooks"></p>
@@ -187,18 +170,18 @@
     <section class="simRoadmap">
       <span class="simEy">Estado del desarrollo</span>
       <h2>La base del atlas ya está lista para crecer por capas</h2>
-      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio, práctica de identificación, marcadores calculados, conducto mandibular y las primeras capas neuroanatómicas y de ATM.</p>
+      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio, práctica de identificación, marcadores calculados, conducto mandibular y las primeras capas neurovasculares y de ATM.</p>
       <div class="simRoadmapGrid">
         <div class="done"><b>✓</b><span>Huesos seleccionables + fichas</span></div>
         <div class="done"><b>✓</b><span>Estudio guiado + práctica 3D</span></div>
         <div class="done"><b>✓</b><span>Marcadores 3D + conducto mandibular</span></div>
         <div class="done"><b>✓</b><span>V2/V3, ramas odontológicas y disco de ATM</span></div>
-        <div><b>5</b><span>Músculos, vasos y más estructuras de cabeza y cuello</span></div>
-        <div><b>6</b><span>Radiografías, banco ampliado de preguntas y progreso</span></div>
+        <div class="done"><b>✓</b><span>Primeras arterias odontológicas esquemáticas</span></div>
+        <div><b>6</b><span>Músculos, radiografías, más preguntas y progreso</span></div>
       </div>
     </section>
 
-    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. El ajuste geométrico de accidentes, conducto mandibular, nervios y disco de ATM se adapta de la lógica abierta de OMF Atlas (MIT, Ahmad Sofi-Mahmudi, 2026). Las capas neurovasculares, el conducto y el disco son esquemas educativos anclados al modelo, no segmentaciones clínicas ni representan la anatomía exacta de un paciente. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. El ajuste geométrico de accidentes, conducto mandibular, nervios, arterias y disco de ATM se adapta de la lógica abierta de OMF Atlas (MIT, Ahmad Sofi-Mahmudi, 2026). Las capas neurovasculares, el conducto y el disco son esquemas educativos anclados al modelo, no segmentaciones clínicas ni representan la anatomía exacta de un paciente. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
   </main>
 
   <script src="/simulador-odontologia/app.js" defer></script>
