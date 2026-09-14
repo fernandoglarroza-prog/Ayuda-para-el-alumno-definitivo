@@ -64,7 +64,7 @@
             <div class="simLoading stageLoading" aria-hidden="true">
               <div class="simSpinner"></div>
               <b>Cargando huesos del cráneo</b>
-              <span>Estamos preparando las piezas anatómicas y sus marcadores.</span>
+              <span>Estamos preparando las piezas anatómicas y sus capas educativas.</span>
             </div>
             <p id="viewerError" class="viewerError" hidden></p>
           </div>
@@ -77,21 +77,25 @@
             <button type="button" class="simView" data-view="Inferior">Inferior</button>
           </div>
 
-          <div class="simModelActions" aria-label="Acciones sobre el modelo">
+          <div class="simModelActions" aria-label="Acciones y capas sobre el modelo">
             <button id="focusBone" type="button">Enfocar seleccionado</button>
             <button id="isolateBone" type="button">Aislar seleccionado</button>
             <button id="contextBone" type="button">Atenuar los demás</button>
             <button id="toggleLandmarks" type="button" class="active" aria-pressed="true">Accidentes 3D: visibles</button>
+            <button id="toggleCanal" type="button" class="active" aria-pressed="true">Conducto mandibular: visible</button>
             <button id="toggleNerves" type="button" aria-pressed="false">Nervios: ocultos</button>
+            <button id="toggleTMJ" type="button" aria-pressed="false">ATM: oculta</button>
             <button id="resetSkull" type="button">Restablecer cráneo</button>
           </div>
 
           <div class="simViewerHint">
             <span>🖱️ Arrastrá para rotar</span>
             <span>🔍 Pellizcá o usá la rueda para acercar</span>
-            <span>👆 Tocá un hueso o punto anatómico</span>
+            <span>👆 Tocá un hueso, punto o conducto</span>
             <span>🟠 Marcador = accidente calculado</span>
-            <span>🟡 Nervio = trayecto esquemático educativo</span>
+            <span>🔵 Conducto = trayecto intraóseo educativo</span>
+            <span>🟡 Nervios = trayectos esquemáticos educativos</span>
+            <span>🟣 ATM = disco articular esquemático</span>
             <span>⌨️ R restablece · F enfoca</span>
             <span id="currentView">Vista: anterior</span>
           </div>
@@ -124,7 +128,7 @@
             <button type="button" data-structure-filter="accidents">Accidentes</button>
           </div>
           <div id="structureButtons" class="simStructureButtons"></div>
-          <p class="simStructureNote">Los primeros marcadores puntuales —cóndilo, coronoides, ángulo, forámenes mandibular, mentoniano, infraorbitario y oval— se calculan sobre la geometría de este mismo atlas. El resto de los accidentes seguirá incorporándose progresivamente.</p>
+          <p class="simStructureNote">Los marcadores puntuales de cóndilo, coronoides, ángulo, forámenes mandibular, mentoniano, infraorbitario y oval se calculan sobre la geometría de este mismo atlas. El conducto mandibular y las capas de nervios/ATM son reconstrucciones educativas ancladas a esas referencias y a los dientes del modelo.</p>
         </div>
       </div>
 
@@ -183,18 +187,18 @@
     <section class="simRoadmap">
       <span class="simEy">Estado del desarrollo</span>
       <h2>La base del atlas ya está lista para crecer por capas</h2>
-      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio, práctica de identificación y los primeros anclajes anatómicos calculados directamente sobre el modelo.</p>
+      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio, práctica de identificación, marcadores calculados, conducto mandibular y las primeras capas neuroanatómicas y de ATM.</p>
       <div class="simRoadmapGrid">
         <div class="done"><b>✓</b><span>Huesos seleccionables + fichas</span></div>
         <div class="done"><b>✓</b><span>Estudio guiado + práctica 3D</span></div>
-        <div class="done"><b>✓</b><span>Primeros marcadores 3D de forámenes y referencias óseas</span></div>
-        <div><b>4</b><span>Ampliar nervios, vasos, músculos y ATM por capas</span></div>
-        <div><b>5</b><span>Radiografías y correlación por imágenes</span></div>
-        <div><b>6</b><span>Banco ampliado de preguntas y progreso</span></div>
+        <div class="done"><b>✓</b><span>Marcadores 3D + conducto mandibular</span></div>
+        <div class="done"><b>✓</b><span>V2/V3, ramas odontológicas y disco de ATM</span></div>
+        <div><b>5</b><span>Músculos, vasos y más estructuras de cabeza y cuello</span></div>
+        <div><b>6</b><span>Radiografías, banco ampliado de preguntas y progreso</span></div>
       </div>
     </section>
 
-    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. El ajuste geométrico de los primeros accidentes y trayectos nerviosos se adapta de OMF Atlas (MIT, Ahmad Sofi-Mahmudi, 2026). Los nervios mostrados son esquemas educativos anclados al modelo, no segmentaciones clínicas ni representan la anatomía exacta de un paciente. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. El ajuste geométrico de accidentes, conducto mandibular, nervios y disco de ATM se adapta de la lógica abierta de OMF Atlas (MIT, Ahmad Sofi-Mahmudi, 2026). Las capas neurovasculares, el conducto y el disco son esquemas educativos anclados al modelo, no segmentaciones clínicas ni representan la anatomía exacta de un paciente. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
   </main>
 
   <script src="/simulador-odontologia/app.js" defer></script>
