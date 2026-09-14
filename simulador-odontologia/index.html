@@ -59,12 +59,12 @@
           </div>
 
           <div id="skullStage" class="skullStage" aria-label="Visor tridimensional interactivo del cráneo humano">
-            <canvas id="skullCanvas" class="skullCanvas" tabindex="0" aria-label="Modelo 3D del cráneo. Arrastrá para rotar y tocá un hueso para seleccionarlo."></canvas>
+            <canvas id="skullCanvas" class="skullCanvas" tabindex="0" aria-label="Modelo 3D del cráneo. Arrastrá para rotar y tocá un hueso o marcador para seleccionarlo."></canvas>
             <div id="viewerTooltip" class="viewerTooltip" hidden></div>
             <div class="simLoading stageLoading" aria-hidden="true">
               <div class="simSpinner"></div>
               <b>Cargando huesos del cráneo</b>
-              <span>Estamos preparando las piezas anatómicas seleccionables.</span>
+              <span>Estamos preparando las piezas anatómicas y sus marcadores.</span>
             </div>
             <p id="viewerError" class="viewerError" hidden></p>
           </div>
@@ -81,13 +81,17 @@
             <button id="focusBone" type="button">Enfocar seleccionado</button>
             <button id="isolateBone" type="button">Aislar seleccionado</button>
             <button id="contextBone" type="button">Atenuar los demás</button>
+            <button id="toggleLandmarks" type="button" class="active" aria-pressed="true">Accidentes 3D: visibles</button>
+            <button id="toggleNerves" type="button" aria-pressed="false">Nervios: ocultos</button>
             <button id="resetSkull" type="button">Restablecer cráneo</button>
           </div>
 
           <div class="simViewerHint">
             <span>🖱️ Arrastrá para rotar</span>
             <span>🔍 Pellizcá o usá la rueda para acercar</span>
-            <span>👆 Tocá un hueso para seleccionarlo</span>
+            <span>👆 Tocá un hueso o punto anatómico</span>
+            <span>🟠 Marcador = accidente calculado</span>
+            <span>🟡 Nervio = trayecto esquemático educativo</span>
             <span>⌨️ R restablece · F enfoca</span>
             <span id="currentView">Vista: anterior</span>
           </div>
@@ -120,7 +124,7 @@
             <button type="button" data-structure-filter="accidents">Accidentes</button>
           </div>
           <div id="structureButtons" class="simStructureButtons"></div>
-          <p class="simStructureNote">Los accidentes anatómicos ya tienen fichas y resaltan su hueso de origen. Su marcación puntual sobre la superficie 3D se incorporará progresivamente.</p>
+          <p class="simStructureNote">Los primeros marcadores puntuales —cóndilo, coronoides, ángulo, forámenes mandibular, mentoniano, infraorbitario y oval— se calculan sobre la geometría de este mismo atlas. El resto de los accidentes seguirá incorporándose progresivamente.</p>
         </div>
       </div>
 
@@ -179,18 +183,18 @@
     <section class="simRoadmap">
       <span class="simEy">Estado del desarrollo</span>
       <h2>La base del atlas ya está lista para crecer por capas</h2>
-      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio y práctica de identificación. El desarrollo sigue una lógica incremental para que cada nueva capa reutilice el mismo cráneo y la misma base de conocimiento.</p>
+      <p>Esta versión combina geometría anatómica segmentada con fichas, búsqueda, ruta de estudio, práctica de identificación y los primeros anclajes anatómicos calculados directamente sobre el modelo.</p>
       <div class="simRoadmapGrid">
         <div class="done"><b>✓</b><span>Huesos seleccionables + fichas</span></div>
         <div class="done"><b>✓</b><span>Estudio guiado + práctica 3D</span></div>
-        <div><b>3</b><span>Marcadores precisos de forámenes, fosas y conductos</span></div>
-        <div><b>4</b><span>Nervios, vasos, músculos y ATM</span></div>
+        <div class="done"><b>✓</b><span>Primeros marcadores 3D de forámenes y referencias óseas</span></div>
+        <div><b>4</b><span>Ampliar nervios, vasos, músculos y ATM por capas</span></div>
         <div><b>5</b><span>Radiografías y correlación por imágenes</span></div>
         <div><b>6</b><span>Banco ampliado de preguntas y progreso</span></div>
       </div>
     </section>
 
-    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
+    <p class="simAttribution">Geometría anatómica: BodyParts3D, © The Database Center for Life Science, licencia CC BY 4.0; adaptación web basada en el empaquetado abierto de Human Atlas. El ajuste geométrico de los primeros accidentes y trayectos nerviosos se adapta de OMF Atlas (MIT, Ahmad Sofi-Mahmudi, 2026). Los nervios mostrados son esquemas educativos anclados al modelo, no segmentaciones clínicas ni representan la anatomía exacta de un paciente. Uso educativo; no es una herramienta clínica. La anatomía puede presentar variaciones individuales y el contenido académico se seguirá validando con la bibliografía utilizada por Anatomía de Odontología.</p>
   </main>
 
   <script src="/simulador-odontologia/app.js" defer></script>
