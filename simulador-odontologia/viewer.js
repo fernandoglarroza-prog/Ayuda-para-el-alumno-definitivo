@@ -1,6 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.186.0/+esm';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/controls/OrbitControls.js/+esm';
 import { deriveDentalLandmarks } from './dental-landmarks.js';
+import { deriveVascularPaths } from './vascular-overlays.js';
 
 const MANIFEST_URL = 'https://raw.githubusercontent.com/slorksmo/Human-Atlas/main/public/models/atlas.json';
 const MODEL_BASE = 'https://raw.githubusercontent.com/slorksmo/Human-Atlas/main/public';
@@ -13,6 +14,7 @@ const isolateButton = document.getElementById('isolateBone');
 const contextButton = document.getElementById('contextBone');
 const landmarksButton = document.getElementById('toggleLandmarks');
 const nervesButton = document.getElementById('toggleNerves');
+const vesselsButton = document.getElementById('toggleVessels');
 const canalButton = document.getElementById('toggleCanal');
 const tmjButton = document.getElementById('toggleTMJ');
 const resetButton = document.getElementById('resetSkull');
@@ -54,9 +56,7 @@ const TITLE_TO_LANDMARK = {
   'Foramen oval': 'foramen_oval'
 };
 
-const TITLE_TO_PATH = {
-  'Conducto mandibular': 'conducto_mandibular'
-};
+const TITLE_TO_PATH = { 'Conducto mandibular': 'conducto_mandibular' };
 
 const COLORS = {
   bone: 0xe9e3d5,
@@ -66,6 +66,7 @@ const COLORS = {
   landmarkSelected: 0xe33f35,
   landmarkHover: 0xffc15b,
   nerve: 0xd4ad2d,
+  vessel: 0xc84b45,
   canal: 0x3e8dc5,
   canalSelected: 0x185ca0,
   disc: 0xb76cb8
@@ -81,6 +82,7 @@ let overlayRoot;
 let meshes = [];
 let markerMeshes = [];
 let nerveMeshes = [];
+let vesselMeshes = [];
 let canalMeshes = [];
 let jointMeshes = [];
 let selectedKey = null;
@@ -91,6 +93,7 @@ let isolated = false;
 let contextDimmed = false;
 let landmarksVisible = true;
 let nervesVisible = false;
+let vesselsVisible = false;
 let canalVisible = true;
 let tmjVisible = false;
 let pointerStart = null;
@@ -118,18 +121,15 @@ function buildRenderer() {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
-
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(36, 1, 0.01, 20);
   camera.position.set(0, 0.05, 0.42);
-
   controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
   controls.enablePan = false;
   controls.minDistance = 0.14;
   controls.maxDistance = 0.9;
-
   scene.add(new THREE.HemisphereLight(0xffffff, 0x7d8796, 2.4));
   const key = new THREE.DirectionalLight(0xffffff, 3.3);
   key.position.set(0.7, 1.1, 1.4);
@@ -140,7 +140,6 @@ function buildRenderer() {
   const rim = new THREE.DirectionalLight(0xfff0d6, 1.2);
   rim.position.set(0.3, 0.2, -1.3);
   scene.add(rim);
-
   root = new THREE.Group();
   boneRoot = new THREE.Group();
   overlayRoot = new THREE.Group();
@@ -187,13 +186,7 @@ function makeGeometry(part, buffer) {
 }
 
 function makeBoneMaterial() {
-  return new THREE.MeshStandardMaterial({
-    color: COLORS.bone,
-    roughness: 0.72,
-    metalness: 0,
-    transparent: true,
-    opacity: 1
-  });
+  return new THREE.MeshStandardMaterial({ color: COLORS.bone, roughness: 0.72, metalness: 0, transparent: true, opacity: 1 });
 }
 
 function readVertices(part, chunkBuffers) {
@@ -222,30 +215,17 @@ function buildLandmarkMarkers(landmarkPoints = {}) {
   for (const [infoKey, points] of Object.entries(landmarkPoints)) {
     points.forEach((point, index) => {
       const geometry = new THREE.SphereGeometry(0.00225, 18, 12);
-      const material = new THREE.MeshStandardMaterial({
-        color: COLORS.landmark,
-        roughness: 0.35,
-        metalness: 0,
-        emissive: 0x4a2600,
-        emissiveIntensity: 0.22,
-        depthTest: true
-      });
+      const material = new THREE.MeshStandardMaterial({ color: COLORS.landmark, roughness: 0.35, metalness: 0, emissive: 0x4a2600, emissiveIntensity: 0.22, depthTest: true });
       const marker = new THREE.Mesh(geometry, material);
       marker.position.fromArray(point);
-      marker.userData = {
-        infoKey,
-        overlayType: 'landmark',
-        parentKey: LANDMARK_PARENT[infoKey] || null,
-        side: index === 0 ? 'derecho' : 'izquierdo',
-        sourceName: 'Marcador 3D calculado sobre el atlas'
-      };
+      marker.userData = { infoKey, overlayType: 'landmark', parentKey: LANDMARK_PARENT[infoKey] || null, side: index === 0 ? 'derecho' : 'izquierdo', sourceName: 'Marcador 3D calculado sobre el atlas' };
       overlayRoot.add(marker);
       markerMeshes.push(marker);
     });
   }
 }
 
-function tubeRadius(path) {
+function nerveRadius(path) {
   if (path.caliber === 'trunk') return 0.00105;
   if (path.caliber === 'branch') return 0.00078;
   return 0.00055;
@@ -256,27 +236,32 @@ function buildNervePaths(paths = []) {
   for (const path of paths) {
     const clean = (path.points || []).filter((p) => Array.isArray(p) && p.every(Number.isFinite));
     if (clean.length < 2) continue;
-    const vectors = clean.map((p) => new THREE.Vector3(...p));
-    const curve = new THREE.CatmullRomCurve3(vectors, false, 'centripetal');
-    const geometry = new THREE.TubeGeometry(curve, Math.max(24, clean.length * 10), tubeRadius(path), 8, false);
-    const material = new THREE.MeshStandardMaterial({
-      color: COLORS.nerve,
-      roughness: 0.5,
-      metalness: 0,
-      transparent: true,
-      opacity: 0.92,
-      depthTest: true
-    });
+    const curve = new THREE.CatmullRomCurve3(clean.map((p) => new THREE.Vector3(...p)), false, 'centripetal');
+    const geometry = new THREE.TubeGeometry(curve, Math.max(24, clean.length * 10), nerveRadius(path), 8, false);
+    const material = new THREE.MeshStandardMaterial({ color: COLORS.nerve, roughness: 0.5, metalness: 0, transparent: true, opacity: 0.92, depthTest: true });
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.userData = {
-      overlayType: 'nerve',
-      nerveKey: path.key,
-      sourceName: path.name,
-      side: path.side,
-      schematic: true
-    };
+    mesh.userData = { overlayType: 'nerve', nerveKey: path.key, sourceName: path.name, side: path.side, schematic: true };
     overlayRoot.add(mesh);
     nerveMeshes.push(mesh);
+  }
+}
+
+function vesselRadius(path) {
+  return path.caliber === 'artery' ? 0.0009 : 0.00062;
+}
+
+function buildVesselPaths(paths = []) {
+  disposeMeshes(vesselMeshes);
+  for (const path of paths) {
+    const clean = (path.points || []).filter((p) => Array.isArray(p) && p.every(Number.isFinite));
+    if (clean.length < 2) continue;
+    const curve = new THREE.CatmullRomCurve3(clean.map((p) => new THREE.Vector3(...p)), false, 'centripetal');
+    const geometry = new THREE.TubeGeometry(curve, Math.max(24, clean.length * 10), vesselRadius(path), 8, false);
+    const material = new THREE.MeshStandardMaterial({ color: COLORS.vessel, roughness: 0.46, metalness: 0, transparent: true, opacity: 0.92, depthTest: true });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.userData = { overlayType: 'vessel', vesselKey: path.key, sourceName: path.name, side: path.side, schematic: true };
+    overlayRoot.add(mesh);
+    vesselMeshes.push(mesh);
   }
 }
 
@@ -285,26 +270,11 @@ function buildCanalPaths(paths = []) {
   for (const path of paths) {
     const clean = (path.points || []).filter((p) => Array.isArray(p) && p.every(Number.isFinite));
     if (clean.length < 2) continue;
-    const vectors = clean.map((p) => new THREE.Vector3(...p));
-    const curve = new THREE.CatmullRomCurve3(vectors, false, 'centripetal');
+    const curve = new THREE.CatmullRomCurve3(clean.map((p) => new THREE.Vector3(...p)), false, 'centripetal');
     const geometry = new THREE.TubeGeometry(curve, Math.max(30, clean.length * 12), 0.00115, 10, false);
-    const material = new THREE.MeshStandardMaterial({
-      color: COLORS.canal,
-      roughness: 0.42,
-      metalness: 0,
-      transparent: true,
-      opacity: 0.76,
-      depthTest: true
-    });
+    const material = new THREE.MeshStandardMaterial({ color: COLORS.canal, roughness: 0.42, metalness: 0, transparent: true, opacity: 0.76, depthTest: true });
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.userData = {
-      overlayType: 'canal',
-      infoKey: path.key || 'conducto_mandibular',
-      parentKey: 'mandibula',
-      sourceName: `${path.name} · trayecto educativo`,
-      side: path.side,
-      schematic: true
-    };
+    mesh.userData = { overlayType: 'canal', infoKey: path.key || 'conducto_mandibular', parentKey: 'mandibula', sourceName: `${path.name} · trayecto educativo`, side: path.side, schematic: true };
     overlayRoot.add(mesh);
     canalMeshes.push(mesh);
   }
@@ -315,38 +285,22 @@ function buildJointVolumes(volumes = []) {
   for (const volume of volumes) {
     if (!volume?.center?.every(Number.isFinite) || !volume?.radii?.every(Number.isFinite)) continue;
     const geometry = new THREE.SphereGeometry(1, 30, 18);
-    const material = new THREE.MeshStandardMaterial({
-      color: COLORS.disc,
-      roughness: 0.58,
-      metalness: 0,
-      transparent: true,
-      opacity: 0.62,
-      depthTest: true,
-      side: THREE.DoubleSide
-    });
+    const material = new THREE.MeshStandardMaterial({ color: COLORS.disc, roughness: 0.58, metalness: 0, transparent: true, opacity: 0.62, depthTest: true, side: THREE.DoubleSide });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.position.fromArray(volume.center);
     mesh.scale.set(...volume.radii);
-    mesh.userData = {
-      overlayType: 'joint',
-      sourceName: volume.name,
-      side: volume.side,
-      schematic: true
-    };
+    mesh.userData = { overlayType: 'joint', sourceName: volume.name, side: volume.side, schematic: true };
     overlayRoot.add(mesh);
     jointMeshes.push(mesh);
   }
 }
 
 function syncOverlayControls() {
-  for (const marker of markerMeshes) {
-    const parentVisible = !isolated || marker.userData.parentKey === selectedKey;
-    marker.visible = landmarksVisible && parentVisible;
-  }
+  for (const marker of markerMeshes) marker.visible = landmarksVisible && (!isolated || marker.userData.parentKey === selectedKey);
   for (const nerve of nerveMeshes) nerve.visible = nervesVisible && !isolated;
+  for (const vessel of vesselMeshes) vessel.visible = vesselsVisible && !isolated;
   for (const canal of canalMeshes) canal.visible = canalVisible && (!isolated || selectedKey === 'mandibula');
   for (const joint of jointMeshes) joint.visible = tmjVisible && (!isolated || selectedKey === 'mandibula' || selectedKey === 'temporal');
-
   if (landmarksButton) {
     landmarksButton.classList.toggle('active', landmarksVisible);
     landmarksButton.textContent = landmarksVisible ? 'Accidentes 3D: visibles' : 'Accidentes 3D: ocultos';
@@ -356,6 +310,11 @@ function syncOverlayControls() {
     nervesButton.classList.toggle('active', nervesVisible);
     nervesButton.textContent = nervesVisible ? 'Nervios: visibles' : 'Nervios: ocultos';
     nervesButton.setAttribute('aria-pressed', String(nervesVisible));
+  }
+  if (vesselsButton) {
+    vesselsButton.classList.toggle('active', vesselsVisible);
+    vesselsButton.textContent = vesselsVisible ? 'Arterias: visibles' : 'Arterias: ocultas';
+    vesselsButton.setAttribute('aria-pressed', String(vesselsVisible));
   }
   if (canalButton) {
     canalButton.classList.toggle('active', canalVisible);
@@ -380,7 +339,6 @@ function applyVisualState() {
     else if (isHovered) mesh.material.color.setHex(COLORS.hoverBone);
     else mesh.material.color.setHex(COLORS.bone);
   }
-
   for (const marker of markerMeshes) {
     const isSelected = selectedLandmarkKey && marker.userData.infoKey === selectedLandmarkKey;
     const isExact = selectedMarker === marker;
@@ -389,13 +347,11 @@ function applyVisualState() {
     marker.material.color.setHex(isSelected ? COLORS.landmarkSelected : isHovered ? COLORS.landmarkHover : COLORS.landmark);
     marker.material.emissiveIntensity = isSelected ? 0.55 : isHovered ? 0.4 : 0.22;
   }
-
   for (const canal of canalMeshes) {
     const active = selectedPathKey && canal.userData.infoKey === selectedPathKey;
     canal.material.color.setHex(active ? COLORS.canalSelected : COLORS.canal);
     canal.material.opacity = active ? 0.96 : 0.76;
   }
-
   isolateButton?.classList.toggle('active', isolated);
   contextButton?.classList.toggle('active', contextDimmed);
   syncOverlayControls();
@@ -419,9 +375,7 @@ function selectLandmarkKey(key, emit = false, exactMarker = null) {
   applyVisualState();
   if (emit) {
     const marker = selectedMarker || candidates[0];
-    document.dispatchEvent(new CustomEvent('simulator:select', {
-      detail: { key, sourceName: marker.userData.sourceName, side: marker.userData.side, marker: true }
-    }));
+    document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: marker.userData.sourceName, side: marker.userData.side, marker: true } }));
   }
   return true;
 }
@@ -438,9 +392,7 @@ function selectPathKey(key, emit = false, exactMesh = null) {
   applyVisualState();
   if (emit) {
     const mesh = exactMesh && candidates.includes(exactMesh) ? exactMesh : candidates[0];
-    document.dispatchEvent(new CustomEvent('simulator:select', {
-      detail: { key, sourceName: mesh.userData.sourceName, side: mesh.userData.side, path: true }
-    }));
+    document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: mesh.userData.sourceName, side: mesh.userData.side, path: true } }));
   }
   return true;
 }
@@ -458,9 +410,7 @@ function selectKey(key, emit = false) {
   applyVisualState();
   if (emit && available) {
     const picked = meshes.find((mesh) => mesh.userData.infoKey === key);
-    document.dispatchEvent(new CustomEvent('simulator:select', {
-      detail: { key, sourceName: picked?.userData.sourceName || '' }
-    }));
+    document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: picked?.userData.sourceName || '' } }));
   }
   return available;
 }
@@ -536,19 +486,12 @@ async function loadAtlas() {
   if (!manifestResponse.ok) throw new Error(`Manifest ${manifestResponse.status}`);
   const manifest = await manifestResponse.json();
   if (!Array.isArray(manifest.parts) || !Array.isArray(manifest.chunks)) throw new Error('Formato de atlas no compatible');
-
-  const selectedParts = manifest.parts
-    .map((part) => ({ part, infoKey: matchBone(part.name || '') }))
-    .filter(({ infoKey }) => Boolean(infoKey));
+  const selectedParts = manifest.parts.map((part) => ({ part, infoKey: matchBone(part.name || '') })).filter(({ infoKey }) => Boolean(infoKey));
   if (!selectedParts.length) throw new Error('No se encontraron huesos del cráneo en el atlas');
-
   const mandiblePart = manifest.parts.find((part) => part.id === 'FJ3289' || part.conceptId === 'FJ3289' || /^Mandible$/i.test(part.name || ''));
-  const chunkIndexes = [...new Set([
-    ...selectedParts.map(({ part }) => part.chunk),
-    ...(mandiblePart ? [mandiblePart.chunk] : [])
-  ])];
+  const neededParts = manifest.parts.filter((part) => toothPart(part) || part === mandiblePart);
+  const chunkIndexes = [...new Set([...selectedParts.map(({ part }) => part.chunk), ...neededParts.map((part) => part.chunk)])];
   setStatus(`Cargando ${selectedParts.length} piezas anatómicas…`);
-
   const chunkBuffers = new Map();
   let completed = 0;
   await Promise.all(chunkIndexes.map(async (chunkIndex) => {
@@ -560,7 +503,6 @@ async function loadAtlas() {
     completed += 1;
     setStatus(`Cargando geometría ${completed}/${chunkIndexes.length}…`);
   }));
-
   for (const { part, infoKey } of selectedParts) {
     const buffer = chunkBuffers.get(part.chunk);
     if (!buffer) continue;
@@ -573,28 +515,28 @@ async function loadAtlas() {
   }
   if (!meshes.length) throw new Error('No se pudo construir la geometría del cráneo');
 
-  let overlaysSummary = { landmarks: 0, nerves: 0, canals: 0, joints: 0 };
+  const reader = (part) => readVertices(part, chunkBuffers);
+  let overlaysSummary = { landmarks: 0, nerves: 0, vessels: 0, canals: 0, joints: 0 };
   try {
-    const overlays = deriveDentalLandmarks(manifest.parts, (part) => readVertices(part, chunkBuffers));
+    const overlays = deriveDentalLandmarks(manifest.parts, reader);
     buildLandmarkMarkers(overlays.landmarkPoints);
     buildNervePaths(overlays.nervePaths);
     buildCanalPaths(overlays.canalPaths);
     buildJointVolumes(overlays.jointVolumes);
-    overlaysSummary = {
-      landmarks: markerMeshes.length,
-      nerves: nerveMeshes.length,
-      canals: canalMeshes.length,
-      joints: jointMeshes.length
-    };
+    buildVesselPaths(deriveVascularPaths(manifest.parts, reader));
+    overlaysSummary = { landmarks: markerMeshes.length, nerves: nerveMeshes.length, vessels: vesselMeshes.length, canals: canalMeshes.length, joints: jointMeshes.length };
   } catch (error) {
     console.warn('[Simulador 3D] No se pudieron calcular todas las capas dentales', error);
   }
-
   fitCamera();
   syncOverlayControls();
-  setStatus(`${meshes.length} piezas 3D · ${overlaysSummary.landmarks} marcadores · ${overlaysSummary.nerves} trayectos nerviosos`, 'ready');
+  setStatus(`${meshes.length} piezas · ${overlaysSummary.landmarks} marcadores · ${overlaysSummary.nerves} nervios · ${overlaysSummary.vessels} arterias`, 'ready');
   stage.classList.add('loaded');
   document.dispatchEvent(new CustomEvent('simulator:viewer-ready', { detail: { pieces: meshes.length, ...overlaysSummary } }));
+}
+
+function toothPart(part) {
+  return /tooth/i.test(part?.name || '');
 }
 
 function normalizedPointer(event) {
@@ -607,11 +549,7 @@ function hitTest(event) {
   if (!meshes.length) return null;
   normalizedPointer(event);
   raycaster.setFromCamera(pointer, camera);
-  const targets = [
-    ...markerMeshes.filter((mesh) => mesh.visible),
-    ...canalMeshes.filter((mesh) => mesh.visible),
-    ...meshes.filter((mesh) => mesh.visible)
-  ];
+  const targets = [...markerMeshes.filter((mesh) => mesh.visible), ...canalMeshes.filter((mesh) => mesh.visible), ...meshes.filter((mesh) => mesh.visible)];
   const hits = raycaster.intersectObjects(targets, false);
   return hits[0]?.object || null;
 }
@@ -619,20 +557,11 @@ function hitTest(event) {
 function emitHover(object, event) {
   const rect = stage.getBoundingClientRect();
   document.dispatchEvent(new CustomEvent('simulator:hover', {
-    detail: object ? {
-      key: object.userData.infoKey,
-      x: Math.max(0, Math.min(rect.width - 20, event.clientX - rect.left)),
-      y: Math.max(0, Math.min(rect.height - 20, event.clientY - rect.top)),
-      marker: object.userData.overlayType === 'landmark',
-      side: object.userData.side || null
-    } : { key: null }
+    detail: object ? { key: object.userData.infoKey, x: Math.max(0, Math.min(rect.width - 20, event.clientX - rect.left)), y: Math.max(0, Math.min(rect.height - 20, event.clientY - rect.top)), marker: object.userData.overlayType === 'landmark', side: object.userData.side || null } : { key: null }
   }));
 }
 
-canvas.addEventListener('pointerdown', (event) => {
-  pointerStart = { x: event.clientX, y: event.clientY };
-});
-
+canvas.addEventListener('pointerdown', (event) => { pointerStart = { x: event.clientX, y: event.clientY }; });
 canvas.addEventListener('pointerup', (event) => {
   if (!pointerStart) return;
   const distance = Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y);
@@ -644,7 +573,6 @@ canvas.addEventListener('pointerup', (event) => {
   else if (object.userData.overlayType === 'canal') selectPathKey(object.userData.infoKey, true, object);
   else selectKey(object.userData.infoKey, true);
 });
-
 canvas.addEventListener('pointermove', (event) => {
   if (event.buttons) return;
   const next = hitTest(event);
@@ -655,59 +583,25 @@ canvas.addEventListener('pointermove', (event) => {
   }
   emitHover(next, event);
 });
-
 canvas.addEventListener('pointerleave', () => {
   hovered = null;
   canvas.style.cursor = 'grab';
   applyVisualState();
   document.dispatchEvent(new CustomEvent('simulator:hover', { detail: { key: null } }));
 });
-
 canvas.addEventListener('keydown', (event) => {
-  if (event.key.toLowerCase() === 'r') {
-    event.preventDefault();
-    resetButton?.click();
-  }
-  if (event.key.toLowerCase() === 'f') {
-    event.preventDefault();
-    focusSelection();
-  }
+  if (event.key.toLowerCase() === 'r') { event.preventDefault(); resetButton?.click(); }
+  if (event.key.toLowerCase() === 'f') { event.preventDefault(); focusSelection(); }
 });
 
 focusButton?.addEventListener('click', () => focusSelection());
-isolateButton?.addEventListener('click', () => {
-  if (!selectedKey) return;
-  isolated = !isolated;
-  if (isolated) contextDimmed = false;
-  applyVisualState();
-});
-contextButton?.addEventListener('click', () => {
-  if (!selectedKey) return;
-  contextDimmed = !contextDimmed;
-  if (contextDimmed) isolated = false;
-  applyVisualState();
-});
-landmarksButton?.addEventListener('click', () => {
-  landmarksVisible = !landmarksVisible;
-  if (!landmarksVisible) {
-    selectedLandmarkKey = null;
-    selectedMarker = null;
-  }
-  applyVisualState();
-});
-nervesButton?.addEventListener('click', () => {
-  nervesVisible = !nervesVisible;
-  applyVisualState();
-});
-canalButton?.addEventListener('click', () => {
-  canalVisible = !canalVisible;
-  if (!canalVisible) selectedPathKey = null;
-  applyVisualState();
-});
-tmjButton?.addEventListener('click', () => {
-  tmjVisible = !tmjVisible;
-  applyVisualState();
-});
+isolateButton?.addEventListener('click', () => { if (!selectedKey) return; isolated = !isolated; if (isolated) contextDimmed = false; applyVisualState(); });
+contextButton?.addEventListener('click', () => { if (!selectedKey) return; contextDimmed = !contextDimmed; if (contextDimmed) isolated = false; applyVisualState(); });
+landmarksButton?.addEventListener('click', () => { landmarksVisible = !landmarksVisible; if (!landmarksVisible) { selectedLandmarkKey = null; selectedMarker = null; } applyVisualState(); });
+nervesButton?.addEventListener('click', () => { nervesVisible = !nervesVisible; applyVisualState(); });
+vesselsButton?.addEventListener('click', () => { vesselsVisible = !vesselsVisible; applyVisualState(); });
+canalButton?.addEventListener('click', () => { canalVisible = !canalVisible; if (!canalVisible) selectedPathKey = null; applyVisualState(); });
+tmjButton?.addEventListener('click', () => { tmjVisible = !tmjVisible; applyVisualState(); });
 resetButton?.addEventListener('click', () => {
   selectedKey = null;
   clearOverlaySelection();
@@ -721,25 +615,13 @@ resetButton?.addEventListener('click', () => {
 window.skull3dSelectByKey = (key) => selectKey(key, false);
 window.skull3dSelectLandmark = (key) => selectLandmarkKey(key, false);
 window.skull3dFocusSelection = focusSelection;
-window.skull3dIsolate = () => {
-  if (!selectedKey) return false;
-  isolated = true;
-  contextDimmed = false;
-  applyVisualState();
-  return true;
-};
+window.skull3dIsolate = () => { if (!selectedKey) return false; isolated = true; contextDimmed = false; applyVisualState(); return true; };
 window.skull3dReset = () => resetButton?.click();
 window.skull3dSetView = (view) => {
   const box = boneBounds();
   const size = box.getSize(new THREE.Vector3());
   const d = Math.max(size.x, size.y, size.z) * 2.25 || 0.4;
-  const positions = {
-    Anterior: [0, 0, d],
-    Posterior: [0, 0, -d],
-    Lateral: [d, 0, 0],
-    Superior: [0, d, 0.001],
-    Inferior: [0, -d, 0.001]
-  };
+  const positions = { Anterior: [0, 0, d], Posterior: [0, 0, -d], Lateral: [d, 0, 0], Superior: [0, d, 0.001], Inferior: [0, -d, 0.001] };
   const next = positions[view] || positions.Anterior;
   camera.position.set(...next);
   camera.up.set(0, 1, 0);
@@ -756,10 +638,7 @@ if (infoTitle) {
     const pathKey = TITLE_TO_PATH[title];
     if (landmarkKey) selectLandmarkKey(landmarkKey, false);
     else if (pathKey) selectPathKey(pathKey, false);
-    else if (selectedLandmarkKey || selectedPathKey) {
-      clearOverlaySelection();
-      applyVisualState();
-    }
+    else if (selectedLandmarkKey || selectedPathKey) { clearOverlaySelection(); applyVisualState(); }
   };
   new MutationObserver(syncInfoSelection).observe(infoTitle, { childList: true, characterData: true, subtree: true });
 }
