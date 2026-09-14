@@ -1,10 +1,11 @@
-// Landmark and schematic nerve fitting adapted from OMF Atlas (MIT License).
+// Landmark and schematic anatomy fitting adapted from OMF Atlas (MIT License).
 // Copyright (c) 2026 Ahmad Sofi-Mahmudi.
 // Adapted for Ayuda para el Alumno's Simulador de Odontología.
 //
-// The points below are derived at runtime from the same BodyParts3D/Human Atlas
-// assembly shown in the viewer. They are educational landmarks, not a patient-
-// specific segmentation and not a source for clinical measurements.
+// All waypoints are derived at runtime from the same BodyParts3D/Human Atlas
+// assembly shown in the viewer. Nerves, canals and the articular disc are
+// educational teaching geometry: they are not patient-specific segmentations,
+// do not encode individual anatomical variation and must not be used clinically.
 
 const RIGHT = -1;
 const LEFT = 1;
@@ -67,7 +68,7 @@ export function deriveDentalLandmarks(parts, readVertices) {
     const fdi = toothNumber(part.name || '');
     if (fdi && Array.isArray(part.bounds)) teeth.set(fdi, part.bounds);
   }
-  if (teeth.size < 20) throw new Error('No hay suficientes dientes fuente para anclar los accidentes');
+  if (teeth.size < 20) throw new Error('No hay suficientes dientes fuente para anclar la anatomía dental');
 
   const archCenter = (upper) => {
     const rows = [...teeth]
@@ -95,6 +96,11 @@ export function deriveDentalLandmarks(parts, readVertices) {
       apex: [x, upper ? hi[1] : lo[1], z],
       crown: [x, upper ? lo[1] : hi[1], z],
       center: [x, (lo[1] + hi[1]) / 2, z],
+      buccal: (distance = 0) => [
+        x + (out[0] / length) * ((hi[0] - lo[0]) / 2 + distance),
+        (lo[1] + hi[1]) / 2,
+        z + (out[1] / length) * ((hi[2] - lo[2]) / 2 + distance)
+      ],
       lingual: (distance = 0) => [
         x - (out[0] / length) * ((hi[0] - lo[0]) / 2 + distance),
         (lo[1] + hi[1]) / 2,
@@ -150,13 +156,17 @@ export function deriveDentalLandmarks(parts, readVertices) {
     return [canine.apex[0] * 1.05, hi[1] - 0.009, canine.apex[2] - 0.002];
   };
 
-  const pterygopalatineFossa = (s) => {
+  const tuberosity = (s) => {
     const bone = maxilla(s);
     if (!bone?.bounds) return null;
     const molar = tooth(s < 0 ? 17 : 27);
     const [lo] = bone.bounds;
-    const tuberosity = [molar.center[0], molar.apex[1] + 0.002, lo[2] + 0.002];
-    return [tuberosity[0] * 0.86, tuberosity[1] + 0.005, tuberosity[2] - 0.008];
+    return [molar.center[0], molar.apex[1] + 0.002, lo[2] + 0.002];
+  };
+
+  const pterygopalatineFossa = (s) => {
+    const at = tuberosity(s);
+    return at ? [at[0] * 0.86, at[1] + 0.005, at[2] - 0.008] : null;
   };
 
   const foramenOvale = (s) => {
@@ -178,11 +188,10 @@ export function deriveDentalLandmarks(parts, readVertices) {
     landmarkPoints[key] = values.filter((point) => Array.isArray(point) && point.every(Number.isFinite));
   }
 
-  const inferiorAlveolarPath = (s) => {
+  const mandibularCanalPath = (s) => {
     const under = (fdi, drop) => shift(tooth(fdi).apex, 0, -drop, 0);
     const right = s < 0;
     return [
-      mid(foramenOvale(s), mandibularForamen(s), 0.55),
       mandibularForamen(s),
       under(right ? 47 : 37, 0.0035),
       under(right ? 46 : 36, 0.0035),
@@ -190,6 +199,11 @@ export function deriveDentalLandmarks(parts, readVertices) {
       mentalForamen(s)
     ];
   };
+
+  const inferiorAlveolarPath = (s) => [
+    mid(foramenOvale(s), mandibularForamen(s), 0.55),
+    ...mandibularCanalPath(s)
+  ];
 
   const v3Path = (s) => [
     shift(foramenOvale(s), 0, 0.008, -0.003),
@@ -206,15 +220,116 @@ export function deriveDentalLandmarks(parts, readVertices) {
     ];
   };
 
+  const incisiveNervePath = (s) => {
+    const foramen = mentalForamen(s);
+    const canine = tooth(s < 0 ? 43 : 33);
+    const central = tooth(s < 0 ? 41 : 31);
+    return [
+      foramen,
+      shift(canine.apex, 0, -0.0025, 0),
+      shift(central.apex, 0, -0.002, 0)
+    ];
+  };
+
+  const lingualNervePath = (s) => {
+    const foramen = mandibularForamen(s);
+    const secondMolar = tooth(s < 0 ? 47 : 37);
+    const firstMolar = tooth(s < 0 ? 46 : 36);
+    const canine = tooth(s < 0 ? 43 : 33);
+    return [
+      mid(foramenOvale(s), foramen, 0.6),
+      shift(foramen, -s * 0.004, 0.002, 0.004),
+      shift(secondMolar.lingual(0.002), 0, -0.004, -0.002),
+      shift(firstMolar.lingual(0.003), 0, -0.006, 0),
+      shift(canine.lingual(0.004), 0, -0.006, 0)
+    ];
+  };
+
+  const v2Path = (s) => {
+    const fossa = pterygopalatineFossa(s);
+    return fossa ? [
+      shift(fossa, -s * 0.006, 0.006, -0.012),
+      fossa,
+      shift(fossa, 0, 0.004, 0.008)
+    ] : [];
+  };
+
+  const infraorbitalNervePath = (s) => {
+    const fossa = pterygopalatineFossa(s);
+    const foramen = infraorbitalForamen(s);
+    if (!fossa || !foramen) return [];
+    return [
+      shift(fossa, 0, 0.004, 0.008),
+      mid(shift(fossa, 0, 0.006, 0.01), foramen, 0.55),
+      foramen,
+      shift(foramen, 0, -0.003, 0.006)
+    ];
+  };
+
+  const posteriorSuperiorAlveolarPath = (s) => {
+    const fossa = pterygopalatineFossa(s);
+    if (!fossa) return [];
+    const second = tooth(s < 0 ? 17 : 27);
+    const first = tooth(s < 0 ? 16 : 26);
+    return [
+      fossa,
+      shift(tuberosity(s), 0, 0.002, 0.001),
+      shift(second.apex, 0, 0.003, 0),
+      shift(first.apex, 0, 0.003, 0)
+    ];
+  };
+
+  const anteriorSuperiorAlveolarPath = (s) => {
+    const foramen = infraorbitalForamen(s);
+    if (!foramen) return [];
+    const canine = tooth(s < 0 ? 13 : 23);
+    const central = tooth(s < 0 ? 11 : 21);
+    return [
+      shift(foramen, 0, -0.003, -0.002),
+      shift(canine.apex, 0, 0.004, 0.001),
+      shift(central.apex, 0, 0.003, 0)
+    ];
+  };
+
+  const articularDisc = (s) => {
+    const head = condyle(s);
+    if (!head) return null;
+    return {
+      key: 'disco_atm',
+      name: 'Disco articular de la ATM',
+      side: s < 0 ? 'derecho' : 'izquierdo',
+      center: [head[0], head[1] + 0.0022, head[2] + 0.001],
+      radii: [0.0075, 0.0016, 0.0060],
+      schematic: true
+    };
+  };
+
   return {
     landmarkPoints,
     nervePaths: [
-      { key: 'v3', name: 'Nervio mandibular (V3)', side: 'derecho', points: v3Path(RIGHT) },
-      { key: 'v3', name: 'Nervio mandibular (V3)', side: 'izquierdo', points: v3Path(LEFT) },
-      { key: 'ian', name: 'Nervio alveolar inferior', side: 'derecho', points: inferiorAlveolarPath(RIGHT) },
-      { key: 'ian', name: 'Nervio alveolar inferior', side: 'izquierdo', points: inferiorAlveolarPath(LEFT) },
-      { key: 'mental', name: 'Nervio mentoniano', side: 'derecho', points: mentalNervePath(RIGHT) },
-      { key: 'mental', name: 'Nervio mentoniano', side: 'izquierdo', points: mentalNervePath(LEFT) }
-    ]
+      { key: 'v3', name: 'Nervio mandibular (V3)', side: 'derecho', points: v3Path(RIGHT), caliber: 'trunk' },
+      { key: 'v3', name: 'Nervio mandibular (V3)', side: 'izquierdo', points: v3Path(LEFT), caliber: 'trunk' },
+      { key: 'ian', name: 'Nervio alveolar inferior', side: 'derecho', points: inferiorAlveolarPath(RIGHT), caliber: 'branch' },
+      { key: 'ian', name: 'Nervio alveolar inferior', side: 'izquierdo', points: inferiorAlveolarPath(LEFT), caliber: 'branch' },
+      { key: 'mental', name: 'Nervio mentoniano', side: 'derecho', points: mentalNervePath(RIGHT), caliber: 'twig' },
+      { key: 'mental', name: 'Nervio mentoniano', side: 'izquierdo', points: mentalNervePath(LEFT), caliber: 'twig' },
+      { key: 'incisive', name: 'Nervio incisivo', side: 'derecho', points: incisiveNervePath(RIGHT), caliber: 'twig' },
+      { key: 'incisive', name: 'Nervio incisivo', side: 'izquierdo', points: incisiveNervePath(LEFT), caliber: 'twig' },
+      { key: 'lingual', name: 'Nervio lingual', side: 'derecho', points: lingualNervePath(RIGHT), caliber: 'branch' },
+      { key: 'lingual', name: 'Nervio lingual', side: 'izquierdo', points: lingualNervePath(LEFT), caliber: 'branch' },
+      { key: 'v2', name: 'Nervio maxilar (V2)', side: 'derecho', points: v2Path(RIGHT), caliber: 'trunk' },
+      { key: 'v2', name: 'Nervio maxilar (V2)', side: 'izquierdo', points: v2Path(LEFT), caliber: 'trunk' },
+      { key: 'infraorbital', name: 'Nervio infraorbitario', side: 'derecho', points: infraorbitalNervePath(RIGHT), caliber: 'branch' },
+      { key: 'infraorbital', name: 'Nervio infraorbitario', side: 'izquierdo', points: infraorbitalNervePath(LEFT), caliber: 'branch' },
+      { key: 'psa', name: 'Nervio alveolar superior posterior', side: 'derecho', points: posteriorSuperiorAlveolarPath(RIGHT), caliber: 'twig' },
+      { key: 'psa', name: 'Nervio alveolar superior posterior', side: 'izquierdo', points: posteriorSuperiorAlveolarPath(LEFT), caliber: 'twig' },
+      { key: 'asa', name: 'Nervio alveolar superior anterior', side: 'derecho', points: anteriorSuperiorAlveolarPath(RIGHT), caliber: 'twig' },
+      { key: 'asa', name: 'Nervio alveolar superior anterior', side: 'izquierdo', points: anteriorSuperiorAlveolarPath(LEFT), caliber: 'twig' }
+    ],
+    canalPaths: [
+      { key: 'conducto_mandibular', name: 'Conducto mandibular', side: 'derecho', points: mandibularCanalPath(RIGHT) },
+      { key: 'conducto_mandibular', name: 'Conducto mandibular', side: 'izquierdo', points: mandibularCanalPath(LEFT) }
+    ],
+    jointVolumes: [articularDisc(RIGHT), articularDisc(LEFT)].filter(Boolean)
   };
 }
