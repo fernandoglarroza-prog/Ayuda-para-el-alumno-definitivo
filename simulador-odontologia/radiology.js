@@ -58,3 +58,18 @@
   document.addEventListener('simulator:select',e=>{const key=e.detail?.key;if(structures[key]&&!quiz)select(key);});
   select(current);
 })();
+
+setTimeout(() => {
+  if (!document.querySelector('link[href="/simulador-odontologia/real-cbct.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/simulador-odontologia/real-cbct.css';
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('script[src="/simulador-odontologia/real-cbct.js"]')) {
+    const script = document.createElement('script');
+    script.src = '/simulador-odontologia/real-cbct.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+}, 0);
