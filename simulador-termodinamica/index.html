@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b4bb3">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Simulador de Termodinámica – P-V-T 3D | Ayuda para el Alumno</title>
+  <meta name="description" content="Simulador educativo P-V-T en 3D para explorar la superficie termodinámica, campana líquido-vapor, isotermas, isobaras e isócoras.">
+  <link rel="icon" href="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/simulador-termodinamica/termo.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  <script src="/simulador-termodinamica/app.js" defer></script>
+</head>
+<body class="thermoBody">
+  <header class="thermoHeader">
+    <div class="wrap thermoHead">
+      <a class="thermoBrand" href="/" aria-label="Volver a Ayuda para el Alumno">
+        <img src="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo" alt="Logo de Ayuda para el Alumno">
+        <span><b>Ayuda para el Alumno</b><small>De estudiantes, para estudiantes.</small></span>
+      </a>
+      <a class="thermoBack" href="/">← Volver al sitio</a>
+    </div>
+  </header>
+
+  <main class="wrap thermoMain">
+    <section class="thermoIntro">
+      <div>
+        <span class="thermoEy">Ingeniería · Termodinámica</span>
+        <h1>Simulador P–V–T en 3D</h1>
+        <p>Explorá cómo se relacionan presión, volumen y temperatura en una sustancia pura. Rotá la superficie, seguí isotermas, isobaras e isócoras y observá la región líquido–vapor alrededor del punto crítico.</p>
+      </div>
+      <span class="thermoBeta">VERSIÓN DE PRUEBA</span>
+    </section>
+
+    <section class="thermoModelNotice">
+      <div class="noticeIcon">⚗️</div>
+      <div><b>Modelo didáctico inicial</b><p>Esta primera versión utiliza variables reducidas y la ecuación de estado de van der Waals. La campana de saturación es una aproximación visual; la siguiente etapa incorporará equilibrio de fases y modelos como Peng–Robinson.</p></div>
+    </section>
+
+    <section class="thermoLayout">
+      <div class="thermoViewerColumn">
+        <div class="thermoViewerCard">
+          <div class="thermoViewerTop">
+            <div><span class="thermoEy">Superficie termodinámica</span><h2>Diagrama P–V–T</h2></div>
+            <span id="plotStatus" class="thermoStatus">Cargando modelo…</span>
+          </div>
+
+          <div id="pvtPlot" class="pvtPlot" role="img" aria-label="Diagrama tridimensional de presión, volumen reducido y temperatura reducida"></div>
+          <div id="plotFallback" class="plotFallback" hidden>
+            <b>No se pudo cargar el visor 3D.</b>
+            <span>El resto del simulador sigue disponible; recargá la página para volver a intentar.</span>
+          </div>
+
+          <div class="thermoViews" aria-label="Vistas del diagrama">
+            <button type="button" class="active" data-view="3d">Vista 3D</button>
+            <button type="button" data-view="pv">Proyección P–V</button>
+            <button type="button" data-view="pt">Proyección P–T</button>
+            <button type="button" data-view="tv">Proyección T–V</button>
+            <button type="button" id="resetView">Restablecer</button>
+          </div>
+
+          <div class="thermoHint">
+            <span>🖱️ Arrastrá para rotar</span>
+            <span>🔍 Rueda o pellizco para zoom</span>
+            <span>🔵 Punto azul = estado seleccionado</span>
+            <span>⭐ Punto crítico: Pr = Tr = Vr = 1</span>
+          </div>
+        </div>
+
+        <section class="thermoConcepts">
+          <div class="thermoSectionTitle"><div><span class="thermoEy">Lectura del gráfico</span><h2>Qué estás viendo</h2></div></div>
+          <div class="conceptGrid">
+            <article><span class="conceptDot liquid"></span><div><b>Líquido</b><p>Volumen reducido pequeño. El fluido es relativamente poco compresible.</p></div></article>
+            <article><span class="conceptDot mix"></span><div><b>Líquido + vapor</b><p>Zona bifásica delimitada por las curvas de saturación.</p></div></article>
+            <article><span class="conceptDot vapor"></span><div><b>Vapor</b><p>Volumen específico alto, fuera de la campana por el lado del vapor.</p></div></article>
+            <article><span class="conceptDot critical"></span><div><b>Punto crítico</b><p>En variables reducidas: Tr = Pr = Vr = 1.</p></div></article>
+          </div>
+        </section>
+      </div>
+
+      <aside class="thermoControls" aria-live="polite">
+        <div class="controlSection">
+          <span class="thermoEy">Estado termodinámico</span>
+          <h2 id="phaseTitle">Estado seleccionado</h2>
+          <p id="phaseSummary">Mové los controles para recorrer la superficie.</p>
+          <div class="stateReadout">
+            <div><span>Tr</span><b id="readT">0,90</b></div>
+            <div><span>Vr</span><b id="readV">1,80</b></div>
+            <div><span>Pr</span><b id="readP">0,00</b></div>
+          </div>
+        </div>
+
+        <div class="controlSection sliders">
+          <label for="tempRange"><span>Temperatura reducida <b>Tr</b></span><output id="tempOutput">0,90</output></label>
+          <input id="tempRange" type="range" min="0.62" max="1.40" step="0.01" value="0.90">
+          <div class="rangeEnds"><span>0,62</span><span>1,40</span></div>
+
+          <label for="volumeRange"><span>Volumen reducido <b>Vr</b></span><output id="volumeOutput">1,80</output></label>
+          <input id="volumeRange" type="range" min="0.38" max="4.50" step="0.02" value="1.80">
+          <div class="rangeEnds"><span>0,38</span><span>4,50</span></div>
+        </div>
+
+        <div class="controlSection">
+          <span class="thermoEy">Capas del modelo</span>
+          <div class="layerList">
+            <label><input id="layerSurface" type="checkbox" checked><span><b>Superficie P–V–T</b><small>Ecuación de van der Waals reducida</small></span></label>
+            <label><input id="layerDome" type="checkbox" checked><span><b>Campana líquido–vapor</b><small>Límites de saturación aproximados</small></span></label>
+            <label><input id="layerIsoT" type="checkbox" checked><span><b>Isoterma seleccionada</b><small>Temperatura constante</small></span></label>
+            <label><input id="layerIsoP" type="checkbox"><span><b>Isobara del estado</b><small>Presión constante</small></span></label>
+            <label><input id="layerIsoV" type="checkbox"><span><b>Isócora seleccionada</b><small>Volumen constante</small></span></label>
+            <label><input id="layerCritical" type="checkbox" checked><span><b>Punto crítico</b><small>Tr = Pr = Vr = 1</small></span></label>
+          </div>
+        </div>
+
+        <div class="controlSection equationCard">
+          <span class="thermoEy">Ecuación utilizada</span>
+          <div class="equation">P<sub>r</sub> = 8T<sub>r</sub> / (3V<sub>r</sub> − 1) − 3 / V<sub>r</sub><sup>2</sup></div>
+          <p>Trabajar con variables reducidas permite estudiar el comportamiento cualitativo sin elegir todavía una sustancia específica.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="thermoRoadmap">
+      <span class="thermoEy">Próximas capas</span>
+      <h2>La idea es convertirlo en un laboratorio virtual de Termodinámica</h2>
+      <div class="roadmapGrid">
+        <div class="done"><b>✓</b><span>Superficie P–V–T 3D interactiva</span></div>
+        <div class="done"><b>✓</b><span>Isoterma y punto de estado dinámicos</span></div>
+        <div class="done"><b>✓</b><span>Isobaras, isócoras y punto crítico</span></div>
+        <div><b>2</b><span>Sustancias reales: agua, CO₂, NH₃, propano</span></div>
+        <div><b>3</b><span>Peng–Robinson y Soave–Redlich–Kwong</span></div>
+        <div><b>4</b><span>Procesos animados y ejercicios guiados</span></div>
+      </div>
+    </section>
+
+    <p class="thermoFootnote">Herramienta educativa en desarrollo. Esta versión no debe utilizarse para diseño de equipos ni cálculos de ingeniería finales hasta incorporar propiedades y equilibrio de fases validados para cada sustancia.</p>
+  </main>
+</body>
+</html>
