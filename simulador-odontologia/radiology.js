@@ -1,0 +1,223 @@
+(() => {
+  const main = document.querySelector('.simMain');
+  const layout = document.querySelector('.simLayout');
+  if (!main || !layout || document.getElementById('radiologyModule')) return;
+
+  const structures = {
+    conducto_mandibular: {
+      name: 'Conducto mandibular',
+      pano: 'Se busca como una banda radiolúcida delimitada por bordes corticales radiopacos, desde la rama hacia el cuerpo mandibular.',
+      cbct: 'En CBCT puede seguirse corte a corte dentro de la mandíbula y valorar su relación tridimensional con raíces, terceros molares e implantes.',
+      clues: ['Seguí el trayecto desde posterior hacia la región premolar.', 'No confundas sus corticales con el borde inferior mandibular.', 'La posición y definición varían entre pacientes.']
+    },
+    foramen_mentoniano: {
+      name: 'Foramen mentoniano',
+      pano: 'Suele verse como una imagen radiolúcida redondeada u oval próxima a la región de premolares inferiores; su posición es variable.',
+      cbct: 'En CBCT se confirma como la salida bucal del conducto mandibular y puede analizarse su distancia a corticales y raíces.',
+      clues: ['Relacionarlo siempre con el conducto mandibular.', 'Puede superponerse con ápices dentarios en una panorámica.', 'La continuidad en CBCT ayuda a diferenciarlo de una lesión periapical.']
+    },
+    seno_maxilar: {
+      name: 'Seno maxilar',
+      pano: 'Se observa como un espacio radiolúcido sobre los dientes posteriores superiores, limitado por paredes corticales radiopacas.',
+      cbct: 'CBCT permite valorar piso, paredes, tabiques y relación con raíces o sitios implantarios sin la superposición propia de la panorámica.',
+      clues: ['Buscá el piso del seno sobre premolares y molares.', 'La neumatización cambia mucho entre pacientes.', 'En CBCT evaluá la relación en más de un plano.']
+    },
+    condilo_mandibular: {
+      name: 'Cóndilo mandibular',
+      pano: 'Aparece en los extremos superiores de la panorámica como una cabeza ósea redondeada u ovoide; la magnificación puede ser desigual.',
+      cbct: 'Los cortes permiten estudiar forma condilar, cortical, espacio articular y cambios óseos con mucha más precisión geométrica.',
+      clues: ['Está posterior a la coronoides.', 'Compará ambos lados con cautela por posicionamiento.', 'La panorámica orienta; CBCT aporta detalle tridimensional.']
+    },
+    coronoides_mandibular: {
+      name: 'Apófisis coronoides',
+      pano: 'Se proyecta como una imagen radiopaca triangular anterior al cóndilo y separada de este por la escotadura mandibular.',
+      cbct: 'Se identifica en continuidad con la rama mandibular y puede seguirse espacialmente hacia la inserción del temporal.',
+      clues: ['Coronoides anterior; cóndilo posterior.', 'Su forma suele ser triangular.', 'Usá la escotadura como referencia entre ambas apófisis.']
+    },
+    angulo_mandibular: {
+      name: 'Ángulo mandibular',
+      pano: 'Es la transición posteroinferior entre cuerpo y rama, claramente visible como cambio de dirección del borde inferior.',
+      cbct: 'Los cortes muestran espesor cortical y relación con estructuras vecinas sin la distorsión panorámica.',
+      clues: ['Seguí el borde inferior hasta la rama.', 'Es una referencia topográfica, no un punto idéntico entre individuos.']
+    }
+  };
+
+  const panoPositions = {
+    condilo_mandibular: [[82,74],[718,74]],
+    coronoides_mandibular: [[145,122],[655,122]],
+    seno_maxilar: [[250,142],[550,142]],
+    conducto_mandibular: [[205,300],[595,300]],
+    foramen_mentoniano: [[315,330],[485,330]],
+    angulo_mandibular: [[135,320],[665,320]]
+  };
+
+  let current = 'conducto_mandibular';
+  let view = 'pano';
+  let quiz = false;
+  let quizTarget = null;
+  let quizAnswered = 0;
+  let quizCorrect = 0;
+
+  const section = document.createElement('section');
+  section.id = 'radiologyModule';
+  section.className = 'simRadiology';
+  section.innerHTML = `
+    <div class="simRadiologyHead">
+      <div>
+        <span class="simEy">Correlación por imágenes · nueva etapa</span>
+        <h2>Del cráneo 3D a la panorámica y al CBCT</h2>
+        <p>Aprendé a reconocer en imágenes las mismas estructuras que explorás en el modelo. Esta primera versión usa esquemas educativos para entrenar orientación y relaciones; los casos clínicos reales se incorporarán desde datasets abiertos con atribución.</p>
+      </div>
+      <div class="radTabs" role="tablist" aria-label="Tipo de imagen">
+        <button type="button" class="active" data-rad-view="pano">Panorámica</button>
+        <button type="button" data-rad-view="cbct">CBCT</button>
+      </div>
+    </div>
+    <div class="radStructureChips" aria-label="Estructuras radiográficas"></div>
+    <div class="radGrid">
+      <div class="radViewer">
+        <div id="radPano"></div>
+        <div id="radCbct" class="radHidden"></div>
+        <div id="radQuizBanner" class="radQuizBanner radHidden"></div>
+      </div>
+      <aside class="radPanel">
+        <span class="radLabel" id="radLabel">Panorámica · orientación anatómica</span>
+        <h3 id="radTitle"></h3>
+        <p id="radDescription"></p>
+        <h4>Claves de reconocimiento</h4>
+        <ul id="radClues"></ul>
+        <div class="radActions">
+          <button id="radShow3d" type="button" class="primary">Ver esta estructura en 3D</button>
+          <button id="radPractice" type="button">Practicar imagen</button>
+        </div>
+        <div class="radNote">Esquema educativo: sirve para aprender ubicación y relaciones. No reemplaza la interpretación de estudios clínicos ni representa una anatomía individual.</div>
+        <p class="radSource">Preparado para incorporar panorámicas y CBCT desidentificados con licencias abiertas (CC BY 4.0) y atribución completa.</p>
+      </aside>
+    </div>`;
+
+  layout.insertAdjacentElement('afterend', section);
+
+  const chips = section.querySelector('.radStructureChips');
+  const panoHost = section.querySelector('#radPano');
+  const cbctHost = section.querySelector('#radCbct');
+  const title = section.querySelector('#radTitle');
+  const description = section.querySelector('#radDescription');
+  const clues = section.querySelector('#radClues');
+  const label = section.querySelector('#radLabel');
+  const quizBanner = section.querySelector('#radQuizBanner');
+  const practiceBtn = section.querySelector('#radPractice');
+
+  function panoramicSvg() {
+    const hotspots = Object.entries(panoPositions).flatMap(([key, pts]) => pts.map(([x,y], i) => {
+      const text = i === 0 ? structures[key].name : '';
+      const rx = key === 'conducto_mandibular' ? 54 : key === 'seno_maxilar' ? 58 : 24;
+      const ry = key === 'conducto_mandibular' ? 18 : key === 'seno_maxilar' ? 34 : 20;
+      return `<g class="radHotspot" data-rad-key="${key}" tabindex="0" role="button" aria-label="${structures[key].name}">
+        <ellipse class="hit" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>
+        <ellipse class="mark" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>
+        ${text ? `<text x="${x}" y="${Math.max(18,y-ry-7)}" text-anchor="middle">${text}</text>` : ''}
+      </g>`;
+    })).join('');
+    return `<svg class="radSvg" viewBox="0 0 800 430" role="img" aria-label="Esquema educativo de una radiografía panorámica dental">
+      <defs>
+        <radialGradient id="rg" cx="50%" cy="44%" r="72%"><stop offset="0" stop-color="#475361"/><stop offset=".5" stop-color="#202a34"/><stop offset="1" stop-color="#090d12"/></radialGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="1.2"/></filter>
+      </defs>
+      <rect width="800" height="430" fill="url(#rg)"/>
+      <g fill="none" stroke="#e5edf4" opacity=".72" filter="url(#soft)">
+        <path d="M95 70 Q52 118 82 230 Q103 320 195 365 Q293 410 400 408 Q507 410 605 365 Q697 320 718 230 Q748 118 705 70" stroke-width="15"/>
+        <path d="M125 112 Q185 68 262 85 Q325 101 400 100 Q475 101 538 85 Q615 68 675 112" stroke-width="9"/>
+        <path d="M168 205 Q270 155 400 165 Q530 155 632 205" stroke-width="8"/>
+        <path d="M170 275 Q255 345 400 352 Q545 345 630 275" stroke-width="10"/>
+        <ellipse cx="250" cy="142" rx="70" ry="48" stroke-width="5"/><ellipse cx="550" cy="142" rx="70" ry="48" stroke-width="5"/>
+        <path d="M200 300 Q260 277 330 324" stroke-width="4"/><path d="M600 300 Q540 277 470 324" stroke-width="4"/>
+      </g>
+      <g stroke="#cbd6df" opacity=".64" stroke-width="3">${Array.from({length:16},(_,i)=>{const x=265+i*18;const y=206+Math.abs(7.5-i)*2.1;return `<path d="M${x} ${y} v52"/>`;}).join('')}</g>
+      ${hotspots}
+      <text x="18" y="410" fill="#98a7b5" font-size="12">Esquema panorámico didáctico · no es una radiografía clínica</text>
+    </svg>`;
+  }
+
+  function cbctHtml() {
+    const target = (key,left,top) => `<button type="button" class="cbctTarget" data-rad-key="${key}" style="left:${left}%;top:${top}%" aria-label="${structures[key].name}"></button>`;
+    return `<div class="cbctGrid">
+      <div class="cbctSlice"><b>Axial</b>${target('conducto_mandibular',66,66)}${target('foramen_mentoniano',30,58)}</div>
+      <div class="cbctSlice"><b>Coronal</b>${target('seno_maxilar',64,38)}${target('conducto_mandibular',38,70)}</div>
+      <div class="cbctSlice"><b>Sagital</b>${target('condilo_mandibular',65,25)}${target('coronoides_mandibular',48,36)}</div>
+    </div>`;
+  }
+
+  panoHost.innerHTML = panoramicSvg();
+  cbctHost.innerHTML = cbctHtml();
+
+  for (const [key,d] of Object.entries(structures)) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.radKey = key;
+    b.textContent = d.name;
+    b.addEventListener('click', () => select(key));
+    chips.appendChild(b);
+  }
+
+  function allTargets() { return [...section.querySelectorAll('[data-rad-key]')]; }
+
+  function select(key, fromImage = false) {
+    if (!structures[key]) return;
+    if (quiz && fromImage) return answerQuiz(key);
+    current = key;
+    title.textContent = structures[key].name;
+    description.textContent = view === 'pano' ? structures[key].pano : structures[key].cbct;
+    clues.innerHTML = structures[key].clues.map((x)=>`<li>${x}</li>`).join('');
+    label.textContent = view === 'pano' ? 'Panorámica · orientación anatómica' : 'CBCT · relación tridimensional';
+    section.querySelectorAll('.radStructureChips button').forEach((b)=>b.classList.toggle('active', b.dataset.radKey===key));
+    allTargets().forEach((el)=>el.classList.toggle('active', el.dataset.radKey===key));
+  }
+
+  function setView(next) {
+    view = next;
+    section.querySelectorAll('[data-rad-view]').forEach((b)=>b.classList.toggle('active', b.dataset.radView===view));
+    panoHost.classList.toggle('radHidden', view!=='pano');
+    cbctHost.classList.toggle('radHidden', view!=='cbct');
+    select(current);
+    endQuiz();
+  }
+
+  section.querySelectorAll('[data-rad-view]').forEach((b)=>b.addEventListener('click',()=>setView(b.dataset.radView)));
+  allTargets().forEach((el)=>{
+    const activate=()=>select(el.dataset.radKey,true);
+    el.addEventListener('click',activate);
+    el.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+  });
+
+  section.querySelector('#radShow3d').addEventListener('click',()=>{
+    document.dispatchEvent(new CustomEvent('simulator:select',{detail:{key:current,sourceName:'Correlación radiográfica'}}));
+    document.getElementById('skullStage')?.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  const quizPool = Object.keys(structures);
+  function newQuizQuestion() {
+    quizTarget = quizPool[Math.floor(Math.random()*quizPool.length)];
+    quizBanner.textContent = `Identificá en ${view==='pano'?'la panorámica':'los cortes CBCT'}: ${structures[quizTarget].name}`;
+    allTargets().forEach((el)=>el.classList.remove('active'));
+  }
+  function startQuiz() {
+    quiz=true;quizAnswered=0;quizCorrect=0;quizBanner.classList.remove('radHidden');practiceBtn.textContent='Terminar práctica';
+    section.classList.add('radQuizMode');newQuizQuestion();
+  }
+  function endQuiz() {
+    if(!quiz)return;quiz=false;quizBanner.classList.add('radHidden');practiceBtn.textContent='Practicar imagen';section.classList.remove('radQuizMode');select(current);
+  }
+  function answerQuiz(key) {
+    quizAnswered++;
+    if(key===quizTarget){quizCorrect++;quizBanner.textContent=`✓ Correcto · ${quizCorrect}/${quizAnswered}. Siguiente…`;select(key,false);} else {quizBanner.textContent=`✕ Era ${structures[quizTarget].name} · ${quizCorrect}/${quizAnswered}. Siguiente…`;}
+    setTimeout(()=>{if(quiz)newQuizQuestion();},850);
+  }
+  practiceBtn.addEventListener('click',()=>quiz?endQuiz():startQuiz());
+
+  document.addEventListener('simulator:select',(e)=>{
+    const key=e.detail?.key;
+    if(structures[key]&&!quiz)select(key);
+  });
+
+  select(current);
+})();
