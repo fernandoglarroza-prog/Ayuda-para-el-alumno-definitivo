@@ -1,6 +1,6 @@
 (() => {
   const mobile = matchMedia('(pointer: coarse)').matches || innerWidth <= 900;
-  window.SimulatorMobileStability = { mobile, optimizedManifest: false, contextLost: false };
+  window.SimulatorMobileStability = { mobile, optimizedManifest: false, contextLost: false, fpsCap: mobile ? 30 : null };
 
   // The dental overlay logic only needs tooth bounds from atlas.json, not every
   // tooth mesh. Reusing the mandibular chunk id prevents the viewer from
@@ -31,11 +31,47 @@
       }
       return originalGetContext.call(this, type, attrs);
     };
-    if ((window.devicePixelRatio || 1) > 1.25) {
-      try { Object.defineProperty(window, 'devicePixelRatio', { configurable: true, get: () => 1.25 }); } catch {}
+
+    // Render at 1x on phones. High-DPI WebGL framebuffers are one of the largest
+    // GPU costs here and add little educational value on a small screen.
+    if ((window.devicePixelRatio || 1) > 1) {
+      try { Object.defineProperty(window, 'devicePixelRatio', { configurable: true, get: () => 1 }); } catch {}
     }
+
+    // Cap requestAnimationFrame-driven loops (Three.js viewer and ATM demo) at
+    // ~30 FPS on mobile. Touch interaction remains fluid while GPU work is halved.
+    const nativeRAF = window.requestAnimationFrame.bind(window);
+    const nativeCancel = window.cancelAnimationFrame.bind(window);
+    const rafTokens = new Map();
+    const lastByCallback = new WeakMap();
+    let rafSeq = 1;
+    window.requestAnimationFrame = (callback) => {
+      const token = rafSeq++;
+      let nativeId = 0;
+      const step = (time) => {
+        if (!rafTokens.has(token)) return;
+        const last = lastByCallback.get(callback) || 0;
+        if (time - last >= 32) {
+          lastByCallback.set(callback, time);
+          rafTokens.delete(token);
+          callback(time);
+          return;
+        }
+        nativeId = nativeRAF(step);
+        rafTokens.set(token, nativeId);
+      };
+      nativeId = nativeRAF(step);
+      rafTokens.set(token, nativeId);
+      return token;
+    };
+    window.cancelAnimationFrame = (token) => {
+      const nativeId = rafTokens.get(token);
+      if (nativeId) nativeCancel(nativeId);
+      rafTokens.delete(token);
+    };
+
     const style = document.createElement('style');
-    style.textContent = '@media(max-width:620px){.skullStage{height:410px!important;min-height:350px!important}.viewerRetry{position:absolute;z-index:8;left:50%;top:58%;transform:translate(-50%,-50%);border:0;border-radius:12px;padding:11px 16px;background:#0b4bb3;color:#fff;font-weight:800;box-shadow:0 8px 24px #17203333}}';
+    style.textContent = '@media(max-width:620px){.skullStage{height:390px!important;min-height:340px!important}.viewerRetry{position:absolute;z-index:8;left:50%;top:58%;transform:translate(-50%,-50%);border:0;border-radius:12px;padding:11px 16px;background:#0b4bb3;color:#fff;font-weight:800;box-shadow:0 8px 24px #17203333}}';
     document.head.appendChild(style);
   }
 
@@ -61,9 +97,22 @@
     canvas.addEventListener('webglcontextrestored', () => location.reload(), false);
   }
 
+  if (mobile) {
+    // Keep optional overlays available but off initially on phones. This reduces
+    // draw calls and transparent geometry until the student explicitly needs it.
+    document.addEventListener('simulator:viewer-ready', () => {
+      requestAnimationFrame(() => {
+        const landmarks = document.getElementById('toggleLandmarks');
+        const canal = document.getElementById('toggleCanal');
+        if (landmarks?.classList.contains('active')) landmarks.click();
+        if (canal?.classList.contains('active')) canal.click();
+      });
+    }, { once: true });
+  }
+
   if (mobile && status) {
     const decorate = () => {
-      if (status.classList.contains('ready') && !status.textContent.includes('modo liviano')) status.textContent += ' · modo liviano';
+      if (status.classList.contains('ready') && !status.textContent.includes('modo liviano')) status.textContent += ' · modo liviano · 30 FPS';
     };
     new MutationObserver(decorate).observe(status, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     decorate();
