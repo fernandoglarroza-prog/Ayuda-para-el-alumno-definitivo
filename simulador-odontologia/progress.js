@@ -3,7 +3,7 @@
   const empty=()=>({attempts:0,correct:0,byMode:{},byTarget:{},explored:{},updatedAt:null});
   function load(){try{return {...empty(),...JSON.parse(localStorage.getItem(KEY)||'{}')};}catch{return empty();}}
   let data=load();
-  function save(){data.updatedAt=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(data));}catch{}render();}
+  function save(){data.updatedAt=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(data));}catch{}render();document.dispatchEvent(new CustomEvent('simulator:progress-updated',{detail:{attempts:data.attempts,correct:data.correct}}));}
   function cleanName(s=''){return s.replace(/^Caso\s+\d+\s*·\s*/i,'').replace(/^Identificá(?:\s+en[^:]+)?\s*:\s*/i,'').trim();}
   function recordAttempt(mode,target,ok){target=cleanName(target)||'Pregunta';data.attempts++;if(ok)data.correct++;data.byMode[mode]=data.byMode[mode]||{attempts:0,correct:0};data.byMode[mode].attempts++;if(ok)data.byMode[mode].correct++;data.byTarget[target]=data.byTarget[target]||{attempts:0,correct:0};data.byTarget[target].attempts++;if(ok)data.byTarget[target].correct++;save();}
   function recordExplore(key){if(!key)return;data.explored[key]=(data.explored[key]||0)+1;save();}
