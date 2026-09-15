@@ -51,3 +51,12 @@
   }
   if(!mount()){const o=new MutationObserver(()=>{if(mount())o.disconnect();});o.observe(document.body,{childList:true,subtree:true});setTimeout(()=>o.disconnect(),10000);}
 })();
+
+(() => {
+  if(!document.querySelector('link[href="/simulador-odontologia/adaptive-study.css"]')){
+    const link=document.createElement('link');link.rel='stylesheet';link.href='/simulador-odontologia/adaptive-study.css';document.head.appendChild(link);
+  }
+  if(!document.querySelector('script[src="/simulador-odontologia/adaptive-study.js"]')){
+    const script=document.createElement('script');script.src='/simulador-odontologia/adaptive-study.js';script.defer=true;document.body.appendChild(script);
+  }
+})();
