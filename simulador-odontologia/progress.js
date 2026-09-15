@@ -1,4 +1,76 @@
 (() => {
+  const mobile = matchMedia('(pointer: coarse)').matches || innerWidth <= 900;
+  window.SimulatorMobileStability = { mobile, optimizedManifest: false, contextLost: false };
+
+  // The dental overlay logic only needs tooth bounds from atlas.json, not every
+  // tooth mesh. Reusing the mandibular chunk id prevents the viewer from
+  // downloading dozens of unnecessary dental geometry chunks on phones.
+  const originalFetch = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const url = typeof input === 'string' ? input : (input?.url || '');
+    const response = await originalFetch(input, init);
+    if (!url.includes('/models/atlas.json') || !response.ok) return response;
+    try {
+      const data = await response.clone().json();
+      const mandible = data.parts?.find((p) => p.id === 'FJ3289' || p.conceptId === 'FJ3289' || /^Mandible$/i.test(p.name || ''));
+      if (!mandible || !Number.isFinite(mandible.chunk)) return response;
+      for (const part of data.parts || []) if (/tooth/i.test(part?.name || '')) part.chunk = mandible.chunk;
+      window.SimulatorMobileStability.optimizedManifest = true;
+      return new Response(JSON.stringify(data), { status: response.status, statusText: response.statusText, headers: response.headers });
+    } catch {
+      return response;
+    }
+  };
+
+  if (mobile) {
+    // Reduce framebuffer/GPU pressure on Android and other coarse-pointer devices.
+    const originalGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type, attrs) {
+      if (this.id === 'skullCanvas' && /^(webgl2?|experimental-webgl)$/i.test(type)) {
+        attrs = { ...(attrs || {}), antialias: false, powerPreference: 'low-power', preserveDrawingBuffer: false, desynchronized: false };
+      }
+      return originalGetContext.call(this, type, attrs);
+    };
+    if ((window.devicePixelRatio || 1) > 1.25) {
+      try { Object.defineProperty(window, 'devicePixelRatio', { configurable: true, get: () => 1.25 }); } catch {}
+    }
+    const style = document.createElement('style');
+    style.textContent = '@media(max-width:620px){.skullStage{height:410px!important;min-height:350px!important}.viewerRetry{position:absolute;z-index:8;left:50%;top:58%;transform:translate(-50%,-50%);border:0;border-radius:12px;padding:11px 16px;background:#0b4bb3;color:#fff;font-weight:800;box-shadow:0 8px 24px #17203333}}';
+    document.head.appendChild(style);
+  }
+
+  const canvas = document.getElementById('skullCanvas');
+  const stage = document.getElementById('skullStage');
+  const status = document.getElementById('viewerStatus');
+  const errorBox = document.getElementById('viewerError');
+  if (canvas && stage) {
+    const showRetry = (message) => {
+      stage.classList.add('failed');
+      if (status) { status.textContent = 'Visor 3D pausado'; status.classList.add('error'); }
+      if (errorBox) { errorBox.hidden = false; errorBox.textContent = message; }
+      let retry = document.getElementById('viewerRetry');
+      if (!retry) {
+        retry = document.createElement('button'); retry.id = 'viewerRetry'; retry.className = 'viewerRetry'; retry.type = 'button'; retry.textContent = 'Reiniciar visor 3D';
+        retry.addEventListener('click', () => location.reload()); stage.appendChild(retry);
+      }
+    };
+    canvas.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault(); window.SimulatorMobileStability.contextLost = true;
+      showRetry('El teléfono liberó la memoria gráfica del visor. Reinicialo en modo liviano; las fichas y ejercicios siguen disponibles.');
+    }, false);
+    canvas.addEventListener('webglcontextrestored', () => location.reload(), false);
+  }
+
+  if (mobile && status) {
+    const decorate = () => {
+      if (status.classList.contains('ready') && !status.textContent.includes('modo liviano')) status.textContent += ' · modo liviano';
+    };
+    new MutationObserver(decorate).observe(status, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    decorate();
+  }
+})();
+
+(() => {
   const KEY='ayuda_sim_odontologia_progress_v1';
   const empty=()=>({attempts:0,correct:0,byMode:{},byTarget:{},explored:{},updatedAt:null});
   function load(){try{return {...empty(),...JSON.parse(localStorage.getItem(KEY)||'{}')};}catch{return empty();}}
