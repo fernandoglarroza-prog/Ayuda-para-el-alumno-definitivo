@@ -53,10 +53,19 @@
 })();
 
 (() => {
-  if(!document.querySelector('link[href="/simulador-odontologia/adaptive-study.css"]')){
-    const link=document.createElement('link');link.rel='stylesheet';link.href='/simulador-odontologia/adaptive-study.css';document.head.appendChild(link);
-  }
-  if(!document.querySelector('script[src="/simulador-odontologia/adaptive-study.js"]')){
-    const script=document.createElement('script');script.src='/simulador-odontologia/adaptive-study.js';script.defer=true;document.body.appendChild(script);
-  }
+  const assets=[
+    ['link','/simulador-odontologia/adaptive-study.css'],
+    ['script','/simulador-odontologia/adaptive-study.js'],
+    ['link','/simulador-odontologia/exam-mode.css'],
+    ['script','/simulador-odontologia/exam-mode.js']
+  ];
+  assets.forEach(([type,url])=>{
+    if(type==='link'){
+      if(document.querySelector(`link[href="${url}"]`))return;
+      const el=document.createElement('link');el.rel='stylesheet';el.href=url;document.head.appendChild(el);
+    }else{
+      if(document.querySelector(`script[src="${url}"]`))return;
+      const el=document.createElement('script');el.src=url;el.defer=true;document.body.appendChild(el);
+    }
+  });
 })();
