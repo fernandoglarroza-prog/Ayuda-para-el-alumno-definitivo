@@ -10,6 +10,11 @@
 
   window.SimulatorProgress={recordAttempt,recordExplore,get:()=>data,reset(){data=empty();save();}};
   document.addEventListener('simulator:select',e=>recordExplore(e.detail?.key));
+  document.addEventListener('simulator:practice-result',e=>{
+    const d=e.detail||{};
+    if(!d.mode||!d.target||typeof d.correct!=='boolean')return;
+    recordAttempt(d.mode,d.target,d.correct);
+  });
 
   const watchers=new Map();
   function watchBanner(id,mode){
@@ -30,7 +35,7 @@
   function weakAreas(){return Object.entries(data.byTarget).filter(([,v])=>v.attempts>=2).map(([name,v])=>({name,...v,score:pct(v.attempts,v.correct)})).sort((a,b)=>a.score-b.score||b.attempts-a.attempts).slice(0,4);}
   function mount(){
     if(document.getElementById('progressDashboard'))return true;
-    const anchor=document.getElementById('sourcePolicyPanel')||document.getElementById('realCbctCase')||document.getElementById('realRadiographCase');if(!anchor)return false;
+    const anchor=document.getElementById('sourcePolicyPanel')||document.getElementById('cbctAnatomyTrainer')||document.getElementById('realCbctCase')||document.getElementById('realRadiographCase');if(!anchor)return false;
     const section=document.createElement('section');section.id='progressDashboard';section.className='progressDash';
     section.innerHTML=`<div class="progressHead"><div><span class="simEy">Tu progreso · guardado solo en este dispositivo</span><h2>Qué estás dominando y qué conviene repasar</h2><p>No requiere cuenta y no envía resultados a ningún servidor. Podés borrar el progreso cuando quieras.</p></div><button id="progressReset" type="button">Borrar mi progreso</button></div><div class="progressStats"><article><b id="pAccuracy">—</b><span>Precisión</span></article><article><b id="pAttempts">0</b><span>Respuestas</span></article><article><b id="pExplored">0</b><span>Estructuras exploradas</span></article></div><div class="progressGrid"><div><h3>Por tipo de práctica</h3><div id="pModes" class="progressRows"></div></div><div><h3>Para repasar</h3><div id="pWeak" class="progressRows"></div></div></div><p class="progressPrivacy">Privacidad: este panel usa únicamente almacenamiento local del navegador. No guarda nombre, correo, imágenes médicas ni identificadores de pacientes.</p>`;
     anchor.insertAdjacentElement('afterend',section);
