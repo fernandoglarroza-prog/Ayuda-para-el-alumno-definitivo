@@ -1,6 +1,12 @@
 (() => {
   const records = [
     {
+      id:'cbct-educativo-propio', title:'CBCT anatómico educativo · cortes esquemáticos', status:'approved',
+      copyright:'Creación propia del proyecto; no reutiliza una imagen clínica externa', privacy:'Sin datos de pacientes ni información clínica identificable',
+      source:'Ayuda para el Alumno · material didáctico generado para el simulador',
+      url:''
+    },
+    {
       id:'pano-caso1', title:'Panorámica · Caso 1', status:'preview',
       copyright:'CC BY-SA 4.0 verificada', privacy:'Privacidad/consentimiento no documentados explícitamente en la ficha usada',
       source:'Wikimedia Commons · Ruhrfisch, 2011',
@@ -46,16 +52,17 @@
 
   function mount(){
     if(document.getElementById('sourcePolicyPanel')) return true;
-    const anchor = document.getElementById('realCbctCase') || document.getElementById('realRadiographCase') || document.getElementById('radiologyModule');
+    const anchor = document.getElementById('cbctAnatomyTrainer') || document.getElementById('realCbctCase') || document.getElementById('realRadiographCase') || document.getElementById('radiologyModule');
     if(!anchor) return false;
     const section=document.createElement('section');
     section.id='sourcePolicyPanel';
     section.className='sourcePolicy';
     const cards=records.map(r=>{
       const label=r.status==='approved'?'Aprobada para producción':r.status==='approved-source'?'Fuente aprobada · próxima integración':r.status==='preview'?'Solo preview':r.status==='review'?'En revisión':'Bloqueada';
-      return `<article class="sourceCard status-${r.status}"><div class="sourceTop"><b>${r.title}</b><span>${label}</span></div><p><strong>Derechos:</strong> ${r.copyright}</p><p><strong>Privacidad:</strong> ${r.privacy}</p><small>${r.source}</small><a href="${r.url}" target="_blank" rel="noopener noreferrer">Abrir fuente ↗</a></article>`;
+      const link=r.url?`<a href="${r.url}" target="_blank" rel="noopener noreferrer">Abrir fuente ↗</a>`:'';
+      return `<article class="sourceCard status-${r.status}"><div class="sourceTop"><b>${r.title}</b><span>${label}</span></div><p><strong>Derechos:</strong> ${r.copyright}</p><p><strong>Privacidad:</strong> ${r.privacy}</p><small>${r.source}</small>${link}</article>`;
     }).join('');
-    section.innerHTML=`<div class="sourceHead"><div><span class="simEy">Control de fuentes · licencia + privacidad</span><h2>Qué imágenes pueden llegar a producción</h2><p>Una imagen no se aprueba por estar publicada en Internet. Exigimos licencia reutilizable y, para material clínico, documentación suficiente de anonimización, consentimiento o liberación de confidencialidad.</p></div><span class="sourceRule">Regla: duda = no publicar</span></div><div class="sourceLegend"><span class="ok">● Aprobada</span><span class="preview">● Solo preview</span><span class="review">● En revisión</span></div><div class="sourceGrid">${cards}</div><p class="sourceFoot">La fuente CBCT prioritaria para sustituir el caso provisional contiene 158 estudios desidentificados, consentimiento informado, aprobación ética y licencia CC BY 4.0. Hasta efectuar esa sustitución, el CBCT de Wikimedia permanece marcado como material de prueba.</p>`;
+    section.innerHTML=`<div class="sourceHead"><div><span class="simEy">Control de fuentes · licencia + privacidad</span><h2>Qué imágenes pueden llegar a producción</h2><p>Una imagen no se aprueba por estar publicada en Internet. Exigimos licencia reutilizable y, para material clínico, documentación suficiente de anonimización, consentimiento o liberación de confidencialidad.</p></div><span class="sourceRule">Regla: duda = no publicar</span></div><div class="sourceLegend"><span class="ok">● Aprobada</span><span class="preview">● Solo preview</span><span class="review">● En revisión</span></div><div class="sourceGrid">${cards}</div><p class="sourceFoot">Los cortes CBCT educativos son material propio sin datos de pacientes y pueden publicarse. La fuente CBCT prioritaria para sustituir el caso clínico provisional contiene 158 estudios desidentificados, consentimiento informado, aprobación ética y licencia CC BY 4.0. Hasta efectuar esa sustitución, el CBCT de Wikimedia permanece marcado como material de prueba.</p>`;
     anchor.insertAdjacentElement('afterend',section);
     return true;
   }
