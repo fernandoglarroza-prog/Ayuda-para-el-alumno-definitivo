@@ -38,4 +38,12 @@
     const button = document.querySelector(`[data-exam-level="${lastLevel}"]`);
     button?.click();
   }, true);
+
+  // V2 academic depth: load after the V1 interface has mounted.
+  if (!document.querySelector('script[src="/simulador-odontologia/deep-osteology.js"]')) {
+    const script = document.createElement('script');
+    script.src = '/simulador-odontologia/deep-osteology.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }
 })();
