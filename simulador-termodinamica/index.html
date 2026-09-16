@@ -1,140 +1,78 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0b4bb3">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Simulador de Termodinámica – P-V-T 3D | Ayuda para el Alumno</title>
-  <meta name="description" content="Simulador educativo P-V-T en 3D para explorar la superficie termodinámica, campana líquido-vapor, isotermas, isobaras e isócoras.">
-  <link rel="icon" href="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/simulador-termodinamica/termo.css">
-  <script src="/simulador-termodinamica/app.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b4bb3">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Simulador P–V–T 3D | Ayuda para el Alumno</title>
+<style>
+:root{--blue:#0b4bb3;--ink:#172033;--mut:#667085;--line:#dfe6f0;--bg:#f4f7fb;--card:#fff;--green:#187847;--amber:#f59e0b;--pink:#db2777;--violet:#7c3aed;--cyan:#0891b2;--red:#e11d48}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}button,input{font:inherit}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}.top{background:#fff;border-bottom:1px solid var(--line)}.topIn{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:11px;color:inherit;text-decoration:none}.brandMark{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#0b4bb3,#2f7be8);color:#fff;font-size:22px;font-weight:900}.brand span{display:flex;flex-direction:column}.brand b{font-size:15px}.brand small{font-size:11px;color:var(--blue)}.back{color:var(--blue);font-weight:800;text-decoration:none;font-size:13px}.main{padding:28px 0 46px}.intro{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:14px}.ey{display:inline-block;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.intro h1{margin:0 0 10px;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-.045em}.intro p{margin:0;max-width:880px;color:var(--mut);font-size:16px;line-height:1.6}.beta{white-space:nowrap;background:#fff3d8;color:#8a5a00;border:1px solid #f0daa4;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900}.notice{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:linear-gradient(135deg,#eef5ff,#fff);border:1px solid #d7e4f5;border-radius:16px;padding:14px 16px;margin-bottom:16px}.noticeIcon{width:42px;height:42px;border-radius:12px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:21px}.notice p{margin:3px 0 0;color:var(--mut);font-size:12px;line-height:1.5}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.72fr);gap:16px;align-items:start}.viewerCard,.controls,.concepts{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 34px rgba(28,52,87,.08)}.viewerCard{padding:16px}.viewerTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.viewerTop h2{font-size:23px;margin:0}.status{border-radius:999px;padding:6px 9px;background:#eef2f7;color:#526079;font-size:10px;font-weight:900}.status.ready{background:#e7f7ee;color:var(--green)}.status.error{background:#ffe8ed;color:#a63d57}.plotWrap{position:relative;margin-top:9px;height:clamp(380px,58vw,610px);border:1px solid #dce4ef;border-radius:17px;overflow:hidden;background:linear-gradient(#fff,#f2f6fb)}#pvtCanvas{display:block;width:100%;height:100%;touch-action:none}.plotError{position:absolute;inset:0;display:none;place-content:center;text-align:center;padding:24px;background:#f8fafc;color:var(--mut)}.plotError.show{display:grid}.plotError b{color:var(--ink);margin-bottom:5px}.views{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.views button{border:1px solid #dbe2ec;background:#fff;color:#344054;border-radius:11px;padding:9px 11px;font-size:12px;font-weight:800;cursor:pointer}.views button.active{background:var(--blue);color:#fff;border-color:var(--blue)}.views button:focus-visible,input:focus-visible{outline:3px solid #77aaf2;outline-offset:2px}.hints{display:flex;flex-wrap:wrap;gap:7px 13px;margin-top:11px;color:var(--mut);font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:7px 12px;margin-top:10px}.legend span{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#59657b}.legend i{width:18px;height:4px;border-radius:999px;display:inline-block}.controls{padding:18px;position:sticky;top:12px}.section+.section{border-top:1px solid var(--line);margin-top:17px;padding-top:17px}.section h2{font-size:25px;margin:0 0 6px;letter-spacing:-.025em}.section p{margin:0;color:var(--mut);font-size:12px;line-height:1.55}.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}.readout div{border:1px solid var(--line);background:#f8fbff;border-radius:12px;padding:9px}.readout span{display:block;color:var(--mut);font-size:9px;font-weight:900}.readout b{display:block;color:var(--blue);font-size:19px;margin-top:1px}.sliderLabel{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:0 0 7px;color:#48536a;font-size:12px;font-weight:800}.sliderLabel output{background:#edf4ff;color:var(--blue);border-radius:999px;padding:4px 7px;font-size:10px}.section input[type=range]{width:100%;accent-color:var(--blue)}.rangeEnds{display:flex;justify-content:space-between;color:#98a2b3;font-size:9px;margin:2px 0 13px}.layers{display:grid;gap:7px}.layers label{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;border:1px solid var(--line);background:#fbfcfe;border-radius:12px;padding:9px;cursor:pointer}.layers input{width:18px;height:18px;accent-color:var(--blue);margin-top:1px}.layers span{display:flex;flex-direction:column;gap:1px}.layers b{font-size:11px}.layers small{font-size:9px;color:#7b8598;line-height:1.35}.equation{font-family:Georgia,serif;font-size:17px;line-height:1.5;background:#f8fbff;border:1px solid #e1eaf6;border-radius:12px;padding:11px;margin-top:8px}.concepts{padding:17px;margin-top:14px}.concepts h2{margin:0;font-size:21px}.conceptGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.concept{border:1px solid var(--line);background:#fbfcfe;border-radius:12px;padding:11px}.concept b{font-size:12px}.concept p{margin:4px 0 0;color:var(--mut);font-size:10px;line-height:1.45}.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}.foot{color:#7b8598;font-size:10px;line-height:1.5;margin:14px 3px 0}@media(max-width:940px){.layout{grid-template-columns:1fr}.controls{position:static}.conceptGrid{grid-template-columns:repeat(2,1fr)}.plotWrap{height:clamp(380px,78vw,580px)}}@media(max-width:620px){.wrap{width:min(100% - 18px,1180px)}.topIn{min-height:66px}.brandMark{width:42px;height:42px}.brand small{display:none}.back{font-size:11px}.main{padding-top:20px}.intro{flex-direction:column;gap:10px}.intro h1{font-size:38px}.intro p{font-size:14px}.notice{grid-template-columns:1fr}.viewerCard,.controls,.concepts{border-radius:17px}.viewerCard{padding:10px}.viewerTop{flex-direction:column;gap:7px}.plotWrap{height:430px}.views{display:grid;grid-template-columns:1fr 1fr}.views button:last-child{grid-column:1/-1}.hints{display:grid;gap:4px}.conceptGrid{grid-template-columns:1fr}.readout b{font-size:17px}}
+</style>
 </head>
-<body class="thermoBody">
-  <header class="thermoHeader">
-    <div class="wrap thermoHead">
-      <a class="thermoBrand" href="/" aria-label="Volver a Ayuda para el Alumno">
-        <img src="https://abcuvgoipnwiltlbcqxa.supabase.co/functions/v1/brand-logo" alt="Logo de Ayuda para el Alumno">
-        <span><b>Ayuda para el Alumno</b><small>De estudiantes, para estudiantes.</small></span>
-      </a>
-      <a class="thermoBack" href="/">← Volver al sitio</a>
-    </div>
-  </header>
-
-  <main class="wrap thermoMain">
-    <section class="thermoIntro">
-      <div>
-        <span class="thermoEy">Ingeniería · Termodinámica</span>
-        <h1>Simulador P–V–T en 3D</h1>
-        <p>Explorá cómo se relacionan presión, volumen y temperatura en una sustancia pura. Rotá la superficie, seguí isotermas, isobaras e isócoras y observá la región líquido–vapor alrededor del punto crítico.</p>
-      </div>
-      <span class="thermoBeta">VERSIÓN DE PRUEBA</span>
-    </section>
-
-    <section class="thermoModelNotice">
-      <div class="noticeIcon">⚗️</div>
-      <div><b>Modelo didáctico inicial</b><p>Esta primera versión utiliza variables reducidas y la ecuación de estado de van der Waals. La campana de saturación es una aproximación visual; la siguiente etapa incorporará equilibrio de fases y modelos como Peng–Robinson.</p></div>
-    </section>
-
-    <section class="thermoLayout">
-      <div class="thermoViewerColumn">
-        <div class="thermoViewerCard">
-          <div class="thermoViewerTop">
-            <div><span class="thermoEy">Superficie termodinámica</span><h2>Diagrama P–V–T</h2></div>
-            <span id="plotStatus" class="thermoStatus">Cargando modelo…</span>
-          </div>
-
-          <div id="pvtPlot" class="pvtPlot" role="img" aria-label="Diagrama tridimensional de presión, volumen reducido y temperatura reducida"></div>
-          <div id="plotFallback" class="plotFallback" hidden>
-            <b>No se pudo cargar el visor 3D.</b>
-            <span>El resto del simulador sigue disponible; recargá la página para volver a intentar.</span>
-          </div>
-
-          <div class="thermoViews" aria-label="Vistas del diagrama">
-            <button type="button" class="active" data-view="3d">Vista 3D</button>
-            <button type="button" data-view="pv">Proyección P–V</button>
-            <button type="button" data-view="pt">Proyección P–T</button>
-            <button type="button" data-view="tv">Proyección T–V</button>
-            <button type="button" id="resetView">Restablecer</button>
-          </div>
-
-          <div class="thermoHint">
-            <span>🖱️ Arrastrá para rotar</span>
-            <span>🔍 Rueda o pellizco para zoom</span>
-            <span>🔵 Punto azul = estado seleccionado</span>
-            <span>⭐ Punto crítico: Pr = Tr = Vr = 1</span>
-          </div>
-        </div>
-
-        <section class="thermoConcepts">
-          <div class="thermoSectionTitle"><div><span class="thermoEy">Lectura del gráfico</span><h2>Qué estás viendo</h2></div></div>
-          <div class="conceptGrid">
-            <article><span class="conceptDot liquid"></span><div><b>Líquido</b><p>Volumen reducido pequeño. El fluido es relativamente poco compresible.</p></div></article>
-            <article><span class="conceptDot mix"></span><div><b>Líquido + vapor</b><p>Zona bifásica delimitada por las curvas de saturación.</p></div></article>
-            <article><span class="conceptDot vapor"></span><div><b>Vapor</b><p>Volumen específico alto, fuera de la campana por el lado del vapor.</p></div></article>
-            <article><span class="conceptDot critical"></span><div><b>Punto crítico</b><p>En variables reducidas: Tr = Pr = Vr = 1.</p></div></article>
-          </div>
-        </section>
-      </div>
-
-      <aside class="thermoControls" aria-live="polite">
-        <div class="controlSection">
-          <span class="thermoEy">Estado termodinámico</span>
-          <h2 id="phaseTitle">Estado seleccionado</h2>
-          <p id="phaseSummary">Mové los controles para recorrer la superficie.</p>
-          <div class="stateReadout">
-            <div><span>Tr</span><b id="readT">0,90</b></div>
-            <div><span>Vr</span><b id="readV">1,80</b></div>
-            <div><span>Pr</span><b id="readP">0,00</b></div>
-          </div>
-        </div>
-
-        <div class="controlSection sliders">
-          <label for="tempRange"><span>Temperatura reducida <b>Tr</b></span><output id="tempOutput">0,90</output></label>
-          <input id="tempRange" type="range" min="0.62" max="1.40" step="0.01" value="0.90">
-          <div class="rangeEnds"><span>0,62</span><span>1,40</span></div>
-
-          <label for="volumeRange"><span>Volumen reducido <b>Vr</b></span><output id="volumeOutput">1,80</output></label>
-          <input id="volumeRange" type="range" min="0.38" max="4.50" step="0.02" value="1.80">
-          <div class="rangeEnds"><span>0,38</span><span>4,50</span></div>
-        </div>
-
-        <div class="controlSection">
-          <span class="thermoEy">Capas del modelo</span>
-          <div class="layerList">
-            <label><input id="layerSurface" type="checkbox" checked><span><b>Superficie P–V–T</b><small>Ecuación de van der Waals reducida</small></span></label>
-            <label><input id="layerDome" type="checkbox" checked><span><b>Campana líquido–vapor</b><small>Límites de saturación aproximados</small></span></label>
-            <label><input id="layerIsoT" type="checkbox" checked><span><b>Isoterma seleccionada</b><small>Temperatura constante</small></span></label>
-            <label><input id="layerIsoP" type="checkbox"><span><b>Isobara del estado</b><small>Presión constante</small></span></label>
-            <label><input id="layerIsoV" type="checkbox"><span><b>Isócora seleccionada</b><small>Volumen constante</small></span></label>
-            <label><input id="layerCritical" type="checkbox" checked><span><b>Punto crítico</b><small>Tr = Pr = Vr = 1</small></span></label>
-          </div>
-        </div>
-
-        <div class="controlSection equationCard">
-          <span class="thermoEy">Ecuación utilizada</span>
-          <div class="equation">P<sub>r</sub> = 8T<sub>r</sub> / (3V<sub>r</sub> − 1) − 3 / V<sub>r</sub><sup>2</sup></div>
-          <p>Trabajar con variables reducidas permite estudiar el comportamiento cualitativo sin elegir todavía una sustancia específica.</p>
-        </div>
-      </aside>
-    </section>
-
-    <section class="thermoRoadmap">
-      <span class="thermoEy">Próximas capas</span>
-      <h2>La idea es convertirlo en un laboratorio virtual de Termodinámica</h2>
-      <div class="roadmapGrid">
-        <div class="done"><b>✓</b><span>Superficie P–V–T 3D interactiva</span></div>
-        <div class="done"><b>✓</b><span>Isoterma y punto de estado dinámicos</span></div>
-        <div class="done"><b>✓</b><span>Isobaras, isócoras y punto crítico</span></div>
-        <div><b>2</b><span>Sustancias reales: agua, CO₂, NH₃, propano</span></div>
-        <div><b>3</b><span>Peng–Robinson y Soave–Redlich–Kwong</span></div>
-        <div><b>4</b><span>Procesos animados y ejercicios guiados</span></div>
-      </div>
-    </section>
-
-    <p class="thermoFootnote">Herramienta educativa en desarrollo. Esta versión no debe utilizarse para diseño de equipos ni cálculos de ingeniería finales hasta incorporar propiedades y equilibrio de fases validados para cada sustancia.</p>
-  </main>
+<body>
+<header class="top"><div class="wrap topIn"><a class="brand" href="/"><span class="brandMark">A</span><span><b>Ayuda para el Alumno</b><small>De estudiantes, para estudiantes.</small></span></a><a class="back" href="/">← Volver al sitio</a></div></header>
+<main class="wrap main">
+<section class="intro"><div><span class="ey">Ingeniería · Termodinámica</span><h1>Simulador P–V–T en 3D</h1><p>Explorá la relación entre presión, volumen y temperatura, identificá la campana líquido–vapor, el punto crítico y las trayectorias isotérmicas, isobáricas e isocóricas.</p></div><span class="beta">VERSIÓN DE PRUEBA</span></section>
+<section class="notice"><div class="noticeIcon">⚗️</div><div><b>Modelo didáctico autocontenido</b><p>Esta versión funciona sin librerías externas. Usa variables reducidas y una representación basada en van der Waals; la región bifásica se representa de forma aproximada para facilitar el aprendizaje.</p></div></section>
+<section class="layout">
+<div>
+<div class="viewerCard">
+<div class="viewerTop"><div><span class="ey">Superficie termodinámica</span><h2>Diagrama P–V–T</h2></div><span id="status" class="status">Inicializando…</span></div>
+<div class="plotWrap"><canvas id="pvtCanvas" aria-label="Diagrama tridimensional P V T interactivo"></canvas><div id="plotError" class="plotError"><b>No se pudo iniciar el visor.</b><span>Recargá la página o probá con otro navegador.</span></div></div>
+<div class="views"><button type="button" class="active" data-view="3d">Vista 3D</button><button type="button" data-view="pv">Proyección P–V</button><button type="button" data-view="pt">Proyección P–T</button><button type="button" data-view="tv">Proyección T–V</button><button type="button" id="reset">Restablecer</button></div>
+<div class="hints"><span>👆 Arrastrá para rotar</span><span>🤏 Pellizco o rueda para zoom</span><span>🔵 Punto azul = estado actual</span><span>🔴 Punto crítico = Pr = Tr = Vr = 1</span></div>
+<div class="legend"><span><i style="background:#4f7fd1"></i>superficie</span><span><i style="background:#7c3aed"></i>saturación</span><span><i style="background:#f59e0b"></i>isoterma</span><span><i style="background:#16a34a"></i>isobara</span><span><i style="background:#db2777"></i>isócora</span></div>
+</div>
+<section class="concepts"><span class="ey">Lectura del gráfico</span><h2>Regiones principales</h2><div class="conceptGrid"><article class="concept"><b><i class="dot" style="background:#2563eb"></i>Líquido</b><p>Volumen reducido pequeño y baja compresibilidad.</p></article><article class="concept"><b><i class="dot" style="background:#7c3aed"></i>Líquido + vapor</b><p>Región bifásica limitada por líquido y vapor saturados.</p></article><article class="concept"><b><i class="dot" style="background:#0891b2"></i>Vapor</b><p>Zona de volumen específico alto a la derecha de la campana.</p></article><article class="concept"><b><i class="dot" style="background:#e11d48"></i>Punto crítico</b><p>Desaparece la distinción macroscópica entre líquido y vapor.</p></article></div></section>
+</div>
+<aside class="controls">
+<section class="section"><span class="ey">Estado termodinámico</span><h2 id="phaseTitle">Estado seleccionado</h2><p id="phaseText">Mové los controles para recorrer la superficie.</p><div class="readout"><div><span>Tr</span><b id="rT">0,90</b></div><div><span>Vr</span><b id="rV">1,80</b></div><div><span>Pr</span><b id="rP">0,00</b></div></div></section>
+<section class="section"><label class="sliderLabel" for="temp"><span>Temperatura reducida <b>Tr</b></span><output id="oT">0,90</output></label><input id="temp" type="range" min="0.62" max="1.40" step="0.01" value="0.90"><div class="rangeEnds"><span>0,62</span><span>1,40</span></div><label class="sliderLabel" for="vol"><span>Volumen reducido <b>Vr</b></span><output id="oV">1,80</output></label><input id="vol" type="range" min="0.38" max="4.50" step="0.02" value="1.80"><div class="rangeEnds"><span>0,38</span><span>4,50</span></div></section>
+<section class="section"><span class="ey">Capas</span><div class="layers"><label><input id="lSurface" type="checkbox" checked><span><b>Superficie P–V–T</b><small>Malla tridimensional coloreada</small></span></label><label><input id="lDome" type="checkbox" checked><span><b>Campana líquido–vapor</b><small>Límites aproximados de saturación</small></span></label><label><input id="lIsoT" type="checkbox" checked><span><b>Isoterma</b><small>Temperatura constante</small></span></label><label><input id="lIsoP" type="checkbox"><span><b>Isobara</b><small>Presión constante</small></span></label><label><input id="lIsoV" type="checkbox"><span><b>Isócora</b><small>Volumen constante</small></span></label><label><input id="lCritical" type="checkbox" checked><span><b>Punto crítico</b><small>Tr = Pr = Vr = 1</small></span></label></div></section>
+<section class="section"><span class="ey">Ecuación base</span><div class="equation">P<sub>r</sub> = 8T<sub>r</sub> / (3V<sub>r</sub> − 1) − 3 / V<sub>r</sub><sup>2</sup></div><p style="margin-top:7px">Para la visualización bifásica se sustituye el lazo inestable por una meseta de presión de saturación aproximada.</p></section>
+</aside>
+</section>
+<p class="foot">Herramienta educativa en desarrollo. No debe utilizarse para diseño de equipos o cálculos finales de ingeniería hasta incorporar propiedades validadas de sustancias reales y equilibrio de fases riguroso.</p>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),canvas=$('pvtCanvas'),status=$('status'),err=$('plotError');
+try{
+if(!canvas)throw new Error('canvas ausente');
+const ctx=canvas.getContext('2d');if(!ctx)throw new Error('canvas 2D no disponible');
+const S={T:.90,V:1.80,view:'3d',yaw:-.72,pitch:.48,zoom:1};
+const L={surface:$('lSurface'),dome:$('lDome'),isoT:$('lIsoT'),isoP:$('lIsoP'),isoV:$('lIsoV'),critical:$('lCritical')};
+const fmt=n=>Number.isFinite(n)?n.toFixed(2).replace('.',','):'—';
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const pvdw=(T,V)=>V<=1/3?NaN:8*T/(3*V-1)-3/(V*V);
+function sat(T){T=clamp(T,.62,1);const q=1-T;return{vL:.34+.66*Math.pow(T,2.0),vV:1+4.0*Math.pow(q,.66),p:Math.exp(5.37*(1-1/T))};}
+function displayP(T,V){let p=pvdw(T,V);if(T<1){const b=sat(T);if(V>=b.vL&&V<=b.vV)p=b.p;}return p;}
+function phase(){if(S.T>1.01)return['Fluido supercrítico','Por encima de la temperatura crítica no existe una frontera líquido–vapor.'];if(S.T>=.99)return['Cercanía del punto crítico','Líquido y vapor se vuelven progresivamente indistinguibles.'];const b=sat(S.T);if(S.V<b.vL)return['Región líquida','El estado se encuentra del lado del líquido comprimido o subenfriado.'];if(S.V<=b.vV)return['Región líquido + vapor','El estado está dentro de la campana de coexistencia de fases.'];return['Región de vapor','El estado se encuentra a la derecha de la campana de saturación.'];}
+function updateReadout(){const ph=phase(),P=displayP(S.T,S.V);$('phaseTitle').textContent=ph[0];$('phaseText').textContent=ph[1];$('rT').textContent=fmt(S.T);$('rV').textContent=fmt(S.V);$('rP').textContent=fmt(P);$('oT').textContent=fmt(S.T);$('oV').textContent=fmt(S.V);return P;}
+function model(V,T,P){return[((V-.38)/(4.5-.38)-.5)*2.45,((clamp(P,0,3))/3-.5)*1.8,((T-.62)/(1.4-.62)-.5)*1.6];}
+function rot(p){let[x,y,z]=p;const cy=Math.cos(S.yaw),sy=Math.sin(S.yaw),cp=Math.cos(S.pitch),sp=Math.sin(S.pitch);const x1=x*cy-z*sy,z1=x*sy+z*cy;return[x1,y*cp-z1*sp,y*sp+z1*cp];}
+function project3(p){const[x,y,z]=rot(p),w=canvas.clientWidth,h=canvas.clientHeight,sc=Math.min(w,h)*.37*S.zoom,d=5.4,k=d/(d+z*.52);return[x*sc*k+w*.5,h*.53-y*sc*k,z];}
+function project2(p){const w=canvas.clientWidth,h=canvas.clientHeight;let x,y;if(S.view==='pv'){x=p[0]/2.45;y=p[1]/1.8;}else if(S.view==='pt'){x=p[2]/1.6;y=p[1]/1.8;}else{x=p[0]/2.45;y=p[2]/1.6;}return[w*.5+x*w*.78,h*.53-y*h*.72,0];}
+const proj=p=>S.view==='3d'?project3(p):project2(p);
+function line(points,color,width=1,dash=[]){if(points.length<2)return;ctx.beginPath();let started=false;for(const p of points){if(!p){started=false;continue}const q=proj(p);if(!started){ctx.moveTo(q[0],q[1]);started=true}else ctx.lineTo(q[0],q[1]);}ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);}
+function fillPoly(points,color){const q=points.map(proj);ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);for(let i=1;i<q.length;i++)ctx.lineTo(q[i][0],q[i][1]);ctx.closePath();ctx.fillStyle=color;ctx.fill();}
+function dot(p,r,fill){const q=proj(p);ctx.beginPath();ctx.arc(q[0],q[1],r,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();return q;}
+function label(text,p,color='#48536a',dx=6,dy=-7,align='left'){const q=proj(p);ctx.fillStyle=color;ctx.font='700 11px system-ui,-apple-system,Segoe UI,sans-serif';ctx.textAlign=align;ctx.fillText(text,q[0]+dx,q[1]+dy);}
+function axes(){const c='#667085',g='#d9e2ee';if(S.view==='3d'){const O=model(.38,.62,0),X=model(4.5,.62,0),Y=model(.38,.62,3),Z=model(.38,1.4,0);line([O,X],c,1.5);line([O,Y],c,1.5);line([O,Z],c,1.5);label('Vr',X,c,-4,17,'right');label('Pr',Y,c,0,-7,'center');label('Tr',Z,c,4,-6,'left');for(const v of [1,2,3,4])line([model(v,.62,0),model(v,1.4,0)],g,.7,[2,4]);for(const t of [.8,1,1.2,1.4])line([model(.38,t,0),model(4.5,t,0)],g,.7,[2,4]);}else{const w=canvas.clientWidth,h=canvas.clientHeight;ctx.strokeStyle=g;ctx.lineWidth=1;for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(w*.11,h*(.16+i*.14));ctx.lineTo(w*.89,h*(.16+i*.14));ctx.stroke()}for(let i=1;i<6;i++){ctx.beginPath();ctx.moveTo(w*(.11+i*.13),h*.12);ctx.lineTo(w*(.11+i*.13),h*.86);ctx.stroke()}ctx.strokeStyle=c;ctx.lineWidth=1.5;ctx.strokeRect(w*.11,h*.12,w*.78,h*.74);ctx.fillStyle=c;ctx.font='700 12px system-ui';if(S.view==='pv'){ctx.fillText('Vr · volumen',w*.73,h*.91);ctx.save();ctx.translate(w*.045,h*.55);ctx.rotate(-Math.PI/2);ctx.fillText('Pr · presión',0,0);ctx.restore()}else if(S.view==='pt'){ctx.fillText('Tr · temperatura',w*.70,h*.91);ctx.save();ctx.translate(w*.045,h*.55);ctx.rotate(-Math.PI/2);ctx.fillText('Pr · presión',0,0);ctx.restore()}else{ctx.fillText('Vr · volumen',w*.73,h*.91);ctx.save();ctx.translate(w*.045,h*.55);ctx.rotate(-Math.PI/2);ctx.fillText('Tr · temperatura',0,0);ctx.restore()}}}
+function surface(){if(!L.surface.checked)return;const nT=18,nV=26,grid=[];for(let j=0;j<nT;j++){const T=.62+.78*j/(nT-1),row=[];for(let i=0;i<nV;i++){const V=.38+4.12*i/(nV-1),P=displayP(T,V);row.push(Number.isFinite(P)&&P>=0&&P<=3?model(V,T,P):null)}grid.push(row)}if(S.view==='3d'){const cells=[];for(let j=0;j<nT-1;j++)for(let i=0;i<nV-1;i++){const a=grid[j][i],b=grid[j][i+1],c=grid[j+1][i+1],d=grid[j+1][i];if(!a||!b||!c||!d)continue;const ra=rot(a),rb=rot(b),rc=rot(c),rd=rot(d),depth=(ra[2]+rb[2]+rc[2]+rd[2])/4,T=.62+.78*j/(nT-1);cells.push({pts:[a,b,c,d],depth,T})}cells.sort((a,b)=>b.depth-a.depth);for(const c of cells){const f=(c.T-.62)/.78,alpha=.11+.18*f;fillPoly(c.pts,`rgba(${Math.round(60+35*f)},${Math.round(117+55*f)},${Math.round(205+25*f)},${alpha})`)}for(let j=0;j<nT;j+=2)line(grid[j],'rgba(46,95,170,.35)',.8);for(let i=0;i<nV;i+=3){const col=[];for(let j=0;j<nT;j++)col.push(grid[j][i]);line(col,'rgba(46,95,170,.24)',.7)}}else{if(S.view==='pv'){for(let j=0;j<nT;j+=2)line(grid[j],`rgba(64,113,190,${.18+j*.018})`,1)}else if(S.view==='pt'){for(let i=2;i<nV;i+=3){const col=[];for(let j=0;j<nT;j++)col.push(grid[j][i]);line(col,'rgba(64,113,190,.28)',1)}}else{for(let j=0;j<nT;j+=2){const row=[];for(let i=0;i<nV;i++){const V=.38+4.12*i/(nV-1);row.push(model(V,.62+.78*j/(nT-1),0))}line(row,'rgba(64,113,190,.25)',1)}}}}
+function dome(){if(!L.dome.checked)return;const liq=[],vap=[];for(let i=0;i<=70;i++){const T=.62+.38*i/70,b=sat(T);liq.push(model(b.vL,T,b.p));vap.push(model(b.vV,T,b.p))}line(liq,'#2563eb',3);line(vap,'#7c3aed',3);if(S.view!=='pt')for(let i=1;i<9;i++){const T=.62+.38*i/9,b=sat(T);line([model(b.vL,T,b.p),model(b.vV,T,b.p)],'rgba(124,58,237,.20)',1,[4,4])}}
+function isoT(){if(!L.isoT.checked)return;const pts=[];for(let i=0;i<=120;i++){const V=.38+4.12*i/120,P=displayP(S.T,V);pts.push(Number.isFinite(P)&&P>=0&&P<=3?model(V,S.T,P):null)}line(pts,'#f59e0b',3.2)}
+function isoP(P){if(!L.isoP.checked||!Number.isFinite(P))return;const pts=[];for(let i=0;i<=120;i++){const V=.38+4.12*i/120;let T=((P+3/(V*V))*(3*V-1))/8;if(P>0&&P<1){for(let tt=.62;tt<1;tt+=.01){const b=sat(tt);if(Math.abs(b.p-P)<.015&&V>=b.vL&&V<=b.vV){T=tt;break}}}pts.push(Number.isFinite(T)&&T>=.62&&T<=1.4?model(V,T,P):null)}line(pts,'#16a34a',2.6)}
+function isoV(){if(!L.isoV.checked)return;const pts=[];for(let i=0;i<=100;i++){const T=.62+.78*i/100,P=displayP(T,S.V);pts.push(Number.isFinite(P)&&P>=0&&P<=3?model(S.V,T,P):null)}line(pts,'#db2777',2.7)}
+function render(){const P=updateReadout(),w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;const dpr=Math.min(window.devicePixelRatio||1,2),W=Math.max(1,Math.round(w*dpr)),H=Math.max(1,Math.round(h*dpr));if(canvas.width!==W||canvas.height!==H){canvas.width=W;canvas.height=H}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#fff');bg.addColorStop(1,'#f1f6fb');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);axes();surface();dome();isoT();isoP(P);isoV();if(L.critical.checked){const cp=model(1,1,1);dot(cp,5.5,'#e11d48');label('Punto crítico',cp,'#be123c',8,-8)}if(Number.isFinite(P)&&P>=0){const sp=model(S.V,S.T,clamp(P,0,3));dot(sp,6,'#0ea5e9');label('Estado',sp,'#0369a1',8,-8)}status.textContent='Modelo interactivo';status.className='status ready'}
+let queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render()})}
+function setView(v){S.view=v;if(v==='3d'){S.yaw=-.72;S.pitch=.48;S.zoom=1}else{S.zoom=1}document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));schedule()}
+$('temp').addEventListener('input',e=>{S.T=Number(e.target.value);schedule()});$('vol').addEventListener('input',e=>{S.V=Number(e.target.value);schedule()});Object.values(L).forEach(x=>x.addEventListener('change',schedule));document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));$('reset').addEventListener('click',()=>{S.T=.90;S.V=1.80;$('temp').value=S.T;$('vol').value=S.V;setView('3d')});
+const pts=new Map();let last=null,pinch=0;canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture?.(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pts.size===1)last={x:e.clientX,y:e.clientY};if(pts.size===2){const a=[...pts.values()];pinch=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)}});canvas.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pts.size===1&&last&&S.view==='3d'){const dx=e.clientX-last.x,dy=e.clientY-last.y;last={x:e.clientX,y:e.clientY};S.yaw+=dx*.008;S.pitch=clamp(S.pitch+dy*.008,-1.15,1.15);schedule()}else if(pts.size===2){const a=[...pts.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);if(pinch>0){S.zoom=clamp(S.zoom*d/pinch,.68,1.55);schedule()}pinch=d}});function up(e){pts.delete(e.pointerId);try{canvas.releasePointerCapture?.(e.pointerId)}catch(_){}if(pts.size===1){const a=[...pts.values()][0];last={x:a.x,y:a.y}}else last=null;if(pts.size<2)pinch=0}canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('wheel',e=>{e.preventDefault();S.zoom=clamp(S.zoom*(e.deltaY>0?.93:1.07),.68,1.55);schedule()},{passive:false});
+if('ResizeObserver'in window)new ResizeObserver(schedule).observe(canvas.parentElement);else window.addEventListener('resize',schedule);status.textContent='Modelo interactivo';status.className='status ready';schedule();
+}catch(e){console.error(e);status.textContent='Error del visor';status.className='status error';err.classList.add('show')}
+})();
+</script>
 </body>
 </html>
