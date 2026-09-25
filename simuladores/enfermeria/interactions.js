@@ -59,3 +59,10 @@ window.NURSING_INTERACTIONS = {
     }
   }
 };
+
+if (!document.querySelector('script[data-procedure-engine]')) {
+  const procedureScript = document.createElement('script');
+  procedureScript.src = './procedures.js';
+  procedureScript.dataset.procedureEngine = 'true';
+  document.body.appendChild(procedureScript);
+}
