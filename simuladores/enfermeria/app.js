@@ -1,13 +1,15 @@
 const cases = window.NURSING_CASES || [];
 const roadmap = window.NURSING_CASE_ROADMAP || [];
 let currentCase = cases[0];
+let interactionConfig = null;
+let selectedTool = 'observe';
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => [...document.querySelectorAll(sel)];
 
 function freshState() {
   return {
-    questions: new Set(), actions: new Set(),
+    questions: new Set(), actions: new Set(), explorations: new Set(),
     breakdown: { interview: 0, assessment: 0, medication: 0, drip: 0, record: 0 },
     medCorrect: false, dripCorrect: false, noteSaved: false, errors: 0
   };
@@ -24,7 +26,7 @@ function updateProgress() {
   $('#scoreText').textContent = `${score} / 100`;
   $('#scoreBar').style.width = `${score}%`;
   $('#actionsCount').textContent = state.actions.size;
-  $('#findingsCount').textContent = state.questions.size;
+  $('#findingsCount').textContent = state.questions.size + state.explorations.size;
   $('#errorsCount').textContent = state.errors;
 }
 
@@ -108,7 +110,7 @@ function renderActions() {
   $$('[data-action]').forEach(btn => btn.addEventListener('click', () => doAction(btn.dataset.action)));
 }
 
-function doAction(id) {
+function doAction(id, source = 'panel') {
   const action = currentCase.actions.find(item => item.id === id);
   if (!action) return;
   if (!state.actions.has(id)) {
@@ -127,6 +129,7 @@ function doAction(id) {
   }
   renderActions();
   updateProgress();
+  if (source === 'bedside') markCompletedHotspots();
 }
 
 function numericValue(input) {
@@ -218,7 +221,7 @@ function showResults() {
   $('#resultBreakdown').innerHTML = rows.map(([name, value, max]) => `<div class="resultRow"><span>${name}</span><b>${value}/${max}</b></div>`).join('');
   const advice = [];
   if (state.breakdown.interview < 20) advice.push('explorar mejor la entrevista');
-  if (state.breakdown.assessment < 35) advice.push('revisar las prioridades de valoración');
+  if (state.breakdown.assessment < 35) advice.push('revisar las prioridades de valoración y usar los instrumentos sobre el paciente');
   if (state.errors) advice.push('repasar los intentos que necesitaron corrección');
   $('#resultAdviceText').textContent = advice.length ? `Podés ${advice.join(', ')} antes de pasar a otro caso.` : 'Completaste todos los objetivos. Podés elegir otro paciente de la biblioteca para cambiar el escenario.';
   $('#resultModal').classList.add('open');
@@ -239,11 +242,105 @@ function resetFeedback() {
   $('#dialogueBox').className = 'dialogueBox empty'; $('#dialogueBox').textContent = 'Seleccioná una pregunta para escuchar al paciente.';
 }
 
+function ensureInteractionStyles() {
+  if (document.querySelector('link[data-interaction-styles]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = './interactions.css';
+  link.dataset.interactionStyles = 'true';
+  document.head.appendChild(link);
+}
+
+function mountBedsideLab() {
+  ensureInteractionStyles();
+  const scene = $('.patientScene');
+  if (!scene) return;
+
+  let hotspots = scene.querySelector('.bodyHotspots');
+  if (!hotspots) {
+    hotspots = document.createElement('div');
+    hotspots.className = 'bodyHotspots';
+    scene.appendChild(hotspots);
+  }
+
+  let lab = $('.bedsideLab');
+  if (!lab) {
+    lab = document.createElement('section');
+    lab.className = 'bedsideLab';
+    scene.insertAdjacentElement('afterend', lab);
+  }
+  renderBedsideLab();
+}
+
+function renderBedsideLab() {
+  if (!interactionConfig) return;
+  const caseInteraction = interactionConfig.cases[currentCase.id] || { findings:{}, defaultHint:'Explorá al paciente usando los instrumentos disponibles.' };
+  const hotspots = $('.bodyHotspots');
+  const lab = $('.bedsideLab');
+  if (!hotspots || !lab) return;
+
+  hotspots.innerHTML = interactionConfig.zones.map(zone => `
+    <button class="bodyHotspot" data-zone="${zone.id}" aria-label="Explorar ${zone.label}" title="${zone.label}"></button>`).join('');
+
+  const selected = interactionConfig.tools.find(t => t.id === selectedTool) || interactionConfig.tools[0];
+  lab.innerHTML = `
+    <div class="bedsideLabHead">
+      <div><b>Exploración directa del paciente</b><span>Elegí un instrumento y tocá una zona marcada.</span></div>
+      <div class="selectedTool">${selected.icon} ${selected.name}</div>
+    </div>
+    <div class="toolTray">
+      ${interactionConfig.tools.map(tool => `<button class="toolBtn ${tool.id === selectedTool ? 'active' : ''}" data-tool="${tool.id}"><span>${tool.icon}</span><small>${tool.name}</small></button>`).join('')}
+    </div>
+    <div id="bedsideFeedback" class="bedsideFeedback hint"><strong>¿Por dónde empezar?</strong>${caseInteraction.defaultHint}</div>
+    <div class="zoneLegend">${interactionConfig.zones.map(z => `<span>• ${z.short}</span>`).join('')}</div>`;
+
+  $$('[data-tool]').forEach(btn => btn.addEventListener('click', () => selectTool(btn.dataset.tool)));
+  $$('[data-zone]').forEach(btn => btn.addEventListener('click', () => exploreZone(btn.dataset.zone)));
+  markCompletedHotspots();
+}
+
+function selectTool(toolId) {
+  if (!interactionConfig.tools.some(t => t.id === toolId)) return;
+  selectedTool = toolId;
+  renderBedsideLab();
+}
+
+function exploreZone(zoneId) {
+  const caseInteraction = interactionConfig?.cases?.[currentCase.id];
+  const box = $('#bedsideFeedback');
+  if (!caseInteraction || !box) return;
+  const key = `${selectedTool}:${zoneId}`;
+  const finding = caseInteraction.findings[key];
+  const tool = interactionConfig.tools.find(t => t.id === selectedTool);
+  const zone = interactionConfig.zones.find(z => z.id === zoneId);
+
+  if (!finding) {
+    box.className = 'bedsideFeedback hint';
+    box.innerHTML = `<strong>${tool?.name || 'Instrumento'} + ${zone?.label || 'zona'}</strong>Esta combinación no aporta un hallazgo relevante en este escenario. Probá otra zona o instrumento.`;
+    return;
+  }
+
+  state.explorations.add(key);
+  box.className = 'bedsideFeedback success';
+  box.innerHTML = `<strong>${finding.title}</strong>${finding.text}`;
+  if (finding.actionId) doAction(finding.actionId, 'bedside');
+  updateProgress();
+  markCompletedHotspots();
+}
+
+function markCompletedHotspots() {
+  $$('[data-zone]').forEach(btn => {
+    const hasAny = [...state.explorations].some(key => key.endsWith(`:${btn.dataset.zone}`));
+    btn.classList.toggle('done', hasAny);
+  });
+}
+
 function loadCase(id, shouldScroll = false) {
   const selected = cases.find(c => c.id === id);
   if (!selected) return;
   currentCase = selected;
   state = freshState();
+  selectedTool = 'observe';
   closeModal();
   renderCaseDetails();
   resetFeedback();
@@ -252,6 +349,7 @@ function loadCase(id, shouldScroll = false) {
   renderCaseLibrary();
   updateProgress();
   switchTab('historia', false);
+  if (interactionConfig) renderBedsideLab();
   if (shouldScroll) document.querySelector('.workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -259,13 +357,34 @@ function resetCase() {
   loadCase(currentCase.id, false);
 }
 
-$$('[data-tab]').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
-$('#checkMed').addEventListener('click', checkMedication);
-$('#checkDrop').addEventListener('click', checkDrip);
-$('#saveNote').addEventListener('click', saveNote);
-$('#finishCase').addEventListener('click', finishCase);
-$('#resetBtn').addEventListener('click', resetCase);
-$$('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function bindBaseEvents() {
+  $$('[data-tab]').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+  $('#checkMed').addEventListener('click', checkMedication);
+  $('#checkDrop').addEventListener('click', checkDrip);
+  $('#saveNote').addEventListener('click', saveNote);
+  $('#finishCase').addEventListener('click', finishCase);
+  $('#resetBtn').addEventListener('click', resetCase);
+  $$('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+}
 
-if (cases.length) loadCase(cases[0].id, false);
+function initializeApp() {
+  interactionConfig = window.NURSING_INTERACTIONS || null;
+  bindBaseEvents();
+  if (interactionConfig) mountBedsideLab();
+  if (cases.length) loadCase(cases[0].id, false);
+}
+
+function loadInteractionModule() {
+  if (window.NURSING_INTERACTIONS) {
+    initializeApp();
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = './interactions.js';
+  script.onload = initializeApp;
+  script.onerror = initializeApp;
+  document.head.appendChild(script);
+}
+
+loadInteractionModule();
