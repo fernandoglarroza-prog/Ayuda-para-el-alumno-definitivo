@@ -66,3 +66,10 @@ if (!document.querySelector('script[data-procedure-engine]')) {
   procedureScript.dataset.procedureEngine = 'true';
   document.body.appendChild(procedureScript);
 }
+
+if (!document.querySelector('script[data-progress-engine]')) {
+  const progressScript = document.createElement('script');
+  progressScript.src = './progress.js';
+  progressScript.dataset.progressEngine = 'true';
+  document.body.appendChild(progressScript);
+}
