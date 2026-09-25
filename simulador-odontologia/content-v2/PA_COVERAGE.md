@@ -89,13 +89,84 @@
 - Conducto mandibular, foramen mentoniano, seno maxilar, canal incisivo, corticales, ATM ósea.
 - Regla de privacidad/licencias para imágenes clínicas.
 
-## Pendientes de validación fina antes de publicar la V2
-1. Tabla exacta de cronología eruptiva usada por la cátedra.
-2. Terminología histórica vs Terminologia Anatomica actual cuando el PA usa nombres clásicos (p. ej., pterigoideo interno/externo, agujero redondo mayor, maxilar inferior).
-3. Definición de relación céntrica/oclusión céntrica usada por los docentes, para no mezclar escuelas oclusales.
-4. Profundidad exacta de configuración interna dentaria que espera la materia y si desean clasificaciones endodónticas específicas.
-5. Páginas/ediciones concretas de bibliografía que la cátedra considera obligatorias.
-6. Revisión por estudiante/docente de Anatomía de las fichas antes de marcarlas como contenido validado.
+# Estado técnico avanzado · 25/09/2026
+
+A partir de la devolución de estudiantes avanzados, el corpus dejó de considerar suficiente una ficha explicativa breve. Se incorporó el estándar `10-estandar-tecnico.md`, que exige terminología anatómica formal, orientación tridimensional, subdivisiones, relaciones, inserciones, trayectos, contenidos de forámenes/regiones, variaciones, correlación odontológica/radiográfica, errores frecuentes y respuesta modelo de oral.
+
+## Bloques ya elevados a nivel técnico avanzado
+
+### Osteología y topografía
+Archivo `11-profundizacion-osteologia-topografia.md`.
+- Mandíbula desarrollada por caras, porción alveolar, rama, región retromolar, proceso condilar y conducto mandibular.
+- Maxilar por cuatro caras, procesos, seno y trayectos alveolares/infraorbitarios.
+- Temporal y esfenoides con forámenes, procesos, inserciones y conexiones regionales.
+- Fosas profundas tratadas como sistemas de límites + contenido + comunicaciones.
+
+### Neurovascular y ATM
+Archivo `12-profundizacion-neurovascular-atm.md`.
+- V2 y V3 por naturaleza de fibras, trayecto topográfico, ramas, ganglios y conexiones autonómicas.
+- Alveolar inferior, lingual, auriculotemporal, bucal, infraorbitario, alveolares superiores y palatinos con relaciones de examen.
+- ATM elevada a nivel de superficies, fibrocartílago, disco por zonas, fijaciones, compartimentos, cápsula, ligamentos, irrigación, inervación y biomecánica.
+
+### Anatomía dentaria
+Archivo `13-profundizacion-dentaria.md`.
+- Método obligatorio para describir pieza aislada.
+- Caras dentarias, lóbulos, cíngulo, rebordes, crestas, fosas/fositas/surcos, contactos, línea cervical, raíces, furcaciones y anatomía interna típica.
+- Diferenciales por clase, arcada y pieza vecina.
+
+### Cavidad oral, lengua y salivales
+Archivo `14-profundizacion-cavidad-oral-salivales.md`.
+- Vestíbulo y cavidad oral propiamente dicha con límites precisos.
+- Piso de boca por planos y espacios.
+- Cruce nervio lingual–conducto submandibular.
+- Lengua con papilas, músculos, modalidades sensitivas/gustativas e irrigación/linfáticos.
+- Parótida, submandibular y sublingual con relaciones, conductos y vías parasimpáticas completas.
+
+### Angiología, venas y linfáticos
+Archivo `15-profundizacion-angiologia-linfaticos.md`.
+- Eje carotídeo.
+- Lingual, facial y maxilar con trayectos y ramas.
+- Arteria maxilar por tres porciones.
+- Plexo pterigoideo, vena maxilar/retromandibular, yugular interna y seno cavernoso.
+- Linfáticos de labios, lengua, piso, paladar y territorios orales con advertencia de superposición/bilateralidad.
+
+### Pares craneales y estesiología
+Archivo `16-profundizacion-pares-craneales-estesiologia.md`.
+- Doce pares con modalidad y salida ósea.
+- VII/IX/X/XII desarrollados por su relevancia oral.
+- Cuatro ganglios parasimpáticos craneales y vías de distribución.
+- Olfato, gusto, oído, órbita y aparato lagrimal integrados con base craneal.
+
+### Radiología anatómica
+Archivo `17-profundizacion-radiologia-anatomica.md`.
+- Terminología radiológica normal.
+- Capa focal, magnificación, distorsión, imágenes dobles/fantasma.
+- Recorrido anatómico panorámico sistemático.
+- CBCT con MPR, reorientación, reconstrucciones curvas, voxel, artefactos y limitación de valores de gris.
+- Conducto mandibular, foramen mentoniano, seno, nasal, paladar, ATM y corticales desarrollados técnicamente.
+
+### Terminología normalizada
+Archivo `18-terminologia-normalizada.md`.
+- Mapa entre Terminologia Anatomica y nombres clásicos/de cátedra.
+- Ejemplos: mandíbula/maxilar inferior; língula/espina de Spix; pterigoideo medial/interno; arteria maxilar/maxilar interna; alveolar inferior/dentario inferior; disco/menisco articular.
+- Regla futura: buscador acepta sinónimos pero ficha muestra término preferido.
+
+### Banco técnico de oral
+Archivo `19-banco-oral-tecnico.md`.
+- Preguntas por estructura, trayecto, comparación e integración.
+- Elementos obligatorios de una respuesta.
+- Errores graves típicos.
+- Repreguntas y respuestas modelo.
+- Escala pedagógica interna: inicial → intermedia → avanzada → oral sólido.
+
+## Pendientes de validación fina antes de publicar la siguiente versión
+1. **Cronología eruptiva exacta** usada por la cátedra, con rangos y fuente docente.
+2. **Terminología clásica:** ya existe una normalización interna, pero falta confirmar qué nombres exige/acepta la cátedra en evaluación.
+3. **Relación céntrica/oclusión céntrica:** confirmar la definición y escuela oclusal usada por docentes para evitar mezclar marcos conceptuales.
+4. **Configuración interna dentaria:** confirmar hasta qué profundidad la materia exige conductos, clasificaciones endodónticas y variantes.
+5. **Bibliografía:** confirmar ediciones y páginas concretas consideradas obligatorias/recomendadas por la cátedra.
+6. **Validación humana:** nueva revisión por estudiantes avanzados y, si es posible, docente/ayudante de Anatomía antes de marcar contenido como “validado por cátedra”.
+7. **Estructuración de datos:** convertir los archivos Markdown avanzados en un esquema estructurado antes de conectarlos a la interfaz, para que Resumen / Completo / Técnico / Oral provengan del mismo contenido y no se contradigan.
 
 ## Contenido del PA deliberadamente fuera del simulador craneofacial por ahora
 - Topografía detallada de órganos torácicos y abdominales.
@@ -104,4 +175,4 @@
 Estos contenidos pertenecen al PA pero no encajan en un simulador de Anatomía Odontológica craneofacial. Si el objetivo cambia a cubrir **toda Anatomía Normal**, se deberán crear módulos separados y no forzarlos dentro del visor de cráneo.
 
 ## Condición para volver a la interfaz
-No publicar una V2 nueva solo porque los archivos existen. Primero: revisar los seis pendientes anteriores, convertir este corpus en datos estructurados, comprobar consistencia terminológica y recién después diseñar los niveles Resumen / Completo / Oral dentro de la UI.
+No publicar una nueva versión solo porque los archivos existen. Primero: resolver o etiquetar explícitamente los pendientes académicos, convertir el corpus avanzado en datos estructurados, comprobar consistencia terminológica y recién después integrar los niveles **Repaso / Desarrollo / Técnico / Oral** en la UI.
