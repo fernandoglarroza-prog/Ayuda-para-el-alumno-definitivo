@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b4bb3">
   <title>Paciente Virtual · Simulador de Enfermería</title>
-  <meta name="description" content="Simulador educativo de enfermería con paciente virtual, valoración, entrevista, cálculo de goteo y medicación.">
+  <meta name="description" content="Simulador educativo de enfermería con biblioteca de pacientes virtuales, valoración, entrevista, cálculo de goteo y medicación.">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
       <span class="brandMark">+</span>
       <span><b>Paciente Virtual</b><small>Simulador de Enfermería</small></span>
     </a>
-    <div class="caseBadge"><span class="dot"></span> Caso 01 · En curso</div>
+    <div id="caseBadge" class="caseBadge"><span class="dot"></span> Caso 01 · En curso</div>
   </header>
 
   <main class="appShell">
@@ -22,49 +22,66 @@
       <div>
         <span class="eyebrow">Laboratorio virtual</span>
         <h1>Atendé al paciente, reuní datos y tomá decisiones.</h1>
-        <p>Explorá el caso sin ver la resolución. Tus acciones quedan registradas y al final recibís una devolución.</p>
+        <p>Elegí un caso, exploralo sin ver la resolución y recibí una devolución al finalizar.</p>
       </div>
       <button id="resetBtn" class="ghostBtn">↻ Reiniciar caso</button>
     </section>
 
     <aside class="educationNotice">
       <b>Entrenamiento educativo</b>
-      <span>Este caso es ficticio y sirve para practicar razonamiento y cálculos. No reemplaza protocolos, docentes ni indicaciones clínicas reales.</span>
+      <span>Los casos son ficticios y sirven para practicar razonamiento y cálculos. No reemplazan protocolos, docentes ni indicaciones clínicas reales.</span>
     </aside>
+
+    <section class="caseLibrary">
+      <div class="libraryHead">
+        <div><span class="eyebrow">Biblioteca clínica</span><h2>Elegí un paciente</h2><p>La misma plataforma puede contener decenas de casos y variantes.</p></div>
+        <span id="libraryCount" class="libraryCount">4 disponibles</span>
+      </div>
+      <div id="caseCards" class="caseCards"></div>
+      <details class="roadmap"><summary>Ver próximas áreas del simulador</summary><div id="roadmapList" class="roadmapList"></div></details>
+    </section>
 
     <section class="workspace">
       <div class="patientColumn">
         <article class="patientRoom">
           <div class="roomTop">
-            <span class="roomLabel">Habitación 204</span>
+            <span id="roomLabel" class="roomLabel">Habitación 204</span>
             <span id="patientMood" class="statusPill warning">Disnea leve</span>
           </div>
 
           <div class="patientScene" aria-label="Paciente virtual en cama">
+            <div class="windowScene"><span></span><span></span></div>
+            <div class="wallClock"><i></i></div>
+            <div class="ivPole"><i></i><b></b><span></span></div>
             <div class="monitor">
               <span>MONITOR</span>
               <strong id="monitorSat">91%</strong>
               <small>SpO₂</small>
-              <div class="wave">⌁⌁╱⌁╲⌁⌁╱⌁</div>
+              <div class="wave"><i></i></div>
             </div>
             <div class="bed">
               <div class="pillow"></div>
-              <div class="patientFigure">
-                <div class="head">🙂</div>
-                <div class="torso"></div>
-                <div class="blanket"></div>
+              <div id="patientFigure" class="patientFigure older-woman">
+                <div class="patientHead">
+                  <div class="hairBack"></div><div class="ear left"></div><div class="ear right"></div>
+                  <div class="face"><div class="hairFront"></div><span class="eyebrowFace left"></span><span class="eyebrowFace right"></span><span class="eye left"></span><span class="eye right"></span><span class="nose"></span><span class="mouth"></span></div>
+                </div>
+                <div class="neck"></div>
+                <div class="body"><div class="gown"><span></span></div><div class="arm armLeft"><i></i></div><div class="arm armRight"><i></i></div></div>
               </div>
+              <div class="blanket"></div>
               <div class="bedRail"></div>
             </div>
+            <div class="floorShadow"></div>
           </div>
 
           <div class="patientIdentity">
             <div>
               <span class="eyebrow">Paciente</span>
-              <h2>Marta G. <small>67 años</small></h2>
-              <p>Consulta por tos, fiebre y sensación de falta de aire.</p>
+              <h2><span id="patientName">Marta G.</span> <small id="patientAge">67 años</small></h2>
+              <p id="patientComplaint">Consulta por tos, fiebre y sensación de falta de aire.</p>
             </div>
-            <button class="talkBtn" data-tab="entrevista">💬 Hablar con Marta</button>
+            <button id="talkBtn" class="talkBtn" data-tab="entrevista">💬 Hablar con Marta</button>
           </div>
         </article>
 
@@ -99,23 +116,15 @@
 
         <section class="tabPanel active" id="panel-historia">
           <div class="sectionTitle"><span class="eyebrow">Información inicial</span><h2>Historia clínica simulada</h2></div>
-          <div class="infoGrid">
-            <article><span>Motivo de ingreso</span><b>Cuadro respiratorio febril</b></article>
-            <article><span>Antecedentes</span><b>HTA · diabetes tipo 2</b></article>
-            <article><span>Estado</span><b>Consciente y orientada</b></article>
-            <article><span>Acceso venoso</span><b>Vía periférica permeable</b></article>
-          </div>
-          <div class="taskBox">
-            <b>🎯 Objetivo</b>
-            <p>Completá la valoración inicial, entrevistá a la paciente, resolvé los dos cálculos y redactá un registro breve.</p>
-          </div>
+          <div id="historyGrid" class="infoGrid"></div>
+          <div class="taskBox"><b>🎯 Objetivo</b><p id="caseObjective"></p></div>
           <button class="primaryBtn" data-tab="entrevista">Comenzar entrevista →</button>
         </section>
 
         <section class="tabPanel" id="panel-entrevista">
           <div class="sectionTitle"><span class="eyebrow">Anamnesis</span><h2>¿Qué querés preguntarle?</h2><p>Elegí preguntas para obtener datos útiles. Algunas aportan más al caso que otras.</p></div>
           <div id="questionList" class="choiceList"></div>
-          <div id="dialogueBox" class="dialogueBox empty">Seleccioná una pregunta para escuchar a la paciente.</div>
+          <div id="dialogueBox" class="dialogueBox empty">Seleccioná una pregunta para escuchar al paciente.</div>
         </section>
 
         <section class="tabPanel" id="panel-valoracion">
@@ -127,22 +136,20 @@
         <section class="tabPanel" id="panel-medicacion">
           <div class="sectionTitle"><span class="eyebrow">Cálculo matemático</span><h2>Preparación de medicación ficticia</h2></div>
           <div class="calcCase">
-            <div><span>Indicación del ejercicio</span><strong>Medicamento A: 250 mg</strong></div>
-            <div><span>Presentación disponible</span><strong>500 mg / 5 mL</strong></div>
+            <div><span>Indicación del ejercicio</span><strong id="medOrder"></strong></div>
+            <div><span>Presentación disponible</span><strong id="medAvailable"></strong></div>
           </div>
-          <label class="answerField">¿Cuántos mL corresponden?
-            <div><input id="medAnswer" inputmode="decimal" placeholder="Ej: 2,5"><span>mL</span></div>
-          </label>
+          <label class="answerField">¿Cuántos mL corresponden?<div><input id="medAnswer" inputmode="decimal" placeholder="Ingresá tu resultado"><span>mL</span></div></label>
           <button id="checkMed" class="primaryBtn">Comprobar cálculo</button>
-          <div id="medFeedback" class="feedbackBox neutral">Usá proporcionalidad. El sistema no descuenta puntos por el primer intento.</div>
+          <div id="medFeedback" class="feedbackBox neutral">Usá proporcionalidad. Podés volver a intentarlo.</div>
         </section>
 
         <section class="tabPanel" id="panel-goteo">
           <div class="sectionTitle"><span class="eyebrow">Fluidoterapia · ejercicio</span><h2>Factor goteo</h2></div>
           <div class="calcCase three">
-            <div><span>Volumen</span><strong>1000 mL</strong></div>
-            <div><span>Tiempo</span><strong>8 h</strong></div>
-            <div><span>Equipo</span><strong>20 gotas/mL</strong></div>
+            <div><span>Volumen</span><strong><span id="dripVolume"></span> mL</strong></div>
+            <div><span>Tiempo</span><strong><span id="dripHours"></span> h</strong></div>
+            <div><span>Equipo</span><strong><span id="dripFactor"></span> gotas/mL</strong></div>
           </div>
           <div class="doubleAnswer">
             <label class="answerField">Goteo manual<div><input id="dropAnswer" inputmode="numeric" placeholder="gotas/min"><span>gotas/min</span></div></label>
@@ -154,11 +161,9 @@
 
         <section class="tabPanel" id="panel-registro">
           <div class="sectionTitle"><span class="eyebrow">Cierre del caso</span><h2>Registro de enfermería</h2><p>Redactá un registro breve con los datos que consideres relevantes del caso simulado.</p></div>
-          <textarea id="nursingNote" rows="7" placeholder="Ej.: paciente consciente y orientada... (escribí con tus propias palabras)"></textarea>
-          <div class="recordActions">
-            <button id="saveNote" class="secondaryBtn">Guardar borrador</button>
-            <button id="finishCase" class="primaryBtn">Finalizar simulación</button>
-          </div>
+          <textarea id="nursingNote" rows="7" placeholder="Escribí con tus propias palabras..."></textarea>
+          <div id="recordHint" class="recordHint"></div>
+          <div class="recordActions"><button id="saveNote" class="secondaryBtn">Guardar borrador</button><button id="finishCase" class="primaryBtn">Finalizar simulación</button></div>
           <div id="recordFeedback" class="feedbackBox neutral">Para cerrar el caso necesitás haber realizado al menos una entrevista, una valoración y los dos cálculos.</div>
         </section>
       </div>
@@ -178,6 +183,7 @@
     </section>
   </div>
 
+  <script src="./cases.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
