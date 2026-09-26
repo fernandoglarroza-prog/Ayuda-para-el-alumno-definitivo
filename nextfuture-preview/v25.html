@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f1f1a">
+<title>Nextfuture V2.5</title>
+<link rel="stylesheet" href="./v23.css">
+<link rel="stylesheet" href="./v24-diag.css">
+<link rel="stylesheet" href="./v25.css">
+<script src="./v24-diag.js" defer></script>
+<script src="./v25-track.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="#inicio">
+      <span class="brand-mark">NF</span>
+      <span class="brand-copy"><b>Nextfuture</b><small>Diagnóstico y reparación tecnológica</small></span>
+    </a>
+    <a class="wa" href="https://wa.me/5491130112951" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+<main id="inicio">
+  <section class="shell hero">
+    <div>
+      <span class="eyebrow">MORENO · ZONA OESTE</span>
+      <h1>Primero entendé qué puede tener. <em>Después seguí todo el proceso.</em></h1>
+      <p class="lead">Hacé un diagnóstico previo desde el celular, obtené una orientación sobre la falla y el costo, y si el equipo ingresa a Nextfuture seguí recepción, presupuesto, seña, repuesto, reparación y entrega.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#diagnostico">Hacer diagnóstico previo</a>
+        <a class="btn btn-secondary" href="#seguimiento">Ya tengo una reparación</a>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <div class="pulse"></div>
+      <small>DIAGNÓSTICO + SEGUIMIENTO</small>
+      <strong>Todo desde un mismo lugar</strong>
+      <p>El diagnóstico web es orientativo. El diagnóstico técnico definitivo se confirma cuando se revisa físicamente el equipo.</p>
+    </aside>
+  </section>
+
+  <section class="shell section" id="diagnostico">
+    <div class="diag-shell">
+      <div class="diag-head">
+        <div>
+          <span class="diag-kicker">DIAGNÓSTICO PREVIO</span>
+          <h2>¿Qué le está pasando a tu equipo?</h2>
+          <p>Respondé unas preguntas simples. No hace falta saber de tecnología.</p>
+        </div>
+        <div class="diag-progress" id="diagProgress">Paso 1 de 4</div>
+      </div>
+
+      <div class="diag-body">
+        <section class="diag-stage" id="diagDeviceStage">
+          <h3>1. Elegí el tipo de equipo</h3>
+          <div class="device-grid">
+            <button class="device-choice" data-diag-device="phone"><span>📱</span><b>Celular</b><small>Android o iPhone</small></button>
+            <button class="device-choice" data-diag-device="tablet"><span>▣</span><b>Tablet</b><small>Android, iPad y otras</small></button>
+            <button class="device-choice" data-diag-device="notebook"><span>💻</span><b>Notebook</b><small>Portátil de cualquier marca</small></button>
+            <button class="device-choice" data-diag-device="pc"><span>🖥️</span><b>PC</b><small>Computadora de escritorio</small></button>
+          </div>
+        </section>
+
+        <section class="diag-stage hidden" id="diagSymptomStage">
+          <button class="diag-back" id="diagBackDevice">← Cambiar equipo</button>
+          <h3>2. Contanos qué equipo es y qué síntoma tiene</h3>
+          <div class="diag-equipment-row">
+            <div class="field"><label for="diagBrand">Marca</label><input id="diagBrand" placeholder="Ej: Samsung, Motorola, Lenovo"></div>
+            <div class="field"><label for="diagModel">Modelo</label><input id="diagModel" placeholder="Ej: A54, G52, IdeaPad 3"></div>
+          </div>
+          <div class="symptom-grid" id="diagSymptoms"></div>
+        </section>
+
+        <section class="diag-stage hidden" id="diagQuestionStage">
+          <button class="diag-back" id="diagBackSymptom">← Cambiar síntoma</button>
+          <h3>3. Unas preguntas rápidas</h3>
+          <p class="diag-sub" id="diagQuestionIntro"></p>
+          <div id="diagQuestions" class="question-list"></div>
+          <button class="btn btn-primary diag-continue" id="diagCalculate">Ver diagnóstico orientativo</button>
+        </section>
+
+        <section class="diag-stage hidden" id="diagResultStage">
+          <button class="diag-back" id="diagRestart">← Hacer otro diagnóstico</button>
+          <div id="diagResultCard"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <h2>Si decidís repararlo, empieza el seguimiento.</h2>
+        <p class="sub">La orientación web no reemplaza la revisión física. Cuando recibimos el equipo confirmamos diagnóstico, presupuesto y plazo antes de avanzar.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <article class="step-card"><div class="step-number">1</div><h3>Recepción</h3><p>Lo acercás con turno o coordinamos retiro, con el costo informado previamente.</p></article>
+      <article class="step-card"><div class="step-number">2</div><h3>Diagnóstico técnico</h3><p>Se revisa físicamente el equipo y se confirma la falla real.</p></article>
+      <article class="step-card"><div class="step-number">3</div><h3>Presupuesto, seña y repuesto</h3><p>Aceptás el presupuesto, registramos la seña y podés seguir el repuesto si hace falta pedirlo.</p></article>
+      <article class="step-card"><div class="step-number">4</div><h3>Reparación y entrega</h3><p>Seguís reparación, pruebas finales, retiro o entrega a domicilio.</p></article>
+    </div>
+  </section>
+
+  <section class="shell section" id="seguimiento">
+    <div class="tracker-card">
+      <div class="tracker-head">
+        <small>SEGUIMIENTO EN LÍNEA</small>
+        <h2>¿Ya dejaste tu equipo? Consultá el estado</h2>
+        <p>Ingresá el código de orden y los últimos 4 dígitos del teléfono registrado.</p>
+      </div>
+      <div class="tracker-body">
+        <div class="fields">
+          <div class="field"><label for="code">Código de reparación</label><input id="code" autocomplete="off" placeholder="Ej: NF-DEMO-2026"></div>
+          <div class="field"><label for="phone">Últimos 4 del teléfono</label><input id="phone" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="2951"></div>
+          <button class="btn track-btn" id="track">Ver estado</button>
+        </div>
+        <div class="demo-strip">Seguimiento/repuesto: <b>NF-DEMO-2026</b> · 2951<br>Presupuesto: <b>NF-PRESUP-2026</b> · 2951<br>Seña pendiente: <b>NF-SENA-2026</b> · 2951</div>
+        <div id="result" class="result"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="shell footer-inner">
+    <div><b>Nextfuture</b><p>Servicio técnico coordinado · Moreno y Zona Oeste</p></div>
+    <a class="wa" href="https://wa.me/5491130112951" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+  </div>
+</footer>
+</body>
+</html>
