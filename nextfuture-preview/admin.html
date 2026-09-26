@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f1f1a">
+<title>Nextfuture · Panel técnico</title>
+<link rel="stylesheet" href="./admin.css">
+<script src="./admin.js" defer></script>
+</head>
+<body>
+<section id="loginView" class="login-wrap">
+  <div class="login-card">
+    <div class="logo">NF</div>
+    <span class="kicker">NEXTFUTURE · ACCESO PRIVADO</span>
+    <h1>Panel técnico</h1>
+    <p>Gestioná reparaciones, señas, repuestos y estados.</p>
+    <form id="loginForm">
+      <label>Email</label><input id="loginEmail" type="email" autocomplete="username" required>
+      <label>Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" required>
+      <button type="submit">Ingresar</button>
+      <div id="loginMsg" class="msg"></div>
+    </form>
+  </div>
+</section>
+
+<section id="appView" class="app hidden">
+  <header class="topbar"><div class="top-inner"><div class="brand"><span class="logo mini">NF</span><div><b>Nextfuture</b><small>Centro de operaciones</small></div></div><div class="top-actions"><button id="refreshBtn" class="ghost">Actualizar</button><button id="logoutBtn" class="dark">Salir</button></div></div></header>
+  <main class="shell">
+    <section class="hero"><div><span class="kicker">PANEL TÉCNICO</span><h1>Reparaciones en curso</h1><p>Mové el trabajo desde recepción hasta entrega y registrá pagos/repuestos desde cada orden.</p></div><div id="syncState" class="sync">Sincronizando…</div></section>
+    <section id="stats" class="stats"></section>
+    <section class="filters"><input id="searchInput" placeholder="Buscar por código, cliente, equipo o localidad"><select id="statusFilter"><option value="all">Todos los estados</option></select></section>
+    <section id="board" class="board"></section>
+  </main>
+</section>
+
+<div id="drawerBackdrop" class="backdrop hidden"></div>
+<aside id="drawer" class="drawer hidden">
+  <div class="drawer-head"><div><span class="kicker">ORDEN</span><h2 id="drawerCode">—</h2></div><button id="closeDrawer" class="close">×</button></div>
+  <div id="drawerBody" class="drawer-body"></div>
+</aside>
+</body>
+</html>
