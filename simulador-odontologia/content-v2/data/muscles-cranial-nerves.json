@@ -1,0 +1,280 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "masetero",
+      "preferredName": "Músculo masetero",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología"],
+      "status": "pending-catedra",
+      "modelKey": "masetero",
+      "terminology": {"preferred": "Músculo masetero", "synonyms": ["masetero"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Músculo masticador superficial y potente elevador de la mandíbula, extendido desde arco cigomático a cara lateral de rama y ángulo.", "blocks": [{"title": "Clave", "content": ["Origen en arco cigomático.", "Inserción en cara lateral de rama/ángulo.", "Inervación por nervio masetérico de V3."]}]},
+        "development": {"summary": "Se describen fascículos superficiales/profundos, inserciones, dirección de fibras, relación con rama mandibular y conducto parotídeo.", "blocks": [
+          {"title": "Origen", "content": ["Arco cigomático y estructuras tendinosas relacionadas, con diferencias entre porción superficial y profunda."]},
+          {"title": "Inserción", "content": ["Cara lateral de rama y ángulo mandibular, especialmente región inferior para fascículos superficiales."]},
+          {"title": "Relaciones", "content": ["Superficial a la rama mandibular; recubierto por fascia masetérica.", "El conducto parotídeo cruza su cara superficial antes de girar medialmente y perforar buccinador."]}
+        ]},
+        "technical": {"summary": "Debe integrarse como parte del cabestrillo mandibular y no describirse únicamente como un elevador aislado.", "blocks": [
+          {"title": "Inervación", "content": ["Nervio masetérico, rama de división anterior de V3, que alcanza el músculo atravesando la escotadura mandibular."]},
+          {"title": "Irrigación", "content": ["Principalmente rama masetérica de la arteria maxilar, con contribuciones vecinas."]},
+          {"title": "Acción", "content": ["Elevación mandibular; fascículos superficiales pueden favorecer protrusión y los profundos colaborar en estabilización/retrusión según posición."]},
+          {"title": "Cabestrillo", "content": ["Junto al pterigoideo medial rodea funcionalmente el ángulo mandibular desde caras lateral y medial."]},
+          {"title": "Topografía", "content": ["Nervio/vasos masetéricos cruzan la escotadura mandibular profundos al arco cigomático."]},
+          {"title": "Correlación", "content": ["Relación con región parotídeo-masetérica, movimientos mandibulares y palpación funcional."]}
+        ]},
+        "oral": {"summary": "El oral debe incluir origen, inserción, relaciones, inervación e integración funcional con pterigoideo medial.", "blocks": [{"title": "Orden", "content": ["origen", "inserción", "dirección", "V3", "acción", "conducto parotídeo", "cabestrillo"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "inserts", "note": "Inserción en cara lateral de rama y ángulo."},
+        {"target": "v3", "type": "innervates", "note": "Inervación por nervio masetérico de V3."},
+        {"target": "parotida", "type": "adjacent", "note": "El conducto parotídeo cruza su cara superficial."},
+        {"target": "atm", "type": "clinical-relation", "note": "Participa en cierre y estabilización mandibular dentro del sistema masticatorio."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa origen, inserción, inervación y función del masetero y relaciónelo con la región parotídea.", "requiredElements": ["arco cigomático", "rama/ángulo", "nervio masetérico", "V3", "elevación", "conducto parotídeo"], "followUp": ["¿Qué músculo forma con él un cabestrillo en el ángulo mandibular?"], "modelAnswer": "El masetero se origina en el arco cigomático, se inserta en la cara lateral de la rama y ángulo, está inervado por el nervio masetérico de V3 y eleva la mandíbula. El conducto parotídeo cruza su superficie antes de perforar buccinador; funcionalmente se complementa con pterigoideo medial."}], "criticalErrors": ["Atribuir su inervación al facial."]},
+      "sourceDocs": ["04-atm-musculos.md", "11-miologia-facial.md", "12-profundizacion-neurovascular-atm.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "temporal_musculo",
+      "preferredName": "Músculo temporal",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología"],
+      "status": "pending-catedra",
+      "modelKey": "temporal_musculo",
+      "terminology": {"preferred": "Músculo temporal", "synonyms": ["temporal"], "classicTerms": [], "notes": ["En búsqueda debe diferenciarse del hueso temporal por categoría/contexto."]},
+      "levels": {
+        "review": {"summary": "Músculo masticador en abanico de la fosa temporal que converge en la apófisis coronoides y eleva/retrae la mandíbula.", "blocks": [{"title": "Clave", "content": ["Origen en fosa y fascia temporal.", "Inserción coronoides/borde anterior.", "Inervación por nervios temporales profundos de V3."]}]},
+        "development": {"summary": "Su orientación en abanico explica diferencias funcionales entre fascículos anteriores, medios y posteriores.", "blocks": [
+          {"title": "Origen", "content": ["Fosa temporal y cara profunda de fascia temporal en áreas correspondientes."]},
+          {"title": "Inserción", "content": ["Apófisis coronoides y borde anterior de rama mandibular, extendiéndose hacia región retromolar según fascículos."]},
+          {"title": "Relaciones", "content": ["Profundo a fascia temporal y superficial al piso óseo de la fosa temporal."]}
+        ]},
+        "technical": {"summary": "Debe relacionarse con fosa temporal, arco cigomático, coronoides y mecánica de elevación/retrusión.", "blocks": [
+          {"title": "Fascículos anteriores", "content": ["Dirección más vertical y función elevadora predominante."]},
+          {"title": "Fascículos posteriores", "content": ["Dirección más horizontal y contribución a retrusión/estabilización."]},
+          {"title": "Inervación", "content": ["Nervios temporales profundos procedentes de la división anterior de V3."]},
+          {"title": "Irrigación", "content": ["Arterias temporales profundas de la arteria maxilar y contribuciones temporales superficiales según plano."]},
+          {"title": "Topografía", "content": ["Sus fibras/tendón pasan profundos al arco cigomático hacia coronoides, integrando regiones temporal e infratemporal."]},
+          {"title": "Correlación", "content": ["Referencia en movimientos mandibulares y descripción funcional del aparato masticatorio."]}
+        ]},
+        "oral": {"summary": "La descripción debe explicar por qué un músculo único puede colaborar en elevación y retrusión según orientación fascicular.", "blocks": [{"title": "Orden", "content": ["origen", "fascículos", "inserción", "V3", "acción", "relación con arco/coronoides"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "inserts", "note": "Inserta en coronoides y borde anterior de la rama."},
+        {"target": "v3", "type": "innervates", "note": "Nervios temporales profundos proceden de V3."},
+        {"target": "fosa_infratemporal", "type": "adjacent", "note": "Su porción inferior/tendón se relaciona con continuidad temporal-infratemporal."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa el músculo temporal e interprete la función de sus distintos fascículos.", "requiredElements": ["fosa temporal", "fascia temporal", "coronoides", "borde anterior", "temporales profundos", "elevación", "retrusión"], "followUp": [], "modelAnswer": "El temporal nace en fosa/fascia temporal, converge en coronoides y borde anterior de la rama y recibe nervios temporales profundos de V3. Sus fibras anteriores más verticales elevan, mientras las posteriores más horizontales contribuyen a retrusión y estabilización."}], "criticalErrors": ["Atribuir inervación al facial."]},
+      "sourceDocs": ["04-atm-musculos.md", "11-miologia-facial.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "pterigoideo_medial",
+      "preferredName": "Músculo pterigoideo medial",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología"],
+      "status": "pending-catedra",
+      "modelKey": "pterigoideo_medial",
+      "terminology": {"preferred": "Pterigoideo medial", "synonyms": [], "classicTerms": ["pterigoideo interno"], "notes": ["Preferir medial."]},
+      "levels": {
+        "review": {"summary": "Músculo masticador profundo que se inserta en la cara medial del ángulo/rama y eleva/protruye la mandíbula.", "blocks": [{"title": "Clave", "content": ["Inervación por nervio para pterigoideo medial de V3.", "Con masetero forma cabestrillo mandibular."]}]},
+        "development": {"summary": "Posee componentes profundo y superficial con orígenes en región pterigoidea/palatina y tuberosidad maxilar.", "blocks": [
+          {"title": "Origen", "content": ["Componente profundo desde cara medial de lámina lateral del proceso pterigoides y región vecina; componente superficial relacionado con tuberosidad maxilar/palatal según descripción."]},
+          {"title": "Inserción", "content": ["Cara medial de rama y ángulo mandibular."]},
+          {"title": "Acción", "content": ["Eleva y ayuda a protruir; unilateralmente participa en lateralidad."]}
+        ]},
+        "technical": {"summary": "Su valor anatómico está en la relación con la cara medial mandibular, la fosa infratemporal y el cabestrillo con masetero.", "blocks": [
+          {"title": "Inervación", "content": ["Rama para pterigoideo medial del tronco de V3, antes de la división principal."]},
+          {"title": "Ramas asociadas", "content": ["El nervio para pterigoideo medial también envía fibras a tensor del velo del paladar y tensor del tímpano."]},
+          {"title": "Irrigación", "content": ["Ramas pterigoideas de arteria maxilar, con contribuciones regionales."]},
+          {"title": "Cabestrillo", "content": ["Masetero lateral y pterigoideo medial medial abrazan funcionalmente el ángulo mandibular."]},
+          {"title": "Topografía", "content": ["Se ubica medial a rama mandibular en la fosa infratemporal, próximo a planos pterigomandibulares."]},
+          {"title": "Correlación", "content": ["Participa en cierre y movimientos de lateralidad; su región se integra con referencias anestésicas profundas."]}
+        ]},
+        "oral": {"summary": "Debe compararse con masetero por inserciones opuestas y función coordinada.", "blocks": [{"title": "Orden", "content": ["orígenes", "inserción", "V3", "acciones", "cabestrillo", "topografía"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "inserts", "note": "Inserción en cara medial de rama y ángulo."},
+        {"target": "v3", "type": "innervates", "note": "Nervio del pterigoideo medial nace del tronco de V3."},
+        {"target": "fosa_infratemporal", "type": "contains", "note": "Se ubica en la fosa infratemporal."},
+        {"target": "masetero", "type": "compare", "note": "Ambos forman el cabestrillo mandibular alrededor del ángulo."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa el pterigoideo medial y compárelo funcionalmente con el masetero.", "requiredElements": ["lámina lateral pterigoidea", "tuberosidad maxilar", "cara medial rama/ángulo", "V3", "elevación", "cabestrillo"], "followUp": [], "modelAnswer": "El pterigoideo medial nace en región pterigoidea y maxilar, se inserta medialmente en rama/ángulo, recibe una rama del tronco de V3 y eleva/protruye. Junto al masetero, ubicado lateralmente, forma un cabestrillo funcional alrededor del ángulo."}], "criticalErrors": ["Atribuir inervación al facial."]},
+      "sourceDocs": ["04-atm-musculos.md", "11-miologia-facial.md", "12-profundizacion-neurovascular-atm.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "buccinador",
+      "preferredName": "Músculo buccinador",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología", "Unidad IX/X · Cavidad bucal"],
+      "status": "pending-catedra",
+      "modelKey": "buccinador",
+      "terminology": {"preferred": "Músculo buccinador", "synonyms": ["buccinador"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Músculo de expresión facial que forma la pared muscular de la mejilla y mantiene el alimento entre las superficies oclusales.", "blocks": [{"title": "Clave", "content": ["Motor por nervio facial, no por nervio bucal de V3.", "El conducto parotídeo lo perfora antes de abrir al vestíbulo."]}]},
+        "development": {"summary": "Se origina en procesos alveolares posteriores y rafe pterigomandibular y se integra con fibras periorales en el modíolo.", "blocks": [
+          {"title": "Origen", "content": ["Regiones alveolares maxilar/mandibular en zona molar y rafe pterigomandibular."]},
+          {"title": "Inserción", "content": ["Fibras convergen hacia comisura y se mezclan con orbicular y otros músculos en modíolo."]},
+          {"title": "Relación", "content": ["Conducto parotídeo cruza masetero y luego perfora el buccinador para llegar al vestíbulo."]}
+        ]},
+        "technical": {"summary": "El error clásico es confundir la sensibilidad del nervio bucal largo con la motricidad del buccinador.", "blocks": [
+          {"title": "Inervación motora", "content": ["Ramos bucales del nervio facial (VII) dentro de la red de músculos de expresión."]},
+          {"title": "Sensibilidad regional", "content": ["Mucosa de mejilla y encía vestibular molar mandibular reciben sensibilidad trigeminal por nervio bucal de V3, pero este no es motor del músculo."]},
+          {"title": "Acción", "content": ["Comprime mejilla, evita acumulación de alimento en vestíbulo y participa en soplar/succión y control del bolo."]},
+          {"title": "Rafe pterigomandibular", "content": ["Comparte referencia fibrosa con constrictor superior de faringe y conecta topografía oral con región pterigomandibular."]},
+          {"title": "Prótesis", "content": ["La dinámica del buccinador y modíolo influye en el vestíbulo funcional y estabilidad protética."]},
+          {"title": "Conducto parotídeo", "content": ["Su perforación del buccinador diferencia la relación del conducto con este músculo frente al masetero, que solo es cruzado superficialmente."]}
+        ]},
+        "oral": {"summary": "La respuesta debe enfatizar la diferencia entre motor facial y sensibilidad trigeminal regional.", "blocks": [{"title": "Orden", "content": ["origen", "inserción/modíolo", "VII motor", "bucal V3 sensitivo", "conducto parotídeo", "función"]}]}
+      },
+      "relations": [
+        {"target": "v3", "type": "clinical-relation", "note": "El nervio bucal de V3 da sensibilidad regional pero no motricidad al músculo."},
+        {"target": "parotida", "type": "adjacent", "note": "El conducto parotídeo perfora el buccinador."},
+        {"target": "facial_vii", "type": "innervates", "note": "Ramos bucales del VII aportan la motricidad."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique la inervación del buccinador y diferénciela del nervio bucal de V3.", "requiredElements": ["VII motor", "V3 sensitivo", "mucosa de mejilla", "conducto parotídeo", "modíolo"], "followUp": [], "modelAnswer": "El buccinador es un músculo de expresión facial y su motricidad depende de ramos bucales del VII. El nervio bucal de V3 es sensitivo para mucosa/encía regional y no mueve el músculo. El conducto parotídeo perfora el buccinador antes de abrir en el vestíbulo."}], "criticalErrors": ["Decir que el nervio bucal de V3 es el nervio motor del buccinador."]},
+      "sourceDocs": ["04-atm-musculos.md", "05-cavidad-oral-salivales.md", "11-miologia-facial.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "milohioideo",
+      "preferredName": "Músculo milohioideo",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología", "Unidad IX/X · Cavidad bucal"],
+      "status": "pending-catedra",
+      "modelKey": "milohioideo",
+      "terminology": {"preferred": "Músculo milohioideo", "synonyms": ["milohioideo"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Músculo suprahioideo que forma el principal diafragma del piso de boca entre línea milohioidea, rafe medio e hioides.", "blocks": [{"title": "Clave", "content": ["Inervado por nervio milohioideo, rama del alveolar inferior antes del foramen mandibular."]}]},
+        "development": {"summary": "Separa topográficamente espacios sublingual y submandibular y participa en deglución y apertura mandibular según punto fijo.", "blocks": [
+          {"title": "Origen", "content": ["Línea milohioidea de la mandíbula."]},
+          {"title": "Inserción", "content": ["Rafe medio y cuerpo del hioides."]},
+          {"title": "Acción", "content": ["Eleva piso/hioides en deglución; puede ayudar a descender mandíbula con hioides estabilizado."]}
+        ]},
+        "technical": {"summary": "Su importancia es tanto muscular como topográfica, porque organiza el piso oral y las vías de comunicación entre espacios.", "blocks": [
+          {"title": "Inervación", "content": ["Nervio milohioideo, rama del nervio alveolar inferior antes de entrar al foramen mandibular."]},
+          {"title": "Espacio sublingual", "content": ["Se sitúa superior al músculo y contiene glándula sublingual, conducto submandibular y nervios relacionados."]},
+          {"title": "Espacio submandibular", "content": ["Se sitúa inferior al músculo en región posterior con porción superficial de submandibular."]},
+          {"title": "Borde posterior", "content": ["Permite continuidad entre porciones superficial/profunda de submandibular y comunicación entre espacios."]},
+          {"title": "Irrigación", "content": ["Ramas submentonianas y milohioideas con contribuciones regionales."]},
+          {"title": "Integración", "content": ["Con genihioideo y digástrico participa en coordinación hioidea y apertura mandibular, no como motor aislado."]}
+        ]},
+        "oral": {"summary": "Debe describirse como músculo y como límite anatómico del piso de boca.", "blocks": [{"title": "Orden", "content": ["origen", "inserción", "nervio milohioideo", "acción", "espacios superior/inferior", "borde posterior"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "originates", "note": "Se origina en la línea milohioidea mandibular."},
+        {"target": "piso_boca", "type": "clinical-relation", "note": "Forma el principal diafragma muscular del piso oral."},
+        {"target": "v3", "type": "innervates", "note": "La vía motora llega por nervio milohioideo derivado del alveolar inferior de V3."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa el milohioideo como músculo y como límite topográfico del piso de boca.", "requiredElements": ["línea milohioidea", "rafe/hioides", "nervio milohioideo", "espacio sublingual", "submandibular", "borde posterior"], "followUp": [], "modelAnswer": "Se origina en línea milohioidea y se inserta en rafe medio/hioides. Lo inerva el nervio milohioideo derivado del alveolar inferior. Forma el diafragma del piso: superiormente espacio sublingual e inferiormente región submandibular; alrededor de su borde posterior se comunican ambos planos."}], "criticalErrors": ["Atribuir su inervación al hipogloso."]},
+      "sourceDocs": ["04-atm-musculos.md", "05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "facial_vii",
+      "preferredName": "Nervio facial (VII)",
+      "category": "nerve",
+      "paUnits": ["Unidad V · Neurología", "Unidad VII · Estesiología"],
+      "status": "pending-catedra",
+      "modelKey": "facial_vii",
+      "terminology": {"preferred": "Nervio facial (VII)", "synonyms": ["VII", "facial"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Nervio mixto: motor de expresión facial, gusto de dos tercios anteriores de lengua y parasimpático para glándulas lagrimal, submandibular, sublingual y nasopalatinas.", "blocks": [{"title": "Clave", "content": ["Meato acústico interno → canal facial → foramen estilomastoideo.", "Cuerda del tímpano y petroso mayor son ramas intrapetrosas relevantes."]}]},
+        "development": {"summary": "Debe diferenciarse su componente motor branquial, gusto y parasimpático, además de su trayecto por temporal y plexo parotídeo.", "blocks": [
+          {"title": "Motor", "content": ["Músculos de expresión facial, buccinador, estilohioideo y vientre posterior del digástrico."]},
+          {"title": "Gusto", "content": ["Cuerda del tímpano transporta gusto de gran parte de los dos tercios anteriores de lengua y se une al lingual de V3."]},
+          {"title": "Parasimpático", "content": ["Petroso mayor hacia ganglio pterigopalatino; cuerda del tímpano hacia ganglio submandibular."]},
+          {"title": "Salida extracraneal", "content": ["Emerge por foramen estilomastoideo y atraviesa parótida formando plexo terminal motor."]}
+        ]},
+        "technical": {"summary": "El nivel técnico exige separar nervio de origen y nervio de distribución en las vías autonómicas y evitar confundir el paso por parótida con secreción glandular.", "blocks": [
+          {"title": "Petroso mayor", "content": ["Fibras parasimpáticas preganglionares para ganglio pterigopalatino; luego se distribuyen con ramas de V2 hacia glándulas nasales/palatinas y lagrimal."]},
+          {"title": "Cuerda del tímpano", "content": ["Cruza oído medio, sale por fisura petrotimpánica y se une al nervio lingual en fosa infratemporal."]},
+          {"title": "Ganglio submandibular", "content": ["Las fibras parasimpáticas preganglionares viajan por lingual; sinaptan y alcanzan submandibular/sublingual."]},
+          {"title": "Plexo parotídeo", "content": ["Ramas terminales temporales, cigomáticas, bucales, marginal mandibular y cervical; son motoras para expresión facial."]},
+          {"title": "Parótida", "content": ["El VII atraviesa la glándula pero su secreción parasimpática depende del IX."]},
+          {"title": "Buccinador", "content": ["Ramos bucales del VII son motores; el nervio bucal de V3 aporta sensibilidad regional y no es motor del músculo."]}
+        ]},
+        "oral": {"summary": "Una respuesta sólida separa tres grandes funciones: motor facial, gusto por cuerda y parasimpático por petroso mayor/cuerda.", "blocks": [{"title": "Orden", "content": ["modalidades", "trayecto temporal", "petroso mayor", "cuerda", "estilomastoideo", "plexo parotídeo", "errores frecuentes"]}]}
+      },
+      "relations": [
+        {"target": "buccinador", "type": "innervates", "note": "Ramos bucales del VII aportan motricidad."},
+        {"target": "lengua", "type": "clinical-relation", "note": "Cuerda del tímpano lleva gusto de gran parte de los dos tercios anteriores."},
+        {"target": "submandibular", "type": "clinical-relation", "note": "Parasimpático por cuerda del tímpano y ganglio submandibular."},
+        {"target": "parotida", "type": "adjacent", "note": "Atraviesa parótida pero no es secretomotor para ella."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa los componentes odontológicamente relevantes del nervio facial y explique cuerda del tímpano y petroso mayor.", "requiredElements": ["motor expresión", "meato acústico interno", "canal facial", "petroso mayor", "cuerda del tímpano", "gusto", "parasimpático", "foramen estilomastoideo"], "followUp": ["¿Por qué el facial no es el nervio secretomotor de la parótida?"], "modelAnswer": "El VII es mixto. En el temporal origina petroso mayor para vía pterigopalatina y cuerda del tímpano para gusto anterior y parasimpático submandibular/sublingual. Sale por estilomastoideo y forma el plexo parotídeo motor de expresión; aunque atraviesa parótida, la secreción parotídea depende del IX."}], "criticalErrors": ["Afirmar que VII da sensibilidad general a los dos tercios anteriores de lengua.", "Afirmar que VII es secretomotor parotídeo."]},
+      "sourceDocs": ["11-miologia-facial.md", "16-profundizacion-pares-craneales-estesiologia.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "glosofaringeo_ix",
+      "preferredName": "Nervio glosofaríngeo (IX)",
+      "category": "nerve",
+      "paUnits": ["Unidad V · Neurología", "Unidad VII · Estesiología"],
+      "status": "pending-catedra",
+      "modelKey": "glosofaringeo_ix",
+      "terminology": {"preferred": "Nervio glosofaríngeo (IX)", "synonyms": ["IX", "glosofaríngeo"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Nervio mixto relevante para gusto/sensibilidad del tercio posterior de lengua, orofaringe, estilofaríngeo y vía parasimpática de parótida.", "blocks": [{"title": "Salida", "content": ["Foramen yugular."]}]},
+        "development": {"summary": "Su estudio odontológico se centra en lengua posterior, faringe y vía timpánico-petroso menor-ganglio ótico.", "blocks": [
+          {"title": "Lengua", "content": ["Sensibilidad general y gusto del tercio posterior; papilas circunvaladas se asocian funcionalmente principalmente con IX pese a su posición anterior al surco terminal."]},
+          {"title": "Motor", "content": ["Inerva estilofaríngeo."]},
+          {"title": "Parasimpático", "content": ["Origina vía secretomotora para parótida."]}
+        ]},
+        "technical": {"summary": "La vía parotídea debe poder recitarse completa y sin confundir el nervio que origina las fibras con el que las distribuye a la glándula.", "blocks": [
+          {"title": "Timpánico", "content": ["Ramo timpánico del IX entra en oído medio y participa en plexo timpánico."]},
+          {"title": "Petroso menor", "content": ["Conduce parasimpático preganglionar desde plexo timpánico hacia ganglio ótico."]},
+          {"title": "Ganglio ótico", "content": ["Sinapsis parasimpática; se encuentra topográficamente asociado a V3 en fosa infratemporal."]},
+          {"title": "Auriculotemporal", "content": ["Fibras posganglionares se incorporan al nervio auriculotemporal de V3 y llegan a parótida."]},
+          {"title": "Foramen yugular", "content": ["IX comparte salida craneal con X y XI, aunque sus funciones y trayectos son diferentes."]},
+          {"title": "Gusto", "content": ["No confundir territorio gustativo del IX con sensibilidad general anterior del lingual/cuerda del tímpano."]}
+        ]},
+        "oral": {"summary": "La pregunta de alto rendimiento es la vía secretomotora parotídea y su integración con V3.", "blocks": [{"title": "Secuencia", "content": ["IX", "timpánico", "plexo timpánico", "petroso menor", "ganglio ótico", "auriculotemporal", "parótida"]}]}
+      },
+      "relations": [
+        {"target": "parotida", "type": "innervates", "note": "Origen de la vía parasimpática preganglionar secretomotora."},
+        {"target": "v3", "type": "distributed-by", "note": "Auriculotemporal de V3 distribuye fibras posganglionares hacia parótida."},
+        {"target": "lengua", "type": "innervates", "note": "Aporta sensibilidad general y gusto al tercio posterior."}
+      ],
+      "exam": {"questions": [{"prompt": "Recorra la vía parasimpática del glosofaríngeo hacia la parótida.", "requiredElements": ["IX", "timpánico", "plexo timpánico", "petroso menor", "ganglio ótico", "auriculotemporal", "parótida"], "followUp": ["¿Qué nervio distribuye las fibras posganglionares a la glándula?"], "modelAnswer": "Las fibras preganglionares del IX viajan por nervio timpánico y plexo timpánico, continúan por petroso menor y sinaptan en ganglio ótico. Las posganglionares se incorporan al auriculotemporal de V3 para alcanzar la parótida."}], "criticalErrors": ["Atribuir la vía secretomotora parotídea al facial."]},
+      "sourceDocs": ["16-profundizacion-pares-craneales-estesiologia.md", "05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "hipogloso_xii",
+      "preferredName": "Nervio hipogloso (XII)",
+      "category": "nerve",
+      "paUnits": ["Unidad V · Neurología", "Unidad IX/X · Cavidad bucal"],
+      "status": "pending-catedra",
+      "modelKey": "hipogloso_xii",
+      "terminology": {"preferred": "Nervio hipogloso (XII)", "synonyms": ["XII", "hipogloso"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Nervio motor somático para músculos intrínsecos y extrínsecos de la lengua, excepto palatogloso.", "blocks": [{"title": "Salida", "content": ["Conducto del hipogloso del occipital."]}]},
+        "development": {"summary": "Desciende hacia cuello y avanza al piso de boca para alcanzar la lengua, llevando además temporalmente fibras C1 para otros músculos.", "blocks": [
+          {"title": "Motor lingual", "content": ["Intrínsecos, geniogloso, hiogloso y estilogloso; palatogloso depende principalmente del X por plexo faríngeo."]},
+          {"title": "Fibras C1", "content": ["Fibras cervicales viajan un tramo con XII y se distribuyen a genihioideo y tirohioideo."]},
+          {"title": "Piso de boca", "content": ["Se relaciona con hiogloso, vasos linguales y estructuras sublinguales según plano."]}
+        ]},
+        "technical": {"summary": "Debe diferenciarse su función motora de sensibilidad/gusto y ubicarse topográficamente respecto del hiogloso y la arteria lingual.", "blocks": [
+          {"title": "Modalidad", "content": ["Motor somático; no aporta gusto ni sensibilidad general de la mucosa lingual."]},
+          {"title": "Hiogloso", "content": ["El XII discurre superficial al hiogloso en su trayecto hacia la lengua, mientras la arteria lingual presenta relaciones más profundas clásicas con el músculo."]},
+          {"title": "Geniogloso", "content": ["Motor por XII; músculo principal de protrusión lingual y estabilización de la vía aérea superior en contexto funcional."]},
+          {"title": "Palatogloso", "content": ["Excepción: no depende del XII, sino principalmente del vago a través del plexo faríngeo."]},
+          {"title": "C1", "content": ["Genihioideo recibe fibras C1 que viajan con XII, sin que ello convierta al músculo en inervado por fibras motoras propias del núcleo hipogloso."]},
+          {"title": "Integración", "content": ["Debe separarse de lingual V3, cuerda del tímpano VII e IX al explicar motricidad/sensibilidad/gusto."]}
+        ]},
+        "oral": {"summary": "La respuesta debe destacar salida ósea, trayecto oral, músculos inervados y excepción palatogloso.", "blocks": [{"title": "Orden", "content": ["conducto hipogloso", "trayecto", "músculos", "palatogloso X", "C1", "diferencia con sensibilidad/gusto"]}]}
+      },
+      "relations": [
+        {"target": "lengua", "type": "innervates", "note": "Motor para la mayoría de los músculos linguales."},
+        {"target": "piso_boca", "type": "adjacent", "note": "Recorre el piso de boca en relación con hiogloso y vasos linguales."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa la función y trayecto odontológicamente relevante del hipogloso y explique sus excepciones.", "requiredElements": ["conducto hipogloso", "motor", "intrínsecos", "geniogloso", "hiogloso", "estilogloso", "palatogloso X", "C1"], "followUp": ["Diferéncielo del lingual y cuerda del tímpano."], "modelAnswer": "El XII sale por el conducto hipogloso y alcanza lengua a través del cuello/piso. Es motor para intrínsecos y extrínsecos excepto palatogloso, que depende del X. Fibras C1 viajan con XII hacia genihioideo/tirohioideo. No conduce sensibilidad general ni gusto."}], "criticalErrors": ["Afirmar que el XII lleva gusto.", "Afirmar que palatogloso es inervado por XII."]},
+      "sourceDocs": ["16-profundizacion-pares-craneales-estesiologia.md", "05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    }
+  ]
+}
