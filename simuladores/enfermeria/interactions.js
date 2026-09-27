@@ -60,6 +60,17 @@ window.NURSING_INTERACTIONS = {
   }
 };
 
+if (!document.querySelector('script[data-case-pack-two]')) {
+  const casePack = document.createElement('script');
+  casePack.src = './cases-extra.js';
+  casePack.dataset.casePackTwo = 'true';
+  casePack.onload = () => {
+    if (typeof renderCaseLibrary === 'function') renderCaseLibrary();
+    window.dispatchEvent(new CustomEvent('nursing-cases-updated'));
+  };
+  document.body.appendChild(casePack);
+}
+
 if (!document.querySelector('script[data-procedure-engine]')) {
   const procedureScript = document.createElement('script');
   procedureScript.src = './procedures.js';
@@ -72,4 +83,11 @@ if (!document.querySelector('script[data-progress-engine]')) {
   progressScript.src = './progress.js';
   progressScript.dataset.progressEngine = 'true';
   document.body.appendChild(progressScript);
+}
+
+if (!document.querySelector('script[data-advanced-procedures]')) {
+  const advancedScript = document.createElement('script');
+  advancedScript.src = './advanced-procedures.js';
+  advancedScript.dataset.advancedProcedures = 'true';
+  document.body.appendChild(advancedScript);
 }
