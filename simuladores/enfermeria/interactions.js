@@ -60,34 +60,38 @@ window.NURSING_INTERACTIONS = {
   }
 };
 
-if (!document.querySelector('script[data-case-pack-two]')) {
-  const casePack = document.createElement('script');
-  casePack.src = './cases-extra.js';
-  casePack.dataset.casePackTwo = 'true';
-  casePack.onload = () => {
+function loadNursingScript(src, key, onload) {
+  if (document.querySelector(`script[data-${key}]`)) return;
+  const script = document.createElement('script');
+  script.src = src;
+  script.dataset[key] = 'true';
+  if (onload) script.onload = onload;
+  document.body.appendChild(script);
+}
+
+if (!document.querySelector('link[data-specialty-styles]')) {
+  const specialtyStyles = document.createElement('link');
+  specialtyStyles.rel = 'stylesheet';
+  specialtyStyles.href = './specialties.css';
+  specialtyStyles.dataset.specialtyStyles = 'true';
+  document.head.appendChild(specialtyStyles);
+}
+
+loadNursingScript('./cases-extra.js', 'casePackTwo', () => {
+  if (typeof renderCaseLibrary === 'function') renderCaseLibrary();
+  window.dispatchEvent(new CustomEvent('nursing-cases-updated'));
+});
+
+loadNursingScript('./cases-specialties.js', 'casePackThree', () => {
+  loadNursingScript('./specialty-interactions.js', 'specialtyInteractions', () => {
     if (typeof renderCaseLibrary === 'function') renderCaseLibrary();
+    if (typeof renderBedsideLab === 'function') renderBedsideLab();
     window.dispatchEvent(new CustomEvent('nursing-cases-updated'));
-  };
-  document.body.appendChild(casePack);
-}
+  });
+});
 
-if (!document.querySelector('script[data-procedure-engine]')) {
-  const procedureScript = document.createElement('script');
-  procedureScript.src = './procedures.js';
-  procedureScript.dataset.procedureEngine = 'true';
-  document.body.appendChild(procedureScript);
-}
-
-if (!document.querySelector('script[data-progress-engine]')) {
-  const progressScript = document.createElement('script');
-  progressScript.src = './progress.js';
-  progressScript.dataset.progressEngine = 'true';
-  document.body.appendChild(progressScript);
-}
-
-if (!document.querySelector('script[data-advanced-procedures]')) {
-  const advancedScript = document.createElement('script');
-  advancedScript.src = './advanced-procedures.js';
-  advancedScript.dataset.advancedProcedures = 'true';
-  document.body.appendChild(advancedScript);
-}
+loadNursingScript('./procedures.js', 'procedureEngine');
+loadNursingScript('./progress.js', 'progressEngine');
+loadNursingScript('./advanced-procedures.js', 'advancedProcedures');
+loadNursingScript('./device-care.js', 'deviceCare');
+loadNursingScript('./exam-mode.js', 'examMode');
