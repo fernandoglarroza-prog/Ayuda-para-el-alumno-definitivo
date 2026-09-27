@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0-structured-draft",
+  "schema": "./schema-v2.json",
+  "status": "technical-review",
+  "files": [
+    "./osteology-topography.json",
+    "./neurovascular-atm.json",
+    "./oral-salivary.json",
+    "./dentition-radiology.json"
+  ],
+  "terminology": "./terminology-map.json",
+  "oralBank": "./oral-bank.json",
+  "rules": {
+    "uiIntegration": false,
+    "minimumMajorTopicTechnicalBlocks": 6,
+    "requireOralQuestion": true,
+    "requireSourceDocs": true,
+    "allowClassicTermsAsAcceptedAnswers": true,
+    "publishValidatedOnly": false
+  },
+  "notes": [
+    "Esta base no se carga todavía en la interfaz pública.",
+    "El nombre anatómico preferido se muestra primero; los términos clásicos quedan como sinónimos buscables/aceptables.",
+    "Estado pending-catedra significa contenido técnicamente desarrollado pero pendiente de contraste específico con la cátedra.",
+    "La información clínica se limita a correlación anatómica educativa y no constituye indicación diagnóstica o terapéutica."
+  ]
+}
