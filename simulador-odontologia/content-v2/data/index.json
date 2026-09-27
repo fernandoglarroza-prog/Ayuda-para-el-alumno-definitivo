@@ -6,7 +6,8 @@
     "./osteology-topography.json",
     "./neurovascular-atm.json",
     "./oral-salivary.json",
-    "./dentition-radiology.json"
+    "./dentition-radiology.json",
+    "./muscles-cranial-nerves.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
