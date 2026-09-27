@@ -1,0 +1,186 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "v2",
+      "preferredName": "Nervio maxilar (V2)",
+      "category": "nerve",
+      "paUnits": ["Unidad V · Neurología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "v2",
+      "terminology": {"preferred": "Nervio maxilar (V2)", "synonyms": ["V2", "segunda división del trigémino"], "classicTerms": ["nervio maxilar superior"], "notes": ["No usar maxilar superior como denominación formal principal."]},
+      "levels": {
+        "review": {"summary": "División exclusivamente sensitiva del trigémino que sale por foramen redondo y distribuye sensibilidad a tercio medio facial, maxilar, dientes superiores, paladar y cavidad nasal.", "blocks": [{"title": "Ruta", "content": ["Ganglio trigeminal → pared lateral del seno cavernoso → foramen redondo → fosa pterigopalatina → nervio infraorbitario → cara."]}]},
+        "development": {"summary": "El estudio de V2 exige separar trayecto principal, ramas alveolares, ramas palatinas/nasales y fibras autonómicas que utilizan sus ramas como vía de distribución.", "blocks": [
+          {"title": "Trayecto", "content": ["Desde ganglio trigeminal recorre la pared lateral del seno cavernoso.", "Sale de fosa craneal media por foramen redondo y entra en fosa pterigopalatina.", "Continúa como nervio infraorbitario por fisura orbitaria inferior, surco y conducto infraorbitarios hasta foramen infraorbitario."]},
+          {"title": "Ramas alveolares superiores", "content": ["PSA descienden por tuberosidad maxilar y alcanzan molares superiores y periodonto vestibular, con variaciones.", "MSA es inconstante y, cuando existe, participa en premolares y parte del primer molar.", "ASA nace en el trayecto infraorbitario y participa en incisivos/caninos y región nasal anterior."]},
+          {"title": "Ramas asociadas al ganglio pterigopalatino", "content": ["Palatino mayor, palatinos menores, nasopalatino, ramos nasales posteriores y faríngeo.", "Las fibras sensitivas de V2 atraviesan el ganglio sin sinapsis."]},
+          {"title": "Nervio cigomático", "content": ["Entra en órbita por fisura orbitaria inferior y se divide en cigomaticofacial/cigomaticotemporal.", "Transporta fibras parasimpáticas posganglionares hacia el nervio lagrimal de V1 para distribución secretomotora lagrimal."]}
+        ]},
+        "technical": {"summary": "A nivel técnico hay que poder reconstruir el trayecto de V2 por regiones, distinguir sus ramas dentarias y explicar la distribución autonómica por el ganglio pterigopalatino.", "blocks": [
+          {"title": "Modalidad", "content": ["Somatosensitiva general; las fibras autonómicas que acompañan sus ramas proceden de otros sistemas y usan V2 como vía periférica."]},
+          {"title": "Foramen redondo", "content": ["Comunica fosa craneal media con fosa pterigopalatina; es la vía principal de salida de V2 del cráneo."]},
+          {"title": "Plexo dentario superior", "content": ["PSA/MSA/ASA forman plexos con superposición variable; no debe enseñarse una frontera absolutamente rígida entre territorios dentarios."]},
+          {"title": "Ganglio pterigopalatino", "content": ["Parasimpático preganglionar: VII por petroso mayor.", "Simpático posganglionar: plexo carotídeo interno por petroso profundo.", "Ambos forman el nervio del conducto pterigoideo; solo las fibras parasimpáticas hacen sinapsis en el ganglio."]},
+          {"title": "Palatino mayor/nasopalatino", "content": ["Palatino mayor emerge por foramen palatino mayor y avanza anteriormente en paladar duro.", "Nasopalatino entra por foramen esfenopalatino, recorre tabique y alcanza canal incisivo/paladar anterior."]},
+          {"title": "Correlación odontológica", "content": ["Sensibilidad de dientes superiores, mucosa palatina y facial; relación con seno maxilar y anestesia regional.", "El simulador debe enseñar referencias anatómicas y territorios, no instrucciones invasivas de técnica anestésica."]}
+        ]},
+        "oral": {"summary": "Una respuesta sólida recorre V2 sin saltos anatómicos y diferencia fibras sensitivas propias de V2 de fibras autonómicas que viajan con sus ramas.", "blocks": [{"title": "Secuencia", "content": ["Origen funcional", "seno cavernoso", "foramen redondo", "fosa pterigopalatina", "ramas", "infraorbitario", "territorios y ganglio pterigopalatino"]}]}
+      },
+      "relations": [
+        {"target": "esfenoides", "type": "passes-through", "note": "V2 sale por el foramen redondo del esfenoides."},
+        {"target": "fosa_pterigopalatina", "type": "passes-through", "note": "La fosa es el principal nodo de distribución extracraneal de V2."},
+        {"target": "maxilar", "type": "clinical-relation", "note": "Ramas alveolares superiores e infraorbitaria se distribuyen en el maxilar."},
+        {"target": "primer_molar_superior", "type": "innervates", "note": "La inervación depende principalmente de PSA con posible contribución variable de MSA, especialmente en raíz mesiovestibular."}
+      ],
+      "exam": {"questions": [{"prompt": "Recorra V2 desde el ganglio trigeminal hasta la cara, incluyendo ramas odontológicas.", "requiredElements": ["seno cavernoso", "foramen redondo", "fosa pterigopalatina", "PSA", "infraorbitario", "MSA variable", "ASA", "palatino/nasopalatino"], "followUp": ["¿Qué fibras hacen sinapsis en el ganglio pterigopalatino?", "¿Por qué no conviene asignar territorios dentarios absolutamente rígidos a PSA/MSA/ASA?"], "modelAnswer": "V2 es sensitivo, recorre la pared lateral del seno cavernoso, sale por foramen redondo a la fosa pterigopalatina, emite ramas como PSA y conexiones al ganglio, continúa como infraorbitario por órbita y canal infraorbitario, donde puede originar MSA y ASA, y emerge por foramen infraorbitario. Las ramas pterigopalatinas distribuyen sensibilidad a nariz y paladar; las fibras parasimpáticas del VII sinaptan en el ganglio, no las sensitivas de V2."}], "criticalErrors": ["Afirmar que V2 es motor.", "Decir que V2 sale por foramen oval.", "Afirmar que las fibras sensitivas trigeminales hacen sinapsis en el ganglio pterigopalatino."]},
+      "sourceDocs": ["03-neurovascular.md", "12-profundizacion-neurovascular-atm.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Confirmar nomenclatura clásica preferida para nervios palatinos si la cátedra usa clasificación histórica."]
+    },
+    {
+      "id": "v3",
+      "preferredName": "Nervio mandibular (V3)",
+      "category": "nerve",
+      "paUnits": ["Unidad V · Neurología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "v3",
+      "terminology": {"preferred": "Nervio mandibular (V3)", "synonyms": ["V3", "tercera división del trigémino"], "classicTerms": ["nervio maxilar inferior"], "notes": ["Preferir mandibular como denominación formal."]},
+      "levels": {
+        "review": {"summary": "Única división mixta del trigémino; sale por foramen oval hacia la fosa infratemporal y aporta sensibilidad mandibular y motricidad a músculos derivados del primer arco.", "blocks": [{"title": "Grandes ramas", "content": ["Anterior: temporales profundos, masetérico, pterigoideo lateral y bucal sensitivo.", "Posterior: auriculotemporal, lingual y alveolar inferior."]}]},
+        "development": {"summary": "V3 se organiza en ramas del tronco y divisiones anterior/posterior, con excepciones funcionales que deben conocerse.", "blocks": [
+          {"title": "Tronco", "content": ["Ramo meníngeo recurrente que reingresa por foramen espinoso.", "Nervio para pterigoideo medial, con fibras para tensor del velo y tensor del tímpano."]},
+          {"title": "División anterior", "content": ["Temporales profundos, masetérico y pterigoideo lateral son principalmente motores.", "Nervio bucal es la excepción sensitiva de la división anterior."]},
+          {"title": "División posterior", "content": ["Auriculotemporal, lingual y alveolar inferior son predominantemente sensitivos; alveolar inferior da nervio milohioideo motor antes de entrar al foramen mandibular."]},
+          {"title": "Lingual", "content": ["Sensibilidad general de dos tercios anteriores de lengua, piso y encía lingual.", "Recibe cuerda del tímpano con gusto y parasimpático preganglionar para ganglio submandibular."]}
+        ]},
+        "technical": {"summary": "El nivel técnico exige distinguir modalidades de fibras, relaciones topográficas y vías autonómicas que se incorporan a ramas de V3.", "blocks": [
+          {"title": "Auriculotemporal", "content": ["Suele originarse por dos raíces alrededor de la arteria meníngea media.", "Aporta sensibilidad a ATM, región temporal y parte del oído externo; conduce fibras secretomotoras posganglionares del ganglio ótico hacia parótida."]},
+          {"title": "Alveolar inferior", "content": ["Desciende en fosa infratemporal, emite milohioideo y entra por foramen mandibular con vasos homónimos.", "En el conducto distribuye ramas dentarias y se continúa funcionalmente en mentoniano e incisivo."]},
+          {"title": "Nervio lingual", "content": ["Pasa medial a la rama mandibular y cerca de región retromolar; en piso de boca se relaciona con conducto submandibular y ganglio submandibular."]},
+          {"title": "Nervio bucal", "content": ["Es sensitivo para mucosa de mejilla y encía vestibular molar mandibular; no es motor del buccinador."]},
+          {"title": "Ganglio ótico", "content": ["Parasimpático preganglionar del IX llega por petroso menor, sinapsis en ganglio y fibras posganglionares viajan por auriculotemporal a parótida."]},
+          {"title": "Correlación odontológica", "content": ["Anestesia mandibular, terceros molares, ATM, sensibilidad lingual y mentoniana, masticación y piso de boca."]}
+        ]},
+        "oral": {"summary": "Se debe poder dividir V3 en tronco, anterior y posterior, indicando modalidad y relaciones, y luego reconstruir lingual/cuerda y alveolar inferior.", "blocks": [{"title": "Secuencia", "content": ["foramen oval", "tronco", "división anterior", "división posterior", "lingual + cuerda", "alveolar inferior + milohioideo", "auriculotemporal + parótida"]}]}
+      },
+      "relations": [
+        {"target": "esfenoides", "type": "passes-through", "note": "V3 sale por foramen oval."},
+        {"target": "fosa_infratemporal", "type": "contains", "note": "V3 se divide y distribuye principalmente en la fosa infratemporal."},
+        {"target": "mandibula", "type": "clinical-relation", "note": "Alveolar inferior entra en el conducto mandibular y lingual se relaciona con la región medial/retromolar."},
+        {"target": "atm", "type": "innervates", "note": "Auriculotemporal y masetérico aportan sensibilidad articular."},
+        {"target": "pterigoideo_lateral", "type": "innervates", "note": "Rama motora de la división anterior de V3."}
+      ],
+      "exam": {"questions": [{"prompt": "Divida V3 en ramas del tronco, división anterior y división posterior e indique función general de cada grupo.", "requiredElements": ["foramen oval", "meníngeo recurrente", "pterigoideo medial", "temporales profundos", "masetérico", "pterigoideo lateral", "bucal sensitivo", "auriculotemporal", "lingual", "alveolar inferior"], "followUp": ["¿Qué lleva la cuerda del tímpano cuando se une al lingual?", "¿Dónde nace el nervio milohioideo?"], "modelAnswer": "V3 sale por foramen oval. Del tronco parten el meníngeo recurrente y pterigoideo medial. La división anterior es predominantemente motora con temporales profundos, masetérico y pterigoideo lateral, salvo bucal sensitivo. La posterior es predominantemente sensitiva con auriculotemporal, lingual y alveolar inferior; este último da milohioideo antes de entrar a mandíbula."}], "criticalErrors": ["Afirmar que el nervio bucal inerva motoramente al buccinador.", "Ubicar la cuerda del tímpano como rama de V3.", "Decir que el lingual entra al conducto mandibular."]},
+      "sourceDocs": ["03-neurovascular.md", "12-profundizacion-neurovascular-atm.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Confirmar uso docente de dentario inferior como sinónimo aceptado de alveolar inferior."]
+    },
+    {
+      "id": "arteria_maxilar",
+      "preferredName": "Arteria maxilar",
+      "category": "artery",
+      "paUnits": ["Unidad IV · Angiología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "arteria_maxilar",
+      "terminology": {"preferred": "Arteria maxilar", "synonyms": [], "classicTerms": ["arteria maxilar interna"], "notes": ["Maxilar interna es denominación clásica muy difundida."]},
+      "levels": {
+        "review": {"summary": "Rama terminal de la carótida externa que atraviesa la fosa infratemporal y llega a la fosa pterigopalatina, dividiéndose clásicamente en tres porciones.", "blocks": [{"title": "Porciones", "content": ["Mandibular", "Pterigoidea", "Pterigopalatina"]}]},
+        "development": {"summary": "Las tres porciones se estudian según su relación con el pterigoideo lateral y el territorio de sus ramas.", "blocks": [
+          {"title": "Primera · mandibular", "content": ["Auricular profunda, timpánica anterior, meníngea media, meníngea accesoria y alveolar inferior."]},
+          {"title": "Segunda · pterigoidea", "content": ["Ramas temporales profundas, masetérica, pterigoideas y bucal, predominantemente musculares."]},
+          {"title": "Tercera · pterigopalatina", "content": ["Alveolar superior posterior, infraorbitaria, palatina descendente, del conducto pterigoideo, faríngea y esfenopalatina."]}
+        ]},
+        "technical": {"summary": "Debe integrarse su trayecto con las fosas profundas y con la variación de su relación respecto del pterigoideo lateral.", "blocks": [
+          {"title": "Origen y trayecto", "content": ["Se origina como rama terminal de carótida externa detrás del cuello mandibular.", "Atraviesa fosa infratemporal y entra en fosa pterigopalatina por fisura pterigomaxilar."]},
+          {"title": "Relación con pterigoideo lateral", "content": ["Puede discurrir superficial o profunda al músculo según variante anatómica; por eso no debe absolutizarse una única relación."]},
+          {"title": "Alveolar inferior", "content": ["Acompaña al nervio alveolar inferior hacia foramen mandibular y da rama milohioidea antes de entrar al conducto."]},
+          {"title": "Meníngea media", "content": ["Asciende hacia foramen espinoso y se relaciona con raíces del auriculotemporal."]},
+          {"title": "PSA/infraorbitaria/palatina", "content": ["Integran irrigación de dientes superiores, maxilar, paladar y regiones faciales profundas."]},
+          {"title": "Esfenopalatina", "content": ["Rama terminal importante hacia cavidad nasal por foramen esfenopalatino."]}
+        ]},
+        "oral": {"summary": "En oral debe dividirse en tres porciones y vincular cada rama con una región, no recitar una lista descontextualizada.", "blocks": [{"title": "Orden", "content": ["origen", "primera porción", "segunda", "tercera", "fisura pterigomaxilar", "relaciones odontológicas"]}]}
+      },
+      "relations": [
+        {"target": "fosa_infratemporal", "type": "passes-through", "note": "Las dos primeras porciones transcurren en la fosa infratemporal."},
+        {"target": "fosa_pterigopalatina", "type": "passes-through", "note": "La tercera porción se ubica en fosa pterigopalatina."},
+        {"target": "mandibula", "type": "vascularizes", "note": "La alveolar inferior irriga dientes y estructuras mandibulares."},
+        {"target": "maxilar", "type": "vascularizes", "note": "PSA, infraorbitaria y otras ramas participan en irrigación maxilar."}
+      ],
+      "exam": {"questions": [{"prompt": "Divida la arteria maxilar por porciones y relacione sus ramas con regiones odontológicas.", "requiredElements": ["carótida externa", "mandibular", "pterigoidea", "pterigopalatina", "alveolar inferior", "meníngea media", "PSA", "infraorbitaria", "palatina descendente", "esfenopalatina"], "followUp": ["¿Qué variación puede presentar respecto del pterigoideo lateral?"], "modelAnswer": "La arteria maxilar nace de la carótida externa, recorre fosa infratemporal y entra a pterigopalatina. Primera porción: ramas profundas como meníngea media y alveolar inferior; segunda: ramas musculares; tercera: PSA, infraorbitaria, palatina descendente y esfenopalatina, entre otras."}], "criticalErrors": ["Ubicar toda la arteria dentro de la fosa pterigopalatina.", "Afirmar que la relación con pterigoideo lateral es invariable."]},
+      "sourceDocs": ["03-neurovascular.md", "12-profundizacion-neurovascular-atm.md", "15-profundizacion-angiologia-linfaticos.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "atm",
+      "preferredName": "Articulación temporomandibular",
+      "category": "joint",
+      "paUnits": ["Unidad II · Artrología", "Unidad III · Miología"],
+      "status": "pending-catedra",
+      "modelKey": "atm",
+      "terminology": {"preferred": "Articulación temporomandibular", "synonyms": ["ATM"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Articulación sinovial compleja y bilateral entre cóndilo mandibular y temporal, con disco articular que divide dos compartimentos.", "blocks": [{"title": "Movimiento", "content": ["Compartimento inferior: rotación predominante.", "Superior: traslación predominante."]}]},
+        "development": {"summary": "Se estudian superficies, disco, cápsula, compartimentos, ligamentos y coordinación de movimientos.", "blocks": [
+          {"title": "Superficies", "content": ["Cabeza condilar mandibular frente a fosa mandibular y eminencia articular temporal.", "Superficies funcionales recubiertas principalmente por fibrocartílago."]},
+          {"title": "Disco", "content": ["Banda anterior, zona intermedia delgada y banda posterior.", "Fijaciones medial/lateral al cóndilo y continuidad periférica con cápsula."]},
+          {"title": "Compartimentos", "content": ["Inferior entre cóndilo y disco; superior entre disco y temporal."]},
+          {"title": "Ligamentos", "content": ["Temporomandibular/lateral, esfenomandibular y estilomandibular."]}
+        ]},
+        "technical": {"summary": "La biomecánica debe explicarse como coordinación cóndilo-disco-músculos, evitando simplificaciones de un único músculo o una única fase.", "blocks": [
+          {"title": "Complejo discal", "content": ["Posteriormente se continúa con tejidos retrodiscales vascularizados e inervados.", "Anteriormente se relaciona con cápsula y fibras del pterigoideo lateral con distribución variable."]},
+          {"title": "Apertura", "content": ["Fase inicial con predominio de rotación en compartimento inferior.", "Apertura amplia agrega traslación anterior del complejo cóndilo-disco sobre eminencia en compartimento superior."]},
+          {"title": "Protrusión/retrusión", "content": ["Protrusión por traslación bilateral; retrusión limitada y coordinada con fibras posteriores del temporal y otros estabilizadores."]},
+          {"title": "Lateralidad", "content": ["Cóndilo de trabajo con rotación predominante y contralateral con traslación anteromedial, simplificado para enseñanza."]},
+          {"title": "Inervación", "content": ["Principalmente ramos auriculotemporal y masetérico de V3, con contribuciones variables."]},
+          {"title": "Irrigación", "content": ["Ramas de arteria maxilar y temporal superficial, entre otras."]},
+          {"title": "Relaciones", "content": ["Posterior con meato acústico externo; medial con fosa infratemporal; anterior con eminencia y pterigoideo lateral."]}
+        ]},
+        "oral": {"summary": "La respuesta debe clasificar la articulación, describir disco y compartimentos y luego explicar movimientos por fase con inervación y ligamentos.", "blocks": [{"title": "Orden", "content": ["clasificación", "superficies", "fibrocartílago", "disco", "compartimentos", "cápsula/ligamentos", "movimientos", "inervación/irrigación"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "articulates", "note": "La cabeza condilar constituye la superficie mandibular."},
+        {"target": "temporal", "type": "articulates", "note": "Fosa mandibular y eminencia articular constituyen la superficie temporal."},
+        {"target": "v3", "type": "innervates", "note": "Auriculotemporal y masetérico aportan inervación sensitiva."},
+        {"target": "pterigoideo_lateral", "type": "clinical-relation", "note": "Participa en coordinación de protrusión, apertura y complejo cóndilo-disco."}
+      ],
+      "exam": {"questions": [{"prompt": "Clasifique la ATM y explique disco, compartimentos y movimientos.", "requiredElements": ["sinovial compleja", "fibrocartílago", "disco biconcavo", "bandas", "compartimento inferior", "compartimento superior", "rotación", "traslación", "ligamentos", "inervación"], "followUp": ["¿Por qué es incorrecto decir que el pterigoideo lateral simplemente tira del disco hacia adelante?"], "modelAnswer": "La ATM es una articulación sinovial compleja bilateral con superficies recubiertas principalmente por fibrocartílago. El disco divide un compartimento inferior, donde predomina rotación, y superior, donde predomina traslación. Apertura amplia combina ambas fases; ligamentos y músculos coordinan el movimiento. Auriculotemporal y masetérico participan en inervación."}], "criticalErrors": ["Afirmar que toda apertura es únicamente rotación.", "Describir el disco como una estructura libre sin fijaciones.", "Afirmar que CBCT convencional visualiza directamente el disco como tejido blando con el mismo detalle que RM."]},
+      "sourceDocs": ["04-atm-musculos.md", "12-profundizacion-neurovascular-atm.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Pendiente confirmar nivel de detalle biomecánico exigido por docentes."]
+    },
+    {
+      "id": "pterigoideo_lateral",
+      "preferredName": "Músculo pterigoideo lateral",
+      "category": "muscle",
+      "paUnits": ["Unidad III · Miología", "Unidad II · Artrología"],
+      "status": "pending-catedra",
+      "modelKey": "pterigoideo_lateral",
+      "terminology": {"preferred": "Pterigoideo lateral", "synonyms": [], "classicTerms": ["pterigoideo externo"], "notes": ["Preferir lateral; externo puede aceptarse como término clásico."]},
+      "levels": {
+        "review": {"summary": "Músculo masticador profundo con dos cabezas, inervado por V3 y vinculado a protrusión, lateralidad y coordinación de la ATM.", "blocks": [{"title": "Inserción", "content": ["Fóvea pterigoidea del cuello condilar y complejo cápsulo-discal con distribución variable."]}]},
+        "development": {"summary": "Se describen cabezas superior e inferior por origen, inserción, dirección e inervación.", "blocks": [
+          {"title": "Cabeza superior", "content": ["Origen en cara infratemporal/cresta del ala mayor del esfenoides."]},
+          {"title": "Cabeza inferior", "content": ["Origen en cara lateral de la lámina lateral del proceso pterigoides."]},
+          {"title": "Inserción", "content": ["Fóvea pterigoidea y componentes cápsulo-discales, con variación en distribución de fascículos."]},
+          {"title": "Inervación", "content": ["Nervio para pterigoideo lateral, rama de la división anterior de V3."]}
+        ]},
+        "technical": {"summary": "No debe reducirse su función a 'abrir la boca' o 'tirar del disco'; actúa dentro de un sistema neuromuscular bilateral.", "blocks": [
+          {"title": "Dirección de fibras", "content": ["Fibras se dirigen posterolateralmente hacia complejo condilar desde sus orígenes esfenoidales."]},
+          {"title": "Protrusión", "content": ["Contracción bilateral favorece traslación anterior mandibular junto con otros músculos y control articular."]},
+          {"title": "Lateralidad", "content": ["Contracción unilateral contribuye al desplazamiento contralateral mandibular dentro de la coordinación bilateral."]},
+          {"title": "Apertura", "content": ["Participa en traslación del complejo condilar durante apertura amplia, pero la depresión mandibular también depende de suprahioideos y fijación hioidea."]},
+          {"title": "Disco", "content": ["La relación de fascículos superiores con cápsula/disco es compleja y variable; no equivale a una tracción lineal única del disco."]},
+          {"title": "Relaciones", "content": ["Profundo en fosa infratemporal, relacionado con arteria maxilar y ramas de V3 con variaciones topográficas."]}
+        ]},
+        "oral": {"summary": "El oral debe incluir dos cabezas, inserciones, nervio, acciones e integración con ATM sin simplificaciones mecánicas excesivas.", "blocks": [{"title": "Orden", "content": ["cabeza superior", "cabeza inferior", "inserciones", "V3", "protrusión/lateralidad", "coordinación discal"]}]}
+      },
+      "relations": [
+        {"target": "atm", "type": "inserts", "note": "Se relaciona con fóvea pterigoidea y complejo cápsulo-discal."},
+        {"target": "v3", "type": "innervates", "note": "Inervado por rama de la división anterior de V3."},
+        {"target": "esfenoides", "type": "originates", "note": "Se origina en ala mayor y lámina lateral del proceso pterigoides."},
+        {"target": "fosa_infratemporal", "type": "contains", "note": "Se ubica en la fosa infratemporal."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa cabezas, inserciones, inervación y función del pterigoideo lateral.", "requiredElements": ["cabeza superior", "cabeza inferior", "ala mayor", "lámina lateral", "fóvea pterigoidea", "complejo cápsulo-discal", "V3", "protrusión", "lateralidad"], "followUp": ["¿Por qué es una simplificación decir que mueve el disco de manera aislada?"], "modelAnswer": "Tiene cabeza superior desde ala mayor e inferior desde lámina lateral pterigoidea; se inserta en fóvea pterigoidea y, con distribución variable, en cápsula/disco. Lo inerva V3. Participa en protrusión, traslación y lateralidad, coordinado con ATM y otros músculos."}], "criticalErrors": ["Afirmar que es inervado por facial.", "Asignarle en solitario toda la apertura mandibular."]},
+      "sourceDocs": ["04-atm-musculos.md", "12-profundizacion-neurovascular-atm.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    }
+  ]
+}
