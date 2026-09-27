@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ayudaparaelalumno.com.ar/schemas/anatomia-odontologica-v2.json",
+  "title": "Contenido estructurado V2 · Anatomía Odontológica",
+  "type": "object",
+  "required": ["version", "entries"],
+  "properties": {
+    "version": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": [
+        "id", "preferredName", "category", "paUnits", "status",
+        "terminology", "levels", "relations", "exam", "sourceDocs"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+        "preferredName": { "type": "string", "minLength": 2 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "bone", "landmark", "region", "joint", "muscle", "nerve",
+            "artery", "vein", "lymphatic", "gland", "oral-region", "tooth",
+            "radiology", "sensory-system", "general"
+          ]
+        },
+        "paUnits": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "technical-review", "pending-catedra", "validated"]
+        },
+        "modelKey": { "type": ["string", "null"] },
+        "fdi": { "type": ["array", "null"], "items": { "type": "integer" } },
+        "terminology": {
+          "type": "object",
+          "required": ["preferred", "synonyms", "classicTerms"],
+          "properties": {
+            "preferred": { "type": "string" },
+            "synonyms": { "type": "array", "items": { "type": "string" } },
+            "classicTerms": { "type": "array", "items": { "type": "string" } },
+            "notes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "levels": {
+          "type": "object",
+          "required": ["review", "development", "technical", "oral"],
+          "properties": {
+            "review": { "$ref": "#/$defs/level" },
+            "development": { "$ref": "#/$defs/level" },
+            "technical": { "$ref": "#/$defs/level" },
+            "oral": { "$ref": "#/$defs/level" }
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["target", "type", "note"],
+            "properties": {
+              "target": { "type": "string" },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "articulates", "contains", "communicates", "passes-through",
+                  "innervates", "vascularizes", "drains", "inserts", "originates",
+                  "adjacent", "continues-as", "distributed-by", "radiographic-relation",
+                  "clinical-relation", "compare"
+                ]
+              },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "exam": {
+          "type": "object",
+          "required": ["questions", "criticalErrors"],
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["prompt", "requiredElements"],
+                "properties": {
+                  "prompt": { "type": "string" },
+                  "requiredElements": { "type": "array", "items": { "type": "string" } },
+                  "followUp": { "type": "array", "items": { "type": "string" } },
+                  "modelAnswer": { "type": "string" }
+                }
+              },
+              "minItems": 1
+            },
+            "criticalErrors": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "sourceDocs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "validationNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": ["summary", "blocks"],
+      "properties": {
+        "summary": { "type": "string", "minLength": 20 },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "content"],
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}
