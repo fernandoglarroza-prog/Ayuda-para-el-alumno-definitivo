@@ -1,0 +1,276 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "mandibula",
+      "preferredName": "Mandíbula",
+      "category": "bone",
+      "paUnits": ["Unidad I · Osteología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "mandibula",
+      "terminology": {
+        "preferred": "Mandíbula",
+        "synonyms": ["hueso mandibular"],
+        "classicTerms": ["maxilar inferior"],
+        "notes": ["Preferir mandíbula como término anatómico actual."]
+      },
+      "levels": {
+        "review": {
+          "summary": "Hueso impar, mediano y móvil del viscerocráneo que sostiene la arcada inferior y se articula bilateralmente con los temporales mediante las ATM.",
+          "blocks": [
+            {"title": "Identificación rápida", "content": ["Cuerpo en herradura y dos ramas ascendentes.", "Coronoides anterior y proceso condilar posterior.", "Foramen mandibular en cara medial de la rama; foramen mentoniano en cara externa del cuerpo."]}
+          ]
+        },
+        "development": {
+          "summary": "Se describe sistemáticamente por cuerpo, porción alveolar, ángulo, ramas y extremos superiores, integrando los trayectos neurovasculares y las inserciones musculares.",
+          "blocks": [
+            {"title": "Cuerpo · cara externa", "content": ["Sínfisis mandibular, protuberancia mentoniana y tubérculos mentonianos.", "Foramen mentoniano de posición variable y línea oblicua que continúa con el borde anterior de la rama.", "Eminencias alveolares determinadas por las raíces dentarias, más evidentes en determinadas regiones anteriores."]},
+            {"title": "Cuerpo · cara interna", "content": ["Espinas mentonianas superiores para geniogloso e inferiores para genihioideo.", "Fosas digástricas para el vientre anterior del digástrico.", "Línea milohioidea para origen del milohioideo; por encima se reconoce la fosa sublingual y por debajo/posterior la fosa submandibular."]},
+            {"title": "Rama", "content": ["Cara lateral relacionada con masetero y cara medial con pterigoideo medial.", "Foramen mandibular, língula y surco milohioideo en la cara medial.", "Borde superior con apófisis coronoides, escotadura mandibular y proceso condilar."]},
+            {"title": "Porción alveolar", "content": ["Contiene alvéolos, septos interalveolares e interradiculares.", "Su morfología cambia con erupción, pérdida dentaria y remodelado del reborde residual."]}
+          ]
+        },
+        "technical": {
+          "summary": "La descripción técnica debe integrar accidentes óseos, inserciones, relaciones topográficas, conducto mandibular, variaciones y repercusión odontológica.",
+          "blocks": [
+            {"title": "Proceso condilar", "content": ["Cabeza de eje mayor aproximadamente mediolateral y cuello condilar.", "Fóvea pterigoidea en la cara anterior del cuello para inserción del fascículo inferior del pterigoideo lateral.", "Polos medial y lateral relacionados con fijaciones discales de la ATM."]},
+            {"title": "Coronoides y región retromolar", "content": ["La apófisis coronoides recibe la inserción del temporal.", "El borde anterior de la rama continúa con la línea oblicua y delimita la región retromolar.", "El trígono retromolar se relaciona con inserciones del temporal y planos pterigomandibulares."]},
+            {"title": "Conducto mandibular", "content": ["Comienza en el foramen mandibular y recorre rama y cuerpo alojando nervio, arteria y venas alveolares inferiores.", "Hacia anterior, el componente nervioso se distribuye en rama mentoniana que emerge y continuación incisiva intraósea.", "Altura, posición bucolingual y bifurcaciones presentan variación individual."]},
+            {"title": "Inserciones", "content": ["Masetero lateralmente y pterigoideo medial medialmente forman un cabestrillo alrededor del ángulo.", "Temporal en coronoides y borde anterior.", "Milohioideo en línea milohioidea; geniogloso/genihioideo en espinas mentonianas; vientre anterior del digástrico en fosa digástrica."]},
+            {"title": "Relaciones neurovasculares", "content": ["Nervio lingual próximo a tejidos blandos mediales de región retromolar, con variación individual.", "Nervio y vasos masetéricos atraviesan la escotadura mandibular.", "Paquete alveolar inferior entra por foramen mandibular y recorre el conducto."]},
+            {"title": "Correlación odontológica/radiográfica", "content": ["CBCT permite valorar relación tridimensional entre conducto mandibular, raíces y corticales.", "Panorámica orienta el trayecto pero no determina por sí sola la dimensión bucolingual.", "En rebordes desdentados, la reabsorción modifica la posición relativa del foramen mentoniano respecto de la cresta residual."]},
+            {"title": "Variaciones y errores", "content": ["Foramen mentoniano accesorio, conductos bífidos y cambios de posición son posibles.", "No fijar el foramen mentoniano a una única pieza para todos los individuos.", "No confundir foramen mandibular con mentoniano ni describir el conducto como un punto aislado."]}
+          ]
+        },
+        "oral": {
+          "summary": "En un oral sólido, la mandíbula debe orientarse y describirse en un orden constante: cuerpo, caras, porción alveolar, ángulo, rama, borde superior, conducto y relaciones.",
+          "blocks": [
+            {"title": "Orden sugerido", "content": ["Definición y orientación.", "Cuerpo por cara externa e interna.", "Porción alveolar y base.", "Ángulo y rama.", "Coronoides, escotadura y proceso condilar.", "Conducto mandibular y relaciones odontológicas."]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "atm", "type": "articulates", "note": "El proceso condilar participa en la articulación temporomandibular."},
+        {"target": "v3", "type": "clinical-relation", "note": "V3 origina el nervio alveolar inferior y lingual, fundamentales en la región mandibular."},
+        {"target": "fosa_infratemporal", "type": "adjacent", "note": "La cara medial de la rama se relaciona con la fosa infratemporal y región pterigomandibular."},
+        {"target": "primer_molar_inferior", "type": "radiographic-relation", "note": "Las raíces posteriores se evalúan en relación con conducto mandibular y corticales."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Oriente una mandíbula y descríbala sistemáticamente como en un examen oral.",
+            "requiredElements": ["cuerpo y ramas", "caras externa e interna", "forámenes mandibular y mentoniano", "língula y surco milohioideo", "coronoides, escotadura y cóndilo", "conducto mandibular"],
+            "followUp": ["¿Qué inserciones reconoce en la cara interna del cuerpo?", "¿Por qué el foramen mentoniano no debe enseñarse en una posición absolutamente fija?"],
+            "modelAnswer": "Se orienta con porción alveolar superior y mentón anterior. Se describe el cuerpo por sus caras, luego porción alveolar, ángulo y rama; en la rama se identifican foramen mandibular, língula y surco milohioideo; superiormente coronoides, escotadura y proceso condilar. Se integra finalmente el conducto mandibular y sus relaciones neurovasculares y dentarias."
+          }
+        ],
+        "criticalErrors": ["Confundir foramen mandibular con foramen mentoniano.", "Afirmar que el nervio lingual discurre dentro del conducto mandibular.", "Presentar una posición dentaria del foramen mentoniano como universal."]
+      },
+      "sourceDocs": ["01-osteologia.md", "11-profundizacion-osteologia-topografia.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Pendiente confirmar con cátedra preferencia terminológica língula mandibular/espina de Spix."]
+    },
+    {
+      "id": "maxilar",
+      "preferredName": "Maxilar",
+      "category": "bone",
+      "paUnits": ["Unidad I · Osteología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "maxilar",
+      "terminology": {
+        "preferred": "Maxilar",
+        "synonyms": ["hueso maxilar"],
+        "classicTerms": ["maxilar superior"],
+        "notes": ["Usar maxilar como denominación principal del hueso par superior."]
+      },
+      "levels": {
+        "review": {
+          "summary": "Hueso par neumático del tercio medio facial, con un cuerpo y procesos frontal, cigomático, alveolar y palatino.",
+          "blocks": [{"title": "Reconocimiento", "content": ["Contiene el seno maxilar.", "Participa en piso de órbita, pared lateral nasal, paladar duro y arcada superior.", "Foramen infraorbitario anterior y tuberosidad maxilar posterior."]}]
+        },
+        "development": {
+          "summary": "El cuerpo del maxilar se estudia por cuatro caras y se continúa con cuatro procesos que integran múltiples regiones craneofaciales.",
+          "blocks": [
+            {"title": "Cara facial/anterior", "content": ["Foramen infraorbitario, fosa canina, eminencia canina e incisura nasal."]},
+            {"title": "Cara orbitaria", "content": ["Forma gran parte del piso de la órbita y presenta surco y conducto infraorbitarios."]},
+            {"title": "Cara infratemporal", "content": ["Tuberosidad maxilar y forámenes alveolares superiores posteriores; relación con fosa infratemporal y fisura pterigomaxilar."]},
+            {"title": "Cara nasal", "content": ["Participa en pared lateral nasal y contiene el hiato maxilar, modificado por articulación con huesos vecinos."]},
+            {"title": "Procesos", "content": ["Frontal hacia región naso-orbitaria.", "Cigomático hacia hueso cigomático.", "Alveolar para alvéolos superiores.", "Palatino para los tres cuartos anteriores del paladar duro."]}
+          ]
+        },
+        "technical": {
+          "summary": "El maxilar debe integrarse con seno maxilar, trayecto infraorbitario, plexo dentario superior, paladar, nariz y fosas profundas.",
+          "blocks": [
+            {"title": "Seno maxilar", "content": ["Cavidad neumática dentro del cuerpo maxilar con techo orbitario, pared medial nasal y piso en relación variable con raíces posteriores.", "La relación raíz-piso sinusal es individual y debe confirmarse tridimensionalmente cuando corresponda."]},
+            {"title": "Trayecto infraorbitario", "content": ["V2 continúa como nervio infraorbitario por fisura orbitaria inferior, surco y conducto infraorbitarios hasta el foramen infraorbitario.", "En el trayecto se originan ramas alveolares superiores anterior y, cuando existe, media."]},
+            {"title": "Tuberosidad y PSA", "content": ["Los nervios y vasos alveolares superiores posteriores alcanzan el maxilar posterior a través de forámenes alveolares en la región de tuberosidad."]},
+            {"title": "Relaciones palatinas", "content": ["Los procesos palatinos se unen en la línea media y se relacionan posteriormente con láminas horizontales de palatinos.", "El canal incisivo/nasopalatino atraviesa la región anterior del paladar duro."]},
+            {"title": "Articulaciones", "content": ["Se articula con frontal, etmoides, nasal, lagrimal, cigomático, palatino, concha nasal inferior, vómer y maxilar contralateral."]},
+            {"title": "Correlación odontológica", "content": ["Relaciones raíz-seno, anestesia infraorbitaria/alveolar superior, tuberosidad y paladar.", "CBCT aporta relación tridimensional; panorámica es una proyección 2D con superposición."]}
+          ]
+        },
+        "oral": {
+          "summary": "Una respuesta completa describe primero las cuatro caras del cuerpo y luego los cuatro procesos, cerrando con seno maxilar y trayectos neurovasculares.",
+          "blocks": [{"title": "Orden sugerido", "content": ["Definición y orientación.", "Cuatro caras del cuerpo.", "Cuatro procesos.", "Seno maxilar.", "Trayecto infraorbitario y ramas alveolares.", "Relaciones odontológicas."]}]
+        }
+      },
+      "relations": [
+        {"target": "v2", "type": "clinical-relation", "note": "V2 y sus ramas infraorbitaria/alveolares superiores se relacionan con el maxilar."},
+        {"target": "fosa_pterigopalatina", "type": "adjacent", "note": "La pared posterior del maxilar forma el límite anterior de la fosa pterigopalatina."},
+        {"target": "primer_molar_superior", "type": "radiographic-relation", "note": "Las raíces posteriores pueden aproximarse al piso del seno maxilar."}
+      ],
+      "exam": {
+        "questions": [{"prompt": "Describa el cuerpo del maxilar por sus cuatro caras y relacione cada una con una región anatómica.", "requiredElements": ["cara facial", "cara orbitaria", "cara infratemporal", "cara nasal", "seno maxilar"], "followUp": ["Relacione el seno maxilar con raíces posteriores.", "Recorra el nervio infraorbitario."], "modelAnswer": "Se describen cara facial con foramen infraorbitario y fosa canina; cara orbitaria con surco/conducto infraorbitario; cara infratemporal con tuberosidad y forámenes alveolares posteriores; cara nasal con hiato maxilar. Dentro del cuerpo se encuentra el seno maxilar, relacionado con órbita, nariz y raíces posteriores."}],
+        "criticalErrors": ["Afirmar que la relación seno-raíz es idéntica en todos los pacientes.", "Confundir el foramen infraorbitario con un foramen dental."]
+      },
+      "sourceDocs": ["01-osteologia.md", "11-profundizacion-osteologia-topografia.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "temporal",
+      "preferredName": "Hueso temporal",
+      "category": "bone",
+      "paUnits": ["Unidad I · Osteología", "Unidad II · Artrología"],
+      "status": "pending-catedra",
+      "modelKey": "temporal",
+      "terminology": {"preferred": "Hueso temporal", "synonyms": ["temporal"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Hueso par de la pared lateral y base craneal, relacionado con oído, arco cigomático y ATM.", "blocks": [{"title": "Porciones", "content": ["Escamosa, petrosa, mastoidea y timpánica, más proceso estiloides.", "Fosa mandibular y eminencia articular participan en ATM."]}]},
+        "development": {"summary": "Su estudio exige distinguir porciones y accidentes relacionados con ATM, oído, base craneal y aparato estilohioideo.", "blocks": [
+          {"title": "Porción escamosa", "content": ["Proceso cigomático, fosa mandibular y eminencia/tubérculo articular."]},
+          {"title": "Porción petrosa", "content": ["Pirámide ósea densa orientada anteromedialmente, con conductos y cavidades del oído.", "Conducto carotídeo y meato acústico interno entre sus referencias de base craneal."]},
+          {"title": "Mastoidea/timpánica", "content": ["Proceso mastoides con celdillas aéreas e inserciones musculares.", "Porción timpánica alrededor del meato acústico externo."]},
+          {"title": "Proceso estiloides", "content": ["Inserción de músculos y ligamentos del aparato estilohioideo."]}
+        ]},
+        "technical": {"summary": "El temporal integra ATM, oído, trayectos neurovasculares y relaciones profundas de la base del cráneo.", "blocks": [
+          {"title": "ATM", "content": ["Fosa mandibular y eminencia articular conforman la superficie temporal de la ATM.", "La región está inmediatamente anterior al meato acústico externo."]},
+          {"title": "Fisura petrotimpánica", "content": ["Comunica región de la ATM con oído medio y se relaciona con el trayecto de la cuerda del tímpano."]},
+          {"title": "Conductos", "content": ["El conducto carotídeo transmite la carótida interna y plexo simpático.", "El meato acústico interno transmite VII, VIII y vasos laberínticos."]},
+          {"title": "Relaciones musculares", "content": ["Proceso cigomático participa en arco cigomático; mastoides y estiloides reciben inserciones cervicales y suprahioideas."]},
+          {"title": "Correlación odontológica", "content": ["Proximidad anatómica ATM-meato acústico externo y región preauricular.", "La cuerda del tímpano conecta anatomía del temporal con gusto y parasimpático salival."]},
+          {"title": "Error de interpretación", "content": ["La proximidad entre ATM y oído no permite atribuir automáticamente síntomas otológicos a la articulación."]}
+        ]},
+        "oral": {"summary": "El temporal se orienta y describe por porciones, identificando luego fosa mandibular, meato acústico externo, mastoides, estiloides y relaciones profundas.", "blocks": [{"title": "Orden", "content": ["Porciones", "accidentes de ATM", "oído/conductos", "mastoides/estiloides", "correlaciones odontológicas"]}]}
+      },
+      "relations": [
+        {"target": "atm", "type": "articulates", "note": "La fosa mandibular y eminencia articular constituyen el componente temporal de la ATM."},
+        {"target": "v3", "type": "clinical-relation", "note": "Ramos de V3 participan en la inervación articular; la cuerda del tímpano se une al lingual más distalmente."}
+      ],
+      "exam": {"questions": [{"prompt": "Oriente un temporal y describa las porciones con énfasis odontológico.", "requiredElements": ["escamosa", "petrosa", "mastoidea", "timpánica", "fosa mandibular", "eminencia articular", "meato acústico externo"], "followUp": ["¿Qué relación tiene con la cuerda del tímpano?"], "modelAnswer": "Se reconocen porciones escamosa, petrosa, mastoidea y timpánica, además del proceso estiloides. En la escamosa se ubican proceso cigomático, fosa mandibular y eminencia articular; posteriormente se relacionan meato acústico externo y región timpánica. La porción petrosa aloja oído y conductos neurovasculares."}], "criticalErrors": ["Ubicar el meato acústico externo por delante de la eminencia articular."]},
+      "sourceDocs": ["01-osteologia.md", "11-profundizacion-osteologia-topografia.md", "12-profundizacion-neurovascular-atm.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "esfenoides",
+      "preferredName": "Esfenoides",
+      "category": "bone",
+      "paUnits": ["Unidad I · Osteología", "Unidad V · Neurología", "Unidad VI · Topografía craneofacial"],
+      "status": "pending-catedra",
+      "modelKey": "esfenoides",
+      "terminology": {"preferred": "Esfenoides", "synonyms": ["hueso esfenoides"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Hueso impar central de la base del cráneo, formado por cuerpo, alas menores, alas mayores y procesos pterigoideos.", "blocks": [{"title": "Claves", "content": ["Foramen redondo para V2.", "Foramen oval para V3.", "Foramen espinoso para arteria meníngea media y ramo meníngeo recurrente."]}]},
+        "development": {"summary": "Conecta cavidad craneal, órbita, fosas profunda y aparato masticatorio mediante sus alas, forámenes y procesos pterigoideos.", "blocks": [
+          {"title": "Cuerpo", "content": ["Contiene seno esfenoidal y superiormente forma la región de la silla turca."]},
+          {"title": "Alas menores", "content": ["Participan en fosa craneal anterior/techo orbitario y se relacionan con conducto óptico."]},
+          {"title": "Alas mayores", "content": ["Participan en fosa craneal media, órbita, región temporal e infratemporal; contienen forámenes redondo, oval y espinoso."]},
+          {"title": "Procesos pterigoideos", "content": ["Láminas medial y lateral separadas por fosa pterigoidea; hamulus en extremo inferior de lámina medial."]}
+        ]},
+        "technical": {"summary": "Debe entenderse como nodo topográfico de V2/V3, fosa infratemporal, fosa pterigopalatina, órbita y músculos pterigoideos.", "blocks": [
+          {"title": "Foramen redondo", "content": ["En ala mayor; comunica fosa craneal media con fosa pterigopalatina y transmite V2."]},
+          {"title": "Foramen oval", "content": ["Comunica fosa craneal media con fosa infratemporal; transmite principalmente V3, con contenido vascular variable."]},
+          {"title": "Foramen espinoso", "content": ["Transmite arteria meníngea media y ramo meníngeo recurrente de V3 hacia cavidad craneal."]},
+          {"title": "Pterigoideos", "content": ["Lámina lateral da origen/inserción a componentes de pterigoideos lateral y medial según cara.", "Fascículos musculares conectan el esfenoides con mandíbula y ATM."]},
+          {"title": "Hamulus", "content": ["Actúa como polea para el tendón del tensor del velo del paladar y es referencia en paladar blando."]},
+          {"title": "Topografía", "content": ["Participa simultáneamente en base craneal, pared orbitaria, fosa temporal, fosa infratemporal y fosa pterigopalatina."]}
+        ]},
+        "oral": {"summary": "La respuesta debe demostrar que el alumno puede conectar forámenes y procesos del esfenoides con nervios, vasos, músculos y regiones.", "blocks": [{"title": "Integración", "content": ["Partes", "redondo-V2", "oval-V3", "espinoso-meníngea media", "pterigoides-masticación", "órbita y fosas profundas"]}]}
+      },
+      "relations": [
+        {"target": "v2", "type": "passes-through", "note": "V2 atraviesa el foramen redondo."},
+        {"target": "v3", "type": "passes-through", "note": "V3 atraviesa el foramen oval."},
+        {"target": "fosa_infratemporal", "type": "adjacent", "note": "El ala mayor forma el techo y los procesos pterigoideos el límite medial de la región."},
+        {"target": "fosa_pterigopalatina", "type": "adjacent", "note": "El esfenoides forma parte de los límites posterior/superior de la fosa."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique por qué el esfenoides es topográficamente central para Odontología.", "requiredElements": ["cuerpo", "alas", "procesos pterigoideos", "foramen redondo", "foramen oval", "foramen espinoso"], "followUp": ["¿Qué regiones comunica cada foramen?"], "modelAnswer": "El esfenoides integra base craneal, órbita y fosas profundas. El foramen redondo lleva V2 a fosa pterigopalatina, el oval lleva V3 a fosa infratemporal y el espinoso se relaciona con meníngea media. Los procesos pterigoideos se vinculan con músculos masticadores y paladar blando."}], "criticalErrors": ["Asignar V2 al foramen oval o V3 al foramen redondo."]},
+      "sourceDocs": ["01-osteologia.md", "11-profundizacion-osteologia-topografia.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Mantener sinónimo clásico agujero redondo mayor solo si la cátedra lo utiliza."]
+    },
+    {
+      "id": "fosa_infratemporal",
+      "preferredName": "Fosa infratemporal",
+      "category": "region",
+      "paUnits": ["Unidad VI · Topografía craneofacial", "Unidad V · Neurología", "Unidad IV · Angiología"],
+      "status": "pending-catedra",
+      "modelKey": null,
+      "terminology": {"preferred": "Fosa infratemporal", "synonyms": [], "classicTerms": ["fosa cigomática"], "notes": ["Preferir infratemporal."]},
+      "levels": {
+        "review": {"summary": "Espacio profundo a la rama mandibular que contiene V3, arteria maxilar, plexo pterigoideo y músculos pterigoideos.", "blocks": [{"title": "Comunicación", "content": ["Craneo por oval/espinoso.", "Fosa pterigopalatina por fisura pterigomaxilar.", "Región temporal por debajo del arco cigomático."]}]},
+        "development": {"summary": "Se describe por límites, contenido y comunicaciones, no como una cavidad cerrada.", "blocks": [
+          {"title": "Límite lateral", "content": ["Rama de la mandíbula."]},
+          {"title": "Límite anterior", "content": ["Cara posterior/tuberosidad del maxilar."]},
+          {"title": "Límite medial", "content": ["Principalmente lámina lateral del proceso pterigoides y planos relacionados."]},
+          {"title": "Techo", "content": ["Cara infratemporal del ala mayor del esfenoides con forámenes oval y espinoso."]},
+          {"title": "Contenido", "content": ["V3 y ramas, ganglio ótico, cuerda del tímpano, arteria maxilar, plexo pterigoideo, pterigoideos y ligamento esfenomandibular."]}
+        ]},
+        "technical": {"summary": "Es el principal espacio integrador para nervio mandibular, arteria maxilar, masticación profunda, ATM y acceso al conducto mandibular.", "blocks": [
+          {"title": "V3", "content": ["Sale por foramen oval y se divide en un tronco corto, división anterior predominantemente motora y posterior predominantemente sensitiva."]},
+          {"title": "Arteria maxilar", "content": ["Se origina detrás del cuello mandibular y atraviesa la fosa; su relación superficial/profunda con el pterigoideo lateral puede variar."]},
+          {"title": "Plexo pterigoideo", "content": ["Red venosa alrededor de pterigoideos con comunicaciones facial profunda, maxilar y emisarias hacia seno cavernoso."]},
+          {"title": "Comunicación craneal", "content": ["Oval para V3; espinoso para meníngea media y ramo meníngeo."]},
+          {"title": "Comunicación pterigopalatina", "content": ["Fisura pterigomaxilar, por donde continúa la arteria maxilar hacia su tercera porción."]},
+          {"title": "Relación mandibular", "content": ["Nervio alveolar inferior se dirige al foramen mandibular; lingual desciende medial a la rama y próximo a región retromolar."]},
+          {"title": "Importancia", "content": ["Integra referencias anestésicas, terceros molares, propagación de infecciones profundas y anatomía vascular de cirugía oral."]}
+        ]},
+        "oral": {"summary": "Para responder bien hay que nombrar límites en orden, contenido por sistemas y comunicaciones indicando qué atraviesa cada una.", "blocks": [{"title": "Estructura de respuesta", "content": ["Situación", "límites", "contenido muscular", "contenido nervioso", "contenido vascular", "comunicaciones", "aplicación odontológica"]}]}
+      },
+      "relations": [
+        {"target": "v3", "type": "contains", "note": "V3 y la mayor parte de sus ramas se distribuyen en la fosa."},
+        {"target": "fosa_pterigopalatina", "type": "communicates", "note": "Se comunica por fisura pterigomaxilar."},
+        {"target": "mandibula", "type": "adjacent", "note": "La rama mandibular forma el límite lateral."},
+        {"target": "esfenoides", "type": "adjacent", "note": "El ala mayor forma el techo y la lámina pterigoidea lateral el límite medial principal."}
+      ],
+      "exam": {"questions": [{"prompt": "Defina, limite y describa el contenido de la fosa infratemporal.", "requiredElements": ["rama mandibular lateral", "maxilar anterior", "pterigoides medial", "ala mayor superior", "V3", "arteria maxilar", "plexo pterigoideo", "pterigoideos"], "followUp": ["Trace el alveolar inferior desde foramen oval al conducto mandibular."], "modelAnswer": "Es un espacio profundo a la rama mandibular. Se limita lateralmente por la rama, anteriormente por el maxilar posterior, medialmente por la lámina pterigoidea lateral y superiormente por el ala mayor. Contiene V3, arteria maxilar, plexo pterigoideo, pterigoideos, ganglio ótico y cuerda del tímpano, y se comunica con cráneo y fosa pterigopalatina."}], "criticalErrors": ["Ubicar V2 como nervio principal de la fosa infratemporal.", "Omitir la fisura pterigomaxilar al describir comunicaciones."]},
+      "sourceDocs": ["02-regiones-topografia.md", "11-profundizacion-osteologia-topografia.md", "12-profundizacion-neurovascular-atm.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "fosa_pterigopalatina",
+      "preferredName": "Fosa pterigopalatina",
+      "category": "region",
+      "paUnits": ["Unidad VI · Topografía craneofacial", "Unidad V · Neurología", "Unidad IV · Angiología"],
+      "status": "pending-catedra",
+      "modelKey": null,
+      "terminology": {"preferred": "Fosa pterigopalatina", "synonyms": [], "classicTerms": ["fosa pterigomaxilar"], "notes": ["La denominación clásica no es siempre perfectamente intercambiable; usarla solo como término histórico. "]},
+      "levels": {
+        "review": {"summary": "Pequeño espacio profundo posterior al maxilar que funciona como distribuidor neurovascular entre cráneo, órbita, nariz, paladar y fosa infratemporal.", "blocks": [{"title": "Contenido clave", "content": ["V2 y ramas.", "Ganglio pterigopalatino.", "Tercera porción de arteria maxilar."]}]},
+        "development": {"summary": "Su dominio exige memorizar límites y comunicaciones junto con la estructura que atraviesa cada una.", "blocks": [
+          {"title": "Anterior", "content": ["Pared posterior del maxilar."]},
+          {"title": "Posterior", "content": ["Proceso pterigoides del esfenoides y región de conducto pterigoideo."]},
+          {"title": "Medial", "content": ["Lámina perpendicular del palatino con foramen esfenopalatino."]},
+          {"title": "Lateral", "content": ["Fisura pterigomaxilar hacia fosa infratemporal."]},
+          {"title": "Superior/inferior", "content": ["Superiormente relación con fisura orbitaria inferior; inferiormente continuidad con conductos palatinos."]}
+        ]},
+        "technical": {"summary": "La fosa debe estudiarse como un nodo de siete rutas anatómicas, no como una lista aislada de estructuras.", "blocks": [
+          {"title": "Foramen redondo", "content": ["Comunica con fosa craneal media y transmite V2."]},
+          {"title": "Fisura orbitaria inferior", "content": ["Comunica con órbita; continúan nervios infraorbitario/cigomático y vasos infraorbitarios."]},
+          {"title": "Foramen esfenopalatino", "content": ["Comunica con cavidad nasal; pasan ramas nasales y arteria esfenopalatina."]},
+          {"title": "Conductos palatinos", "content": ["Conducen nervios y vasos palatinos hacia paladar duro/blando."]},
+          {"title": "Fisura pterigomaxilar", "content": ["Comunica con fosa infratemporal; llega la arteria maxilar a su tercera porción."]},
+          {"title": "Conducto pterigoideo", "content": ["Conduce nervio y vasos del conducto pterigoideo hacia región posterior."]},
+          {"title": "Conducto faríngeo/palatovaginal", "content": ["Comunicación con nasofaringe para ramo faríngeo y vasos asociados."]},
+          {"title": "Ganglio pterigopalatino", "content": ["Suspendido de V2; recibe parasimpático preganglionar por petroso mayor y simpático posganglionar por petroso profundo.", "Las fibras sensitivas de V2 atraviesan el ganglio sin sinapsis."]}
+        ]},
+        "oral": {"summary": "La consigna típica exige enumerar comunicaciones y decir qué estructura usa cada una, integrando V2 y arteria maxilar.", "blocks": [{"title": "Respuesta", "content": ["Límites", "contenido", "siete comunicaciones", "V2", "ganglio pterigopalatino", "tercera porción maxilar"]}]}
+      },
+      "relations": [
+        {"target": "v2", "type": "contains", "note": "V2 entra por foramen redondo y se distribuye desde la fosa."},
+        {"target": "fosa_infratemporal", "type": "communicates", "note": "Comunicación por fisura pterigomaxilar."},
+        {"target": "maxilar", "type": "adjacent", "note": "La pared posterior del maxilar forma el límite anterior."},
+        {"target": "esfenoides", "type": "adjacent", "note": "El proceso pterigoides contribuye al límite posterior."}
+      ],
+      "exam": {"questions": [{"prompt": "Enumere las comunicaciones de la fosa pterigopalatina y diga qué estructura principal utiliza cada una.", "requiredElements": ["foramen redondo", "fisura orbitaria inferior", "foramen esfenopalatino", "conductos palatinos", "fisura pterigomaxilar", "conducto pterigoideo", "conducto faríngeo"], "followUp": ["¿Qué fibras hacen sinapsis en el ganglio pterigopalatino?"], "modelAnswer": "La fosa comunica con cráneo por foramen redondo, órbita por fisura orbitaria inferior, nariz por foramen esfenopalatino, paladar por conductos palatinos, infratemporal por fisura pterigomaxilar, región posterior por conducto pterigoideo y nasofaringe por conducto faríngeo/palatovaginal."}], "criticalErrors": ["Decir que V3 entra por el foramen redondo.", "Afirmar que las fibras sensitivas de V2 hacen sinapsis en el ganglio pterigopalatino."]},
+      "sourceDocs": ["02-regiones-topografia.md", "11-profundizacion-osteologia-topografia.md", "12-profundizacion-neurovascular-atm.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Confirmar denominación docente de conducto faríngeo/palatovaginal."]
+    }
+  ]
+}
