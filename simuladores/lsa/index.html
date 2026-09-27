@@ -5,13 +5,51 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#6d3fc0">
 <title>Aprender LSA · Ayuda para el Alumno</title>
-<meta name="description" content="Proyecto de aprendizaje interactivo de Lengua de Señas Argentina dentro de Ayuda para el Alumno.">
+<meta name="description" content="Compañero interactivo para aprender Lengua de Señas Argentina con recursos validados de la comunidad sorda argentina.">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="brand" href="/simuladores/"><span class="icon">🤟</span><span><b>Aprender LSA</b><small>Ayuda para el Alumno</small></span></a><a class="back" href="/simuladores/">← Simuladores</a></div></header>
-<main class="wrap"><section class="hero"><span class="ey">Lengua de Señas Argentina</span><h1>Una ruta interactiva para aprender a comunicarse con señas.</h1><p>Esta sección ya queda integrada al portal. La siguiente etapa será incorporar lecciones visuales validadas, práctica de comprensión y, más adelante, reconocimiento mediante cámara.</p><span class="badge">En construcción · estructura inicial</span></section>
-<section class="grid"><article class="card"><span>👋</span><h2>Nivel 1 · Primer contacto</h2><p>Saludos, presentaciones, números, preguntas simples y vocabulario cotidiano.</p><span class="locked">Contenido visual en preparación</span></article><article class="card"><span>🧩</span><h2>Nivel 2 · Comprensión</h2><p>Reconocer señas en secuencias cortas, elegir significados y construir situaciones comunicativas.</p><span class="locked">Próxima etapa</span></article><article class="card"><span>📷</span><h2>Nivel 3 · Práctica con cámara</h2><p>Comparar postura, orientación y movimiento de las manos con modelos de referencia, siempre como ayuda educativa.</p><span class="locked">Etapa avanzada</span></article></section>
-<section class="plan"><span class="ey">Cómo lo vamos a construir</span><h2>Arquitectura del simulador</h2><div class="steps"><div class="step"><span class="n">1</span><div><b>Biblioteca visual validada</b><small>No vamos a inventar ni aproximar señas. Cada lección deberá usar referencias correctas de LSA.</small></div></div><div class="step"><span class="n">2</span><div><b>Microlecciones y práctica</b><small>Ver una seña, comprenderla, repetirla y utilizarla dentro de una situación.</small></div></div><div class="step"><span class="n">3</span><div><b>Conversaciones simuladas</b><small>Escenas cotidianas con dificultad progresiva y devolución inmediata.</small></div></div><div class="step"><span class="n">4</span><div><b>Reconocimiento por cámara</b><small>Evaluación orientativa de posición y movimiento, con privacidad y procesamiento cuidadosamente diseñados.</small></div></div></div><div class="note"><b>Decisión importante:</b> antes de cargar vocabulario real vamos a trabajar con material y revisión de LSA adecuados. En este simulador la exactitud visual es parte central del contenido.</div></section></main>
+<main class="wrap">
+<section class="hero">
+ <div class="heroMain"><span class="ey">Lengua de Señas Argentina · v1</span><h1>Aprender mirando, practicando y comunicando.</h1><p>Una ruta de aprendizaje que acompaña recursos visuales producidos por la comunidad sorda argentina. No reemplazamos las señas con dibujos inventados: usamos fuentes validadas y entrenamos comprensión, memoria y práctica.</p><div class="heroActions"><a class="primary" href="#empezar">Empezar →</a><a class="secondary" href="https://cas.org.ar/2019/05/24/senario-de-terminos-y-expresiones-en-lengua-de-senas-argentina-descarga/" target="_blank" rel="noopener">Abrir Señario CAS ↗</a></div></div>
+ <aside class="principle"><span class="ey">Punto de partida</span><h2>LSA no es castellano con gestos.</h2><p>La Ley 27.710 reconoce a la LSA como lengua natural y originaria, de modalidad visoespacial y con estructura gramatical completa, compleja y distinta del castellano.</p><span class="sourcePill">Fuente: Ley 27.710</span></aside>
+</section>
+
+<section class="dashboard" id="empezar">
+ <div><span class="ey">Tu progreso en este dispositivo</span><h2>Ruta inicial</h2></div>
+ <div class="stats"><div><b id="studiedCount">0</b><span>temas estudiados</span></div><div><b id="practicedCount">0</b><span>temas practicados</span></div><div><b id="letterSuccess">0</b><span>letras logradas</span></div><div><b id="letterRepeats">0</b><span>letras a repetir</span></div></div>
+ <div class="routeProgress"><i id="routeBar"></i></div>
+ <button class="textButton" id="resetProgress">Borrar progreso local</button>
+</section>
+
+<section class="foundation sectionCard">
+ <div class="sectionHead"><div><span class="ey">Módulo 0 · disponible</span><h2>Antes de aprender señas</h2><p>Una base breve para no caer en errores comunes sobre la LSA.</p></div><span class="available">Interactivo</span></div>
+ <div class="conceptGrid"><article><b>👁️ Visoespacial</b><p>La lengua se percibe visualmente y se organiza en el espacio.</p></article><article><b>🧠 Lengua propia</b><p>Tiene gramática propia; no es una traducción palabra por palabra del castellano.</p></article><article><b>🌎 No universal</b><p>Las lenguas de señas varían entre países y comunidades.</p></article><article><b>🤟 Comunidad sorda</b><p>Las organizaciones de personas sordas son referentes centrales para consultar y validar LSA.</p></article></div>
+ <div class="quizBox"><div class="quizHead"><div><span class="ey">Chequeo rápido</span><h3>Fundamentos de LSA</h3></div><span id="savedQuiz" class="savedQuiz"></span></div><div class="quizProgress"><i id="quizBar"></i></div><div id="quizBody"><span id="quizNumber" class="quizNumber"></span><h3 id="quizQuestion"></h3><div id="quizOptions" class="quizOptions"></div><div id="quizFeedback" class="quizFeedback">Elegí una respuesta.</div><button class="primaryButton" id="quizNext" hidden>Siguiente →</button></div><div class="quizResult hidden" id="quizResult"><span class="bigScore" id="quizScore">0/5</span><h3>Actividad completada</h3><p id="quizResultText"></p><button class="primaryButton" id="quizRestart">Repetir actividad</button></div></div>
+</section>
+
+<section class="sectionCard alphabet">
+ <div class="sectionHead"><div><span class="ey">Módulo 1 · disponible</span><h2>Alfabeto Manual Argentino</h2><p>La CAS investigó durante dos años las variantes utilizadas en el país y publicó un alfabeto manual de alcance nacional consensuado con representantes de asociaciones de personas sordas.</p></div><span class="available">Práctica</span></div>
+ <div class="alphabetGrid"><div class="officialResource"><div class="resourceIcon">CAS</div><div><b>Primero mirá la referencia oficial</b><p>Estudiá las configuraciones de las letras directamente desde el recurso de la Confederación Argentina de Sordos. Allí también está el video oficial en LSA.</p><a class="primary" href="https://cas.org.ar/alfabeto-manual-argentino/" target="_blank" rel="noopener">Ver alfabeto oficial CAS ↗</a></div></div><div class="letterTrainer"><span class="ey">Entrenador de dactilología</span><p>Generá una letra al azar, realizala sin mirar y después comprobala con el recurso oficial.</p><div class="letterPrompt" id="letterPrompt">A</div><p class="letterStatus" id="letterStatus">Hacé la seña de esta letra y autoevaluá tu intento.</p><div class="letterActions"><button id="letterGood">✓ La pude hacer</button><button id="letterRepeat">↻ Necesito repetir</button></div><button class="secondaryButton" id="newLetter">Otra letra</button></div></div>
+</section>
+
+<section class="sectionCard route">
+ <div class="sectionHead"><div><span class="ey">Ruta Señario · Volumen 1</span><h2>Diez temas para avanzar paso a paso</h2><p>La estructura sigue los diez temas publicados por la CAS en el Señario Vol. 1. Usá el Señario para ver las señas y esta página para registrar estudio y práctica.</p></div><a class="sourceLink" href="https://cas.org.ar/2019/05/24/senario-de-terminos-y-expresiones-en-lengua-de-senas-argentina-descarga/" target="_blank" rel="noopener">Fuente CAS ↗</a></div>
+ <div class="topicGrid" id="topicGrid"></div>
+</section>
+
+<section class="sectionCard notebook">
+ <div class="sectionHead"><div><span class="ey">Mi cuaderno de práctica</span><h2>Armá tus propias tarjetas</h2><p>Después de estudiar una seña en el Señario, con un docente o con otra fuente validada, agregá acá su equivalente en español. El simulador te lo mostrará al azar para que intentes producir la seña de memoria.</p></div><span class="privatePill">Solo en este dispositivo</span></div>
+ <form id="wordForm" class="wordForm"><label for="wordInput">Palabra o expresión estudiada</label><div><input id="wordInput" maxlength="60" autocomplete="off" placeholder="Ej.: una palabra que acabás de estudiar"><button type="submit">Agregar</button></div></form>
+ <p id="emptyWords" class="emptyWords">Todavía no agregaste tarjetas. Estudiá una seña desde una fuente validada y sumala a tu lista.</p><ul id="wordList" class="wordList"></ul>
+ <div id="wordPractice" class="wordPractice hidden"><span class="ey">Desafío de memoria</span><div class="practicePrompt" id="practicePrompt">—</div><p id="practiceHint">Generá una tarjeta y tratá de producir la seña sin mirar.</p><button class="primaryButton" id="practiceRandom">Generar tarjeta al azar</button></div>
+</section>
+
+<section class="futureGrid"><article><span>🎬</span><h3>Siguiente etapa: lecciones visuales dentro del sitio</h3><p>La arquitectura queda lista para incorporar videos o imágenes cuando contemos con material autorizado y validado, manteniendo siempre la atribución a sus autores.</p></article><article><span>📷</span><h3>Más adelante: práctica con cámara</h3><p>Podremos analizar de forma orientativa configuración, orientación, ubicación y movimiento. Antes habrá que diseñar permisos, privacidad y una validación lingüística adecuada.</p></article><article><span>💬</span><h3>Conversaciones simuladas</h3><p>La meta es llegar a escenas cotidianas completas, porque aprender LSA no consiste solamente en memorizar vocabulario aislado.</p></article></section>
+
+<aside class="closingNote"><b>Fuentes del contenido inicial:</b> Ley 27.710 de Lengua de Señas Argentina y recursos del Departamento de LSA de la Confederación Argentina de Sordos (CAS). El material visual enlazado continúa alojado y publicado por sus autores.</aside>
+</main>
+<script src="./app.js"></script>
 </body>
 </html>
