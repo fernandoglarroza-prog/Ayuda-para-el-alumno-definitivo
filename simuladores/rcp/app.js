@@ -66,7 +66,7 @@ function resetState(){
  $('chokingNext').hidden=true;
  $('compressionCount').textContent='0';$('bpm').textContent='—';$('rhythmStatus').textContent='Empezá';$('needle').style.left='50%';
  $('trainerFeedback').innerHTML='<b>Consejo:</b> buscá un ritmo continuo y regular.';
- document.querySelectorAll('.hotspot').forEach(x=>x.classList.remove('good','bad'));
+ document.querySelectorAll('.hotspot').forEach(x=>{x.classList.remove('good','bad');x.disabled=false});
  $('handsFeedback').className='feedback';$('handsFeedback').textContent='Tocá una zona del tórax.';
  resetAed();
  $('backCount').textContent='0/5';$('abCount').textContent='0/5';$('backBtn').disabled=false;$('abBtn').disabled=mode==='learn';
@@ -146,7 +146,8 @@ function selectHandZone(btn){
  if($('handsNext').hidden===false)return;
  const good=btn.dataset.zone==='center';
  if(mode==='exam'){
-   document.querySelectorAll('.hotspot').forEach(x=>x.disabled=true);btn.classList.add(good?'good':'bad');if(good){handPoints=10;points+=10}else mistakes++;
+   document.querySelectorAll('.hotspot').forEach(x=>x.disabled=true);
+   if(good){handPoints=10;points+=10}else mistakes++;
    $('handsFeedback').className='feedback neutral';$('handsFeedback').textContent='Posición registrada. La corrección aparecerá en el resultado.';$('handsNext').hidden=false;updateStats();return;
  }
  if(good){
@@ -225,22 +226,23 @@ function showChokingAction(){
  stage=3;$('decisionPanel').classList.add('hidden');$('chokingAction').classList.remove('hidden');$('sceneText').textContent='La persona continúa consciente y presenta una obstrucción grave.';
  $('backBtn').disabled=false;$('abBtn').disabled=mode==='learn';updateStats();
 }
+function completeChokingActionIfReady(){
+ if(backCount<5||abCount<5||!$('chokingNext').hidden)return;
+ chokingActionPoints=Math.max(0,40-chokingPenalty);points+=chokingActionPoints;$('backBtn').disabled=true;$('abBtn').disabled=true;$('chokingFeedback').className='feedback ok';$('chokingFeedback').textContent=mode==='learn'?'✓ Ciclo completo: 5 golpes en la espalda y 5 compresiones abdominales. Se repite hasta expulsar el objeto o hasta que la persona deje de responder.':'Secuencia registrada.';$('chokingNext').hidden=false;updateStats();
+}
 $('backBtn').onclick=()=>{
  if(backCount>=5)return;
  if(mode==='exam'&&abCount>0){chokingPenalty=Math.min(40,chokingPenalty+10);mistakes++}
  backCount++;$('backCount').textContent=`${backCount}/5`;
  if(backCount===5){if(mode==='learn')$('abBtn').disabled=false;$('chokingFeedback').className='feedback ok';$('chokingFeedback').textContent=mode==='learn'?'✓ Completaste 5 golpes en la espalda. Ahora realizá 5 compresiones abdominales.':'Continuá la secuencia.'}
- updateStats();
+ completeChokingActionIfReady();updateStats();
 };
 $('abBtn').onclick=()=>{
  if(abCount>=5)return;
  if(mode==='exam'&&backCount<5){chokingPenalty=Math.min(40,chokingPenalty+10);mistakes++}
  if(mode==='learn'&&backCount<5)return;
  abCount++;$('abCount').textContent=`${abCount}/5`;
- if(backCount>=5&&abCount>=5){
-   chokingActionPoints=Math.max(0,40-chokingPenalty);points+=chokingActionPoints;$('backBtn').disabled=true;$('abBtn').disabled=true;$('chokingFeedback').className='feedback ok';$('chokingFeedback').textContent=mode==='learn'?'✓ Ciclo completo: 5 golpes en la espalda y 5 compresiones abdominales. Se repite hasta expulsar el objeto o hasta que la persona deje de responder.':'Secuencia registrada.';$('chokingNext').hidden=false;
- }
- updateStats();
+ completeChokingActionIfReady();updateStats();
 };
 $('chokingNext').onclick=()=>{step=2;stage=4;$('chokingAction').classList.add('hidden');renderDecision()};
 
