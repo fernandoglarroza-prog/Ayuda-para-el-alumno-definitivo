@@ -7,165 +7,53 @@
 <title>Simulador de RCP · Ayuda para el Alumno</title>
 <meta name="description" content="Simulador educativo de RCP y respuesta inicial a emergencias para público general.">
 <link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./v3.css">
 </head>
 <body>
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="/simuladores/"><span class="heart">♥</span><span><b>Simulador de RCP</b><small>Ayuda para el Alumno</small></span></a>
-    <a class="toplink" href="/simuladores/">← Simuladores</a>
-  </div>
-</header>
-
+<header class="topbar"><div class="wrap"><a class="brand" href="/simuladores/"><span class="heart">♥</span><span><b>Simulador de RCP</b><small>Ayuda para el Alumno</small></span></a><a class="toplink" href="/simuladores/">← Simuladores</a></div></header>
 <main class="wrap">
 <section class="hero">
-  <article class="heroCard">
-    <span class="ey">Entrenamiento interactivo · Público general</span>
-    <h1>Aprendé a actuar antes de que llegue la ayuda.</h1>
-    <p>Practicá cómo reconocer una emergencia, pedir ayuda, iniciar RCP, mantener el ritmo de las compresiones y usar un DEA. Ahora también podés entrenar qué hacer ante un atragantamiento grave.</p>
-    <div class="notice"><b>Herramienta educativa.</b> No reemplaza un curso presencial ni una certificación. Una pantalla puede entrenar decisiones y ritmo, pero no medir la profundidad ni la técnica física real. Ante una emergencia, activá el sistema de emergencias local y seguí sus indicaciones.</div>
-  </article>
-  <aside class="statusCard">
-    <div class="statusTitle"><div><span class="ey">Versión de prueba</span><h2>RCP v2</h2></div><span class="pill">Interactivo</span></div>
-    <div class="featureList">
-      <span>✓ Modo aprender y modo examen</span>
-      <span>✓ Posición de manos</span>
-      <span>✓ Metrónomo opcional</span>
-      <span>✓ Ritmo de compresiones</span>
-      <span>✓ DEA virtual</span>
-      <span>✓ Atragantamiento adulto</span>
-    </div>
-  </aside>
+ <article class="heroCard"><span class="ey">Entrenamiento interactivo · Público general</span><h1>Aprendé a actuar antes de que llegue la ayuda.</h1><p>Practicá reconocimiento de emergencias, RCP, ritmo de compresiones, ventilaciones simuladas, DEA y obstrucción grave de la vía aérea en adultos, niños y lactantes.</p><div class="notice"><b>Herramienta educativa.</b> No reemplaza un curso presencial ni una certificación. La pantalla puede entrenar decisiones y ritmo, pero no medir profundidad, sello de ventilación ni técnica física real. Ante una emergencia, activá el sistema de emergencias local y seguí sus indicaciones.</div></article>
+ <aside class="statusCard"><div class="statusTitle"><div><span class="ey">Versión de prueba</span><h2>RCP v3</h2></div><span class="pill">5 casos</span></div><div class="featureList"><span>✓ Adulto</span><span>✓ Pediátrico</span><span>✓ Lactante</span><span>✓ DEA virtual</span><span>✓ Modo examen</span><span>✓ Atragantamiento</span></div><div class="caseLegend"><span>AHA 2025</span><span>100–120/min</span><span>Feedback inmediato</span></div></aside>
 </section>
 
 <section class="setupCard" id="setupPanel">
-  <div class="setupHead">
-    <div><span class="ey">Elegí cómo practicar</span><h2>Preparar entrenamiento</h2></div>
-    <div class="modeSwitch" role="group" aria-label="Modo de entrenamiento">
-      <button class="modeBtn active" id="modeLearn" data-mode="learn"><b>Aprender</b><small>Correcciones y ayudas visibles</small></button>
-      <button class="modeBtn" id="modeExam" data-mode="exam"><b>Examen</b><small>Sin pistas durante el caso</small></button>
-    </div>
-  </div>
-
-  <div class="scenarioGrid">
-    <article class="scenarioCard scenarioRed">
-      <div class="scenarioIcon">♥</div>
-      <span class="tag">Caso completo</span>
-      <h3>Adulto · Colapso súbito</h3>
-      <p>Reconocimiento, activación de ayuda, posición de manos, 30 compresiones y uso seguro del DEA.</p>
-      <button class="startScenario" id="startAdult">Iniciar caso →</button>
-    </article>
-    <article class="scenarioCard scenarioAmber">
-      <div class="scenarioIcon">!</div>
-      <span class="tag new">Nuevo</span>
-      <h3>Adulto · Atragantamiento</h3>
-      <p>Identificá una obstrucción grave y practicá la secuencia actualizada de respuesta inicial.</p>
-      <button class="startScenario amber" id="startChoking">Iniciar caso →</button>
-    </article>
-    <article class="scenarioCard disabledCard">
-      <div class="scenarioIcon">♟</div>
-      <span class="tag soon">Próximamente</span>
-      <h3>RCP pediátrica</h3>
-      <p>Escenario específico para niño, con secuencia y técnica adaptadas.</p>
-      <button disabled>En preparación</button>
-    </article>
-    <article class="scenarioCard disabledCard">
-      <div class="scenarioIcon">●</div>
-      <span class="tag soon">Próximamente</span>
-      <h3>Lactante</h3>
-      <p>RCP y obstrucción de vía aérea con maniobras específicas para lactantes.</p>
-      <button disabled>En preparación</button>
-    </article>
-  </div>
+ <div class="setupHead"><div><span class="ey">Elegí cómo practicar</span><h2>Preparar entrenamiento</h2></div><div class="modeSwitch" role="group" aria-label="Modo de entrenamiento"><button class="modeBtn active" id="modeLearn" data-mode="learn"><b>Aprender</b><small>Correcciones y ayudas visibles</small></button><button class="modeBtn" id="modeExam" data-mode="exam"><b>Examen</b><small>Sin pistas durante el caso</small></button></div></div>
+ <div class="scenarioGrid">
+  <article class="scenarioCard scenarioRed"><div class="scenarioIcon">♥</div><span class="tag available">Disponible</span><h3>Adulto · Colapso súbito</h3><p>Reconocimiento, posición de manos, 30 compresiones y DEA.</p><button class="startScenario" id="startAdult">Iniciar caso →</button></article>
+  <article class="scenarioCard scenarioAmber"><div class="scenarioIcon">!</div><span class="tag available">Disponible</span><h3>Adulto · Atragantamiento</h3><p>Obstrucción grave, 5 golpes en espalda + 5 compresiones abdominales y pérdida de respuesta.</p><button class="startScenario amber" id="startChoking">Iniciar caso →</button></article>
+  <article class="scenarioCard scenarioBlue"><div class="scenarioIcon">◆</div><span class="tag new">Nuevo</span><h3>RCP pediátrica</h3><p>Niño: técnica adaptada, profundidad aproximada de 5 cm, 30:2 y DEA pediátrico.</p><button class="startScenario" id="startChild">Iniciar caso →</button></article>
+  <article class="scenarioCard scenarioPurple"><div class="scenarioIcon">●</div><span class="tag new">Nuevo</span><h3>RCP en lactante</h3><p>Técnica 2025, profundidad aproximada de 4 cm, ventilaciones y DEA.</p><button class="startScenario" id="startInfant">Iniciar caso →</button></article>
+  <article class="scenarioCard scenarioTeal"><div class="scenarioIcon">!</div><span class="tag new">Nuevo</span><h3>Lactante · Atragantamiento</h3><p>5 golpes en espalda + 5 compresiones torácicas. Sin compresiones abdominales.</p><button class="startScenario" id="startInfantChoking">Iniciar caso →</button></article>
+ </div>
 </section>
 
 <section class="simulation hidden" id="simulation">
-  <div class="simHeader">
-    <div><span class="ey" id="caseEy">Caso</span><h2 id="caseTitle">Colapso súbito</h2></div>
-    <div class="simHeaderActions"><span class="modeBadge" id="modeBadge">Modo aprender</span><button class="exitBtn" id="exitBtn">Cambiar caso</button></div>
+ <div class="simHeader"><div><span class="ey" id="caseEy">Caso</span><h2 id="caseTitle">Entrenamiento</h2></div><div class="simHeaderActions"><span class="modeBadge" id="modeBadge">Modo aprender</span><button class="exitBtn" id="exitBtn">Cambiar caso</button></div></div>
+ <div class="progress"><i id="progressBar"></i></div>
+ <div class="stats"><div><b id="stepStat">1/7</b><span>etapa</span></div><div><b id="pointsStat">0</b><span>puntos</span></div><div><b id="mistakeStat">0</b><span>errores</span></div></div>
+ <div class="workspace">
+  <div class="scene" id="scene" aria-label="Escena de entrenamiento"><span class="roomLabel" id="roomLabel">Escenario virtual</span><span class="patientTypeBadge" id="patientTypeBadge">Adulto</span><div class="window"></div><div class="sceneDecor"></div><div class="bed"><div class="pillow"></div><div class="patient" id="patient"><div class="head"></div><div class="torso"><span class="sternum"></span></div><div class="arm a"></div><div class="arm b"></div></div><div class="blanket"></div></div><div class="standingPatient hidden" id="standingPatient"><div class="sHead"></div><div class="sBody"></div><div class="sArm left"></div><div class="sArm right"></div><div class="throatMark">!</div></div><div class="infantChokingVisual hidden" id="infantChokingVisual"><div class="babyHead"></div><div class="babyBody"></div><div class="babyArm l"></div><div class="babyArm r"></div><div class="babyAlert">!</div></div><div class="floorText" id="sceneText"></div></div>
+  <div class="interaction">
+   <section class="panel" id="decisionPanel"><div class="stepTop"><div><span class="stepNumber" id="stepNumber">Paso 1</span><h2 id="stepTitle"></h2></div></div><p class="stepText" id="stepText"></p><div class="choices" id="choices"></div><div class="feedback" id="feedback">Elegí una opción.</div><button class="next" id="nextBtn" hidden>Siguiente →</button></section>
+
+   <section class="handsCard hidden" id="handsPanel"><span class="ey">Técnica · adulto</span><h2>¿Dónde colocarías las manos?</h2><p class="stepText learnOnly">Seleccioná la zona donde apoyarías el talón de una mano antes de comenzar las compresiones.</p><p class="stepText examOnly hidden">Marcá la zona elegida.</p><div class="chestTrainer" id="chestTrainer"><div class="chestHead"></div><div class="chestNeck"></div><div class="chestBody"><span class="chestLine"></span><button class="hotspot high" data-zone="high" aria-label="Parte superior del tórax"></button><button class="hotspot center" data-zone="center" aria-label="Centro del pecho"></button><button class="hotspot low" data-zone="low" aria-label="Parte inferior del tórax"></button></div></div><div class="feedback" id="handsFeedback">Tocá una zona del tórax.</div><button class="next" id="handsNext" hidden>Practicar compresiones →</button></section>
+
+   <section class="techniqueCard hidden" id="techniquePanel"><span class="ey">Técnica pediátrica</span><h2 id="techniqueTitle">Elegí la técnica</h2><p class="stepText" id="techniqueText"></p><div class="techniqueOptions" id="techniqueOptions"></div><div class="feedback" id="techniqueFeedback">Elegí una opción.</div><button class="next" id="techniqueNext" hidden>Practicar compresiones →</button></section>
+
+   <section class="trainer hidden" id="trainer"><div class="trainerTop"><div><span class="ey">Compresiones</span><h2>Entrenador de ritmo</h2></div><button class="metroBtn learnOnly" id="metroBtn" aria-pressed="false">♪ Metrónomo: apagado</button></div><p class="stepText learnOnly">Objetivo: <b>100–120 compresiones por minuto</b>. Permití el retroceso completo del tórax. Esta práctica solo mide ritmo.</p><p class="stepText examOnly hidden">Realizá 30 compresiones manteniendo el ritmo que consideres correcto.</p><div class="depthInfo" id="depthInfo"></div><div class="trainerGrid"><div class="compressWrap"><div class="handsVisual"><span class="hand h1"></span><span class="hand h2"></span></div><button id="compressBtn" class="compressBtn" aria-label="Practicar una compresión">COMPRIMIR</button><p class="smallHelp">Tocá el botón o usá la barra espaciadora · 30 compresiones</p></div><div class="meter"><div class="metric"><span>Compresiones</span><b><span id="compressionCount">0</span>/30</b></div><div class="metric"><span>Ritmo estimado</span><b><span id="bpm">—</span> <small>/min</small></b></div><div class="rhythm learnOnly"><i class="needle" id="needle"></i></div><div class="metric learnOnly"><span>Estado</span><b id="rhythmStatus" class="rhythmStatus">Empezá</b></div></div></div><div class="trainerHelp" id="trainerFeedback"><b>Consejo:</b> buscá un ritmo continuo y regular.</div><button class="next" id="trainerNext" hidden>Continuar →</button></section>
+
+   <section class="ventilationCard hidden" id="ventilationPanel"><span class="ey">RCP pediátrica · ventilación</span><h2>Practicá el ciclo 30:2</h2><p class="stepText learnOnly">En este escenario hay un único reanimador. Después de 30 compresiones se practican 2 ventilaciones. La pantalla no puede evaluar físicamente el sello ni el volumen.</p><p class="stepText examOnly hidden">Completá las dos ventilaciones simuladas.</p><span class="ratioBadge" id="ratioBadge">Un reanimador · 30:2</span><div class="ventTrainer"><div class="breathVisual"><div class="breathHead"></div><div class="airPulse" id="airPulse"></div></div><div class="breathControls"><span>Ventilaciones</span><div class="breathCount" id="breathCount">0/2</div><button class="breathBtn" id="breathBtn">VENTILAR</button></div></div><div class="infantWarning" id="ventDetail"></div><div class="feedback" id="ventFeedback">Realizá dos ventilaciones simuladas.</div><button class="next" id="ventNext" hidden>Continuar al DEA →</button></section>
+
+   <section class="aedCard hidden" id="aedPanel"><span class="ey">DEA</span><h2>Desfibrilador externo automático</h2><p class="stepText learnOnly">Seguí las indicaciones del equipo y asegurate de que nadie toque a la persona durante análisis y descarga.</p><p class="stepText examOnly hidden">Completá la secuencia del DEA.</p><div class="aedPeds hidden" id="aedPeds">En niños y lactantes se prefieren parches y atenuador pediátrico si están disponibles. El DEA debe conectarse cuanto antes.</div><div class="aedBox"><div class="aedDevice"><div class="screen" id="aedScreen">DEA listo. Encendé el equipo.</div><button class="power" id="aedPower" aria-label="Encender DEA">⏻</button><button class="shock" id="aedShock" disabled aria-label="Dar descarga">⚡</button></div><div class="aedSteps"><button class="aedAction" id="padsBtn" disabled>Colocar parches</button><button class="aedAction" id="clearBtn" disabled>Confirmar que nadie toca</button><button class="aedAction" id="resumeBtn" disabled>Reanudar RCP</button></div></div><div class="feedback" id="aedFeedback">Encendé el DEA para comenzar.</div><button class="next" id="finishBtn" hidden>Ver evaluación →</button></section>
+
+   <section class="chokingAction hidden" id="chokingAction"><span class="ey">Desobstrucción</span><h2 id="chokingTitle">Secuencia ante obstrucción grave</h2><p class="stepText learnOnly" id="chokingExplain"></p><p class="stepText examOnly hidden">Ejecutá el ciclo que consideres correcto.</p><div class="actionCounter"><div><span>Golpes en espalda</span><b id="backCount">0/5</b><button id="backBtn">Dar golpe</button></div><div><span id="secondActionLabel">Compresiones</span><b id="abCount">0/5</b><button id="abBtn" disabled>Realizar compresión</button></div></div><div class="feedback" id="chokingFeedback">Comenzá la secuencia.</div><button class="next" id="chokingNext" hidden>Continuar →</button></section>
+
+   <section class="resultCard hidden" id="resultPanel"><span class="ey">Resultado del entrenamiento</span><h2 id="resultTitle">Simulación completada</h2><div class="score"><span id="finalScore">0</span><small>/100</small></div><div class="breakdown" id="breakdown"></div><p id="resultMessage" class="stepText"></p><div class="resultActions"><button class="restart" id="restartBtn">↻ Repetir caso</button><button class="secondary" id="otherCaseBtn">Elegir otro caso</button></div><div class="sources" id="sourceBox"><b>Base educativa</b><br>Guías 2025 de la American Heart Association.</div><div class="resultNote">La puntuación evalúa decisiones y acciones dentro del simulador. No certifica competencia práctica en RCP.</div></section>
   </div>
-  <div class="progress"><i id="progressBar"></i></div>
-  <div class="stats"><div><b id="stepStat">1/7</b><span>etapa</span></div><div><b id="pointsStat">0</b><span>puntos</span></div><div><b id="mistakeStat">0</b><span>errores</span></div></div>
-
-  <div class="workspace">
-    <div class="scene" id="scene" aria-label="Escena de entrenamiento">
-      <span class="roomLabel" id="roomLabel">Escenario virtual · hogar</span>
-      <div class="window"></div>
-      <div class="sceneDecor"></div>
-      <div class="bed">
-        <div class="pillow"></div>
-        <div class="patient" id="patient"><div class="head"></div><div class="torso"><span class="sternum"></span></div><div class="arm a"></div><div class="arm b"></div></div>
-        <div class="blanket"></div>
-      </div>
-      <div class="standingPatient hidden" id="standingPatient"><div class="sHead"></div><div class="sBody"></div><div class="sArm left"></div><div class="sArm right"></div><div class="throatMark">!</div></div>
-      <div class="floorText" id="sceneText"></div>
-    </div>
-
-    <div class="interaction">
-      <section class="panel" id="decisionPanel">
-        <div class="stepTop"><div><span class="stepNumber" id="stepNumber">Paso 1</span><h2 id="stepTitle"></h2></div></div>
-        <p class="stepText" id="stepText"></p>
-        <div class="choices" id="choices"></div>
-        <div class="feedback" id="feedback">Elegí una opción.</div>
-        <button class="next" id="nextBtn" hidden>Siguiente →</button>
-      </section>
-
-      <section class="handsCard hidden" id="handsPanel">
-        <span class="ey">Técnica · posición de manos</span>
-        <h2>¿Dónde colocarías las manos?</h2>
-        <p class="stepText learnOnly">Seleccioná la zona donde apoyarías el talón de una mano antes de comenzar las compresiones.</p>
-        <p class="stepText examOnly hidden">Marcá la zona elegida.</p>
-        <div class="chestTrainer" id="chestTrainer" aria-label="Esquema de tórax para seleccionar posición de manos">
-          <div class="chestHead"></div><div class="chestNeck"></div><div class="chestBody"><span class="chestLine"></span><button class="hotspot high" data-zone="high" aria-label="Parte superior del tórax"></button><button class="hotspot center" data-zone="center" aria-label="Centro del pecho"></button><button class="hotspot low" data-zone="low" aria-label="Parte inferior del tórax"></button></div>
-        </div>
-        <div class="feedback" id="handsFeedback">Tocá una zona del tórax.</div>
-        <button class="next" id="handsNext" hidden>Practicar compresiones →</button>
-      </section>
-
-      <section class="trainer hidden" id="trainer">
-        <div class="trainerTop"><div><span class="ey">Compresiones</span><h2>Entrenador de ritmo</h2></div><button class="metroBtn learnOnly" id="metroBtn" aria-pressed="false">♪ Metrónomo: apagado</button></div>
-        <p class="stepText learnOnly">Objetivo: <b>100–120 compresiones por minuto</b>. Permití el retroceso completo del tórax entre cada compresión. Esta práctica solo mide el ritmo.</p>
-        <p class="stepText examOnly hidden">Realizá 30 compresiones manteniendo el ritmo que consideres correcto.</p>
-        <div class="trainerGrid">
-          <div class="compressWrap"><div class="handsVisual"><span class="hand h1"></span><span class="hand h2"></span></div><button id="compressBtn" class="compressBtn" aria-label="Practicar una compresión">COMPRIMIR</button><p class="smallHelp">Tocá el botón o usá la barra espaciadora · 30 compresiones</p></div>
-          <div class="meter"><div class="metric"><span>Compresiones</span><b><span id="compressionCount">0</span>/30</b></div><div class="metric"><span>Ritmo estimado</span><b><span id="bpm">—</span> <small>/min</small></b></div><div class="rhythm learnOnly"><i class="needle" id="needle"></i></div><div class="metric learnOnly"><span>Estado</span><b id="rhythmStatus" class="rhythmStatus">Empezá</b></div></div>
-        </div>
-        <div class="trainerHelp" id="trainerFeedback"><b>Consejo:</b> buscá un ritmo continuo y regular.</div>
-        <button class="next" id="trainerNext" hidden>Continuar al DEA →</button>
-      </section>
-
-      <section class="aedCard hidden" id="aedPanel">
-        <span class="ey">DEA</span><h2>Desfibrilador externo automático</h2>
-        <p class="stepText learnOnly">Seguí las indicaciones del equipo y asegurate de que nadie toque a la persona durante el análisis y, si corresponde, durante la descarga.</p>
-        <p class="stepText examOnly hidden">Completá la secuencia del DEA.</p>
-        <div class="aedBox">
-          <div class="aedDevice"><div class="screen" id="aedScreen">DEA listo. Encendé el equipo.</div><button class="power" id="aedPower" aria-label="Encender DEA">⏻</button><button class="shock" id="aedShock" disabled aria-label="Dar descarga">⚡</button></div>
-          <div class="aedSteps"><button class="aedAction" id="padsBtn" disabled>Colocar parches</button><button class="aedAction" id="clearBtn" disabled>Confirmar que nadie toca</button><button class="aedAction" id="resumeBtn" disabled>Reanudar RCP</button></div>
-        </div>
-        <div class="feedback" id="aedFeedback">Encendé el DEA para comenzar.</div>
-        <button class="next" id="finishBtn" hidden>Ver evaluación →</button>
-      </section>
-
-      <section class="chokingAction hidden" id="chokingAction">
-        <span class="ey">Maniobra</span><h2>Secuencia ante obstrucción grave</h2>
-        <p class="stepText learnOnly">En un adulto consciente con obstrucción grave, la guía AHA 2025 indica ciclos de <b>5 golpes en la espalda y 5 compresiones abdominales</b>, comenzando por los golpes en la espalda.</p>
-        <p class="stepText examOnly hidden">Elegí y ejecutá la secuencia que consideres correcta.</p>
-        <div class="actionCounter"><div><span>Golpes en espalda</span><b id="backCount">0/5</b><button id="backBtn">Dar golpe</button></div><div><span>Compresiones abdominales</span><b id="abCount">0/5</b><button id="abBtn" disabled>Realizar compresión</button></div></div>
-        <div class="feedback" id="chokingFeedback">Comenzá la secuencia.</div>
-        <button class="next" id="chokingNext" hidden>Continuar →</button>
-      </section>
-
-      <section class="resultCard hidden" id="resultPanel">
-        <span class="ey">Resultado del entrenamiento</span><h2 id="resultTitle">Simulación completada</h2>
-        <div class="score"><span id="finalScore">0</span><small>/100</small></div>
-        <div class="breakdown" id="breakdown"></div>
-        <p id="resultMessage" class="stepText"></p>
-        <div class="resultActions"><button class="restart" id="restartBtn">↻ Repetir caso</button><button class="secondary" id="otherCaseBtn">Elegir otro caso</button></div>
-        <div class="sources"><b>Base educativa</b><br>Esta versión usa como referencia las guías 2025 de la American Heart Association para soporte vital básico adulto y obstrucción por cuerpo extraño. <a href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-basic-life-support" target="_blank" rel="noopener">Consultar guía oficial</a>.</div>
-      </section>
-    </div>
-  </div>
+ </div>
 </section>
 </main>
-<script src="./app.js"></script>
+<script src="./app-v3.js"></script>
 </body>
 </html>
