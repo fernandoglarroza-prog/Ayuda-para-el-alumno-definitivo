@@ -1,0 +1,141 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "piso_boca",
+      "preferredName": "Piso de boca",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral"],
+      "status": "pending-catedra",
+      "modelKey": "piso_boca",
+      "terminology": {"preferred": "Piso de boca", "synonyms": ["región sublingual"], "classicTerms": ["región glososuprahioidea"], "notes": ["Región sublingual y glososuprahioidea no son equivalentes absolutos; usar según contexto topográfico."]},
+      "levels": {
+        "review": {"summary": "Región inferior a la lengua cuyo principal diafragma muscular es el milohioideo; contiene glándulas, conductos, nervios y vasos de gran importancia odontológica.", "blocks": [{"title": "Claves", "content": ["Milohioideo forma el plano muscular principal.", "Por encima: glándula sublingual, conducto submandibular, nervio lingual e hipogloso."]}]},
+        "development": {"summary": "Debe estudiarse por planos y espacios, distinguiendo lo que queda superior e inferior al milohioideo y las comunicaciones posteriores.", "blocks": [
+          {"title": "Plano muscular", "content": ["Milohioideo forma un diafragma en herradura desde línea milohioidea a rafe medio e hioides.", "Genihioideo se ubica superior al milohioideo en la región medial."]},
+          {"title": "Espacio sublingual", "content": ["Superior al milohioideo; contiene glándula sublingual, conducto submandibular, nervio lingual, parte profunda de submandibular, vasos sublinguales y nervio hipogloso en planos relacionados."]},
+          {"title": "Espacio submandibular", "content": ["Inferior al milohioideo en región posterior; se relaciona con la porción superficial de glándula submandibular.", "Comunica con espacio sublingual alrededor del borde posterior libre del milohioideo."]},
+          {"title": "Conducto submandibular", "content": ["Avanza anteriormente hacia la carúncula sublingual a ambos lados del frenillo."]}
+        ]},
+        "technical": {"summary": "La comprensión técnica depende de reconstruir las relaciones tridimensionales entre nervio lingual, conducto submandibular, hipogloso y glándulas.", "blocks": [
+          {"title": "Nervio lingual y conducto", "content": ["El nervio lingual se aproxima al conducto submandibular y cambia de relación, pasando de una posición lateral/superior a una relación inferior y luego medial respecto del conducto según el segmento.", "No debe enseñarse como un cruce puntual aislado sino como una relación espacial progresiva."]},
+          {"title": "Hipogloso", "content": ["El XII discurre más profundo/inferior que el lingual en buena parte de la región y aporta motricidad lingual, no sensibilidad gustativa."]},
+          {"title": "Glándula sublingual", "content": ["Se apoya sobre milohioideo y eleva el pliegue sublingual; drena por múltiples conductos menores y, en algunos casos, conducto mayor asociado al submandibular."]},
+          {"title": "Submandibular", "content": ["La porción profunda rodea el borde posterior del milohioideo y se continúa con el conducto submandibular."]},
+          {"title": "Vasos", "content": ["Ramas sublinguales y submentonianas participan en irrigación; el patrón exacto presenta variaciones y anastomosis."]},
+          {"title": "Linfáticos", "content": ["Drenaje de piso y lengua anterior puede dirigirse a submentonianos, submandibulares y cervicales profundos según territorio, con cruces de línea media especialmente relevantes en lengua."]},
+          {"title": "Correlación odontológica", "content": ["Cirugía del piso, sialolitiasis, anestesia lingual, propagación de infecciones y traumatismos deben comprenderse desde la topografía, sin convertir la ficha en protocolo clínico."]}
+        ]},
+        "oral": {"summary": "En oral debe describirse por planos y relaciones, no solo enumerar estructuras.", "blocks": [{"title": "Orden", "content": ["límites y milohioideo", "espacio sublingual", "espacio submandibular", "lingual-conducto", "hipogloso", "glándulas y vasos", "linfáticos"]}]}
+      },
+      "relations": [
+        {"target": "lengua", "type": "adjacent", "note": "La lengua forma gran parte del límite superior funcional."},
+        {"target": "submandibular", "type": "contains", "note": "La porción profunda y el conducto submandibular se relacionan con el piso."},
+        {"target": "v3", "type": "clinical-relation", "note": "El nervio lingual de V3 recorre la región."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa el piso de boca por planos y relacione nervio lingual, conducto submandibular e hipogloso.", "requiredElements": ["milohioideo", "espacio sublingual", "espacio submandibular", "nervio lingual", "conducto submandibular", "hipogloso", "glándula sublingual"], "followUp": ["¿Cómo se comunican los espacios sublingual y submandibular?"], "modelAnswer": "El milohioideo forma el diafragma principal. Por encima se ubica el espacio sublingual con glándula sublingual, conducto submandibular, nervio lingual y estructuras relacionadas; inferiormente y en región posterior se encuentra el espacio submandibular. Ambos se comunican alrededor del borde posterior del milohioideo. El lingual cambia su relación con el conducto y el hipogloso discurre en un plano más profundo/inferior."}], "criticalErrors": ["Afirmar que el hipogloso lleva gusto.", "Ubicar el nervio lingual dentro del conducto submandibular."]},
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "09-topografia-bucal-linfaticos-anestesia.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "lengua",
+      "preferredName": "Lengua",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral", "Unidad VII · Estesiología"],
+      "status": "pending-catedra",
+      "modelKey": "lengua",
+      "terminology": {"preferred": "Lengua", "synonyms": [], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Órgano muscular de cavidad oral y orofaringe, dividido en ápice, cuerpo y raíz, con motricidad, sensibilidad general y gusto distribuidos por nervios diferentes.", "blocks": [{"title": "Regla rápida", "content": ["2/3 anteriores: sensibilidad general por lingual (V3), gusto por cuerda del tímpano (VII).", "1/3 posterior: sensibilidad general y gusto principalmente por IX.", "Motor: XII salvo palatogloso, principalmente X por plexo faríngeo."]}]},
+        "development": {"summary": "Se estudian superficies, papilas, musculatura intrínseca/extrínseca, inervación, irrigación y drenaje linfático.", "blocks": [
+          {"title": "Morfología", "content": ["Surco terminal en V separa aproximadamente dos tercios anteriores del tercio posterior; foramen ciego en su vértice.", "Papilas filiformes, fungiformes, circunvaladas y foliadas con distribución y función diferentes."]},
+          {"title": "Músculos intrínsecos", "content": ["Longitudinal superior e inferior, transverso y vertical; modifican la forma de la lengua."]},
+          {"title": "Músculos extrínsecos", "content": ["Geniogloso, hiogloso, estilogloso y palatogloso; modifican posición global."]},
+          {"title": "Irrigación", "content": ["Principalmente arteria lingual con ramas dorsal, profunda y sublingual según territorio."]}
+        ]},
+        "technical": {"summary": "El nivel técnico separa modalidad nerviosa de territorio anatómico y añade la complejidad linfática de la lengua.", "blocks": [
+          {"title": "Motricidad", "content": ["XII inerva músculos intrínsecos y extrínsecos excepto palatogloso, que recibe fibras por plexo faríngeo principalmente del X."]},
+          {"title": "Sensibilidad general anterior", "content": ["Nervio lingual de V3 para los dos tercios anteriores, con excepción funcional de las papilas circunvaladas para gusto y sensibilidad especial asociada al IX."]},
+          {"title": "Gusto anterior", "content": ["Cuerda del tímpano (VII) se une al lingual y conduce fibras gustativas de gran parte de los dos tercios anteriores."]},
+          {"title": "Tercio posterior", "content": ["IX aporta sensibilidad general y gusto; región epiglótica/posterior recibe contribución del X."]},
+          {"title": "Linfáticos", "content": ["Ápice puede drenar a submentonianos; bordes laterales anteriores a submandibulares; región central/anterior y posterior a cervicales profundos con drenaje bilateral frecuente.", "La lengua cruza la línea media linfáticamente, por lo que no debe enseñarse como territorios laterales totalmente aislados."]},
+          {"title": "Relaciones musculares", "content": ["Hiogloso es referencia para arteria lingual profunda a él y para nervio lingual/hipogloso más superficiales en relaciones topográficas clásicas."]}
+        ]},
+        "oral": {"summary": "Una buena respuesta separa explícitamente motricidad, sensibilidad general, gusto, irrigación y linfáticos.", "blocks": [{"title": "Orden", "content": ["morfología", "músculos", "motor", "sensibilidad general", "gusto", "irrigación", "linfáticos"]}]}
+      },
+      "relations": [
+        {"target": "v3", "type": "innervates", "note": "El nervio lingual aporta sensibilidad general a los dos tercios anteriores."},
+        {"target": "piso_boca", "type": "adjacent", "note": "La lengua descansa sobre el piso y se relaciona con glándulas y conductos sublinguales."}
+      ],
+      "exam": {"questions": [{"prompt": "Separe motricidad, sensibilidad general y gusto de la lengua y agregue drenaje linfático.", "requiredElements": ["XII", "palatogloso X", "lingual V3", "cuerda del tímpano VII", "IX", "X", "linfáticos bilaterales"], "followUp": ["¿Por qué las papilas circunvaladas son una excepción topográfica importante?"], "modelAnswer": "La motricidad depende del XII salvo palatogloso por el X. La sensibilidad general de los dos tercios anteriores es del lingual V3 y el gusto del VII por cuerda del tímpano; las circunvaladas se asocian al IX. El tercio posterior depende principalmente del IX y la región epiglótica del X. El drenaje linfático puede cruzar la línea media y alcanza cadenas submentonianas, submandibulares y cervicales profundas según territorio."}], "criticalErrors": ["Afirmar que el facial da sensibilidad general a la lengua.", "Atribuir toda la inervación motora al trigémino."]},
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "16-profundizacion-pares-craneales-estesiologia.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "parotida",
+      "preferredName": "Glándula parótida",
+      "category": "gland",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral", "Unidad V · Neurología"],
+      "status": "pending-catedra",
+      "modelKey": "parotida",
+      "terminology": {"preferred": "Glándula parótida", "synonyms": ["parótida"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Mayor glándula salival, ubicada en región preauricular/retromandibular; su conducto cruza masetero y perfora buccinador para abrir en el vestíbulo.", "blocks": [{"title": "Vía secretomotora", "content": ["IX → nervio timpánico/plexo timpánico → petroso menor → ganglio ótico → auriculotemporal → parótida."]}]},
+        "development": {"summary": "La glándula debe describirse por situación, relaciones, contenido intraglandular, conducto y vías nerviosas.", "blocks": [
+          {"title": "Topografía", "content": ["Región preauricular y retromandibular, relacionada con rama mandibular, masetero y estructuras cervicales profundas."]},
+          {"title": "Contenido intraglandular", "content": ["De superficial a profundo, relación clásica con nervio facial y sus ramas, vena retromandibular y carótida externa con ramas terminales."]},
+          {"title": "Conducto parotídeo", "content": ["Sale por borde anterior, cruza masetero, gira medialmente y perfora buccinador para abrir en vestíbulo frente al segundo molar superior aproximadamente."]}
+        ]},
+        "technical": {"summary": "El punto clave es no confundir el paso del facial por la parótida con la inervación secretomotora de la glándula.", "blocks": [
+          {"title": "Parasimpático", "content": ["Preganglionares del IX viajan por nervio timpánico, plexo timpánico y nervio petroso menor hasta ganglio ótico.", "Posganglionares se incorporan al auriculotemporal de V3 y llegan a la glándula."]},
+          {"title": "Simpático", "content": ["Fibras vasomotoras posganglionares proceden de plexos periarteriales cervicales y acompañan vasos hacia la glándula."]},
+          {"title": "Sensibilidad", "content": ["Auriculotemporal y auricular mayor participan en sensibilidad de diferentes componentes/regiones."]},
+          {"title": "Nervio facial", "content": ["Forma un plexo intraparotídeo y se divide en ramas terminales motoras para expresión facial, pero no es la vía secretomotora parasimpática de la glándula."]},
+          {"title": "Relaciones vasculares", "content": ["Vena retromandibular y carótida externa atraviesan la región glandular profunda en relaciones variables."]},
+          {"title": "Correlación oral", "content": ["La papila del conducto parotídeo debe vincularse con el vestíbulo y el segundo molar superior como referencia aproximada, no como punto milimétrico universal."]}
+        ]},
+        "oral": {"summary": "En oral se exige topografía, contenido intraglandular, recorrido del conducto y vía parasimpática completa.", "blocks": [{"title": "Orden", "content": ["situación", "relaciones", "facial/vena/carótida", "conducto", "parasimpático IX", "sensibilidad"]}]}
+      },
+      "relations": [
+        {"target": "v3", "type": "distributed-by", "note": "El auriculotemporal conduce fibras secretomotoras posganglionares a la parótida."},
+        {"target": "pterigoideo_lateral", "type": "adjacent", "note": "El ganglio ótico y auriculotemporal se relacionan con la fosa infratemporal, funcionalmente conectada con el aparato masticatorio."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa topografía, contenido intraglandular, conducto y vía secretomotora de la parótida.", "requiredElements": ["preauricular/retromandibular", "facial", "vena retromandibular", "carótida externa", "conducto sobre masetero", "buccinador", "IX", "petroso menor", "ganglio ótico", "auriculotemporal"], "followUp": ["¿Por qué es incorrecto decir que el facial inerva secretomotoramente a la parótida?"], "modelAnswer": "La parótida ocupa la región preauricular/retromandibular. Se relaciona intraglandularmente con facial, vena retromandibular y carótida externa. El conducto cruza masetero y perfora buccinador. La secreción parasimpática depende del IX: timpánico, plexo timpánico, petroso menor, ganglio ótico y luego auriculotemporal."}], "criticalErrors": ["Afirmar que el facial proporciona la inervación secretomotora parotídea.", "Decir que el conducto perfora el masetero en vez del buccinador."]},
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "16-profundizacion-pares-craneales-estesiologia.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "submandibular",
+      "preferredName": "Glándula submandibular",
+      "category": "gland",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral", "Unidad V · Neurología"],
+      "status": "pending-catedra",
+      "modelKey": "submandibular",
+      "terminology": {"preferred": "Glándula submandibular", "synonyms": [], "classicTerms": ["glándula submaxilar"], "notes": ["Preferir submandibular."]},
+      "levels": {
+        "review": {"summary": "Glándula salival mayor con porción superficial e inferior al milohioideo y porción profunda que rodea su borde posterior y continúa con el conducto submandibular.", "blocks": [{"title": "Parasimpático", "content": ["VII → cuerda del tímpano → nervio lingual → ganglio submandibular → glándula."]}]},
+        "development": {"summary": "Su anatomía depende de la relación con milohioideo, piso de boca, nervio lingual y conducto de Wharton.", "blocks": [
+          {"title": "Porción superficial", "content": ["Principalmente en región submandibular, inferior al milohioideo."]},
+          {"title": "Porción profunda", "content": ["Rodea el borde posterior del milohioideo y entra al espacio sublingual."]},
+          {"title": "Conducto", "content": ["Avanza anteriormente hasta la carúncula sublingual a cada lado del frenillo lingual."]}
+        ]},
+        "technical": {"summary": "El cruce con el nervio lingual y la vía parasimpática son los puntos técnicos centrales.", "blocks": [
+          {"title": "Lingual-conducto", "content": ["El nervio lingual rodea/cambia de relación con el conducto submandibular a lo largo del piso; esta relación debe entenderse tridimensionalmente."]},
+          {"title": "Parasimpático", "content": ["Cuerda del tímpano del VII se une al lingual de V3; fibras preganglionares sinaptan en ganglio submandibular.", "Posganglionares llegan a submandibular y, por ramas asociadas, sublingual y glándulas menores del piso."]},
+          {"title": "Hipogloso", "content": ["Se ubica en un plano más profundo/inferior respecto de muchas relaciones del conducto y lingual."]},
+          {"title": "Irrigación", "content": ["Ramas de facial y lingual/submentoniana contribuyen con variaciones anatómicas."]},
+          {"title": "Correlación", "content": ["La anatomía del conducto y su trayecto ayuda a comprender sialolitiasis y cirugía del piso sin convertir la ficha en guía terapéutica."]},
+          {"title": "Término clásico", "content": ["Conducto de Wharton es epónimo aceptable como sinónimo, pero la interfaz debe mostrar primero conducto submandibular."]}
+        ]},
+        "oral": {"summary": "La respuesta debe integrar las dos porciones de la glándula, el borde posterior del milohioideo, el conducto y el nervio lingual.", "blocks": [{"title": "Orden", "content": ["porción superficial", "porción profunda", "conducto", "lingual", "ganglio submandibular", "parasimpático"]}]}
+      },
+      "relations": [
+        {"target": "piso_boca", "type": "contains", "note": "La porción profunda y el conducto se ubican en el piso de boca."},
+        {"target": "v3", "type": "distributed-by", "note": "El nervio lingual conduce fibras parasimpáticas preganglionares del VII hacia el ganglio submandibular."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa la glándula submandibular, su conducto y la vía parasimpática.", "requiredElements": ["porción superficial", "porción profunda", "milohioideo", "conducto submandibular", "nervio lingual", "cuerda del tímpano", "ganglio submandibular"], "followUp": ["Explique el cambio de relación entre nervio lingual y conducto."], "modelAnswer": "La glándula tiene una porción superficial inferior al milohioideo y una profunda que rodea su borde posterior. De esta continúa el conducto hacia la carúncula sublingual. El lingual cambia de relación con el conducto. El parasimpático proviene del VII por cuerda del tímpano, viaja con el lingual y sinapta en el ganglio submandibular."}], "criticalErrors": ["Afirmar que el nervio lingual es rama del facial.", "Confundir el conducto submandibular con el parotídeo."]},
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "18-terminologia-normalizada.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": []
+    }
+  ]
+}
