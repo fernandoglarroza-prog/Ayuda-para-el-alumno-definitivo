@@ -1,0 +1,149 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "primer_molar_superior",
+      "preferredName": "Primer molar superior permanente",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "pending-catedra",
+      "modelKey": "primer_molar_superior",
+      "fdi": [16, 26],
+      "terminology": {"preferred": "Primer molar superior permanente", "synonyms": ["16/26", "primer molar maxilar"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Molar superior de gran volumen, típicamente con cuatro cúspides principales, cresta oblicua y tres raíces: mesiovestibular, distovestibular y palatina.", "blocks": [{"title": "Rasgos rápidos", "content": ["Cúspide mesiopalatina generalmente voluminosa.", "Cresta oblicua mesiopalatina-distovestibular.", "Tubérculo de Carabelli de expresión variable.", "Tres raíces típicas."]}]},
+        "development": {"summary": "La identificación se basa en contorno coronario, cúspides, crestas, fosas, surcos y patrón radicular, además de la lateralidad.", "blocks": [
+          {"title": "Cara vestibular", "content": ["Se observan cúspides mesiovestibular y distovestibular separadas por surco vestibular.", "La mesiovestibular suele ser más voluminosa; la línea cervical presenta menor curvatura que en dientes anteriores."]},
+          {"title": "Cara palatina", "content": ["Predomina la cúspide mesiopalatina; la distopalatina es menor.", "Puede existir tubérculo de Carabelli en la cara palatina de la mesiopalatina con tamaño muy variable."]},
+          {"title": "Cara oclusal", "content": ["Contorno romboidal frecuente.", "Fosas central y distal, fositas y surcos de desarrollo.", "Cresta oblicua entre cúspides mesiopalatina y distovestibular."]},
+          {"title": "Raíces", "content": ["Tres raíces: mesiovestibular, distovestibular y palatina; esta última suele ser la más voluminosa.", "La divergencia radicular es mayor habitualmente en el primer molar que en el segundo."]}
+        ]},
+        "technical": {"summary": "El nivel técnico exige describir cada cara, contactos, relieves, raíces, anatomía interna típica y relaciones con seno maxilar, marcando siempre la variabilidad.", "blocks": [
+          {"title": "Lóbulos y cúspides", "content": ["Las cuatro cúspides principales representan lóbulos de desarrollo; Carabelli es un relieve accesorio variable y no una cúspide principal obligatoria."]},
+          {"title": "Cresta oblicua", "content": ["Une la cresta de la cúspide mesiopalatina con la distovestibular y constituye un rasgo diagnóstico de molares superiores."]},
+          {"title": "Contactos y troneras", "content": ["Los contactos proximales se ubican más oclusalmente en mesial que en distal en términos generales, con anatomía dependiente del individuo y desgaste."]},
+          {"title": "Raíz mesiovestibular", "content": ["Presenta anatomía interna compleja; la existencia de un segundo conducto mesiovestibular es frecuente, pero no debe convertirse en regla anatómica universal para cada pieza."]},
+          {"title": "Raíz palatina", "content": ["Suele ser la más larga/voluminosa y se dirige palatinamente, separándose de las vestibulares."]},
+          {"title": "Relación sinusal", "content": ["Las raíces pueden aproximarse o proyectarse sobre el piso del seno maxilar; la relación tridimensional real varía y debe evaluarse con el método de imagen apropiado."]},
+          {"title": "Diferencial", "content": ["El segundo molar suele ser más pequeño, con raíces más convergentes y mayor frecuencia de reducción de la cúspide distopalatina."]}
+        ]},
+        "oral": {"summary": "En oral debe identificarse la pieza, describirse por caras y terminar con raíces, anatomía interna típica, lateralidad y relación sinusal.", "blocks": [{"title": "Orden", "content": ["identificación FDI", "vestibular", "palatina", "mesial/distal", "oclusal", "raíces", "conductos", "diferencial con 17/27", "seno maxilar"]}]}
+      },
+      "relations": [
+        {"target": "maxilar", "type": "contains", "note": "Se aloja en el proceso alveolar del maxilar."},
+        {"target": "v2", "type": "innervates", "note": "Inervación por plexo alveolar superior, principalmente PSA con variación de MSA en la raíz mesiovestibular."},
+        {"target": "seno_maxilar_radiologia", "type": "radiographic-relation", "note": "Las raíces posteriores deben evaluarse en relación con el piso sinusal."}
+      ],
+      "exam": {"questions": [{"prompt": "Identifique y describa un primer molar superior permanente por caras, raíces y relaciones.", "requiredElements": ["16/26", "cuatro cúspides", "cresta oblicua", "Carabelli variable", "tres raíces", "mesiovestibular compleja", "relación con seno maxilar"], "followUp": ["¿Cómo lo diferencia de un segundo molar superior?", "¿Qué importancia tiene la raíz mesiovestibular en anatomía interna?"], "modelAnswer": "El 16/26 presenta cuatro cúspides principales, contorno oclusal romboidal, cresta oblicua entre mesiopalatina y distovestibular y posible Carabelli. Tiene tres raíces típicas: mesiovestibular, distovestibular y palatina. La mesiovestibular puede mostrar configuración interna compleja y las raíces se relacionan de manera variable con el seno maxilar."}], "criticalErrors": ["Afirmar que Carabelli está siempre presente.", "Decir que el primer molar superior tiene típicamente dos raíces.", "Presentar un número fijo de conductos como universal."]},
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Pendiente confirmar profundidad endodóntica requerida por la cátedra y si se incluirá clasificación específica de conductos."]
+    },
+    {
+      "id": "primer_molar_inferior",
+      "preferredName": "Primer molar inferior permanente",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "pending-catedra",
+      "modelKey": "primer_molar_inferior",
+      "fdi": [36, 46],
+      "terminology": {"preferred": "Primer molar inferior permanente", "synonyms": ["36/46", "primer molar mandibular"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "Molar inferior generalmente pentacuspídeo, con contorno oclusal pentagonal y dos raíces típicas: mesial y distal.", "blocks": [{"title": "Rasgos rápidos", "content": ["Cinco cúspides frecuentes: tres vestibulares y dos linguales.", "Dos raíces: mesial y distal.", "Mayor dimensión mesiodistal que el segundo molar inferior."]}]},
+        "development": {"summary": "Se identifica por su patrón cuspídeo, surcos vestibulares, contorno oclusal y divergencia radicular.", "blocks": [
+          {"title": "Cara vestibular", "content": ["Cúspides mesiovestibular, distovestibular y distal, separadas por surcos vestibulares."]},
+          {"title": "Cara lingual", "content": ["Cúspides mesiolingual y distolingual generalmente más altas y puntiagudas que las vestibulares."]},
+          {"title": "Cara oclusal", "content": ["Contorno pentagonal frecuente, fosas y surcos principales que separan cinco cúspides."]},
+          {"title": "Raíces", "content": ["Raíz mesial ancha vestibulolingualmente y con surcos longitudinales; raíz distal más redondeada, con variaciones."]}
+        ]},
+        "technical": {"summary": "La descripción técnica integra patrón de cinco cúspides, contactos, dos raíces, complejidad interna y relación con conducto mandibular/corticales.", "blocks": [
+          {"title": "Cúspides", "content": ["Mesiovestibular y mesiolingual ocupan el sector mesial; distal agrega el quinto lóbulo/cúspide característica en el patrón común."]},
+          {"title": "Surcos", "content": ["Surcos vestibulares separan las tres cúspides vestibulares; el patrón oclusal se organiza alrededor de fosas central y triangulares con variación secundaria."]},
+          {"title": "Raíz mesial", "content": ["Suele contener configuraciones internas más complejas y múltiples conductos con variaciones anatómicas."]},
+          {"title": "Raíz distal", "content": ["Suele ser más redondeada y puede presentar uno o más conductos; no debe fijarse una única configuración universal."]},
+          {"title": "Diferencial con segundo molar", "content": ["Segundo molar inferior suele tener cuatro cúspides más simétricas y patrón de surcos en cruz, con raíces menos divergentes."]},
+          {"title": "Relación mandibular", "content": ["Las raíces se encuentran superiormente al conducto mandibular en relaciones variables; la distancia vertical y bucolingual debe evaluarse individualmente."]},
+          {"title": "Periodonto y corticales", "content": ["La morfología radicular se relaciona con septos interradiculares y espesor variable de cortical vestibular/lingual."]}
+        ]},
+        "oral": {"summary": "La pieza debe identificarse por grupo, arcada y lado y describirse por caras antes de pasar a raíces y relación regional.", "blocks": [{"title": "Orden", "content": ["36/46", "caras", "cinco cúspides", "surcos/fosas", "dos raíces", "anatomía interna típica", "diferencial 37/47", "conducto mandibular"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "contains", "note": "Se aloja en el proceso alveolar mandibular."},
+        {"target": "v3", "type": "innervates", "note": "La inervación pulpar depende del nervio alveolar inferior."},
+        {"target": "conducto_mandibular_radiologia", "type": "radiographic-relation", "note": "Debe reconocerse la relación de las raíces con el conducto y corticales."}
+      ],
+      "exam": {"questions": [{"prompt": "Identifique y describa un primer molar inferior permanente y diferéncielo del segundo.", "requiredElements": ["36/46", "cinco cúspides", "contorno pentagonal", "raíz mesial", "raíz distal", "segundo molar de cuatro cúspides frecuente", "relación con conducto mandibular"], "followUp": ["¿Qué raíz suele presentar mayor complejidad interna?"], "modelAnswer": "El 36/46 presenta habitualmente cinco cúspides, contorno oclusal pentagonal y dos raíces, mesial y distal. La raíz mesial suele ser más ancha vestibulolingualmente y con anatomía interna compleja. Se diferencia del segundo molar, que suele mostrar cuatro cúspides más simétricas y patrón en cruz. Sus raíces se relacionan de manera variable con el conducto mandibular."}], "criticalErrors": ["Afirmar que el primer molar inferior tiene típicamente tres raíces.", "Confundir el patrón de cuatro cúspides del segundo con el primero como regla general."]},
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md", "19-banco-oral-tecnico.md"],
+      "validationNotes": ["Pendiente confirmar profundidad de anatomía interna requerida por cátedra."]
+    },
+    {
+      "id": "conducto_mandibular_radiologia",
+      "preferredName": "Conducto mandibular · correlación radiográfica",
+      "category": "radiology",
+      "paUnits": ["Unidad I · Osteología", "Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "conducto_mandibular",
+      "terminology": {"preferred": "Conducto mandibular", "synonyms": ["canal mandibular"], "classicTerms": ["conducto dentario inferior"], "notes": ["En español anatómico del proyecto se preferirá conducto mandibular."]},
+      "levels": {
+        "review": {"summary": "Trayecto intraóseo del paquete alveolar inferior; en panorámica se proyecta como banda radiolúcida con bordes corticales variables y en CBCT puede seguirse tridimensionalmente.", "blocks": [{"title": "Clave", "content": ["Panorámica: orientación 2D.", "CBCT: posición vertical y bucolingual corte a corte."]}]},
+        "development": {"summary": "La lectura debe correlacionar el trayecto anatómico desde foramen mandibular hacia cuerpo, salida mentoniana y continuación incisiva.", "blocks": [
+          {"title": "Panorámica", "content": ["Banda radiolúcida delimitada en grado variable por corticales radiopacas, con definición no uniforme a lo largo del trayecto."]},
+          {"title": "CBCT coronal", "content": ["Permite estimar relación bucolingual del conducto respecto de corticales y raíces."]},
+          {"title": "CBCT sagital", "content": ["Ayuda a seguir continuidad anteroposterior y relación vertical con raíces."]},
+          {"title": "CBCT axial", "content": ["Muestra el trayecto transversal y la relación espacial con cortical vestibular/lingual."]}
+        ]},
+        "technical": {"summary": "La técnica debe enseñarse como correlación anatómica, destacando las limitaciones de la proyección panorámica y la necesidad de reconstrucciones multiplanares para relaciones finas.", "blocks": [
+          {"title": "Superposición", "content": ["Una aparente superposición raíz-conducto en panorámica no demuestra contacto tridimensional."]},
+          {"title": "Corticalización", "content": ["Los bordes corticales del conducto pueden variar en visibilidad y grosor; no debe usarse una sola apariencia como regla absoluta."]},
+          {"title": "Bifurcaciones", "content": ["Canales accesorios/bífidos existen y pueden modificar la lectura anatómica."]},
+          {"title": "Foramen mentoniano", "content": ["Debe seguirse la continuidad del conducto hasta la salida mentoniana y la continuación incisiva, evitando confundir foramen mentoniano con radiolucencia periapical."]},
+          {"title": "MPR", "content": ["Las reconstrucciones axial, coronal y sagital deben correlacionarse entre sí; un render 3D no reemplaza la revisión multiplanar."]},
+          {"title": "Seguridad académica", "content": ["El simulador enseña anatomía normal y orientación, no decide indicación clínica ni diagnostica compromiso neurovascular."]}
+        ]},
+        "oral": {"summary": "El alumno debe justificar qué puede y qué no puede inferirse en panorámica frente a CBCT.", "blocks": [{"title": "Pregunta guía", "content": ["¿Por qué una panorámica no define la posición bucolingual del conducto?", "¿Qué aporta cada plano CBCT?", "¿Cómo confirmarías continuidad con foramen mentoniano?"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "radiographic-relation", "note": "El conducto se encuentra dentro de rama/cuerpo mandibular."},
+        {"target": "primer_molar_inferior", "type": "radiographic-relation", "note": "Las raíces posteriores pueden superponerse en 2D y requieren interpretación tridimensional cuando corresponda."},
+        {"target": "v3", "type": "contains", "note": "Contiene el nervio alveolar inferior, rama de V3, junto con vasos homónimos."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique cómo reconoce y sigue el conducto mandibular en panorámica y CBCT y qué limitación tiene cada método.", "requiredElements": ["banda radiolúcida", "bordes corticales", "superposición 2D", "axial", "coronal", "sagital", "posición bucolingual", "foramen mentoniano"], "followUp": ["¿Por qué superposición no equivale a contacto?"], "modelAnswer": "En panorámica se reconoce como una banda radiolúcida con corticales variables y sirve para orientar el trayecto, pero la superposición impide conocer la dimensión bucolingual. En CBCT se correlacionan axial, coronal y sagital para ubicar el conducto respecto de raíces y corticales y seguir su continuidad hacia foramen mentoniano."}], "criticalErrors": ["Afirmar que una panorámica determina por sí sola contacto tridimensional.", "Confundir reconstrucción 3D con revisión multiplanar completa."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md", "01-osteologia.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "seno_maxilar_radiologia",
+      "preferredName": "Seno maxilar · correlación radiográfica",
+      "category": "radiology",
+      "paUnits": ["Unidad I · Osteología", "Unidad VII · Estesiología", "Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "seno_maxilar",
+      "terminology": {"preferred": "Seno maxilar", "synonyms": ["antro maxilar"], "classicTerms": ["antro de Highmore"], "notes": ["Preferir seno maxilar; epónimo solo como término histórico si la cátedra lo usa."]},
+      "levels": {
+        "review": {"summary": "Cavidad neumática del cuerpo maxilar; en panorámica se proyecta como área radiolúcida y en CBCT se estudia su relación tridimensional con raíces, paredes y cavidad nasal.", "blocks": [{"title": "Clave", "content": ["Piso sinusal cercano a dientes posteriores con amplia variación individual.", "La superposición 2D no demuestra penetración radicular."]}]},
+        "development": {"summary": "El reconocimiento combina anatomía del maxilar con límites sinusales y relaciones odontológicas.", "blocks": [
+          {"title": "Panorámica", "content": ["Radiolucidez sobre dientes posteriores delimitada por una cortical radiopaca del piso; pueden observarse septos o extensiones variables."]},
+          {"title": "CBCT coronal", "content": ["Muestra relación vertical entre piso sinusal y raíces y permite evaluar paredes laterales/mediales."]},
+          {"title": "CBCT sagital", "content": ["Permite seguir extensión anteroposterior y relación con grupos dentarios."]},
+          {"title": "CBCT axial", "content": ["Muestra extensión mediolateral, relación con paredes nasal/lateral y septos en cortes adecuados."]}
+        ]},
+        "technical": {"summary": "La lectura técnica separa proyección radiográfica de relación anatómica real y reconoce la variabilidad de septos, neumatización y proximidad radicular.", "blocks": [
+          {"title": "Piso", "content": ["El piso puede situarse superior, al mismo nivel o extenderse inferiormente entre raíces según neumatización y anatomía individual."]},
+          {"title": "Septos", "content": ["Tabiques óseos sinusales pueden modificar la anatomía interna y su representación multiplanar."]},
+          {"title": "Relación con cavidad nasal", "content": ["La pared medial se relaciona con la pared lateral de la cavidad nasal y el complejo de drenaje sinusal, cuya descripción fina depende del nivel de la materia."]},
+          {"title": "Raíces", "content": ["Molares y premolares superiores pueden proyectarse sobre el piso en panorámica sin que exista contacto o protrusión real."]},
+          {"title": "MPR", "content": ["La relación debe evaluarse correlacionando planos, evitando depender solo del render volumétrico."]},
+          {"title": "Error frecuente", "content": ["No interpretar una línea de superposición panorámica como comunicación oroantral ni como patología sin correlación clínica/radiográfica adecuada."]}
+        ]},
+        "oral": {"summary": "El alumno debe explicar anatomía normal, proyección panorámica y cómo CBCT resuelve la relación raíz-seno en tres dimensiones.", "blocks": [{"title": "Pregunta guía", "content": ["¿Por qué la panorámica puede exagerar cercanía raíz-seno?", "¿Qué plano CBCT usarías para comprobar la relación vertical y cuál para extensión anteroposterior?"]}]}
+      },
+      "relations": [
+        {"target": "maxilar", "type": "contains", "note": "El seno ocupa el cuerpo del maxilar."},
+        {"target": "primer_molar_superior", "type": "radiographic-relation", "note": "Las raíces del primer molar pueden aproximarse al piso sinusal con gran variación."},
+        {"target": "v2", "type": "clinical-relation", "note": "Ramas alveolares superiores e infraorbitarias se relacionan con paredes del maxilar y mucosa sinusal."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique cómo se reconoce el seno maxilar en panorámica y CBCT y cómo interpreta su relación con raíces posteriores.", "requiredElements": ["radiolucidez panorámica", "piso cortical", "superposición", "coronal", "sagital", "axial", "variación individual", "septos"], "followUp": ["¿Por qué una raíz proyectada dentro del seno en 2D no demuestra penetración real?"], "modelAnswer": "En panorámica el seno se ve radiolúcido con piso cortical radiopaco, pero la proyección puede superponer raíces. En CBCT se correlacionan cortes coronal, sagital y axial para establecer la relación real con piso, paredes y septos. La proximidad es variable y no puede inferirse tridimensionalmente a partir de una sola proyección 2D."}], "criticalErrors": ["Afirmar que toda superposición panorámica significa que la raíz está dentro del seno.", "Presentar la relación raíz-seno como fija para todas las personas."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md", "01-osteologia.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": []
+    }
+  ]
+}
