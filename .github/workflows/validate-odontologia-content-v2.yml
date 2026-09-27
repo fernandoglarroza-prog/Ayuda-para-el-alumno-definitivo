@@ -1,0 +1,43 @@
+name: Validar contenido V2 Odontología
+
+on:
+  push:
+    branches:
+      - feature/simulador-odontologia-craneo-3d
+    paths:
+      - 'simulador-odontologia/content-v2/**'
+      - '.github/workflows/validate-odontologia-content-v2.yml'
+  pull_request:
+    paths:
+      - 'simulador-odontologia/content-v2/**'
+      - '.github/workflows/validate-odontologia-content-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content:
+    name: Integridad académica estructurada
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validar referencias y profundidad
+        working-directory: simulador-odontologia/content-v2/data
+        run: node validate-content.mjs
+
+      - name: Compilar corpus
+        working-directory: simulador-odontologia/content-v2/data
+        run: node compile-content.mjs
+
+      - name: Verificar archivo compilado
+        working-directory: simulador-odontologia/content-v2/data
+        run: |
+          test -s compiled-v2.json
+          node -e "const d=require('./compiled-v2.json'); if(!d.entries?.length) process.exit(1); console.log('Fichas compiladas:', d.entries.length, 'Preguntas:', d.oralBank?.length || 0)"
