@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0-structured-draft",
+  "terms": [
+    {"preferred": "Mandíbula", "target": "mandibula", "synonyms": ["hueso mandibular"], "classicTerms": ["maxilar inferior"]},
+    {"preferred": "Maxilar", "target": "maxilar", "synonyms": ["hueso maxilar"], "classicTerms": ["maxilar superior"]},
+    {"preferred": "Hueso temporal", "target": "temporal", "synonyms": ["temporal"], "classicTerms": []},
+    {"preferred": "Esfenoides", "target": "esfenoides", "synonyms": ["hueso esfenoides"], "classicTerms": []},
+    {"preferred": "Fosa infratemporal", "target": "fosa_infratemporal", "synonyms": [], "classicTerms": ["fosa cigomática"]},
+    {"preferred": "Fosa pterigopalatina", "target": "fosa_pterigopalatina", "synonyms": [], "classicTerms": ["fosa pterigomaxilar"]},
+    {"preferred": "Nervio maxilar (V2)", "target": "v2", "synonyms": ["V2", "segunda división del trigémino"], "classicTerms": ["nervio maxilar superior"]},
+    {"preferred": "Nervio mandibular (V3)", "target": "v3", "synonyms": ["V3", "tercera división del trigémino"], "classicTerms": ["nervio maxilar inferior"]},
+    {"preferred": "Nervio alveolar inferior", "target": "v3", "synonyms": ["alveolar inferior"], "classicTerms": ["dentario inferior", "nervio dentario inferior"]},
+    {"preferred": "Nervio bucal", "target": "v3", "synonyms": ["bucal largo"], "classicTerms": []},
+    {"preferred": "Nervio auriculotemporal", "target": "v3", "synonyms": ["aurículo-temporal"], "classicTerms": []},
+    {"preferred": "Arteria maxilar", "target": "arteria_maxilar", "synonyms": [], "classicTerms": ["arteria maxilar interna", "maxilar interna"]},
+    {"preferred": "Arteria alveolar inferior", "target": "arteria_maxilar", "synonyms": ["alveolar inferior"], "classicTerms": ["arteria dentaria inferior"]},
+    {"preferred": "Articulación temporomandibular", "target": "atm", "synonyms": ["ATM"], "classicTerms": []},
+    {"preferred": "Disco articular", "target": "atm", "synonyms": [], "classicTerms": ["menisco articular"]},
+    {"preferred": "Fosa mandibular", "target": "atm", "synonyms": [], "classicTerms": ["cavidad glenoidea"]},
+    {"preferred": "Pterigoideo lateral", "target": "pterigoideo_lateral", "synonyms": [], "classicTerms": ["pterigoideo externo"]},
+    {"preferred": "Pterigoideo medial", "target": "fosa_infratemporal", "synonyms": [], "classicTerms": ["pterigoideo interno"]},
+    {"preferred": "Piso de boca", "target": "piso_boca", "synonyms": ["región sublingual"], "classicTerms": ["región glososuprahioidea"]},
+    {"preferred": "Glándula parótida", "target": "parotida", "synonyms": ["parótida"], "classicTerms": []},
+    {"preferred": "Conducto parotídeo", "target": "parotida", "synonyms": [], "classicTerms": ["conducto de Stensen"]},
+    {"preferred": "Glándula submandibular", "target": "submandibular", "synonyms": [], "classicTerms": ["glándula submaxilar"]},
+    {"preferred": "Conducto submandibular", "target": "submandibular", "synonyms": [], "classicTerms": ["conducto de Wharton"]},
+    {"preferred": "Lengua", "target": "lengua", "synonyms": [], "classicTerms": []},
+    {"preferred": "Primer molar superior permanente", "target": "primer_molar_superior", "synonyms": ["16", "26", "16/26", "primer molar maxilar"], "classicTerms": []},
+    {"preferred": "Primer molar inferior permanente", "target": "primer_molar_inferior", "synonyms": ["36", "46", "36/46", "primer molar mandibular"], "classicTerms": []},
+    {"preferred": "Conducto mandibular", "target": "conducto_mandibular_radiologia", "synonyms": ["canal mandibular"], "classicTerms": ["conducto dentario inferior"]},
+    {"preferred": "Seno maxilar", "target": "seno_maxilar_radiologia", "synonyms": ["antro maxilar"], "classicTerms": ["antro de Highmore"]},
+    {"preferred": "Língula mandibular", "target": "mandibula", "synonyms": [], "classicTerms": ["espina de Spix"]},
+    {"preferred": "Proceso condilar", "target": "mandibula", "synonyms": ["apófisis condilar"], "classicTerms": []},
+    {"preferred": "Reconstrucción multiplanar", "target": "conducto_mandibular_radiologia", "synonyms": ["MPR"], "classicTerms": []}
+  ],
+  "editorialRules": [
+    "Mostrar el término preferido como título principal.",
+    "Indexar sinónimos y términos clásicos en búsqueda.",
+    "Aceptar términos clásicos inequívocos en respuestas abiertas.",
+    "No presentar términos próximos pero no equivalentes como sinónimos absolutos.",
+    "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra."
+  ]
+}
