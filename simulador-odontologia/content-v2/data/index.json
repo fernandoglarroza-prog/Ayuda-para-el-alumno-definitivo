@@ -4,10 +4,14 @@
   "status": "technical-review",
   "files": [
     "./osteology-topography.json",
+    "./bones-extended.json",
     "./neurovascular-atm.json",
-    "./oral-salivary.json",
-    "./dentition-radiology.json",
+    "./vascular-lymphatic.json",
     "./muscles-cranial-nerves.json",
+    "./cranial-sensory-extended.json",
+    "./oral-salivary.json",
+    "./oral-regions-extended.json",
+    "./dentition-radiology.json",
     "./dentition-extended.json"
   ],
   "terminology": "./terminology-map.json",
