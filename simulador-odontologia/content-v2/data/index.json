@@ -12,7 +12,8 @@
     "./oral-salivary.json",
     "./oral-regions-extended.json",
     "./dentition-radiology.json",
-    "./dentition-extended.json"
+    "./dentition-extended.json",
+    "./occlusion-alveolodentary.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
