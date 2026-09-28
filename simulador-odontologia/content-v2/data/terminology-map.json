@@ -69,7 +69,14 @@
     {"preferred": "Gusto y sensibilidad lingual integrados", "target": "gusto_sensibilidad_lengua_integrada", "synonyms": ["inervación de la lengua", "mapa sensitivo gustativo de lengua"], "classicTerms": []},
     {"preferred": "Audición y equilibrio integrados", "target": "audicion_equilibrio_integrada", "synonyms": ["sistema auditivo vestibular", "oído y VIII", "audición y vestibular"], "classicTerms": []},
     {"preferred": "Olfato y sensibilidad nasal", "target": "olfato_sensibilidad_nasal_integrada", "synonyms": ["olfato versus trigémino nasal", "sensibilidad de cavidad nasal"], "classicTerms": []},
-    {"preferred": "Ganglios parasimpáticos de la cabeza", "target": "ganglios_parasimpaticos_cabeza_integrados", "synonyms": ["ganglio ciliar", "ganglio pterigopalatino", "ganglio submandibular", "ganglio ótico", "vías secretomotoras craneales"], "classicTerms": []}
+    {"preferred": "Ganglios parasimpáticos de la cabeza", "target": "ganglios_parasimpaticos_cabeza_integrados", "synonyms": ["ganglio ciliar", "ganglio pterigopalatino", "ganglio submandibular", "ganglio ótico", "vías secretomotoras craneales"], "classicTerms": []},
+    {"preferred": "Nomenclatura dentaria FDI", "target": "nomenclatura_fdi_dentaria", "synonyms": ["FDI", "notación de dos dígitos", "ISO 3950", "nomenclatura ISO dentaria"], "classicTerms": []},
+    {"preferred": "Morfología comparada de dientes anteriores", "target": "morfologia_comparada_anteriores", "synonyms": ["incisivos y caninos comparados", "dientes anteriores comparados"], "classicTerms": []},
+    {"preferred": "Morfología comparada de premolares", "target": "morfologia_comparada_premolares", "synonyms": ["premolares superiores e inferiores", "comparación de premolares"], "classicTerms": ["bicúspides"]},
+    {"preferred": "Morfología comparada de molares", "target": "morfologia_comparada_molares", "synonyms": ["molares superiores e inferiores", "comparación de molares"], "classicTerms": []},
+    {"preferred": "Anatomía radicular e interna comparada", "target": "anatomia_radicular_interna_comparada", "synonyms": ["morfología radicular comparada", "anatomía pulpar comparada", "conductos por grupo dentario"], "classicTerms": []},
+    {"preferred": "Morfología temporaria comparada", "target": "morfologia_temporaria_comparada", "synonyms": ["dentición temporaria versus permanente", "dentición decidua comparada", "dentición primaria comparada"], "classicTerms": ["dientes de leche"]},
+    {"preferred": "Anatomía funcional de cúspides y contactos", "target": "anatomia_funcional_cuspides_contactos", "synonyms": ["cúspides de soporte y guía", "anatomía oclusal funcional", "contactos cuspídeos"], "classicTerms": ["cúspides estampadoras", "cúspides cortadoras"]}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
@@ -82,6 +89,7 @@
     "En lateralidad dentaria, exigir más de un criterio morfológico concordante antes de asignar lado.",
     "En miología, describir origen/inserción, inervación y vector dentro del sistema funcional; evitar asignar movimientos complejos a un único músculo.",
     "En osteología integrada, asociar cada foramen con hueso, contenido y región comunicada; los pilares faciales son modelos arquitectónicos y no huesos independientes.",
-    "En estesiología, separar modalidad, nervio de origen, ganglio y rama transportadora; no confundir una rama trigeminal vehículo con el origen autonómico de sus fibras."
+    "En estesiología, separar modalidad, nervio de origen, ganglio y rama transportadora; no confundir una rama trigeminal vehículo con el origen autonómico de sus fibras.",
+    "En anatomía dentaria, distinguir patrón típico de variación; no equiparar número de raíces con número de conductos ni aceptar un único criterio de lateralidad como absoluto."
   ]
 }
