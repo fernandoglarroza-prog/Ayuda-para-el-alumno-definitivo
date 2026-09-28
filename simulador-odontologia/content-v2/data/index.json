@@ -13,13 +13,15 @@
     "./oral-regions-extended.json",
     "./dentition-radiology.json",
     "./dentition-extended.json",
-    "./occlusion-alveolodentary.json"
+    "./occlusion-alveolodentary.json",
+    "./radiology-advanced.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
   "oralBanks": [
     "./oral-bank.json",
-    "./oral-bank-occlusion.json"
+    "./oral-bank-occlusion.json",
+    "./oral-bank-radiology.json"
   ],
   "rules": {
     "uiIntegration": false,
