@@ -2,41 +2,6 @@
   "version": "2.0.0-structured-draft",
   "entries": [
     {
-      "id": "denticion_temporaria",
-      "preferredName": "Dentición temporaria",
-      "category": "dentition",
-      "paUnits": ["Unidad VIII · Anatomía dentaria"],
-      "status": "pending-catedra",
-      "modelKey": "denticion_temporaria",
-      "terminology": {"preferred": "Dentición temporaria", "synonyms": ["dentición decidua", "dentición primaria"], "classicTerms": ["dientes de leche"], "notes": ["Evitar el término coloquial como denominación principal."]},
-      "levels": {
-        "review": {"summary": "La dentición temporaria comprende 20 piezas y presenta coronas relativamente bulbosas, constricción cervical marcada, cámaras pulpares proporcionalmente amplias y raíces molares divergentes.", "blocks": [{"title": "Claves", "content": ["FDI: cuadrantes 5 a 8.", "No existen premolares temporarios.", "Los molares temporarios son reemplazados por premolares permanentes."]}]},
-        "development": {"summary": "Debe estudiarse comparando morfología coronaria, proporciones pulpares, raíces y función de cada grupo dentario con sus equivalentes permanentes.", "blocks": [
-          {"title": "Fórmula", "content": ["Por hemiarcada: 2 incisivos, 1 canino y 2 molares.", "Total: 20 piezas."]},
-          {"title": "Corona", "content": ["Mayor convexidad cervical, diámetro mesiodistal relativamente amplio y tabla oclusal proporcionalmente estrecha en posteriores."]},
-          {"title": "Tejidos duros y pulpa", "content": ["Esmalte y dentina proporcionalmente más delgados; cámara pulpar y cuernos pulpares relativamente más voluminosos."]},
-          {"title": "Raíces molares", "content": ["Largas, finas y divergentes, creando espacio para el germen del sucesor permanente."]}
-        ]},
-        "technical": {"summary": "El análisis técnico exige reconocer rasgos de grupo, diferenciar primer y segundo molar temporario y vincular morfología radicular con el desarrollo del sucesor permanente.", "blocks": [
-          {"title": "Incisivos", "content": ["Los superiores son más anchos; el central superior temporario presenta corona relativamente ancha mesiodistalmente y cíngulo marcado.", "Los inferiores son pequeños y relativamente simétricos."]},
-          {"title": "Caninos", "content": ["Corona con cúspide marcada; en el canino superior temporario la vertiente mesial puede ser relativamente más larga que la distal."]},
-          {"title": "Primer molar superior", "content": ["Morfología propia, con fuerte convexidad cervical mesiovestibular y tres raíces divergentes."]},
-          {"title": "Segundo molar superior", "content": ["Se asemeja al primer molar permanente superior en miniatura y suele presentar tres raíces divergentes."]},
-          {"title": "Primer molar inferior", "content": ["Presenta prominencia cervical mesiovestibular característica y dos raíces muy divergentes."]},
-          {"title": "Segundo molar inferior", "content": ["Se asemeja al primer molar permanente inferior en miniatura y habitualmente presenta cinco cúspides y dos raíces divergentes."]},
-          {"title": "Configuración interna", "content": ["Cámaras pulpares proporcionalmente amplias y cuernos altos; los conductos muestran variabilidad y no deben enseñarse como un mapa rígido."]}
-        ]},
-        "oral": {"summary": "En un oral debe compararse la dentición temporaria con la permanente y luego describirse una pieza temporaria concreta por corona, raíces y rasgos diferenciales.", "blocks": [{"title": "Orden sugerido", "content": ["fórmula", "FDI", "diferencias generales", "grupo dentario", "raíces", "pulpa", "sucesor permanente"]}]}
-      },
-      "relations": [
-        {"target": "denticion_mixta", "type": "precedes", "note": "La exfoliación temporaria y erupción permanente generan el periodo de dentición mixta."},
-        {"target": "aparato_alveolodentario", "type": "supported-by", "note": "Cada pieza temporaria se relaciona con alvéolo, ligamento periodontal y tejidos de soporte."}
-      ],
-      "exam": {"questions": [{"prompt": "Compare dentición temporaria y permanente y describa los rasgos que permiten reconocer un molar temporario.", "requiredElements": ["20 piezas", "sin premolares", "constricción cervical", "pulpa proporcionalmente amplia", "raíces divergentes", "sucesor permanente"], "followUp": ["Compare segundo molar temporario inferior con primer molar permanente inferior."], "modelAnswer": "La dentición temporaria tiene 20 piezas, sin premolares. Las coronas son relativamente bulbosas, la constricción cervical es marcada, esmalte y dentina son proporcionalmente más delgados y las cámaras pulpares relativamente amplias. Los molares presentan raíces largas y divergentes que dejan espacio al germen del premolar sucesor."}], "criticalErrors": ["Afirmar que existen premolares temporarios."]},
-      "sourceDocs": ["08-denticion-temporaria-oclusion-protesis.md", "13-profundizacion-dentaria.md"],
-      "validationNotes": ["Cronología eruptiva exacta pendiente de validación con bibliografía/cátedra."]
-    },
-    {
       "id": "denticion_mixta",
       "preferredName": "Dentición mixta y transición",
       "category": "dentition",
@@ -66,7 +31,7 @@
         {"target": "denticion_temporaria", "type": "transitions-from", "note": "Se inicia con coexistencia y recambio de piezas temporarias."},
         {"target": "oclusion_morfologica", "type": "develops", "note": "Durante la transición se modifican relaciones molares, caninas y curvas oclusales."}
       ],
-      "exam": {"questions": [{"prompt": "Defina dentición mixta y explique sus dos grandes periodos transicionales, incluyendo el papel del leeway space.", "requiredElements": ["temporarios y permanentes", "primer periodo", "fase intertransicional", "segundo periodo", "primeros molares permanentes", "leeway space", "variación"], "followUp": ["¿Los primeros molares permanentes reemplazan alguna pieza temporaria?"], "modelAnswer": "La dentición mixta es el periodo de coexistencia de dientes temporarios y permanentes. Incluye un primer periodo con primeros molares permanentes y recambio incisivo, una fase intertransicional y un segundo periodo con recambio de caninos y molares temporarios. El leeway space es la diferencia dimensional entre temporarios posteriores y sus sucesores, útil para entender cambios de arcada sin tratarla como valor fijo universal."}], "criticalErrors": ["Afirmar que el primer molar permanente reemplaza al segundo molar temporario."]},
+      "exam": {"questions": [{"prompt": "Defina dentición mixta y explique sus dos grandes periodos transicionales, incluyendo el papel del leeway space.", "requiredElements": ["temporarios y permanentes", "primer periodo", "fase intertransicional", "segundo periodo", "primeros molares permanentes", "leeway space", "variación"], "followUp": ["¿Los primeros molares permanentes reemplazan alguna pieza temporaria?"], "modelAnswer": "La dentición mixta es el periodo de coexistencia de dientes temporarios y permanentes. Incluye un primer periodo con primeros molares permanentes y recambio incisivo, una fase intertransicional y un segundo periodo con recambio de caninos y molares temporarios. El leeway space ayuda a entender cambios de arcada y no debe tratarse como un valor fijo universal."}], "criticalErrors": ["Afirmar que el primer molar permanente reemplaza al segundo molar temporario."]},
       "sourceDocs": ["08-denticion-temporaria-oclusion-protesis.md"],
       "validationNotes": ["Secuencias y rangos cronológicos exactos pendientes de validación docente."]
     },
@@ -86,7 +51,7 @@
           {"title": "Overbite", "content": ["Solapamiento vertical de incisivos superiores sobre inferiores."]},
           {"title": "Curvas oclusales", "content": ["Spee describe curvatura anteroposterior; Wilson, curvatura mediolateral de posteriores."]}
         ]},
-        "technical": {"summary": "La oclusión debe enseñarse como una organización tridimensional de contactos y guías, coordinada con la cinemática mandibular y sin imponer una escuela clínica no validada por la cátedra.", "blocks": [
+        "technical": {"summary": "La oclusión debe enseñarse como organización tridimensional de contactos y guías coordinada con la cinemática mandibular, sin imponer una escuela clínica no validada por la cátedra.", "blocks": [
           {"title": "Contactos funcionales", "content": ["Las cúspides funcionales y fosas/rebordes antagonistas organizan contactos; el patrón exacto varía con morfología, desgaste y posición dentaria."]},
           {"title": "Guía anterior", "content": ["La relación incisiva contribuye a la trayectoria mandibular anterior y a la separación posterior durante ciertos movimientos."]},
           {"title": "Guía canina", "content": ["Los caninos pueden participar en la desoclusión lateral; no debe enseñarse como único esquema funcional posible."]},
@@ -118,7 +83,7 @@
         "development": {"summary": "La posición del contacto cambia según grupo dentario y superficie mesial/distal; la forma del arco es individual.", "blocks": [
           {"title": "Contactos", "content": ["En dientes anteriores suelen ubicarse más incisalmente; progresan cervicalmente hacia posteriores con variaciones por pieza."]},
           {"title": "Troneras", "content": ["El contacto divide el espacio interproximal en troneras vestibular, lingual/palatina, oclusal/incisal y gingival."]},
-          {"title": "Papila interdental", "content": ["Ocupa la tronera gingival cuando los tejidos periodontales y el punto/área de contacto lo permiten."]},
+          {"title": "Papila interdental", "content": ["Ocupa la tronera gingival cuando los tejidos periodontales y el área de contacto lo permiten."]},
           {"title": "Forma de arco", "content": ["No existe una única forma geométrica universal; debe enseñarse como continuo anatómico individual."]}
         ]},
         "technical": {"summary": "La interpretación técnica conecta convexidades coronarias, áreas de contacto, troneras, periodonto y continuidad funcional de la arcada.", "blocks": [
@@ -132,7 +97,7 @@
         "oral": {"summary": "El oral debe describir qué es un contacto proximal, qué troneras genera y cómo se modifica su posición según la pieza.", "blocks": [{"title": "Orden sugerido", "content": ["arco", "contacto", "troneras", "papila", "convexidades", "variación"]}]}
       },
       "relations": [
-        {"target": "aparato_alveolodentario", "type": "integrates-with", "note": "Los contactos proximales se relacionan funcionalmente con papila, cresta alveolar y periodonto."},
+        {"target": "periodonto_insercion", "type": "integrates-with", "note": "Los contactos proximales se relacionan funcionalmente con papila, cresta alveolar y periodonto."},
         {"target": "oclusion_morfologica", "type": "supports", "note": "La continuidad del arco condiciona relaciones oclusales e interproximales."}
       ],
       "exam": {"questions": [{"prompt": "Defina área de contacto proximal, enumere las cuatro troneras y explique su relación con la papila interdental.", "requiredElements": ["contacto proximal", "vestibular", "lingual/palatina", "oclusal/incisal", "gingival", "papila", "variación"], "followUp": ["¿Por qué en un diente funcional es más correcto hablar de área que de punto de contacto?"], "modelAnswer": "El contacto proximal es el área de relación entre dientes vecinos. Divide el espacio en troneras vestibular, lingual o palatina, oclusal o incisal y gingival. La papila ocupa la tronera gingival cuando la anatomía periodontal y el nivel óseo lo permiten."}], "criticalErrors": []},
@@ -140,15 +105,15 @@
       "validationNotes": []
     },
     {
-      "id": "aparato_alveolodentario",
-      "preferredName": "Aparato alveolodentario y gonfosis",
+      "id": "periodonto_insercion",
+      "preferredName": "Periodonto de inserción y gonfosis",
       "category": "periodontium",
       "paUnits": ["Unidad II · Artrología", "Unidad VIII · Anatomía dentaria"],
       "status": "pending-catedra",
-      "modelKey": "aparato_alveolodentario",
-      "terminology": {"preferred": "Aparato alveolodentario", "synonyms": ["complejo dentoalveolar"], "classicTerms": [], "notes": []},
+      "modelKey": "periodonto_insercion",
+      "terminology": {"preferred": "Periodonto de inserción", "synonyms": ["complejo cemento-ligamento-hueso alveolar"], "classicTerms": [], "notes": ["Se vincula con la ficha general de aparato alveolodentario sin duplicarla."]},
       "levels": {
-        "review": {"summary": "El diente se une al alvéolo mediante una gonfosis fibrosa especializada cuyo elemento interpuesto principal es el ligamento periodontal.", "blocks": [{"title": "Componentes", "content": ["cemento radicular", "ligamento periodontal", "hueso alveolar", "encía como tejido periodontal superficial asociado"]}]},
+        "review": {"summary": "El periodonto de inserción une la raíz al alvéolo mediante cemento, ligamento periodontal y hueso alveolar propio dentro de una gonfosis fibrosa especializada.", "blocks": [{"title": "Componentes", "content": ["cemento radicular", "ligamento periodontal", "hueso alveolar propio", "hueso de sostén"]}]},
         "development": {"summary": "El proceso alveolar contiene alvéolos, tabiques interalveolares e interradiculares y se remodela en respuesta a erupción, función y pérdida dentaria.", "blocks": [
           {"title": "Alvéolo", "content": ["Cavidad ósea que contiene la raíz; en multirradiculares se subdivide por tabiques interradiculares."]},
           {"title": "Tabiques", "content": ["Interalveolares separan dientes vecinos; interradiculares separan raíces de una misma pieza."]},
@@ -167,11 +132,12 @@
         "oral": {"summary": "El oral debe definir gonfosis, enumerar componentes y explicar cómo se transmiten fuerzas del diente al hueso.", "blocks": [{"title": "Orden sugerido", "content": ["gonfosis", "cemento", "ligamento", "hueso alveolar propio", "tabiques", "corticales", "remodelado"]}]}
       },
       "relations": [
+        {"target": "aparato_alveolodentario", "type": "deepens", "note": "Profundiza el componente de inserción del aparato alveolodentario general."},
         {"target": "mandibula", "type": "part-of", "note": "El proceso alveolar mandibular aloja las piezas inferiores."},
         {"target": "maxilar", "type": "part-of", "note": "El proceso alveolar maxilar aloja las piezas superiores."},
         {"target": "anatomia_desdentado", "type": "remodels-into", "note": "Tras pérdida dentaria, el proceso alveolar se transforma en reborde residual."}
       ],
-      "exam": {"questions": [{"prompt": "Defina gonfosis y describa los componentes del aparato alveolodentario, incluyendo tabiques y proceso alveolar.", "requiredElements": ["articulación fibrosa", "cemento", "ligamento periodontal", "hueso alveolar", "tabique interalveolar", "tabique interradicular", "remodelado"], "followUp": ["¿Con qué estructura radiográfica se relaciona el hueso alveolar propio?"], "modelAnswer": "La gonfosis es la unión fibrosa especializada entre raíz y alvéolo. El cemento radicular se conecta con el hueso alveolar propio mediante el ligamento periodontal. Entre dientes existen tabiques interalveolares y entre raíces de una misma pieza, tabiques interradiculares. El proceso alveolar se remodela con erupción, función y pérdida dentaria."}], "criticalErrors": ["Definir la gonfosis como articulación sinovial."]},
+      "exam": {"questions": [{"prompt": "Defina gonfosis y describa los componentes del periodonto de inserción, incluyendo tabiques y proceso alveolar.", "requiredElements": ["articulación fibrosa", "cemento", "ligamento periodontal", "hueso alveolar", "tabique interalveolar", "tabique interradicular", "remodelado"], "followUp": ["¿Con qué estructura radiográfica se relaciona el hueso alveolar propio?"], "modelAnswer": "La gonfosis es la unión fibrosa especializada entre raíz y alvéolo. El cemento radicular se conecta con el hueso alveolar propio mediante el ligamento periodontal. Entre dientes existen tabiques interalveolares y entre raíces de una misma pieza, tabiques interradiculares. El proceso alveolar se remodela con erupción, función y pérdida dentaria."}], "criticalErrors": ["Definir la gonfosis como articulación sinovial."]},
       "sourceDocs": ["08-denticion-temporaria-oclusion-protesis.md", "07-radiologia-anatomica.md"],
       "validationNotes": []
     },
@@ -238,7 +204,7 @@
         "oral": {"summary": "El oral debe explicar qué estructuras cambian y cuáles continúan siendo referencias topográficas tras la pérdida dentaria.", "blocks": [{"title": "Orden sugerido", "content": ["remodelado", "maxilar", "mandíbula", "foramen mentoniano", "seno", "músculos", "fondos de vestíbulo"]}]}
       },
       "relations": [
-        {"target": "aparato_alveolodentario", "type": "post-loss-remodeling", "note": "El reborde residual deriva del remodelado del proceso alveolar tras pérdida dentaria."},
+        {"target": "periodonto_insercion", "type": "post-loss-remodeling", "note": "El reborde residual deriva del remodelado del proceso alveolar tras pérdida dentaria."},
         {"target": "seno_maxilar_radiologia", "type": "radiographic-relation", "note": "En posterior maxilar desdentado la relación con el seno puede hacerse más estrecha."},
         {"target": "conducto_mandibular_radiologia", "type": "radiographic-relation", "note": "La reabsorción mandibular modifica la distancia del conducto al reborde residual."}
       ],
