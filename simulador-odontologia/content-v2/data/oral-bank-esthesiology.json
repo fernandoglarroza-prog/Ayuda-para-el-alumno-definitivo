@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-vision-integrada-01",
+      "topic": "vision_motricidad_ocular_integrada",
+      "type": "sensory-integration",
+      "prompt": "Integre visión, sensibilidad corneal, motricidad extraocular y parasimpático pupilar, indicando nervios y aberturas orbitarias.",
+      "mustInclude": ["II", "conducto óptico", "III", "IV", "VI", "V1", "fisura orbitaria superior", "ganglio ciliar", "VII reflejo corneal"],
+      "fatalErrors": ["afirmar que V1 transmite visión", "colocar II en fisura orbitaria superior"],
+      "followUps": ["¿Qué nervio motor discurre dentro del seno cavernoso junto a la carótida?", "¿Cuál es la eferencia del reflejo corneal?"]
+    },
+    {
+      "id": "oral-gusto-lengua-02",
+      "topic": "gusto_sensibilidad_lengua_integrada",
+      "type": "sensory-integration",
+      "prompt": "Separe sensibilidad general, gusto y motricidad lingual por territorios y explique las excepciones de papilas circunvaladas y palatogloso.",
+      "mustInclude": ["lingual V3", "cuerda del tímpano VII", "IX", "X", "XII", "circunvaladas", "palatogloso"],
+      "fatalErrors": ["atribuir gusto anterior al V3", "afirmar que XII lleva gusto"],
+      "followUps": ["¿Qué fibras de cuerda del tímpano sinaptan en ganglio submandibular?", "¿Qué modalidad lleva IX en tercio posterior?"]
+    },
+    {
+      "id": "oral-audicion-equilibrio-01",
+      "topic": "audicion_equilibrio_integrada",
+      "type": "sensory-integration",
+      "prompt": "Recorra oído externo, medio e interno y relacione el VIII con el temporal y el VII.",
+      "mustInclude": ["meato externo", "membrana timpánica", "oído medio", "cóclea", "vestíbulo", "VIII", "meato interno", "VII"],
+      "fatalErrors": ["confundir meato acústico interno con externo", "atribuir cuerda del tímpano al VIII"],
+      "followUps": ["¿Qué componentes funcionales tiene VIII?", "¿Por dónde pasa la cuerda del tímpano?"]
+    },
+    {
+      "id": "oral-olfato-nasal-01",
+      "topic": "olfato_sensibilidad_nasal_integrada",
+      "type": "sensory-integration",
+      "prompt": "Diferencie olfato especial de sensibilidad general nasal y ubique lámina cribosa, V1 y V2.",
+      "mustInclude": ["región olfatoria", "lámina cribosa", "bulbo", "V1", "V2", "etmoidal anterior", "foramen esfenopalatino", "nasopalatino"],
+      "fatalErrors": ["atribuir el olfato a V1 o V2"],
+      "followUps": ["¿Qué modalidad explica la irritación nasal por sustancias volátiles?", "¿Qué hueso contiene la lámina cribosa?"]
+    },
+    {
+      "id": "oral-ganglios-parasimpaticos-01",
+      "topic": "ganglios_parasimpaticos_cabeza_integrados",
+      "type": "autonomic",
+      "prompt": "Compare ganglios ciliar, pterigopalatino, submandibular y ótico por origen preganglionar, sinapsis, vehículo trigeminal y órgano diana.",
+      "mustInclude": ["III", "VII", "IX", "ciliar", "pterigopalatino", "submandibular", "ótico", "V1", "V2", "V3"],
+      "fatalErrors": ["atribuir secreción parotídea al facial intraparotídeo", "afirmar que V2 origina el parasimpático lagrimal"],
+      "followUps": ["¿Qué nervio lleva posganglionares del ótico a parótida?", "¿Sinaptan las fibras simpáticas en estos ganglios?"]
+    },
+    {
+      "id": "oral-v1-02",
+      "topic": "v1",
+      "type": "nerve",
+      "prompt": "Describa V1 por trayecto, ramas y territorios, diferenciando sensibilidad lagrimal de secreción lagrimal.",
+      "mustInclude": ["fisura orbitaria superior", "frontal", "lagrimal", "nasociliar", "córnea", "VII", "V2"],
+      "fatalErrors": ["atribuir origen parasimpático a V1"],
+      "followUps": ["¿Cuál es la aferencia del reflejo corneal?", "¿Cómo llegan fibras secretomotoras al nervio lagrimal?"]
+    },
+    {
+      "id": "oral-viii-02",
+      "topic": "vestibulococlear_viii",
+      "type": "nerve",
+      "prompt": "Describa los componentes coclear y vestibular del VIII y su relación con meato acústico interno, temporal y VII.",
+      "mustInclude": ["coclear", "vestibular", "cóclea", "utrículo", "sáculo", "conductos semicirculares", "meato acústico interno", "VII"],
+      "fatalErrors": ["describir al VIII como exclusivamente auditivo"],
+      "followUps": ["¿Qué estructura del temporal aloja el oído interno?", "¿Qué diferencia hay entre meato interno y externo?"]
+    }
+  ]
+}
