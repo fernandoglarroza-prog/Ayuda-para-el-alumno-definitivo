@@ -18,7 +18,8 @@
     "./topographic-routes-v2.json",
     "./dentition-fine-morphology.json",
     "./myology-integrated.json",
-    "./osteology-integrated-advanced.json"
+    "./osteology-integrated-advanced.json",
+    "./esthesiology-integrated.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
@@ -29,7 +30,8 @@
     "./oral-bank-topography.json",
     "./oral-bank-dentition-fine.json",
     "./oral-bank-myology.json",
-    "./oral-bank-osteology-integrated.json"
+    "./oral-bank-osteology-integrated.json",
+    "./oral-bank-esthesiology.json"
   ],
   "rules": {
     "uiIntegration": false,
@@ -48,6 +50,7 @@
     "Las rutas topográficas integradoras conectan regiones, aberturas, contenidos y destinos sin duplicar las fichas anatómicas base.",
     "La morfología dentaria fina agrega identificación, lateralidad y anatomía proximal para elevar el nivel técnico de la Unidad VIII.",
     "La miología integrada relaciona inserciones, planos, vectores, ATM e inervación para evitar estudiar cada músculo como una lista aislada.",
-    "La osteología avanzada integra base craneal, comunicaciones, arquitectura resistente y suturas/puntos craneométricos."
+    "La osteología avanzada integra base craneal, comunicaciones, arquitectura resistente y suturas/puntos craneométricos.",
+    "La estesiología integrada separa modalidad sensorial, trayecto, ganglio y nervio transportador para evitar mapas de pares craneales aislados."
   ]
 }
