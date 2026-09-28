@@ -102,9 +102,16 @@
 
   function selectV2Silently(target) {
     if (!target || !api()?.open) return false;
-    const beforeY = window.scrollY;
-    api().open(target);
-    requestAnimationFrame(() => window.scrollTo({ top: beforeY, left: 0, behavior: 'auto' }));
+    const original = Element.prototype.scrollIntoView;
+    try {
+      Element.prototype.scrollIntoView = function(...args) {
+        if (this?.id === 'academicV2Card') return;
+        return original?.apply(this, args);
+      };
+      api().open(target);
+    } finally {
+      Element.prototype.scrollIntoView = original;
+    }
     currentV2Target = target;
     updateContextAction();
     return true;
@@ -125,10 +132,7 @@
     let ok = false;
     if (kind === 'landmark') ok = Boolean(window.skull3dSelectLandmark?.(key));
     else ok = Boolean(window.skull3dSelectByKey?.(key));
-    if (ok) {
-      window.skull3dFocusSelection?.();
-      document.getElementById('skullStage')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    if (ok) window.skull3dFocusSelection?.();
     return ok;
   }
 
