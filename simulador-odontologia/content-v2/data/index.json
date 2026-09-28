@@ -21,7 +21,8 @@
     "./osteology-integrated-advanced.json",
     "./esthesiology-integrated.json",
     "./dentition-integrated-advanced.json",
-    "./oral-topography-integrated-advanced.json"
+    "./oral-topography-integrated-advanced.json",
+    "./angiology-integrated-advanced.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
@@ -35,7 +36,8 @@
     "./oral-bank-osteology-integrated.json",
     "./oral-bank-esthesiology.json",
     "./oral-bank-dentition-integrated.json",
-    "./oral-bank-oral-topography-integrated.json"
+    "./oral-bank-oral-topography-integrated.json",
+    "./oral-bank-angiology-integrated.json"
   ],
   "rules": {
     "uiIntegration": false,
@@ -57,6 +59,7 @@
     "La osteología avanzada integra base craneal, comunicaciones, arquitectura resistente y suturas/puntos craneométricos.",
     "La estesiología integrada separa modalidad sensorial, trayecto, ganglio y nervio transportador para evitar mapas de pares craneales aislados.",
     "La anatomía dentaria integrada compara grupos y arcadas, separa morfología externa/interna y exige justificar identificación, lateralidad y función oclusal.",
-    "La topografía oral integrada conecta vestíbulo, istmo, piso de boca, lengua y vías salivales por planos, comunicaciones, modalidades nerviosas y drenajes."
+    "La topografía oral integrada conecta vestíbulo, istmo, piso de boca, lengua y vías salivales por planos, comunicaciones, modalidades nerviosas y drenajes.",
+    "La angiología integrada conecta carótida externa, porciones de la arteria maxilar, redes venosas profundas y drenaje linfático por territorios."
   ]
 }
