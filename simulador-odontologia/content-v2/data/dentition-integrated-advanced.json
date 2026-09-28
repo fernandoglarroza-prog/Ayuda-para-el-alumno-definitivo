@@ -1,0 +1,480 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "nomenclatura_fdi_dentaria",
+      "preferredName": "Nomenclatura dentaria FDI y orientación sistemática",
+      "category": "general",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "nomenclatura_fdi_dentaria",
+      "terminology": {
+        "preferred": "Nomenclatura dentaria FDI",
+        "synonyms": ["sistema FDI", "notación de dos dígitos", "nomenclatura ISO dentaria"],
+        "classicTerms": [],
+        "notes": ["El simulador usa FDI como sistema principal; otros sistemas pueden citarse solo como equivalencias secundarias."]
+      },
+      "levels": {
+        "review": {
+          "summary": "El sistema FDI identifica cada diente mediante dos dígitos: el primero señala cuadrante/dentición y el segundo la posición desde la línea media.",
+          "blocks": [
+            {"title": "Dentición permanente", "content": ["Cuadrantes 1 y 2 corresponden al maxilar derecho e izquierdo; 3 y 4 a mandíbula izquierda y derecha.", "La segunda cifra recorre de 1 a 8 desde incisivo central hasta tercer molar."]}
+          ]
+        },
+        "development": {
+          "summary": "La nomenclatura debe acompañarse de orientación espacial: arcada, lado, grupo, cara vestibular/lingual o palatina, mesial/distal y oclusal/incisal.",
+          "blocks": [
+            {"title": "Dentición temporaria", "content": ["Los cuadrantes temporarios se codifican 5 a 8 y la segunda cifra va de 1 a 5; no existen premolares temporarios."]},
+            {"title": "Lectura", "content": ["El primer dígito no se interpreta de forma aislada del tipo de dentición; el segundo siempre expresa la posición desde la línea media dentro del cuadrante."]},
+            {"title": "Orientación", "content": ["Después de identificar FDI se debe poder nombrar arcada, lado, grupo y caras de la pieza sin depender del número."]}
+          ]
+        },
+        "technical": {
+          "summary": "La notación sirve como lenguaje de indexación, pero la identificación anatómica debe sostenerse con morfología coronaria, radicular y relaciones de la pieza.",
+          "blocks": [
+            {"title": "Cuadrantes permanentes", "content": ["1 = maxilar derecho; 2 = maxilar izquierdo; 3 = mandibular izquierdo; 4 = mandibular derecho, desde la perspectiva del paciente."]},
+            {"title": "Cuadrantes temporarios", "content": ["5, 6, 7 y 8 reproducen el mismo orden espacial para dentición temporaria."]},
+            {"title": "Segunda cifra", "content": ["Permanentes: 1 incisivo central, 2 lateral, 3 canino, 4 primer premolar, 5 segundo premolar, 6 primer molar, 7 segundo molar, 8 tercer molar."]},
+            {"title": "Temporarios", "content": ["La segunda cifra 1–5 corresponde a incisivo central, lateral, canino, primer molar y segundo molar temporarios."]},
+            {"title": "Perspectiva", "content": ["Derecha e izquierda se asignan al paciente; este punto evita inversiones al mirar modelos de frente."]},
+            {"title": "Morfología antes que número", "content": ["En una pieza aislada, el FDI es la conclusión de identificar grupo, arcada y lado mediante rasgos morfológicos concordantes."]},
+            {"title": "Caras", "content": ["Mesial se orienta hacia la línea media de la arcada y distal se aleja; vestibular mira labios/mejilla y lingual o palatina hacia la cavidad oral."]},
+            {"title": "Error de alto rendimiento", "content": ["No convertir la notación en sustituto de la anatomía: saber que 26 es un primer molar superior izquierdo no demuestra reconocer sus cúspides, raíces ni cara oclusal."]}
+          ]
+        },
+        "oral": {
+          "summary": "Una respuesta sólida identifica la pieza por anatomía y utiliza FDI al final para codificarla, explicando cuadrante y posición.",
+          "blocks": [
+            {"title": "Orden", "content": ["dentición", "grupo", "arcada", "lado", "caras", "FDI", "justificación morfológica"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "criterios_lateralidad_dentaria", "type": "compare", "note": "La lateralidad anatómica precede a la asignación final del código FDI."},
+        {"target": "denticion_temporaria", "type": "compare", "note": "La notación temporaria usa cuadrantes 5–8."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Explique el sistema FDI y aplíquelo a una pieza permanente y una temporaria sin perder la orientación anatómica.",
+            "requiredElements": ["dos dígitos", "cuadrante", "posición desde línea media", "1–4 permanentes", "5–8 temporarios", "derecha/izquierda del paciente", "caras mesial/distal"],
+            "followUp": ["¿Por qué el número no reemplaza la identificación morfológica?"],
+            "modelAnswer": "FDI usa dos dígitos: el primero identifica cuadrante y dentición; el segundo la posición desde la línea media. Los cuadrantes permanentes son 1–4 y los temporarios 5–8. La lateralidad corresponde al paciente. En una pieza aislada primero se reconoce grupo, arcada y lado por anatomía y luego se asigna el código."
+          }
+        ],
+        "criticalErrors": ["Asignar derecha/izquierda desde la perspectiva del observador.", "Inventar premolares temporarios."]
+      },
+      "sourceDocs": ["06-denticion-permanente.md", "07-denticion-temporaria-oclusion-alveolodentario.md", "18-terminologia-normalizada.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "morfologia_comparada_anteriores",
+      "preferredName": "Morfología comparada de dientes anteriores permanentes",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "morfologia_comparada_anteriores",
+      "terminology": {
+        "preferred": "Morfología comparada de dientes anteriores permanentes",
+        "synonyms": ["comparación incisivos y caninos", "dientes anteriores comparados"],
+        "classicTerms": [],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "Los dientes anteriores comparten borde incisal o cúspide única y raíz generalmente única, pero se diferencian por proporciones, relieve lingual/palatino y robustez radicular.",
+          "blocks": [
+            {"title": "Eje comparativo", "content": ["Incisivos superiores: mayor relieve palatino y ancho mesiodistal; inferiores: más estrechos y simétricos.", "Caninos: una cúspide principal y raíz de gran desarrollo."]}
+          ]
+        },
+        "development": {
+          "summary": "La identificación se construye comparando contorno vestibular, ángulos incisales, cíngulo, fosa lingual/palatina, crestas marginales y morfología radicular.",
+          "blocks": [
+            {"title": "Incisivos superiores", "content": ["Central más ancho y relativamente cuadrangular; lateral menor, más redondeado y con mayor variabilidad palatina."]},
+            {"title": "Incisivos inferiores", "content": ["Central muy simétrico; lateral algo mayor y con asimetría/torsión distolingual más marcada."]},
+            {"title": "Caninos", "content": ["Canino superior más voluminoso vestibulopalatinalmente y con relieves palatinos más marcados; inferior más estrecho y liso lingualmente."]}
+          ]
+        },
+        "technical": {
+          "summary": "La comparación avanzada exige reconocer patrones de desarrollo, contactos, CEJ, depresiones radiculares y variaciones sin convertir ningún rasgo aislado en una regla absoluta.",
+          "blocks": [
+            {"title": "Lóbulos de desarrollo", "content": ["Los incisivos y caninos se interpretan clásicamente como desarrollados a partir de tres lóbulos vestibulares y un componente lingual/palatino que forma el cíngulo."]},
+            {"title": "Mamelones", "content": ["Pueden observarse en bordes incisales recién erupcionados y se atenúan con desgaste funcional; su ausencia no invalida la identificación."]},
+            {"title": "Cíngulo", "content": ["Más evidente en anteriores superiores; en inferiores suele ser menos prominente, con cara lingual más lisa."]},
+            {"title": "Ángulos incisales", "content": ["En el central superior el mesioincisal suele ser más definido y el distoincisal más redondeado; el desgaste modifica esta relación."]},
+            {"title": "Contactos", "content": ["En anteriores, el contacto mesial suele ubicarse más incisal que el distal; la diferencia varía por pieza y desgaste."]},
+            {"title": "CEJ proximal", "content": ["La curvatura cervical es más marcada en mesial que distal y alcanza sus mayores valores relativos en anteriores."]},
+            {"title": "Raíces", "content": ["Incisivos inferiores presentan raíces comprimidas mesiodistalmente con depresiones proximales; el canino posee raíz más robusta y larga dentro del grupo anterior."]},
+            {"title": "Lateralidad", "content": ["Debe integrar ángulos, convexidad distal, posición del cíngulo, contactos y raíz; no se acepta el ápice distal como criterio único."]}
+          ]
+        },
+        "oral": {
+          "summary": "El alumno debe poder recibir una pieza anterior aislada, ubicarla en su grupo y justificar arcada y lado con varios rasgos concordantes.",
+          "blocks": [
+            {"title": "Orden", "content": ["grupo", "vestibular", "lingual/palatina", "proximales", "raíz", "arcada", "lado", "FDI"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "incisivos_superiores", "type": "compare", "note": "Integra los rasgos de centrales y laterales superiores."},
+        {"target": "incisivos_inferiores", "type": "compare", "note": "Integra la simetría del central y la asimetría del lateral inferior."},
+        {"target": "caninos_permanentes", "type": "compare", "note": "Contrasta la morfología canina con incisivos y entre arcadas."},
+        {"target": "morfologia_proximal_dentaria", "type": "compare", "note": "Usa contactos y CEJ como criterios de identificación."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Compare incisivos superiores, incisivos inferiores y caninos permanentes y explique cómo distinguiría una pieza anterior aislada.",
+            "requiredElements": ["cíngulo", "fosa lingual/palatina", "simetría", "ángulos incisales", "contactos", "CEJ", "raíz", "varios criterios"],
+            "followUp": ["¿Qué rasgo diferencia especialmente al incisivo lateral inferior del central?", "¿Por qué no usaría el ápice radicular como único criterio de lado?"],
+            "modelAnswer": "Los incisivos superiores son más voluminosos y con relieve palatino más marcado; los inferiores son más estrechos y, especialmente el central, más simétricos. Los caninos presentan una cúspide dominante y raíz robusta. La orientación se justifica combinando contorno, cíngulo, contactos, CEJ y raíz."
+          }
+        ],
+        "criticalErrors": ["Usar un único rasgo para determinar lado.", "Afirmar que todos los incisivos inferiores carecen de depresiones radiculares."]
+      },
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "morfologia_comparada_premolares",
+      "preferredName": "Morfología comparada de premolares permanentes",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "morfologia_comparada_premolares",
+      "terminology": {
+        "preferred": "Morfología comparada de premolares permanentes",
+        "synonyms": ["comparación de premolares", "premolares superiores e inferiores"],
+        "classicTerms": ["bicúspides"],
+        "notes": ["Bicúspide es un término histórico impreciso porque el segundo premolar inferior puede presentar tres cúspides."]
+      },
+      "levels": {
+        "review": {
+          "summary": "Los premolares son dientes transicionales entre caninos y molares; superiores e inferiores difieren en desarrollo cuspídeo, inclinación de la mesa oclusal y morfología radicular.",
+          "blocks": [
+            {"title": "Clave", "content": ["Primer premolar superior: concavidad mesial y mayor tendencia a dos raíces.", "Primer premolar inferior: cúspide lingual pequeña y mesa inclinada a lingual.", "Segundo premolar inferior: puede ser tricuspídeo."]}
+          ]
+        },
+        "development": {
+          "summary": "La comparación debe hacerse por contorno oclusal, relación entre cúspides, surco central, rebordes marginales, raíces y rasgos específicos de cada primer/segundo premolar.",
+          "blocks": [
+            {"title": "Superiores", "content": ["Primer premolar más anguloso, surco central largo, surco marginal mesial y concavidad mesial coronorradicular; segundo más redondeado, surco central corto y mayor cantidad de surcos suplementarios."]},
+            {"title": "Inferior primero", "content": ["Cúspide vestibular dominante, cúspide lingual pequeña, cresta transversal marcada y surco mesiolingual característico."]},
+            {"title": "Inferior segundo", "content": ["Mesa oclusal más amplia; puede presentar patrón bicuspídeo o tricuspídeo, este último con dos cúspides linguales y patrón de surcos en Y."]}
+          ]
+        },
+        "technical": {
+          "summary": "La identificación avanzada requiere explicar por qué ciertos rasgos coronarios se continúan hacia la raíz y cómo la variación impide usar la etiqueta 'bicúspide' como definición universal.",
+          "blocks": [
+            {"title": "Primer premolar superior · vertientes", "content": ["La vertiente mesial de la cúspide vestibular puede ser más larga que la distal, inversión útil respecto del patrón típico de otros dientes cuspidados."]},
+            {"title": "Primer premolar superior · mesial", "content": ["La concavidad mesial puede continuar desde corona hacia raíz y asociarse al surco marginal mesial que cruza el reborde."]},
+            {"title": "Raíces superiores", "content": ["El primer premolar muestra mayor frecuencia de configuración birradicular vestibular/palatina; el segundo es con mayor frecuencia unirradicular, sin equivaler esto de modo rígido al número de conductos."]},
+            {"title": "Primer premolar inferior", "content": ["La mesa oclusal desciende hacia lingual; la cúspide lingual puede ser poco funcional y el surco mesiolingual interrumpe el reborde marginal mesial."]},
+            {"title": "Segundo premolar inferior", "content": ["Las variantes de dos y tres cúspides modifican contorno y patrón de surcos; el patrón Y se asocia a la variante tricuspídea."]},
+            {"title": "Cresta transversal", "content": ["Es especialmente marcada en el primer premolar inferior por continuidad de las crestas triangulares vestibular y lingual."]},
+            {"title": "Diferencial de arcada", "content": ["Superiores muestran mayor similitud de altura entre cúspides vestibular/palatina; inferiores expresan mayor predominio vestibular, especialmente el primero."]},
+            {"title": "Error terminológico", "content": ["No usar 'bicúspide' como sinónimo anatómico universal de premolar; el número de cúspides es variable."]}
+          ]
+        },
+        "oral": {
+          "summary": "Un oral completo compara 14/24 con 15/25 y luego 34/44 con 35/45, cerrando con diferencias de arcada.",
+          "blocks": [
+            {"title": "Orden", "content": ["contorno", "cúspides", "surcos", "rasgos mesiales", "raíces", "superior/inferior", "primer/segundo"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "premolares_superiores", "type": "compare", "note": "Profundiza la comparación 1.º vs 2.º superior."},
+        {"target": "premolares_inferiores", "type": "compare", "note": "Profundiza la comparación 1.º vs 2.º inferior."},
+        {"target": "anatomia_interna_dentaria", "type": "compare", "note": "Relaciona número de raíces con variabilidad del sistema de conductos sin equipararlos de forma rígida."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Compare los cuatro tipos de premolares permanentes y señale los rasgos de mayor rendimiento para identificación.",
+            "requiredElements": ["primer superior", "concavidad mesial", "dos raíces frecuentes", "primer inferior", "surco mesiolingual", "segundo inferior tricuspídeo", "patrón Y", "variación"],
+            "followUp": ["¿Por qué 'bicúspide' no es una denominación anatómica ideal?"],
+            "modelAnswer": "El primer superior es más anguloso, con concavidad mesial, surco marginal mesial y mayor tendencia a dos raíces; el segundo superior es más redondeado y unirradicular. El primer inferior tiene cúspide vestibular dominante, lingual pequeña y surco mesiolingual; el segundo posee mesa mayor y puede ser tricuspídeo con patrón Y."
+          }
+        ],
+        "criticalErrors": ["Afirmar que todos los premolares tienen exactamente dos cúspides.", "Equiparar número de raíces con número de conductos de forma absoluta."]
+      },
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "morfologia_comparada_molares",
+      "preferredName": "Morfología comparada de molares permanentes",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "morfologia_comparada_molares",
+      "terminology": {
+        "preferred": "Morfología comparada de molares permanentes",
+        "synonyms": ["comparación de molares", "molares maxilares y mandibulares"],
+        "classicTerms": [],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "Los molares maxilares se caracterizan típicamente por tres raíces y una cresta oblicua; los mandibulares por dos raíces y un patrón oclusal distinto, con marcada variación en segundos y terceros molares.",
+          "blocks": [
+            {"title": "Clave", "content": ["Primer molar superior: cuatro cúspides principales, cresta oblicua y posible tubérculo de Carabelli.", "Primer molar inferior: cinco cúspides habituales y patrón oclusal pentagonal/irregular."]}
+          ]
+        },
+        "development": {
+          "summary": "La comparación debe ordenar cúspides, crestas, fosas, surcos, contorno oclusal y disposición radicular, distinguiendo primero, segundo y tercer molar de cada arcada.",
+          "blocks": [
+            {"title": "Primer molar superior", "content": ["Cúspides mesiopalatina, mesiovestibular, distovestibular y distopalatina; cresta oblicua entre mesiopalatina y distovestibular; tres raíces divergentes."]},
+            {"title": "Primer molar inferior", "content": ["Cinco cúspides habituales: tres vestibulares y dos linguales; dos raíces mesial y distal, con raíz mesial más ancha bucolingualmente."]},
+            {"title": "Segundos y terceros", "content": ["El segundo superior puede mostrar reducción distopalatina y contorno cardíaco; el segundo inferior suele presentar cuatro cúspides y patrón en cruz. Los terceros son altamente variables."]}
+          ]
+        },
+        "technical": {
+          "summary": "La morfología molar avanzada se entiende como un sistema de relieves y surcos que organiza contactos oclusales y continúa hacia una arquitectura radicular específica de cada arcada.",
+          "blocks": [
+            {"title": "Cresta oblicua maxilar", "content": ["Rasgo característico de molares superiores, formada por continuidad entre la cresta triangular de la cúspide distovestibular y la cresta distal de la mesiopalatina."]},
+            {"title": "Carabelli", "content": ["Rasgo accesorio variable sobre la cúspide mesiopalatina del primer molar superior; no debe tratarse como quinta cúspide obligatoria."]},
+            {"title": "Raíces maxilares", "content": ["Mesiovestibular, distovestibular y palatina; la palatina suele ser la de mayor volumen y las vestibulares muestran relaciones anatómicas distintas con seno maxilar."]},
+            {"title": "Primer molar inferior", "content": ["Tres cúspides vestibulares y dos linguales típicas generan un contorno oclusal característico; el surco vestibular y distovestibular separan cúspides vestibulares."]},
+            {"title": "Raíces mandibulares", "content": ["Dos raíces habituales, mesial y distal; la mesial es comprimida mesiodistalmente y suele albergar anatomía interna más compleja que la distal."]},
+            {"title": "Segundo molar superior", "content": ["Mayor convergencia radicular y reducción variable de la cúspide distopalatina; el patrón en corazón es una variante reconocible, no universal."]},
+            {"title": "Segundo molar inferior", "content": ["Cuatro cúspides más simétricas con patrón de surcos en cruz frecuente y raíces menos divergentes que en el primer molar."]},
+            {"title": "Terceros molares", "content": ["Presentan alta variabilidad en número/tamaño de cúspides, raíces y fusión radicular; no deben enseñarse con una forma única."]},
+            {"title": "Comparación de arcada", "content": ["Maxilares: mayor predominio palatino y tres raíces típicas; mandibulares: mayor dimensión mesiodistal relativa y dos raíces típicas."]}
+          ]
+        },
+        "oral": {
+          "summary": "La respuesta debe comenzar por primer molar de cada arcada y usarlo como patrón de comparación para segundos y terceros.",
+          "blocks": [
+            {"title": "Orden", "content": ["arcada", "contorno", "cúspides", "crestas", "surcos", "raíces", "primer/segundo/tercer molar", "variaciones"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "primer_molar_superior", "type": "compare", "note": "Patrón principal de molar maxilar."},
+        {"target": "primer_molar_inferior", "type": "compare", "note": "Patrón principal de molar mandibular."},
+        {"target": "segundos_molares_permanentes", "type": "compare", "note": "Integra diferencias respecto de primeros molares."},
+        {"target": "terceros_molares", "type": "compare", "note": "Incorpora la variabilidad de terceros molares."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Compare molares superiores e inferiores y diferencie primer, segundo y tercer molar por corona y raíces.",
+            "requiredElements": ["tres raíces maxilares", "dos raíces mandibulares", "cresta oblicua", "Carabelli variable", "cinco cúspides primer inferior", "segundo inferior cuatro cúspides", "terceros variables"],
+            "followUp": ["¿Qué forma la cresta oblicua?", "¿Por qué no debe describirse un tercer molar con un patrón único?"],
+            "modelAnswer": "Los molares superiores presentan típicamente tres raíces y cresta oblicua; el primer superior tiene cuatro cúspides principales y puede presentar Carabelli. Los mandibulares suelen tener dos raíces; el primer inferior cinco cúspides y el segundo cuatro con patrón en cruz. Los terceros muestran gran variabilidad coronaria y radicular."
+          }
+        ],
+        "criticalErrors": ["Afirmar que Carabelli es obligatoria.", "Afirmar que todos los terceros molares tienen una morfología fija."]
+      },
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "anatomia_radicular_interna_comparada",
+      "preferredName": "Anatomía radicular e interna comparada",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "anatomia_radicular_interna_comparada",
+      "terminology": {
+        "preferred": "Anatomía radicular e interna comparada",
+        "synonyms": ["morfología radicular comparada", "anatomía pulpar comparada", "sistema de conductos por grupo dentario"],
+        "classicTerms": [],
+        "notes": ["Se describen patrones anatómicos y variación; no se presentan como anatomía clínica individual."]
+      },
+      "levels": {
+        "review": {
+          "summary": "La raíz externa y el sistema pulpar interno guardan relación, pero número de raíces y número de conductos no son equivalentes de forma rígida.",
+          "blocks": [
+            {"title": "Principio", "content": ["Una raíz puede contener más de un conducto y un sistema de conductos puede dividirse o reunirse antes del ápice."]}
+          ]
+        },
+        "development": {
+          "summary": "Se comparan raíz, cámara pulpar, cuernos pulpares, piso cameral, orificios y trayecto de conductos como anatomía descriptiva.",
+          "blocks": [
+            {"title": "Anteriores", "content": ["Raíz única típica; incisivos inferiores y caninos inferiores pueden presentar configuraciones internas más complejas que la apariencia externa sugiere."]},
+            {"title": "Premolares", "content": ["Primer premolar superior destaca por variabilidad de raíces/conductos; los inferiores suelen ser unirradiculares pero no necesariamente de conducto único."]},
+            {"title": "Molares", "content": ["Molares superiores: raíces mesiovestibular, distovestibular y palatina típicas; mandibulares: raíz mesial y distal típicas, con mayor complejidad frecuente en la mesial."]}
+          ]
+        },
+        "technical": {
+          "summary": "La anatomía interna debe describirse en tres dimensiones y con lenguaje probabilístico: patrones frecuentes, variantes y zonas donde la complejidad aumenta.",
+          "blocks": [
+            {"title": "Cámara pulpar", "content": ["Su techo se relaciona con corona y cuernos pulpares; el piso de molares se ubica en la transición hacia raíces y orienta hacia los orificios de conductos."]},
+            {"title": "Conductos", "content": ["Pueden dividirse, fusionarse o presentar ramificaciones laterales; la descripción de un único conducto recto es una simplificación didáctica."]},
+            {"title": "Incisivos inferiores", "content": ["La raíz comprimida mesiodistalmente puede alojar una anatomía interna con más de un trayecto canalicular aun cuando externamente exista una sola raíz."]},
+            {"title": "Primer premolar superior", "content": ["La variabilidad birradicular/unirradicular y de conductos es un rasgo de alto rendimiento; no se debe inferir un número fijo de conductos solo por el número de raíces."]},
+            {"title": "Primer molar superior", "content": ["La raíz mesiovestibular es anatómicamente relevante por su complejidad interna; el simulador debe mostrar patrón típico y marcar variación."]},
+            {"title": "Molares inferiores", "content": ["La raíz mesial suele ser más aplanada y compleja internamente; la distal es más redondeada pero también variable."]},
+            {"title": "Ápice", "content": ["El foramen apical no necesariamente coincide exactamente con el vértice anatómico de la raíz y pueden existir forámenes accesorios."]},
+            {"title": "Furcaciones", "content": ["En multirradiculares, el tronco radicular se divide en furca; la posición y longitud del tronco varían entre grupos y piezas."]},
+            {"title": "Regla editorial", "content": ["El simulador usa 'patrón típico' y 'variaciones frecuentes' en lugar de presentar una configuración interna como universal."]}
+          ]
+        },
+        "oral": {
+          "summary": "El oral debe demostrar que el alumno diferencia anatomía externa de configuración interna y sabe dónde esperar mayor variabilidad.",
+          "blocks": [
+            {"title": "Orden", "content": ["raíz externa", "cámara", "orificios", "conductos", "variaciones", "ápice", "furca", "ejemplos por grupo"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "anatomia_interna_dentaria", "type": "compare", "note": "Amplía la ficha general de cámara y sistema de conductos."},
+        {"target": "premolares_superiores", "type": "compare", "note": "Primer premolar superior como ejemplo de variabilidad radicular/interna."},
+        {"target": "primer_molar_superior", "type": "compare", "note": "Integra las tres raíces y la complejidad mesiovestibular."},
+        {"target": "primer_molar_inferior", "type": "compare", "note": "Integra raíces mesial/distal y diferencias internas."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Explique por qué número de raíces y número de conductos no son sinónimos y ejemplifique en distintos grupos dentarios.",
+            "requiredElements": ["raíz", "conducto", "división/fusión", "incisivos inferiores", "primer premolar superior", "molar superior", "molar inferior", "variación"],
+            "followUp": ["¿Qué diferencia existe entre ápice radicular y foramen apical?"],
+            "modelAnswer": "La raíz es una estructura externa y el conducto pertenece al sistema pulpar interno; una sola raíz puede contener varios conductos y estos pueden dividirse o reunirse. Incisivos inferiores, primer premolar superior y raíces molares muestran variaciones que impiden equiparar ambos números de forma rígida."
+          }
+        ],
+        "criticalErrors": ["Afirmar que cada raíz contiene obligatoriamente un solo conducto."]
+      },
+      "sourceDocs": ["06-denticion-permanente.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": ["Pendiente ajustar el grado de detalle de clasificaciones endodónticas según lo que exija la cátedra; por ahora se mantiene anatomía descriptiva."]
+    },
+    {
+      "id": "morfologia_temporaria_comparada",
+      "preferredName": "Morfología comparada de dentición temporaria y permanente",
+      "category": "tooth",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "morfologia_temporaria_comparada",
+      "terminology": {
+        "preferred": "Morfología comparada de dentición temporaria y permanente",
+        "synonyms": ["dientes temporarios vs permanentes", "dentición decidua comparada", "dentición primaria comparada"],
+        "classicTerms": ["dientes de leche"],
+        "notes": ["Usar temporaria/decidua como términos académicos principales."]
+      },
+      "levels": {
+        "review": {
+          "summary": "La dentición temporaria no es una versión pequeña de la permanente: presenta proporciones coronarias, cervicales, pulpares y radiculares propias.",
+          "blocks": [
+            {"title": "Claves", "content": ["Mayor constricción cervical relativa y coronas más bulbosas.", "Esmalte/dentina relativamente más delgados y cámara pulpar proporcionalmente amplia.", "Raíces de molares temporarios más finas y divergentes para alojar gérmenes sucesores."]}
+          ]
+        },
+        "development": {
+          "summary": "Se compara la arquitectura de anteriores y molares temporarios con sus homólogos funcionales permanentes y con los dientes sucesores.",
+          "blocks": [
+            {"title": "Anteriores", "content": ["Coronas relativamente pequeñas y convexas; raíces largas respecto de la corona, preparadas para posterior reabsorción fisiológica."]},
+            {"title": "Molares temporarios", "content": ["Raíces delgadas y muy divergentes, con tronco radicular corto; su forma no debe confundirse con premolares permanentes sucesores."]},
+            {"title": "Cuello", "content": ["Prominencia cervical y constricción coronaria más evidentes, especialmente en primeros molares temporarios."]}
+          ]
+        },
+        "technical": {
+          "summary": "El análisis técnico relaciona morfología temporaria con espacio para sucesores, reabsorción radicular y transición hacia dentición mixta.",
+          "blocks": [
+            {"title": "Número de piezas", "content": ["La dentición temporaria completa posee 20 dientes: incisivos, caninos y molares; carece de premolares."]},
+            {"title": "Dimensiones", "content": ["Las coronas son menores, pero la proporción de cámara pulpar respecto del volumen coronario es mayor que en permanentes."]},
+            {"title": "Esmalte y dentina", "content": ["Menor espesor relativo, dato anatómico que acompaña la mayor proximidad de la pulpa a la superficie externa."]},
+            {"title": "Raíces molares", "content": ["Son más finas y divergentes, dejando espacio interradicular para el germen del premolar sucesor."]},
+            {"title": "Tronco radicular", "content": ["La bifurcación/trifurcación comienza más cervicalmente, por lo que el tronco radicular es relativamente corto."]},
+            {"title": "Reabsorción", "content": ["La reabsorción fisiológica radicular acompaña el recambio; no debe confundirse con un rasgo patológico en el contexto del desarrollo normal."]},
+            {"title": "Contactos", "content": ["La morfología de contactos y espacios interdentarios cambia durante el crecimiento; espacios primates y espacios de desarrollo forman parte del análisis de dentición mixta."]},
+            {"title": "Sucesores", "content": ["Los molares temporarios son reemplazados por premolares permanentes; los molares permanentes no sustituyen dientes temporarios."]},
+            {"title": "Error clásico", "content": ["No llamar 'primer molar permanente sucesor' al 16/26/36/46: erupcionan por distal de la dentición temporaria y no reemplazan ninguna pieza."]}
+          ]
+        },
+        "oral": {
+          "summary": "Una respuesta madura compara temporarios y permanentes por corona, cuello, tejidos duros, pulpa, raíces y relación con el recambio.",
+          "blocks": [
+            {"title": "Orden", "content": ["número de piezas", "corona", "cuello", "esmalte/dentina", "pulpa", "raíces", "sucesores", "recambio"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "denticion_temporaria", "type": "compare", "note": "Profundiza la morfología general temporaria."},
+        {"target": "denticion_mixta", "type": "continues-as", "note": "La coexistencia con permanentes define la etapa de dentición mixta."},
+        {"target": "periodonto_insercion", "type": "clinical-relation", "note": "El recambio modifica raíz y tejidos de soporte dentro del desarrollo normal."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Compare dentición temporaria y permanente desde el punto de vista morfológico y explique por qué las raíces de molares temporarios son tan divergentes.",
+            "requiredElements": ["20 dientes", "sin premolares", "constricción cervical", "esmalte/dentina más delgados", "pulpa proporcionalmente amplia", "raíces divergentes", "germen premolar", "reabsorción"],
+            "followUp": ["¿Qué dientes permanentes no tienen predecesor temporario?"],
+            "modelAnswer": "La dentición temporaria tiene 20 piezas, mayor constricción cervical relativa, tejidos duros más delgados y pulpa proporcionalmente amplia. Las raíces de sus molares son finas y divergentes para alojar los gérmenes de los premolares sucesores. Los molares permanentes erupcionan sin reemplazar dientes temporarios."
+          }
+        ],
+        "criticalErrors": ["Afirmar que existen premolares temporarios.", "Afirmar que el primer molar permanente reemplaza un molar temporario."]
+      },
+      "sourceDocs": ["07-denticion-temporaria-oclusion-alveolodentario.md", "13-profundizacion-dentaria.md"],
+      "validationNotes": ["Pendiente confirmar con cátedra la terminología preferida temporaria/decidua/primaria."]
+    },
+    {
+      "id": "anatomia_funcional_cuspides_contactos",
+      "preferredName": "Anatomía funcional de cúspides, rebordes y contactos oclusales",
+      "category": "general",
+      "paUnits": ["Unidad VIII · Anatomía dentaria"],
+      "status": "technical-review",
+      "modelKey": "anatomia_funcional_cuspides_contactos",
+      "terminology": {
+        "preferred": "Anatomía funcional de cúspides, rebordes y contactos oclusales",
+        "synonyms": ["cúspides de soporte y guía", "anatomía oclusal funcional", "contactos cuspídeos"],
+        "classicTerms": ["cúspides estampadoras", "cúspides cortadoras"],
+        "notes": ["Los términos clásicos se aceptan como equivalencias didácticas, pero el simulador debe explicar la relación morfológica y no solo memorizar etiquetas."]
+      },
+      "levels": {
+        "review": {
+          "summary": "La superficie oclusal organiza cúspides, crestas, rebordes marginales, fosas y surcos para permitir engranamiento entre arcadas y mantenimiento del alimento sobre la mesa oclusal.",
+          "blocks": [
+            {"title": "Clave", "content": ["En posteriores, las cúspides palatinas maxilares y vestibulares mandibulares actúan típicamente como cúspides de soporte; las opuestas cumplen mayor función de guía/corte."]}
+          ]
+        },
+        "development": {
+          "summary": "Los contactos no se interpretan como puntos aislados, sino dentro de la relación cúspide–fosa/reborde y de la continuidad de la arcada.",
+          "blocks": [
+            {"title": "Cúspides", "content": ["Poseen vertientes internas y externas y crestas triangulares que descienden hacia el centro de la superficie oclusal."]},
+            {"title": "Fosas y surcos", "content": ["Organizan depresiones y límites entre lóbulos/cúspides; no todos los surcos tienen igual profundidad ni significado."]},
+            {"title": "Rebordes marginales", "content": ["Delimitan mesial y distalmente la mesa oclusal y participan en contactos interproximales/oclusales según la pieza."]}
+          ]
+        },
+        "technical": {
+          "summary": "La anatomía oclusal avanzada integra soporte vertical, guía, contactos interproximales, curvas de arcada y variación individual sin convertir un esquema ideal en una regla universal.",
+          "blocks": [
+            {"title": "Cúspides de soporte", "content": ["Palatinas superiores y vestibulares inferiores se ubican más cerca del eje de las arcadas y participan de forma predominante en soporte oclusal en esquemas morfológicos clásicos."]},
+            {"title": "Cúspides de guía", "content": ["Vestibulares superiores y linguales inferiores contribuyen a corte/guía y protección de tejidos blandos dentro del patrón oclusal morfológico."]},
+            {"title": "Crestas triangulares", "content": ["Se extienden desde la punta cuspídea hacia el centro oclusal y pueden unirse formando crestas transversales u oblicuas según la pieza."]},
+            {"title": "Cresta oblicua", "content": ["Rasgo de molares maxilares, particularmente evidente en el primer molar superior; no debe confundirse con una cresta transversal de premolares."]},
+            {"title": "Fosas", "content": ["Centrales, triangulares y otras depresiones reciben relaciones cuspídeas en esquemas ideales; su anatomía exacta varía entre piezas."]},
+            {"title": "Rebordes marginales", "content": ["Contribuyen a la continuidad oclusal proximal; desgaste o restauraciones pueden modificar los contactos anatómicos."]},
+            {"title": "Curvas", "content": ["La curva de Spee describe una curvatura anteroposterior y la de Wilson una curvatura mediolateral de las superficies oclusales; ambas integran la geometría de la arcada."]},
+            {"title": "Máxima intercuspidación", "content": ["Es una relación dentaria determinada por el engranamiento de las arcadas y no debe confundirse automáticamente con una posición condilar específica sin validación conceptual de cátedra."]},
+            {"title": "Variación", "content": ["Desgaste, malposición y variación anatómica modifican contactos; el simulador debe enseñar el patrón morfológico y señalar que la anatomía real no siempre reproduce un esquema ideal."]}
+          ]
+        },
+        "oral": {
+          "summary": "El alumno debe relacionar una cúspide con sus vertientes, crestas y contactos y luego integrar esa anatomía en el conjunto de la arcada.",
+          "blocks": [
+            {"title": "Orden", "content": ["cúspide", "vertientes", "cresta triangular", "fosa/surco", "rebordes", "soporte/guía", "curvas", "intercuspidación"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "oclusion_morfologica", "type": "compare", "note": "Profundiza la organización anatómica que sustenta las relaciones oclusales."},
+        {"target": "arcos_contactos", "type": "compare", "note": "Integra contactos proximales y continuidad de la arcada."},
+        {"target": "morfologia_comparada_molares", "type": "compare", "note": "Usa molares como ejemplo de crestas, fosas y cúspides de soporte/guía."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Explique la anatomía funcional de las cúspides posteriores y relacione cúspides de soporte, crestas, fosas, rebordes y curvas oclusales.",
+            "requiredElements": ["palatinas superiores", "vestibulares inferiores", "cúspides de soporte", "crestas triangulares", "fosas", "rebordes marginales", "Spee", "Wilson", "máxima intercuspidación"],
+            "followUp": ["¿Qué diferencia una cresta oblicua de una transversal?"],
+            "modelAnswer": "Las cúspides posteriores poseen vertientes y crestas triangulares; las palatinas superiores y vestibulares inferiores actúan típicamente como soporte. Sus crestas y fosas organizan el engranamiento. Rebordes marginales y curvas de Spee/Wilson integran la continuidad de la arcada, mientras la máxima intercuspidación describe el engranamiento dentario."
+          }
+        ],
+        "criticalErrors": ["Confundir máxima intercuspidación con una posición condilar específica como definición universal."]
+      },
+      "sourceDocs": ["07-denticion-temporaria-oclusion-alveolodentario.md", "13-profundizacion-dentaria.md", "18-terminologia-normalizada.md"],
+      "validationNotes": ["Mantener separada la definición de máxima intercuspidación de relación céntrica hasta validar el criterio docente de la cátedra."]
+    }
+  ]
+}
