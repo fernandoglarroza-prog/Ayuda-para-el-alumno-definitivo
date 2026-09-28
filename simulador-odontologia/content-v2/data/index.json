@@ -20,7 +20,8 @@
     "./myology-integrated.json",
     "./osteology-integrated-advanced.json",
     "./esthesiology-integrated.json",
-    "./dentition-integrated-advanced.json"
+    "./dentition-integrated-advanced.json",
+    "./oral-topography-integrated-advanced.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
@@ -33,7 +34,8 @@
     "./oral-bank-myology.json",
     "./oral-bank-osteology-integrated.json",
     "./oral-bank-esthesiology.json",
-    "./oral-bank-dentition-integrated.json"
+    "./oral-bank-dentition-integrated.json",
+    "./oral-bank-oral-topography-integrated.json"
   ],
   "rules": {
     "uiIntegration": false,
@@ -54,6 +56,7 @@
     "La miología integrada relaciona inserciones, planos, vectores, ATM e inervación para evitar estudiar cada músculo como una lista aislada.",
     "La osteología avanzada integra base craneal, comunicaciones, arquitectura resistente y suturas/puntos craneométricos.",
     "La estesiología integrada separa modalidad sensorial, trayecto, ganglio y nervio transportador para evitar mapas de pares craneales aislados.",
-    "La anatomía dentaria integrada compara grupos y arcadas, separa morfología externa/interna y exige justificar identificación, lateralidad y función oclusal."
+    "La anatomía dentaria integrada compara grupos y arcadas, separa morfología externa/interna y exige justificar identificación, lateralidad y función oclusal.",
+    "La topografía oral integrada conecta vestíbulo, istmo, piso de boca, lengua y vías salivales por planos, comunicaciones, modalidades nerviosas y drenajes."
   ]
 }
