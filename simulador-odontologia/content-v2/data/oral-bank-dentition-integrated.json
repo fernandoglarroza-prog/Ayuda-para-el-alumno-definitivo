@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-fdi-01",
+      "topic": "nomenclatura_fdi_dentaria",
+      "type": "identification",
+      "prompt": "Explique el sistema FDI y use una pieza aislada para demostrar que la nomenclatura es la conclusión de la identificación anatómica y no su reemplazo.",
+      "mustInclude": ["dos dígitos", "cuadrante", "posición desde línea media", "1–4 permanentes", "5–8 temporarios", "perspectiva del paciente", "grupo", "lado"],
+      "fatalErrors": ["invertir derecha e izquierda por usar la perspectiva del observador", "inventar premolares temporarios"],
+      "followUps": ["¿Qué significa 36?", "¿Qué diferencia conceptual hay entre 75 y 35?"]
+    },
+    {
+      "id": "oral-anteriores-comparados-01",
+      "topic": "morfologia_comparada_anteriores",
+      "type": "morphology",
+      "prompt": "Recibe una pieza anterior aislada. Describa un método para decidir si es incisivo o canino, superior o inferior y derecho o izquierdo.",
+      "mustInclude": ["borde incisal o cúspide", "cíngulo", "fosa lingual/palatina", "simetría", "contactos", "CEJ", "raíz", "varios criterios"],
+      "fatalErrors": ["usar el ápice radicular como único criterio de lado"],
+      "followUps": ["¿Qué rasgo distingue al lateral inferior del central?", "¿Qué diferencias espera entre canino superior e inferior?"]
+    },
+    {
+      "id": "oral-premolares-comparados-01",
+      "topic": "morfologia_comparada_premolares",
+      "type": "morphology",
+      "prompt": "Compare los cuatro tipos de premolares permanentes y señale qué rasgos usaría para identificar cada uno.",
+      "mustInclude": ["primer superior", "concavidad mesial", "surco marginal mesial", "dos raíces frecuentes", "primer inferior", "surco mesiolingual", "segundo inferior tricuspídeo", "patrón Y"],
+      "fatalErrors": ["afirmar que todos los premolares son bicúspides"],
+      "followUps": ["¿Qué premolar puede mostrar la vertiente mesial de la cúspide vestibular más larga?", "¿Qué diferencia al segundo premolar superior del primero?"]
+    },
+    {
+      "id": "oral-molares-comparados-01",
+      "topic": "morfologia_comparada_molares",
+      "type": "morphology",
+      "prompt": "Compare primer y segundo molar de ambas arcadas y explique por qué el tercer molar debe enseñarse como pieza de alta variabilidad.",
+      "mustInclude": ["cresta oblicua", "tres raíces superiores", "cinco cúspides primer inferior", "dos raíces inferiores", "segundo superior reducción distopalatina", "segundo inferior cuatro cúspides", "tercer molar variable"],
+      "fatalErrors": ["presentar Carabelli como obligatoria", "asignar una morfología fija al tercer molar"],
+      "followUps": ["¿Qué forma la cresta oblicua?", "¿Qué raíces reconoce en un molar superior?"]
+    },
+    {
+      "id": "oral-anatomia-interna-comparada-01",
+      "topic": "anatomia_radicular_interna_comparada",
+      "type": "morphology",
+      "prompt": "Explique por qué anatomía radicular externa y sistema de conductos no son equivalentes y ejemplifique en anteriores, premolares y molares.",
+      "mustInclude": ["raíz", "conducto", "división/fusión", "incisivo inferior", "primer premolar superior", "molar superior", "molar inferior", "foramen apical"],
+      "fatalErrors": ["decir que cada raíz contiene obligatoriamente un solo conducto"],
+      "followUps": ["¿Qué diferencia existe entre ápice y foramen apical?", "¿Qué raíz del primer molar superior merece especial atención por variabilidad interna?"]
+    },
+    {
+      "id": "oral-temporaria-comparada-01",
+      "topic": "morfologia_temporaria_comparada",
+      "type": "morphology",
+      "prompt": "Compare dentición temporaria y permanente por corona, cuello, tejidos duros, pulpa y raíces y relacione esas diferencias con el recambio.",
+      "mustInclude": ["20 dientes", "sin premolares", "constricción cervical", "esmalte/dentina más delgados", "pulpa proporcionalmente amplia", "raíces divergentes", "germen sucesor", "reabsorción"],
+      "fatalErrors": ["afirmar que existen premolares temporarios", "afirmar que el primer molar permanente reemplaza una pieza temporaria"],
+      "followUps": ["¿Qué dientes permanentes no tienen predecesor temporario?", "¿Por qué las raíces molares temporarias divergen tanto?"]
+    },
+    {
+      "id": "oral-cuspides-contactos-01",
+      "topic": "anatomia_funcional_cuspides_contactos",
+      "type": "occlusion",
+      "prompt": "Describa una cúspide posterior dentro del sistema oclusal: vertientes, cresta triangular, fosa antagonista, función de soporte o guía y relación con las curvas de la arcada.",
+      "mustInclude": ["vertientes", "cresta triangular", "fosa", "palatinas superiores", "vestibulares inferiores", "cúspides de soporte", "Spee", "Wilson", "máxima intercuspidación"],
+      "fatalErrors": ["definir máxima intercuspidación como una posición condilar universal"],
+      "followUps": ["¿Qué diferencia una cresta transversal de una oblicua?", "¿Cuáles son las cúspides de soporte típicas?"]
+    },
+    {
+      "id": "oral-integrador-dentario-01",
+      "topic": "morfologia_comparada_molares",
+      "type": "integrated",
+      "prompt": "Le entregan una pieza posterior aislada. Reconstrúyala como en un oral: grupo, arcada, número dentro del grupo, lado, caras, anatomía oclusal, raíz y posible código FDI.",
+      "mustInclude": ["grupo", "arcada", "primer/segundo/tercer", "lado", "caras", "cúspides", "surcos/crestas", "raíces", "FDI", "justificación"],
+      "fatalErrors": ["asignar FDI sin justificar la anatomía", "usar un solo rasgo como criterio de lateralidad"],
+      "followUps": ["¿Qué haría si el desgaste borra parte de la anatomía oclusal?", "¿Qué rasgos radiculares pueden ayudar sin ser absolutos?"]
+    }
+  ]
+}
