@@ -103,9 +103,19 @@ for (const term of terminology.terms || []) {
   }
 }
 
-const oralBank = JSON.parse(await fs.readFile(path.join(here, index.oralBank), 'utf8'));
+const oralBankFiles = Array.isArray(index.oralBanks) && index.oralBanks.length ? index.oralBanks : [index.oralBank];
+const oralQuestions = [];
+for (const oralFile of oralBankFiles) {
+  try {
+    const bank = JSON.parse(await fs.readFile(path.join(here, oralFile), 'utf8'));
+    oralQuestions.push(...(bank.questions || []));
+  } catch (err) {
+    errors.push(`${oralFile}: banco oral inválido o ilegible (${err.message})`);
+  }
+}
+
 const oralIds = new Set();
-for (const question of oralBank.questions || []) {
+for (const question of oralQuestions) {
   if (!question.id) errors.push('Banco oral: pregunta sin id');
   if (oralIds.has(question.id)) errors.push(`Banco oral: ID duplicado ${question.id}`);
   oralIds.add(question.id);
@@ -122,7 +132,7 @@ const statuses = allEntries.reduce((acc, e) => {
 }, {});
 
 console.log(`Contenido V2: ${allEntries.length} fichas estructuradas`);
-console.log(`Preguntas orales: ${(oralBank.questions || []).length}`);
+console.log(`Preguntas orales: ${oralQuestions.length}`);
 console.log('Estados:', statuses);
 if (warnings.length) {
   console.warn(`\nAdvertencias (${warnings.length}):`);
