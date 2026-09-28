@@ -57,7 +57,11 @@
     {"preferred": "Vía nasolagrimal", "target": "ruta_orbita_nariz_lagrimal", "synonyms": ["ruta órbita nariz", "drenaje lagrimal", "conducto nasolagrimal"], "classicTerms": []},
     {"preferred": "Incisivos inferiores permanentes", "target": "incisivos_inferiores", "synonyms": ["incisivos mandibulares", "31/32/41/42"], "classicTerms": []},
     {"preferred": "Criterios de lateralidad dentaria", "target": "criterios_lateralidad_dentaria", "synonyms": ["determinación del lado dentario", "identificación derecha izquierda", "orientación de pieza dentaria"], "classicTerms": []},
-    {"preferred": "Morfología proximal dentaria", "target": "morfologia_proximal_dentaria", "synonyms": ["caras proximales", "contactos y troneras", "unión amelocementaria", "CEJ"], "classicTerms": []}
+    {"preferred": "Morfología proximal dentaria", "target": "morfologia_proximal_dentaria", "synonyms": ["caras proximales", "contactos y troneras", "unión amelocementaria", "CEJ"], "classicTerms": []},
+    {"preferred": "Sistema muscular de la masticación", "target": "masticacion_integrada", "synonyms": ["músculos masticadores integrados", "mecánica muscular mandibular", "biomecánica masticatoria"], "classicTerms": []},
+    {"preferred": "Cabestrillo pterigomaseterino", "target": "cabestrillo_pterigomaseterino", "synonyms": ["cabestrillo masetero-pterigoideo medial", "sling pterygomasseteric"], "classicTerms": []},
+    {"preferred": "Sistema suprahioideo", "target": "sistema_suprahioideo_mandibular", "synonyms": ["músculos suprahioideos", "complejo suprahioideo mandibular"], "classicTerms": []},
+    {"preferred": "Complejo perioral y buccinador", "target": "complejo_perioral_buccinador", "synonyms": ["musculatura perioral", "músculos de labios y mejilla", "modíolo y buccinador"], "classicTerms": []}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
@@ -67,6 +71,7 @@
     "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra.",
     "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino.",
     "En rutas topográficas, priorizar secuencias región→abertura→contenido→destino sobre listas aisladas.",
-    "En lateralidad dentaria, exigir más de un criterio morfológico concordante antes de asignar lado."
+    "En lateralidad dentaria, exigir más de un criterio morfológico concordante antes de asignar lado.",
+    "En miología, describir origen/inserción, inervación y vector dentro del sistema funcional; evitar asignar movimientos complejos a un único músculo."
   ]
 }
