@@ -54,7 +54,10 @@
     {"preferred": "Ruta topográfica V2", "target": "ruta_v2_craneo_cara", "synonyms": ["recorrido de V2", "trayecto de V2 desde cráneo a cara"], "classicTerms": []},
     {"preferred": "Ruta topográfica V3", "target": "ruta_v3_craneo_mandibula", "synonyms": ["recorrido de V3", "trayecto de V3 a mandíbula"], "classicTerms": []},
     {"preferred": "Ruta palatina", "target": "ruta_palatina_pterigopalatina", "synonyms": ["trayecto palatino mayor", "trayecto nasopalatino", "vía palatina"], "classicTerms": []},
-    {"preferred": "Vía nasolagrimal", "target": "ruta_orbita_nariz_lagrimal", "synonyms": ["ruta órbita nariz", "drenaje lagrimal", "conducto nasolagrimal"], "classicTerms": []}
+    {"preferred": "Vía nasolagrimal", "target": "ruta_orbita_nariz_lagrimal", "synonyms": ["ruta órbita nariz", "drenaje lagrimal", "conducto nasolagrimal"], "classicTerms": []},
+    {"preferred": "Incisivos inferiores permanentes", "target": "incisivos_inferiores", "synonyms": ["incisivos mandibulares", "31/32/41/42"], "classicTerms": []},
+    {"preferred": "Criterios de lateralidad dentaria", "target": "criterios_lateralidad_dentaria", "synonyms": ["determinación del lado dentario", "identificación derecha izquierda", "orientación de pieza dentaria"], "classicTerms": []},
+    {"preferred": "Morfología proximal dentaria", "target": "morfologia_proximal_dentaria", "synonyms": ["caras proximales", "contactos y troneras", "unión amelocementaria", "CEJ"], "classicTerms": []}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
@@ -63,6 +66,7 @@
     "No presentar términos próximos pero no equivalentes como sinónimos absolutos.",
     "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra.",
     "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino.",
-    "En rutas topográficas, priorizar secuencias región→abertura→contenido→destino sobre listas aisladas."
+    "En rutas topográficas, priorizar secuencias región→abertura→contenido→destino sobre listas aisladas.",
+    "En lateralidad dentaria, exigir más de un criterio morfológico concordante antes de asignar lado."
   ]
 }
