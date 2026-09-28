@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-base-craneo-integrada-01",
+      "topic": "base_craneo_foramenes_integrada",
+      "type": "osteology-topography",
+      "prompt": "Divida la base endocraneal en fosas y describa sus principales aberturas por hueso, contenido y región comunicada.",
+      "mustInclude": ["fosa anterior", "fosa media", "fosa posterior", "conducto óptico", "fisura orbitaria superior", "foramen redondo", "foramen oval", "foramen espinoso", "foramen yugular", "conducto hipogloso", "foramen magno"],
+      "fatalErrors": ["intercambiar V2 y V3 entre redondo y oval", "describir la carótida interna como contenido vertical simple del foramen lacerum"],
+      "followUps": ["¿Qué comunica el foramen oval?", "¿Qué estructuras atraviesan el foramen yugular?"]
+    },
+    {
+      "id": "oral-pilares-faciales-01",
+      "topic": "arquitectura_resistencia_macizo_facial",
+      "type": "osteology-integration",
+      "prompt": "Explique la arquitectura de resistencia del macizo facial y relacione pilares verticales, trayectorias horizontales, proceso alveolar y seno maxilar.",
+      "mustInclude": ["nasomaxilar", "cigomaticomaxilar", "pterigomaxilar", "paladar", "rebordes orbitarios", "proceso alveolar", "seno maxilar", "modelo arquitectónico"],
+      "fatalErrors": ["presentar los pilares como huesos independientes"],
+      "followUps": ["¿Qué papel cumple el cigomático?", "¿Cómo modifica la neumatización la arquitectura del maxilar?"]
+    },
+    {
+      "id": "oral-suturas-craneometricos-01",
+      "topic": "suturas_puntos_craneometricos",
+      "type": "osteology",
+      "prompt": "Defina bregma, lambda, pterion y asterion e indique los huesos y suturas que participan.",
+      "mustInclude": ["coronal", "sagital", "lambdoidea", "frontal", "parietal", "occipital", "temporal", "esfenoides", "pterion", "asterion"],
+      "fatalErrors": ["definir pterion como unión de solo dos huesos"],
+      "followUps": ["¿Qué son los huesos suturales?", "¿Qué relación profunda clásica tiene el pterion?"]
+    },
+    {
+      "id": "oral-palatino-02",
+      "topic": "palatino",
+      "type": "bone",
+      "prompt": "Oriente y describa el palatino por láminas, procesos, articulaciones y conductos, integrándolo con fosa pterigopalatina y paladar.",
+      "mustInclude": ["lámina horizontal", "lámina perpendicular", "proceso piramidal", "proceso orbitario", "proceso esfenoidal", "foramen esfenopalatino", "conducto palatino"],
+      "fatalErrors": ["atribuir todo el paladar duro exclusivamente al maxilar"],
+      "followUps": ["¿Qué cuarto del paladar duro forma?", "¿Qué hueso completa la escotadura esfenopalatina?"]
+    },
+    {
+      "id": "oral-etmoides-02",
+      "topic": "etmoides",
+      "type": "bone",
+      "prompt": "Describa el etmoides y relacione sus componentes con fosa craneal anterior, cavidad nasal y órbita.",
+      "mustInclude": ["lámina cribosa", "crista galli", "lámina perpendicular", "laberintos", "celdillas", "lámina papirácea", "concha superior", "concha media"],
+      "fatalErrors": ["afirmar que la concha inferior pertenece al etmoides"],
+      "followUps": ["¿Qué atraviesa la lámina cribosa?", "¿Qué parte contribuye a la pared medial orbitaria?"]
+    }
+  ]
+}
