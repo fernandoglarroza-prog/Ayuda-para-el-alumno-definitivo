@@ -1,0 +1,351 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "vestibulo_cavidad_oral_integrados",
+      "preferredName": "Vestíbulo y cavidad oral propiamente dicha · integración topográfica",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral"],
+      "status": "technical-review",
+      "modelKey": "vestibulo_cavidad_oral_integrados",
+      "terminology": {
+        "preferred": "Vestíbulo y cavidad oral propiamente dicha",
+        "synonyms": ["vestíbulo oral", "cavidad bucal propiamente dicha", "división de la cavidad oral"],
+        "classicTerms": [],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "La cavidad oral se divide en vestíbulo, situado entre labios/mejillas y arcos dentogingivales, y cavidad propiamente dicha, medial a los arcos y ocupada en gran parte por la lengua.",
+          "blocks": [
+            {"title": "Comunicación", "content": ["Ambos espacios se comunican alrededor de los últimos molares y, con la boca abierta, a través de los espacios interdentarios."]}
+          ]
+        },
+        "development": {
+          "summary": "La descripción topográfica debe identificar límites, paredes, fondos de surco, mucosa, estructuras que desembocan y continuidad posterior con orofaringe.",
+          "blocks": [
+            {"title": "Vestíbulo", "content": ["Pared externa: labios y mejillas; pared interna: dientes, procesos alveolares y encía; fondos de surco superior e inferior como reflexiones mucosas."]},
+            {"title": "Cavidad propia", "content": ["Limitada lateralmente por arcos dentarios, superiormente por paladar e inferiormente por lengua y piso de boca."]},
+            {"title": "Posterior", "content": ["Se continúa con orofaringe por el istmo de las fauces, cuya delimitación depende del paladar blando y arcos palatinos."]}
+          ]
+        },
+        "technical": {
+          "summary": "El nivel técnico integra planos musculares, mucosa, desembocaduras salivales, sensibilidad, motricidad y relaciones con dientes sin confundir pared anatómica con región funcional.",
+          "blocks": [
+            {"title": "Labios", "content": ["De superficial a profundo se reconocen piel, tejido subcutáneo, orbicular de los labios y musculatura convergente, submucosa glandular y mucosa oral."]},
+            {"title": "Mejilla", "content": ["El buccinador forma la pared muscular profunda; lateralmente se relaciona con tejido adiposo bucal y músculos de expresión facial."]},
+            {"title": "Conducto parotídeo", "content": ["Cruza superficialmente el masetero, gira medialmente, perfora buccinador y se abre en el vestíbulo frente a la región molar superior."]},
+            {"title": "Fondos de surco", "content": ["La mucosa alveolar se refleja hacia labios/mejillas formando fondos vestibulares; su profundidad depende de inserciones musculares y frenillos."]},
+            {"title": "Frenillos", "content": ["Los frenillos labiales y lingual son pliegues mucosos de referencia; su anatomía presenta variación individual."]},
+            {"title": "Sensibilidad", "content": ["Labio superior y maxilar dependen de ramas de V2; labio inferior y mandíbula de ramas de V3, con distribución regional específica."]},
+            {"title": "Motricidad", "content": ["La musculatura labial y geniana es principalmente facial (VII); no debe confundirse el nervio bucal sensitivo de V3 con la inervación motora del buccinador."]},
+            {"title": "Continuidad", "content": ["La cavidad propia se integra con piso, lengua, paladar e istmo; el estudio por compartimentos evita memorizar paredes aisladas."]}
+          ]
+        },
+        "oral": {
+          "summary": "En un oral debe definirse primero la división de la cavidad oral y luego describir paredes, mucosa, desembocaduras y comunicaciones.",
+          "blocks": [
+            {"title": "Orden", "content": ["división", "límites", "vestíbulo", "fondos de surco", "cavidad propia", "parótida", "piso/paladar", "istmo"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "cavidad_oral", "type": "compare", "note": "Integra la ficha general con relaciones por planos."},
+        {"target": "buccinador", "type": "adjacent", "note": "El buccinador forma la pared muscular de la mejilla."},
+        {"target": "parotida", "type": "clinical-relation", "note": "El conducto parotídeo desemboca en el vestíbulo."},
+        {"target": "piso_boca", "type": "adjacent", "note": "El piso limita inferiormente la cavidad oral propiamente dicha."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Divida topográficamente la cavidad oral y describa el vestíbulo por paredes, planos y desembocaduras.",
+            "requiredElements": ["vestíbulo", "cavidad propia", "labios/mejillas", "dientes/encía", "fondos de surco", "buccinador", "conducto parotídeo", "istmo"],
+            "followUp": ["¿Por qué el nervio bucal de V3 no es el motor del buccinador?"],
+            "modelAnswer": "El vestíbulo queda entre labios/mejillas y arcos dentogingivales; presenta fondos de surco por reflexión mucosa y recibe el conducto parotídeo. La cavidad propiamente dicha queda medial a los arcos, con paladar superior, lengua/piso inferior y comunicación posterior por el istmo."
+          }
+        ],
+        "criticalErrors": ["Atribuir la motricidad del buccinador al nervio bucal de V3."]
+      },
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "09-topografia-bucal-linfaticos-anestesia.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "istmo_fauces_orofaringe_integrado",
+      "preferredName": "Istmo de las fauces y transición oral-orofaríngea",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral"],
+      "status": "technical-review",
+      "modelKey": "istmo_fauces_orofaringe_integrado",
+      "terminology": {
+        "preferred": "Istmo de las fauces",
+        "synonyms": ["istmo orofaríngeo", "transición cavidad oral-orofaringe"],
+        "classicTerms": ["istmo bucofaríngeo"],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "El istmo de las fauces es la comunicación posterior entre cavidad oral y orofaringe, relacionada con paladar blando, lengua y arcos palatogloso/palatofaríngeo.",
+          "blocks": [
+            {"title": "Referencias", "content": ["Superior: paladar blando; inferior: dorso/base lingual; lateralmente: arcos palatoglosos como límite anterior funcional del paso."]}
+          ]
+        },
+        "development": {
+          "summary": "Debe diferenciarse el istmo como abertura funcional de la fosa tonsilar y de los arcos musculares que modelan la transición oral-faríngea.",
+          "blocks": [
+            {"title": "Arco palatogloso", "content": ["Pliegue mucoso que contiene músculo palatogloso y constituye una referencia anterior del istmo."]},
+            {"title": "Arco palatofaríngeo", "content": ["Más posterior; contiene palatofaríngeo y participa en la pared lateral de la región orofaríngea."]},
+            {"title": "Fosa tonsilar", "content": ["La amígdala palatina se ubica entre los arcos en la pared lateral orofaríngea; no es parte del paladar duro."]}
+          ]
+        },
+        "technical": {
+          "summary": "El estudio técnico integra musculatura, inervación, vasos y relaciones tonsilares sin convertir el contenido en semiología clínica.",
+          "blocks": [
+            {"title": "Palatogloso", "content": ["Eleva la región posterior de lengua y aproxima arcos; recibe inervación principalmente por plexo faríngeo/vago, excepción respecto de la mayoría de músculos linguales."]},
+            {"title": "Palatofaríngeo", "content": ["Forma el arco posterior y participa en elevación faríngea y dinámica del paladar blando."]},
+            {"title": "Tensor del velo", "content": ["Aunque es músculo del paladar blando, recibe inervación por V3 y no por el vago; es una excepción de alto rendimiento."]},
+            {"title": "Tonsila palatina", "content": ["Se relaciona lateralmente con pared faríngea y planos constrictores; recibe irrigación de múltiples ramas con predominio regional variable."]},
+            {"title": "Sensibilidad", "content": ["La región orofaríngea posterior se integra con IX y X, mientras la cavidad oral anterior depende predominantemente de trigémino."]},
+            {"title": "Deglución", "content": ["La contracción coordinada de paladar y faringe modifica el calibre del istmo y dirige el bolo hacia orofaringe."]},
+            {"title": "Relación lingual", "content": ["La base de lengua y región tonsilar lingual se continúan inferiormente con el territorio orofaríngeo."]},
+            {"title": "Error", "content": ["No usar 'fauces' como sinónimo de toda la faringe ni ubicar la tonsila palatina entre paladar duro y dientes."]}
+          ]
+        },
+        "oral": {
+          "summary": "La respuesta debe distinguir abertura, arcos musculares, fosa tonsilar e inervación, cerrando con la transición funcional a orofaringe.",
+          "blocks": [
+            {"title": "Orden", "content": ["definición", "límites", "palatogloso", "palatofaríngeo", "tonsila", "inervación", "deglución"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "paladar_blando", "type": "adjacent", "note": "El paladar blando forma el límite superior funcional."},
+        {"target": "lengua", "type": "adjacent", "note": "La base lingual participa en el límite inferior y continuidad orofaríngea."},
+        {"target": "vago_x", "type": "innervates", "note": "El plexo faríngeo aporta la mayor parte de la motricidad palatina/faríngea."},
+        {"target": "v3", "type": "compare", "note": "V3 inerva tensor del velo como excepción."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Delimite el istmo de las fauces, describa sus arcos y explique la excepción motora del tensor del velo.",
+            "requiredElements": ["paladar blando", "lengua", "palatogloso", "palatofaríngeo", "fosa tonsilar", "vago", "V3", "tensor del velo"],
+            "followUp": ["¿Dónde se ubica la tonsila palatina respecto de los arcos?"],
+            "modelAnswer": "El istmo comunica cavidad oral y orofaringe. Superiormente se relaciona con paladar blando e inferiormente con lengua; los arcos palatogloso y palatofaríngeo delimitan la región tonsilar. La mayoría de músculos del paladar dependen del plexo faríngeo/vago, pero el tensor del velo depende de V3."
+          }
+        ],
+        "criticalErrors": ["Afirmar que el tensor del velo depende del X."]
+      },
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "16-profundizacion-pares-craneales-estesiologia.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "piso_boca_compartimentos_integrado",
+      "preferredName": "Piso de boca por planos y compartimentos",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal y topografía oral"],
+      "status": "technical-review",
+      "modelKey": "piso_boca_compartimentos_integrado",
+      "terminology": {
+        "preferred": "Piso de boca por planos y compartimentos",
+        "synonyms": ["región sublingual y submandibular", "espacios del piso de boca", "topografía del milohioideo"],
+        "classicTerms": ["región glososuprahioidea"],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "El milohioideo forma un diafragma muscular que separa topográficamente el espacio sublingual superior del territorio submandibular inferior, aunque ambos se comunican alrededor de su borde posterior.",
+          "blocks": [
+            {"title": "Clave", "content": ["Sublingual: sobre milohioideo; submandibular: principalmente bajo milohioideo; continuidad posterior alrededor del borde libre muscular."]}
+          ]
+        },
+        "development": {
+          "summary": "El piso se estudia por capas: mucosa, glándula sublingual, conducto submandibular, nervio lingual, músculos geniogloso/genihioideo y milohioideo.",
+          "blocks": [
+            {"title": "Plano superficial", "content": ["Mucosa del piso con pliegues sublinguales y carúnculas a cada lado del frenillo lingual."]},
+            {"title": "Espacio sublingual", "content": ["Contiene glándula sublingual y estructuras ductales/neurovasculares sobre el milohioideo."]},
+            {"title": "Espacio submandibular", "content": ["Relacionado con glándula submandibular y región inferior/posterior al milohioideo."]}
+          ]
+        },
+        "technical": {
+          "summary": "La topografía técnica exige dominar el cruce nervio lingual–conducto submandibular y la relación de glándulas con milohioideo/hiogloso.",
+          "blocks": [
+            {"title": "Milohioideo", "content": ["Forma el diafragma del piso; se origina en línea milohioidea y se inserta en rafe medio/cuerpo del hioides."]},
+            {"title": "Glándula submandibular", "content": ["Su porción superficial queda inferior/lateral al milohioideo y su prolongación profunda rodea el borde posterior para entrar al piso."]},
+            {"title": "Conducto submandibular", "content": ["Avanza hacia anterior en el espacio sublingual hasta la carúncula sublingual junto al frenillo."]},
+            {"title": "Nervio lingual", "content": ["Desciende medial a mandíbula y en el piso cruza el conducto submandibular, describiendo una relación espacial que debe entenderse tridimensionalmente."]},
+            {"title": "Glándula sublingual", "content": ["Descansa sobre milohioideo, lateral a geniogloso, y eleva el pliegue sublingual; drena por múltiples conductos menores."]},
+            {"title": "Hiogloso", "content": ["Es referencia de planos: arteria lingual pasa profunda al hiogloso, mientras nervio hipogloso y otras estructuras se relacionan superficialmente según el trayecto."]},
+            {"title": "Genihioideo", "content": ["Se ubica superior al milohioideo en la línea media y relaciona mandíbula con hioides."]},
+            {"title": "Comunicación posterior", "content": ["El borde posterior del milohioideo permite continuidad topográfica entre espacios sublingual y submandibular."]},
+            {"title": "Error", "content": ["No ubicar la glándula sublingual debajo del milohioideo ni describir el nervio lingual dentro del conducto submandibular."]}
+          ]
+        },
+        "oral": {
+          "summary": "El oral debe reconstruir el piso desde superficial a profundo y explicar el cruce nervio lingual–conducto submandibular.",
+          "blocks": [
+            {"title": "Orden", "content": ["mucosa", "milohioideo", "sublingual", "submandibular", "conducto", "nervio lingual", "hiogloso", "comunicación posterior"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "piso_boca", "type": "compare", "note": "Amplía la ficha general por planos y compartimentos."},
+        {"target": "submandibular", "type": "contains", "note": "Integra glándula y conducto submandibular."},
+        {"target": "sublingual", "type": "contains", "note": "La glándula sublingual ocupa el espacio sublingual."},
+        {"target": "v3", "type": "clinical-relation", "note": "El nervio lingual, rama de V3, cruza el conducto submandibular."},
+        {"target": "hipogloso_xii", "type": "adjacent", "note": "XII se relaciona con planos del piso y hiogloso."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Describa el piso de boca por planos y explique la relación tridimensional entre milohioideo, glándula submandibular, conducto submandibular y nervio lingual.",
+            "requiredElements": ["milohioideo", "espacio sublingual", "espacio submandibular", "porción profunda submandibular", "conducto submandibular", "nervio lingual", "cruce", "carúncula sublingual"],
+            "followUp": ["¿Qué estructura vascular pasa profunda al hiogloso?"],
+            "modelAnswer": "El milohioideo separa un espacio sublingual superior de un territorio submandibular inferior, comunicados por detrás. La submandibular rodea el borde posterior del milohioideo y su conducto avanza por el piso; el nervio lingual cruza ese conducto antes de continuar hacia la lengua."
+          }
+        ],
+        "criticalErrors": ["Ubicar la glándula sublingual debajo del milohioideo.", "Decir que el nervio lingual discurre dentro del conducto submandibular."]
+      },
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "09-topografia-bucal-linfaticos-anestesia.md", "14-profundizacion-cavidad-oral-salivales.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "lengua_topografia_linfaticos_integrada",
+      "preferredName": "Lengua · topografía, músculos, sensibilidad y linfáticos integrados",
+      "category": "oral-region",
+      "paUnits": ["Unidad IX/X · Cavidad bucal", "Unidad V · Neurología", "Unidad VII · Estesiología"],
+      "status": "technical-review",
+      "modelKey": "lengua_topografia_linfaticos_integrada",
+      "terminology": {
+        "preferred": "Lengua integrada",
+        "synonyms": ["topografía de la lengua", "inervación de la lengua", "linfáticos linguales"],
+        "classicTerms": [],
+        "notes": []
+      },
+      "levels": {
+        "review": {
+          "summary": "La lengua se divide anatómicamente en porción oral anterior al surco terminal y porción faríngea posterior; integra músculos intrínsecos/extrínsecos, sensibilidad, gusto y drenaje linfático cruzado.",
+          "blocks": [
+            {"title": "Referencias", "content": ["Surco terminal en V, foramen ciego, papilas linguales anteriores y tejido tonsilar posterior."]}
+          ]
+        },
+        "development": {
+          "summary": "Debe estudiarse por superficie, músculos, inserciones extrínsecas y territorios sensitivos/gustativos.",
+          "blocks": [
+            {"title": "Músculos extrínsecos", "content": ["Geniogloso, hiogloso, estilogloso y palatogloso modifican posición global de la lengua."]},
+            {"title": "Intrínsecos", "content": ["Longitudinal superior/inferior, transverso y vertical modifican forma lingual."]},
+            {"title": "Papilas", "content": ["Filiformes, fungiformes, circunvaladas y foliadas presentan distribución y funciones distintas; no todas poseen la misma participación gustativa."]}
+          ]
+        },
+        "technical": {
+          "summary": "La respuesta técnica separa motricidad, sensibilidad general, gusto e irrigación y explica por qué el drenaje linfático puede cruzar la línea media.",
+          "blocks": [
+            {"title": "Motor", "content": ["XII inerva la mayoría de músculos intrínsecos y extrínsecos; palatogloso es excepción dependiente del plexo faríngeo/X."]},
+            {"title": "Sensibilidad anterior", "content": ["Los dos tercios anteriores reciben sensibilidad general por nervio lingual de V3."]},
+            {"title": "Gusto anterior", "content": ["El gusto de los dos tercios anteriores viaja principalmente por cuerda del tímpano del VII que se incorpora al nervio lingual."]},
+            {"title": "Tercio posterior", "content": ["IX conduce tanto sensibilidad general como gusto del tercio posterior, incluyendo región de papilas circunvaladas en el esquema clásico."]},
+            {"title": "Región epiglótica", "content": ["X participa en sensibilidad/gusto de la región más posterior y epiglótica."]},
+            {"title": "Irrigación", "content": ["La arteria lingual y sus ramas profundas/dorsales forman el eje vascular principal, con relaciones topográficas con hiogloso."]},
+            {"title": "Linfáticos punta", "content": ["La punta drena con frecuencia hacia nodos submentonianos antes de cadenas superiores, con variabilidad y cruces."]},
+            {"title": "Linfáticos laterales", "content": ["Bordes laterales anteriores drenan principalmente hacia submandibulares y cervicales profundos; regiones centrales/posteriores pueden drenar bilateralmente."]},
+            {"title": "Cruce de línea media", "content": ["El drenaje lingual no respeta de forma absoluta la línea media, especialmente en territorios centrales/posteriores."]}
+          ]
+        },
+        "oral": {
+          "summary": "Una respuesta completa separa superficie, músculos, motor, sensibilidad, gusto, irrigación y linfáticos sin mezclar modalidades.",
+          "blocks": [
+            {"title": "Orden", "content": ["partes", "papilas", "músculos", "XII/X", "V3", "VII", "IX", "X", "arteria lingual", "linfáticos"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "lengua", "type": "compare", "note": "Amplía la ficha general con integración neurovascular y linfática."},
+        {"target": "v3", "type": "innervates", "note": "El nervio lingual aporta sensibilidad general anterior."},
+        {"target": "facial_vii", "type": "innervates", "note": "La cuerda del tímpano aporta gusto anterior y parasimpático submandibular/sublingual."},
+        {"target": "hipogloso_xii", "type": "innervates", "note": "XII es motor para la mayoría de músculos linguales."},
+        {"target": "vago_x", "type": "innervates", "note": "X participa en región epiglótica y palatogloso por plexo faríngeo."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Describa la lengua como unidad topográfica y separe con precisión motricidad, sensibilidad general, gusto e irrigación.",
+            "requiredElements": ["surco terminal", "intrínsecos/extrínsecos", "XII", "palatogloso X", "lingual V3", "cuerda del tímpano VII", "IX", "X", "arteria lingual", "linfáticos"],
+            "followUp": ["¿Por qué una lesión central de lengua puede drenar bilateralmente?"],
+            "modelAnswer": "La porción oral queda anterior al surco terminal y la faríngea posterior. XII es motor salvo palatogloso por X; V3/lingual lleva sensibilidad general anterior y VII/cuerda gusto anterior; IX lleva sensibilidad y gusto posterior y X la región epiglótica. La irrigación es principalmente lingual y los linfáticos pueden cruzar la línea media."
+          }
+        ],
+        "criticalErrors": ["Afirmar que XII lleva gusto.", "Afirmar que el nervio lingual origina las fibras gustativas de cuerda del tímpano."]
+      },
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "09-topografia-bucal-linfaticos-anestesia.md", "14-profundizacion-cavidad-oral-salivales.md", "16-profundizacion-pares-craneales-estesiologia.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "vias_salivales_desembocaduras_integradas",
+      "preferredName": "Glándulas salivales mayores · conductos, desembocaduras y vías autonómicas",
+      "category": "gland",
+      "paUnits": ["Unidad IX/X · Cavidad bucal", "Unidad V · Neurología"],
+      "status": "technical-review",
+      "modelKey": "vias_salivales_desembocaduras_integradas",
+      "terminology": {
+        "preferred": "Vías salivales integradas",
+        "synonyms": ["parótida submandibular sublingual comparadas", "conductos salivales mayores", "inervación parasimpática salival"],
+        "classicTerms": ["Stensen", "Wharton"],
+        "notes": ["Usar epónimos solo como sinónimos buscables; mostrar nombres descriptivos como principales."]
+      },
+      "levels": {
+        "review": {
+          "summary": "Las glándulas parótida, submandibular y sublingual difieren en situación, conducto y vía parasimpática, pero convergen funcionalmente en la secreción hacia la cavidad oral.",
+          "blocks": [
+            {"title": "Desembocaduras", "content": ["Parótida → vestíbulo; submandibular → carúncula sublingual; sublingual → múltiples conductos a lo largo del pliegue sublingual."]}
+          ]
+        },
+        "development": {
+          "summary": "La comparación se organiza por localización, trayecto ductal, desembocadura y nervio parasimpático preganglionar.",
+          "blocks": [
+            {"title": "Parótida", "content": ["Conducto cruza masetero, perfora buccinador y abre en vestíbulo; vía secretomotora principal: IX → nervio timpánico/plexo → petroso menor → ganglio ótico → auriculotemporal."]},
+            {"title": "Submandibular", "content": ["Conducto recorre piso hasta carúncula; vía parasimpática: VII → cuerda del tímpano → lingual → ganglio submandibular."]},
+            {"title": "Sublingual", "content": ["Múltiples conductos menores; comparte gran parte de la vía parasimpática del VII/ganglio submandibular."]}
+          ]
+        },
+        "technical": {
+          "summary": "El nivel técnico exige diferenciar origen autonómico de la rama trigeminal que distribuye fibras posganglionares y ubicar cada conducto en su plano anatómico.",
+          "blocks": [
+            {"title": "Parótida · origen autonómico", "content": ["Las fibras parasimpáticas preganglionares proceden del IX; no se originan en el nervio auriculotemporal."]},
+            {"title": "Parótida · ganglio", "content": ["Sinapsis en ganglio ótico; las fibras posganglionares alcanzan la glándula acompañando al auriculotemporal de V3."]},
+            {"title": "Parótida · conducto", "content": ["El conducto parotídeo corre sobre masetero, cambia de plano en su borde anterior y atraviesa buccinador para alcanzar el vestíbulo."]},
+            {"title": "Submandibular · origen autonómico", "content": ["VII envía cuerda del tímpano, que se une al nervio lingual; las fibras preganglionares sinaptan en ganglio submandibular."]},
+            {"title": "Submandibular · conducto", "content": ["El conducto avanza hacia anterior sobre el piso; el nervio lingual lo cruza en una relación espacial de alto rendimiento."]},
+            {"title": "Sublingual", "content": ["Conductos menores abren a lo largo del pliegue sublingual; un conducto mayor puede asociarse al sistema submandibular según variante."]},
+            {"title": "Simpático", "content": ["Fibras simpáticas posganglionares llegan siguiendo plexos periarteriales desde ganglio cervical superior; modulan vasos/secreción y no sustituyen la vía parasimpática."]},
+            {"title": "Sensibilidad", "content": ["Las ramas trigeminales aportan sensibilidad regional y también pueden servir de vehículo a fibras autonómicas; esto no cambia el origen craneal de las fibras secretomotoras."]},
+            {"title": "Error", "content": ["No decir que V3 'produce' la secreción parotídea ni que el nervio lingual origina la parasimpática submandibular."]}
+          ]
+        },
+        "oral": {
+          "summary": "Una respuesta completa compara las tres glándulas y recorre dos vías parasimpáticas: IX–ótico–auriculotemporal y VII–cuerda–lingual–submandibular.",
+          "blocks": [
+            {"title": "Orden", "content": ["glándula", "situación", "conducto", "desembocadura", "par craneal", "ganglio", "rama transportadora", "comparación"]}
+          ]
+        }
+      },
+      "relations": [
+        {"target": "parotida", "type": "compare", "note": "Integra conducto y vía parasimpática parotídea."},
+        {"target": "submandibular", "type": "compare", "note": "Integra conducto y ganglio submandibular."},
+        {"target": "sublingual", "type": "compare", "note": "Integra drenaje por múltiples conductos y vía autonómica."},
+        {"target": "v3", "type": "distributed-by", "note": "Auriculotemporal y lingual transportan fibras autonómicas pos/preganglionares en distintos segmentos sin originarlas."},
+        {"target": "facial_vii", "type": "innervates", "note": "VII origina parasimpático preganglionar para submandibular/sublingual."}
+      ],
+      "exam": {
+        "questions": [
+          {
+            "prompt": "Compare parótida, submandibular y sublingual por conducto, desembocadura y vía parasimpática completa.",
+            "requiredElements": ["conducto parotídeo", "vestíbulo", "IX", "ganglio ótico", "auriculotemporal", "conducto submandibular", "carúncula", "VII", "cuerda del tímpano", "lingual", "ganglio submandibular", "conductos sublinguales"],
+            "followUp": ["¿Por qué el auriculotemporal no es el origen parasimpático de la parótida?"],
+            "modelAnswer": "La parótida drena al vestíbulo y recibe parasimpático del IX que sinapta en ganglio ótico y viaja posganglionar por auriculotemporal. La submandibular drena en carúncula y recibe VII por cuerda del tímpano, lingual y ganglio submandibular. La sublingual drena por múltiples conductos y comparte esa vía parasimpática."
+          }
+        ],
+        "criticalErrors": ["Atribuir origen parasimpático parotídeo a V3.", "Atribuir origen parasimpático submandibular al nervio lingual."]
+      },
+      "sourceDocs": ["05-cavidad-oral-salivales.md", "14-profundizacion-cavidad-oral-salivales.md", "16-profundizacion-pares-craneales-estesiologia.md"],
+      "validationNotes": []
+    }
+  ]
+}
