@@ -32,12 +32,18 @@ jobs:
         working-directory: simulador-odontologia/content-v2/data
         run: node validate-content.mjs
 
+      - name: Auditar cobertura por unidad
+        working-directory: simulador-odontologia/content-v2/data
+        run: node audit-coverage.mjs
+
       - name: Compilar corpus
         working-directory: simulador-odontologia/content-v2/data
         run: node compile-content.mjs
 
-      - name: Verificar archivo compilado
+      - name: Verificar artefactos académicos
         working-directory: simulador-odontologia/content-v2/data
         run: |
           test -s compiled-v2.json
+          test -s coverage-report.json
           node -e "const d=require('./compiled-v2.json'); if(!d.entries?.length) process.exit(1); console.log('Fichas compiladas:', d.entries.length, 'Preguntas:', d.oralBank?.length || 0)"
+          node -e "const r=require('./coverage-report.json'); if(!r.units?.length) process.exit(1); console.log('Unidades auditadas:', r.units.length, 'Pendientes cátedra:', r.totals?.pendingCatedra || 0)"
