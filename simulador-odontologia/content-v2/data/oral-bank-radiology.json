@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-panoramica-formacion-01",
+      "topic": "panoramica_formacion_imagen",
+      "type": "radiology",
+      "prompt": "Explique cómo se forma una radiografía panorámica y diferencie capa focal, magnificación, distorsión, imagen doble e imagen fantasma.",
+      "mustInclude": ["tomografía rotacional", "capa focal", "magnificación", "distorsión", "imagen doble", "imagen fantasma", "posicionamiento"],
+      "fatalErrors": ["afirmar que la panorámica conserva dimensiones reales uniformes"],
+      "followUps": ["¿Cómo altera una rotación del paciente la simetría aparente?", "¿Qué ocurre si la lengua no contacta el paladar?"]
+    },
+    {
+      "id": "oral-panoramica-anatomia-01",
+      "topic": "panoramica_anatomia_normal",
+      "type": "radiology",
+      "prompt": "Describa una secuencia sistemática para leer una panorámica normal y justifique dos estructuras que puedan confundirse por superposición.",
+      "mustInclude": ["mandíbula", "maxilar", "senos", "cavidad nasal", "arcos cigomáticos", "ATM", "foramen mentoniano", "superposición"],
+      "fatalErrors": ["interpretar una superposición como contacto tridimensional demostrado"],
+      "followUps": ["¿Cómo reconocería el proceso cigomático del maxilar?", "¿Qué imagen puede producir el hioides?"]
+    },
+    {
+      "id": "oral-cbct-mpr-01",
+      "topic": "cbct_mpr_orientacion",
+      "type": "radiology",
+      "prompt": "Explique qué aporta cada plano MPR en CBCT y por qué una reconstrucción 3D no reemplaza los cortes multiplanares.",
+      "mustInclude": ["axial", "coronal", "sagital", "reorientación", "planos ortogonales", "reconstrucción curva", "render 3D"],
+      "fatalErrors": ["afirmar que el render 3D contiene más información que los cortes fuente"],
+      "followUps": ["¿Cómo estudiaría posición bucolingual de un conducto?", "¿Cómo reorientaría la ATM?"]
+    },
+    {
+      "id": "oral-cbct-artefactos-01",
+      "topic": "cbct_artefactos_limitaciones",
+      "type": "radiology",
+      "prompt": "Nombre artefactos principales del CBCT y explique cómo pueden alterar la percepción de corticales, raíces o conductos.",
+      "mustInclude": ["movimiento", "metal", "endurecimiento del haz", "partial volume", "scatter", "valores de gris", "múltiples planos"],
+      "fatalErrors": ["equiparar todo valor de gris de CBCT con HU universales"],
+      "followUps": ["¿Qué limita el contraste de tejidos blandos?", "¿Cómo sospecharía un artefacto de movimiento?"]
+    },
+    {
+      "id": "oral-radiologia-maxila-01",
+      "topic": "radiologia_maxila",
+      "type": "radiology",
+      "prompt": "Recorra anatómicamente el maxilar en imagen desde sector anterior hasta tuberosidad y relacione dientes, seno, canal incisivo y piso nasal.",
+      "mustInclude": ["piso nasal", "canal incisivo", "seno maxilar", "raíces posteriores", "tuberosidad", "proceso cigomático", "CBCT"],
+      "fatalErrors": ["inferir contacto raíz-seno exclusivamente por superposición panorámica"],
+      "followUps": ["¿Qué plano ayuda a valorar relación vertical raíz-seno?", "¿Dónde buscaría el canal infraorbitario?"]
+    },
+    {
+      "id": "oral-radiologia-mandibula-01",
+      "topic": "radiologia_mandibula",
+      "type": "radiology",
+      "prompt": "Recorra la mandíbula en panorámica y explique qué relaciones anatómicas exigen CBCT para resolución tridimensional.",
+      "mustInclude": ["foramen mentoniano", "conducto mandibular", "línea milohioidea", "ángulo", "rama", "cóndilo", "posición bucolingual", "CBCT"],
+      "fatalErrors": ["afirmar que la panorámica define posición bucolingual del conducto"],
+      "followUps": ["¿Cómo puede verse la fosa submandibular?", "¿Qué limitación tiene la panorámica para ATM?"]
+    }
+  ]
+}
