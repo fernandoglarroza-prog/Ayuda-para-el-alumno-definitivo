@@ -14,14 +14,16 @@
     "./dentition-radiology.json",
     "./dentition-extended.json",
     "./occlusion-alveolodentary.json",
-    "./radiology-advanced.json"
+    "./radiology-advanced.json",
+    "./topographic-routes.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
   "oralBanks": [
     "./oral-bank.json",
     "./oral-bank-occlusion.json",
-    "./oral-bank-radiology.json"
+    "./oral-bank-radiology.json",
+    "./oral-bank-topography.json"
   ],
   "rules": {
     "uiIntegration": false,
@@ -36,6 +38,7 @@
     "El nombre anatómico preferido se muestra primero; los términos clásicos quedan como sinónimos buscables/aceptables.",
     "Estado pending-catedra significa contenido técnicamente desarrollado pero pendiente de contraste específico con la cátedra.",
     "La información clínica se limita a correlación anatómica educativa y no constituye indicación diagnóstica o terapéutica.",
-    "Los bancos orales son modulares y se concatenan durante validación/compilación."
+    "Los bancos orales son modulares y se concatenan durante validación/compilación.",
+    "Las rutas topográficas integradoras conectan regiones, aberturas, contenidos y destinos sin duplicar las fichas anatómicas base."
   ]
 }
