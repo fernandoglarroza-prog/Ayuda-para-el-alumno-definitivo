@@ -14,7 +14,10 @@ const majorTopics = new Set([
   'fosa_infratemporal', 'fosa_pterigopalatina', 'v2', 'v3',
   'arteria_maxilar', 'atm', 'pterigoideo_lateral', 'piso_boca',
   'lengua', 'parotida', 'submandibular', 'primer_molar_superior',
-  'primer_molar_inferior', 'conducto_mandibular_radiologia', 'seno_maxilar_radiologia'
+  'primer_molar_inferior', 'conducto_mandibular_radiologia', 'seno_maxilar_radiologia',
+  'denticion_temporaria', 'denticion_mixta', 'oclusion_morfologica',
+  'arcos_contactos', 'aparato_alveolodentario', 'anatomia_interna_dentaria',
+  'anatomia_desdentado'
 ]);
 
 const allEntries = [];
