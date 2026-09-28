@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-carotida-externa-01",
+      "topic": "carotida_externa_integrada",
+      "type": "arterial-route",
+      "prompt": "Reconstruya la carótida externa y relacione sus ramas de mayor interés odontológico con sus territorios.",
+      "mustInclude": ["bifurcación", "lingual", "facial", "maxilar", "temporal superficial", "parótida", "lengua/piso", "cara", "fosas profundas"],
+      "fatalErrors": ["atribuir la arteria maxilar a la carótida interna"],
+      "followUps": ["¿Qué rama pasa profunda al hiogloso?", "¿Cuáles son las terminales clásicas?"]
+    },
+    {
+      "id": "oral-maxilar-porciones-01",
+      "topic": "arteria_maxilar_porciones_integrada",
+      "type": "arterial-route",
+      "prompt": "Divida la arteria maxilar en tres porciones y asocie cada una con región, relación muscular y ramas de alto rendimiento odontológico.",
+      "mustInclude": ["primera porción", "alveolar inferior", "meníngea media", "segunda porción", "pterigoideo lateral", "ramas musculares", "tercera porción", "PSA", "infraorbitaria", "palatina descendente", "esfenopalatina"],
+      "fatalErrors": ["ubicar alveolar inferior en la tercera porción"],
+      "followUps": ["¿Qué ocurre al atravesar la fisura pterigomaxilar?", "¿Qué rama desciende por el canal palatino?"]
+    },
+    {
+      "id": "oral-venoso-integrado-01",
+      "topic": "drenaje_venoso_craneofacial_integrado",
+      "type": "venous-route",
+      "prompt": "Reconstruya una vía venosa desde la cara al sistema profundo y explique cómo se conecta con yugulares y seno cavernoso.",
+      "mustInclude": ["facial", "facial profunda", "plexo pterigoideo", "vena maxilar", "retromandibular", "yugular interna", "yugular externa", "emisarias", "seno cavernoso"],
+      "fatalErrors": ["describir el plexo pterigoideo como una vena única", "presentar la propagación al seno cavernoso como inevitable"],
+      "followUps": ["¿Dónde se forma la retromandibular?", "¿Qué estructura conecta facial y plexo pterigoideo?"]
+    },
+    {
+      "id": "oral-linfaticos-territorios-01",
+      "topic": "linfaticos_orales_por_territorios_integrados",
+      "type": "lymphatic-route",
+      "prompt": "Compare drenaje de labio inferior, piso de boca y lengua y explique estación primaria, cadenas profundas y bilateralidad.",
+      "mustInclude": ["submentonianos", "submandibulares", "cervicales profundos", "labio central/lateral", "piso", "punta de lengua", "bordes", "posterior", "bilateralidad"],
+      "fatalErrors": ["afirmar que la lengua drena exclusivamente al mismo lado"],
+      "followUps": ["¿Por qué el centro de la lengua puede drenar bilateralmente?", "¿Por qué no asignaría un ganglio exclusivo a cada diente?"]
+    },
+    {
+      "id": "oral-integrador-angiologia-01",
+      "topic": "carotida_externa_integrada",
+      "type": "integrated",
+      "prompt": "Integre irrigación, drenaje venoso y linfático de una región oral posterior: indique arteria de origen, retorno profundo y estaciones linfáticas sin convertir los esquemas en rutas rígidas.",
+      "mustInclude": ["carótida externa", "arteria maxilar", "ramas regionales", "plexo pterigoideo", "vena maxilar", "retromandibular", "submandibulares/cervicales", "variación"],
+      "fatalErrors": ["confundir arterias con venas homónimas como un mismo trayecto", "presentar drenajes como universales sin variación"],
+      "followUps": ["¿Qué diferencia conceptual hay entre retorno venoso y drenaje linfático?", "¿Qué región conecta la maxilar con la pterigopalatina?"]
+    }
+  ]
+}
