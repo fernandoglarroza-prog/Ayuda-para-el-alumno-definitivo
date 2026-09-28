@@ -3,42 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cerca · Alta de prestador</title>
-<style>
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17251f;background:#f3f7f5}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px}.card{width:min(520px,100%);background:#fff;border:1px solid #dfe8e3;border-radius:24px;padding:28px;box-shadow:0 18px 55px #0b2a1d18}.logo{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#153f31;color:#fff;font-weight:900;margin-bottom:16px}h1{margin:0 0 8px;font-size:28px}p{color:#63726b;line-height:1.5}.grid{display:grid;gap:14px;margin-top:20px}label{font-weight:700;font-size:14px}input,select{width:100%;padding:13px 14px;border:1px solid #cfdad4;border-radius:12px;font:inherit;background:#fff}button{margin-top:8px;border:0;border-radius:12px;padding:14px 18px;font:inherit;font-weight:800;background:#153f31;color:#fff;cursor:pointer}.msg{margin-top:16px;padding:12px 14px;border-radius:12px;background:#eef5f1;display:none}.msg.error{background:#fff0ef;color:#96291f}.small{font-size:12px;color:#7a8982;margin-top:14px}
-</style>
+<meta name="theme-color" content="#0c4f39">
+<title>Cerca Live V13</title>
+<link rel="stylesheet" href="./style.css">
+<script src="./app.js" defer></script>
 </head>
 <body>
-<main class="card">
-<div class="logo">C</div>
-<h1>Crear cuenta de prestador</h1>
-<p>Esta página es sólo para la prueba de Cerca. Usá un correo distinto al de tu cuenta administradora.</p>
-<form id="form" class="grid">
-<div><label>Nombre y apellido</label><input id="name" required autocomplete="name"></div>
-<div><label>Email</label><input id="email" type="email" required autocomplete="email"></div>
-<div><label>Contraseña</label><input id="password" type="password" minlength="8" required autocomplete="new-password"></div>
-<div><label>Localidad</label><select id="locality" required><option value="Moreno">Moreno</option><option value="Paso del Rey">Paso del Rey</option><option value="Merlo">Merlo</option><option value="Ituzaingó">Ituzaingó</option><option value="Morón">Morón</option><option value="Hurlingham">Hurlingham</option><option value="La Matanza">La Matanza</option></select></div>
-<button id="submit" type="submit">Crear cuenta de prestador</button>
-</form>
-<div id="msg" class="msg"></div>
-<div class="small">No compartas la contraseña conmigo. El registro se envía directamente a Supabase Auth.</div>
+<section id="authView" class="auth-wrap">
+  <main class="card auth-card">
+    <div class="brand"><div class="logo">C</div><div><b>Cerca</b><small>Marketplace de servicios · prueba real</small></div></div>
+    <h1>Entrar a Cerca</h1>
+    <p class="muted">Esta versión usa el Supabase independiente de Cerca. No uses documentación sensible para las pruebas.</p>
+    <div class="auth-tabs"><button class="active" data-auth-tab="login">Ingresar</button><button data-auth-tab="signup">Crear cuenta</button></div>
+    <form id="loginForm" class="form">
+      <div class="field full"><label>Email</label><input id="loginEmail" type="email" required autocomplete="username"></div>
+      <div class="field full"><label>Contraseña</label><input id="loginPassword" type="password" required autocomplete="current-password"></div>
+      <button id="loginBtn" class="btn primary full" type="submit">Ingresar</button>
+    </form>
+    <form id="signupForm" class="form hidden">
+      <div class="field full"><label>Nombre y apellido</label><input id="signupName" required></div>
+      <div class="field full"><label>Email</label><input id="signupEmail" type="email" required></div>
+      <div class="field full"><label>Contraseña</label><input id="signupPassword" type="password" minlength="8" required></div>
+      <div class="field"><label>Tipo de cuenta</label><select id="signupRole"><option value="customer">Cliente</option><option value="provider">Prestador / profesional</option></select></div>
+      <div class="field"><label>Localidad</label><select id="signupLocality"></select></div>
+      <button id="signupBtn" class="btn primary full" type="submit">Crear cuenta</button>
+    </form>
+  </main>
+</section>
+
+<section id="appView" class="hidden">
+<header class="top"><div class="top-inner"><div class="brand"><div class="logo">C</div><div><b>Cerca Live V13</b><small><span class="status-dot"></span>Backend real + pagos sandbox</small></div></div><div class="actions"><span id="who" class="pill"></span><button id="refreshBtn" class="btn outline">Actualizar</button><button id="logoutBtn" class="btn dark">Salir</button></div></div></header>
+<main class="shell">
+  <section class="hero"><div><span class="eyebrow">PRUEBA EN LA NUBE</span><h1>Servicios cerca, operación dentro de Cerca.</h1><p>Solicitudes, matching, oportunidades, chat, presupuesto y ledger de pagos sandbox conectados al Supabase real del proyecto.</p></div></section>
+  <nav class="tabs"><button class="active" data-view="home">Cliente</button><button id="providerTab" class="hidden" data-view="provider">Portal profesional</button><button data-view="jobs">Trabajos</button><button id="adminTab" class="hidden" data-view="admin">Administración</button></nav>
+
+  <section id="homeView" class="view">
+    <div id="customerTools" class="grid">
+      <form id="requestForm" class="card">
+        <span class="eyebrow">NUEVA SOLICITUD REAL</span><h2>Pedir un servicio</h2><p class="muted">Se guarda en Supabase y dispara matching contra prestadores verificados y disponibles.</p>
+        <div class="form">
+          <div class="field"><label>Categoría</label><select id="reqCategory"></select></div>
+          <div class="field"><label>Localidad</label><select id="reqLocality"></select></div>
+          <div class="field full"><label>Otro servicio (si corresponde)</label><input id="reqCustom" placeholder="Ej: reparación de portón automático"></div>
+          <div class="field full"><label>Título</label><input id="reqTitle" minlength="3" required placeholder="Ej: La PC no enciende"></div>
+          <div class="field full"><label>Descripción</label><textarea id="reqDesc" rows="4" minlength="10" required placeholder="Contanos qué pasa y desde cuándo"></textarea></div>
+          <div class="field"><label>Urgencia</label><select id="reqUrgency"><option value="today">Hoy</option><option value="now">Ahora</option><option value="scheduled">Programado</option><option value="flexible">Flexible</option></select></div>
+          <div class="field"><label>Modalidad</label><select id="reqMode"><option value="onsite">En domicilio</option><option value="remote">Remoto</option><option value="pickup">Retiro</option><option value="shop">En local/taller</option><option value="other">Otra</option></select></div>
+          <button class="btn primary full" type="submit">Crear solicitud y buscar</button>
+        </div>
+      </form>
+      <div class="card"><span class="eyebrow">MIS SOLICITUDES</span><h2>Estado real</h2><div id="requestsList" class="stack"><div class="empty">Cargando…</div></div></div>
+    </div>
+    <div id="providerCustomerNote" class="card hidden"><h2>Cuenta profesional</h2><p class="muted">Usá la pestaña Portal profesional para configurar cobertura y ver oportunidades.</p></div>
+  </section>
+
+  <section id="providerView" class="view hidden">
+    <div class="grid">
+      <form id="providerForm" class="card">
+        <div class="split"><div><span class="eyebrow">PERFIL PROFESIONAL REAL</span><h2>Configuración</h2></div><span id="proStatus" class="pill">—</span></div>
+        <div class="form">
+          <div class="field"><label>Nombre público</label><input id="proName" required></div>
+          <div class="field"><label>Localidad base</label><select id="proBase"></select></div>
+          <div class="field full"><label>Presentación</label><textarea id="proBio" rows="3"></textarea></div>
+          <div class="field"><label>Radio máximo (km)</label><input id="proRadius" type="number" min="0" max="300" value="20"></div>
+          <div class="field"><label>Precio visita</label><input id="proVisit" type="number" min="0" value="0"></div>
+          <div class="field full"><label>Disponibilidad</label><select id="proAvail"><option value="offline">Desconectado</option><option value="available">Disponible</option><option value="busy">Ocupado</option><option value="scheduled">Con agenda</option></select></div>
+        </div>
+        <h3>Especialidades</h3><div id="proServices" class="checkgrid"></div>
+        <h3>Zonas</h3><div id="proCoverage" class="checkgrid"></div>
+        <div class="item-actions"><button class="btn primary" type="submit">Guardar perfil</button><button class="btn outline" type="button" id="submitReview">Enviar a revisión</button></div>
+        <div class="notice">Para nuestra cuenta demo no cargues DNI real. Cuando la cuenta aparezca, la puedo habilitar específicamente para la prueba.</div>
+      </form>
+      <div class="card"><span class="eyebrow">OPORTUNIDADES REALES</span><h2>Trabajos disponibles</h2><div id="oppsList" class="stack"><div class="empty">Cargando…</div></div></div>
+    </div>
+  </section>
+
+  <section id="jobsView" class="view hidden"><div class="card"><span class="eyebrow">TRABAJOS ASIGNADOS</span><h2>Chat, presupuesto y pago sandbox</h2><div id="jobsList" class="stack"><div class="empty">Cargando…</div></div></div></section>
+
+  <section id="adminView" class="view hidden">
+    <div class="grid"><div class="card"><span class="eyebrow">ADMIN REAL</span><h2>Resumen</h2><div id="adminStats" class="admin-stats"></div></div><div class="card"><span class="eyebrow">VERIFICACIONES</span><h2>Prestadores pendientes</h2><div id="adminProviders" class="stack"></div></div></div>
+  </section>
 </main>
-<script>
-const SB='https://jggjrfmtpcgskusgohuj.supabase.co';
-const key=new URLSearchParams(location.search).get('k')||'';
-const form=document.getElementById('form'),msg=document.getElementById('msg'),btn=document.getElementById('submit');
-function show(text,error=false){msg.textContent=text;msg.className='msg'+(error?' error':'');msg.style.display='block'}
-form.addEventListener('submit',async e=>{
- e.preventDefault();
- if(!key){show('Falta la clave pública de configuración del enlace.',true);return}
- btn.disabled=true;btn.textContent='Creando cuenta…';show('Conectando con Supabase…');
- try{
-  const r=await fetch(SB+'/auth/v1/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':key},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value,data:{full_name:document.getElementById('name').value.trim(),locality:document.getElementById('locality').value,requested_role:'provider'}})});
-  const d=await r.json().catch(()=>({}));
-  if(!r.ok) throw new Error(d.msg||d.message||d.error_description||'No se pudo crear la cuenta');
-  form.style.display='none';show('Cuenta creada. Revisá el correo ingresado y confirmá el registro si recibís un mensaje de Supabase. Después volvé a ChatGPT y decime “listo”.');
- }catch(err){show(err.message||'No se pudo crear la cuenta',true);btn.disabled=false;btn.textContent='Crear cuenta de prestador'}
-});
-</script>
+</section>
+
+<div id="jobModal" class="job-modal hidden"><div class="job-panel"><div class="split"><span class="eyebrow">TRABAJO REAL</span><button id="jobClose" class="btn outline">Cerrar</button></div><div id="jobBody"></div></div></div>
+<div id="toast" class="toast hidden"></div>
 </body>
 </html>
