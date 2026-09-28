@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-vestibulo-cavidad-01",
+      "topic": "vestibulo_cavidad_oral_integrados",
+      "type": "oral-region",
+      "prompt": "Divida la cavidad oral y describa el vestíbulo por paredes, planos musculares y desembocaduras.",
+      "mustInclude": ["vestíbulo", "cavidad propiamente dicha", "labios/mejillas", "arcos dentogingivales", "fondos de surco", "buccinador", "conducto parotídeo", "istmo"],
+      "fatalErrors": ["atribuir la motricidad del buccinador al nervio bucal de V3"],
+      "followUps": ["¿Dónde desemboca el conducto parotídeo?", "¿Cómo se comunica el vestíbulo con la cavidad propia?"]
+    },
+    {
+      "id": "oral-istmo-fauces-01",
+      "topic": "istmo_fauces_orofaringe_integrado",
+      "type": "oral-region",
+      "prompt": "Delimite el istmo de las fauces y describa arcos palatogloso/palatofaríngeo, fosa tonsilar e inervación muscular.",
+      "mustInclude": ["paladar blando", "base lingual", "palatogloso", "palatofaríngeo", "tonsila palatina", "plexo faríngeo", "vago", "tensor V3"],
+      "fatalErrors": ["afirmar que el tensor del velo es inervado por X"],
+      "followUps": ["¿Qué arco es anterior?", "¿Qué estructura ocupa el espacio entre ambos arcos?"]
+    },
+    {
+      "id": "oral-piso-boca-01",
+      "topic": "piso_boca_compartimentos_integrado",
+      "type": "topography",
+      "prompt": "Reconstruya el piso de boca desde mucosa a planos profundos y explique la relación entre milohioideo, glándula submandibular, conducto y nervio lingual.",
+      "mustInclude": ["mucosa", "milohioideo", "espacio sublingual", "espacio submandibular", "submandibular profunda", "conducto", "nervio lingual", "cruce", "hiogloso"],
+      "fatalErrors": ["ubicar sublingual bajo milohioideo", "decir que el nervio lingual está dentro del conducto submandibular"],
+      "followUps": ["¿Qué pasa alrededor del borde posterior del milohioideo?", "¿Qué relación tiene la arteria lingual con el hiogloso?"]
+    },
+    {
+      "id": "oral-lengua-integrada-01",
+      "topic": "lengua_topografia_linfaticos_integrada",
+      "type": "integrated",
+      "prompt": "Describa la lengua integrando topografía, músculos, motricidad, sensibilidad general, gusto, irrigación y drenaje linfático.",
+      "mustInclude": ["surco terminal", "intrínsecos", "extrínsecos", "XII", "palatogloso X", "lingual V3", "cuerda VII", "IX", "X", "arteria lingual", "linfáticos bilaterales"],
+      "fatalErrors": ["atribuir gusto a XII", "decir que el lingual origina las fibras gustativas"],
+      "followUps": ["¿Quién lleva sensibilidad general de los dos tercios anteriores?", "¿Por qué el drenaje central puede ser bilateral?"]
+    },
+    {
+      "id": "oral-salivales-integradas-01",
+      "topic": "vias_salivales_desembocaduras_integradas",
+      "type": "gland",
+      "prompt": "Compare parótida, submandibular y sublingual por situación, conducto, desembocadura y vía parasimpática completa.",
+      "mustInclude": ["parótida", "conducto parotídeo", "vestíbulo", "IX", "ótico", "auriculotemporal", "submandibular", "carúncula", "VII", "cuerda", "lingual", "ganglio submandibular", "sublingual"],
+      "fatalErrors": ["atribuir origen parasimpático parotídeo a V3", "atribuir origen parasimpático submandibular al nervio lingual"],
+      "followUps": ["¿Qué nervio sirve de vehículo posganglionar para la parótida?", "¿Dónde se abren los conductos sublinguales menores?"]
+    },
+    {
+      "id": "oral-integrador-cavidad-01",
+      "topic": "cavidad_oral",
+      "type": "integrated",
+      "prompt": "Realice un recorrido topográfico desde el labio hasta la orofaringe nombrando espacios, paredes, glándulas, lengua, piso y paladar.",
+      "mustInclude": ["labio", "vestíbulo", "arco dentario", "cavidad propia", "lengua", "piso", "paladar duro", "paladar blando", "istmo", "orofaringe"],
+      "fatalErrors": ["tratar vestíbulo y cavidad propia como el mismo espacio"],
+      "followUps": ["¿Qué desembocadura salival encuentra en el vestíbulo?", "¿Qué estructuras marcan la transición a orofaringe?"]
+    }
+  ]
+}
