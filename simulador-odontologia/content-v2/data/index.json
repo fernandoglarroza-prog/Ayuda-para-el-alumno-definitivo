@@ -15,7 +15,8 @@
     "./dentition-extended.json",
     "./occlusion-alveolodentary.json",
     "./radiology-advanced.json",
-    "./topographic-routes-v2.json"
+    "./topographic-routes-v2.json",
+    "./dentition-fine-morphology.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
@@ -23,7 +24,8 @@
     "./oral-bank.json",
     "./oral-bank-occlusion.json",
     "./oral-bank-radiology.json",
-    "./oral-bank-topography.json"
+    "./oral-bank-topography.json",
+    "./oral-bank-dentition-fine.json"
   ],
   "rules": {
     "uiIntegration": false,
@@ -39,6 +41,7 @@
     "Estado pending-catedra significa contenido técnicamente desarrollado pero pendiente de contraste específico con la cátedra.",
     "La información clínica se limita a correlación anatómica educativa y no constituye indicación diagnóstica o terapéutica.",
     "Los bancos orales son modulares y se concatenan durante validación/compilación.",
-    "Las rutas topográficas integradoras conectan regiones, aberturas, contenidos y destinos sin duplicar las fichas anatómicas base."
+    "Las rutas topográficas integradoras conectan regiones, aberturas, contenidos y destinos sin duplicar las fichas anatómicas base.",
+    "La morfología dentaria fina agrega identificación, lateralidad y anatomía proximal para elevar el nivel técnico de la Unidad VIII."
   ]
 }
