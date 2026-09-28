@@ -1,20 +1,32 @@
 (() => {
-  const CSS_ID = 'academic-v2-css';
-  const SCRIPT_ID = 'academic-v2-js';
-
-  if (!document.getElementById(CSS_ID)) {
+  const addCss = (id, href) => {
+    if (document.getElementById(id)) return;
     const link = document.createElement('link');
-    link.id = CSS_ID;
+    link.id = id;
     link.rel = 'stylesheet';
-    link.href = '/simulador-odontologia/academic-v2.css';
+    link.href = href;
     document.head.appendChild(link);
-  }
+  };
 
-  if (!document.getElementById(SCRIPT_ID)) {
+  const addScript = (id, src, onload) => {
+    const existing = document.getElementById(id);
+    if (existing) {
+      if (onload) onload();
+      return existing;
+    }
     const script = document.createElement('script');
-    script.id = SCRIPT_ID;
-    script.src = '/simulador-odontologia/academic-v2.js';
+    script.id = id;
+    script.src = src;
     script.async = false;
+    if (onload) script.addEventListener('load', onload, { once: true });
     document.body.appendChild(script);
-  }
+    return script;
+  };
+
+  addCss('academic-v2-css', '/simulador-odontologia/academic-v2.css');
+  addCss('academic-v2-sync-css', '/simulador-odontologia/academic-v2-sync.css');
+
+  addScript('academic-v2-js', '/simulador-odontologia/academic-v2.js', () => {
+    addScript('academic-v2-sync-js', '/simulador-odontologia/academic-v2-sync.js');
+  });
 })();
