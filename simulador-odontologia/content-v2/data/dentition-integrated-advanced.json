@@ -64,7 +64,7 @@
         ],
         "criticalErrors": ["Asignar derecha/izquierda desde la perspectiva del observador.", "Inventar premolares temporarios."]
       },
-      "sourceDocs": ["06-denticion-permanente.md", "07-denticion-temporaria-oclusion-alveolodentario.md", "18-terminologia-normalizada.md"],
+      "sourceDocs": ["06-denticion-permanente.md", "08-denticion-temporaria-oclusion-protesis.md", "18-terminologia-normalizada.md"],
       "validationNotes": []
     },
     {
@@ -405,7 +405,7 @@
         ],
         "criticalErrors": ["Afirmar que existen premolares temporarios.", "Afirmar que el primer molar permanente reemplaza un molar temporario."]
       },
-      "sourceDocs": ["07-denticion-temporaria-oclusion-alveolodentario.md", "13-profundizacion-dentaria.md"],
+      "sourceDocs": ["08-denticion-temporaria-oclusion-protesis.md", "13-profundizacion-dentaria.md"],
       "validationNotes": ["Pendiente confirmar con cátedra la terminología preferida temporaria/decidua/primaria."]
     },
     {
@@ -473,7 +473,7 @@
         ],
         "criticalErrors": ["Confundir máxima intercuspidación con una posición condilar específica como definición universal."]
       },
-      "sourceDocs": ["07-denticion-temporaria-oclusion-alveolodentario.md", "13-profundizacion-dentaria.md", "18-terminologia-normalizada.md"],
+      "sourceDocs": ["08-denticion-temporaria-oclusion-protesis.md", "13-profundizacion-dentaria.md", "18-terminologia-normalizada.md"],
       "validationNotes": ["Mantener separada la definición de máxima intercuspidación de relación céntrica hasta validar el criterio docente de la cátedra."]
     }
   ]
