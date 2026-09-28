@@ -1,0 +1,218 @@
+{
+  "version": "2.0.0-structured-draft",
+  "entries": [
+    {
+      "id": "panoramica_formacion_imagen",
+      "preferredName": "Formación de la imagen panorámica",
+      "category": "radiology",
+      "paUnits": ["Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "panoramica_formacion_imagen",
+      "terminology": {"preferred": "Radiografía panorámica", "synonyms": ["ortopantomografía", "panorámica dental"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "La panorámica es una técnica tomográfica rotacional que representa ambas arcadas y estructuras maxilofaciales con magnificación, distorsión y superposición variables.", "blocks": [{"title": "Clave", "content": ["No es una sección lineal ni una representación métrica tridimensional exacta."]}]},
+        "development": {"summary": "La calidad anatómica depende de la posición del paciente respecto de la capa focal y de la geometría de adquisición.", "blocks": [
+          {"title": "Capa focal", "content": ["Zona tridimensional curva dentro de la cual las estructuras se representan con nitidez relativamente aceptable."]},
+          {"title": "Magnificación", "content": ["No es uniforme en todo el campo y depende de la relación objeto-receptor y de la trayectoria del sistema."]},
+          {"title": "Distorsión", "content": ["Puede modificar proporciones horizontales/verticales y forma aparente de estructuras."]},
+          {"title": "Superposición", "content": ["Estructuras anatómicas de distintos planos pueden proyectarse sobre la misma región de la imagen."]}
+        ]},
+        "technical": {"summary": "El nivel técnico exige distinguir imagen real, doble y fantasma y relacionar errores de posicionamiento con cambios predecibles en la anatomía proyectada.", "blocks": [
+          {"title": "Imagen real única", "content": ["Se produce para estructuras atravesadas una vez por el haz efectivo dentro de la geometría de la técnica."]},
+          {"title": "Imagen doble", "content": ["Algunas estructuras de línea media pueden proyectarse dos veces por ser atravesadas en dos momentos del barrido."]},
+          {"title": "Imagen fantasma", "content": ["Ciertas estructuras densas pueden producir proyecciones aumentadas, elevadas y contralaterales respecto de su origen real."]},
+          {"title": "Posición anteroposterior", "content": ["Un paciente demasiado adelantado o retrasado respecto de la capa focal modifica ancho aparente de incisivos y proporciones de las arcadas."]},
+          {"title": "Plano de Frankfurt/mentón", "content": ["Errores verticales alteran la curvatura aparente del plano oclusal y la relación de paladar, cóndilos y ramas."]},
+          {"title": "Rotación", "content": ["La asimetría por rotación genera diferencias de magnificación entre hemicaras y puede simular asimetría anatómica."]},
+          {"title": "Lengua y espacio aéreo", "content": ["La falta de contacto de la lengua con el paladar puede generar una banda radiolúcida que dificulta evaluar ápices maxilares."]}
+        ]},
+        "oral": {"summary": "En oral debe explicarse la técnica desde la capa focal y luego diferenciar distorsión, superposición, imagen doble y fantasma.", "blocks": [{"title": "Orden", "content": ["tomografía rotacional", "capa focal", "magnificación", "distorsión", "superposición", "doble", "fantasma", "posicionamiento"]}]}
+      },
+      "relations": [
+        {"target": "panoramica_anatomia_normal", "type": "supports", "note": "Comprender la geometría permite interpretar la anatomía normal proyectada."},
+        {"target": "conducto_mandibular_radiologia", "type": "limits", "note": "La proyección 2D limita la relación bucolingual del conducto."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique qué es la capa focal en panorámica y diferencie imagen real, doble y fantasma.", "requiredElements": ["capa focal", "magnificación", "distorsión", "imagen doble", "imagen fantasma", "superposición"], "followUp": ["¿Cómo puede una rotación del paciente simular asimetría?"], "modelAnswer": "La capa focal es la zona curva donde las estructuras se representan con nitidez relativamente adecuada. La técnica puede producir imágenes reales, dobles en estructuras de línea media y fantasmas de estructuras densas, además de magnificación y distorsión variables."}], "criticalErrors": ["Afirmar que la panorámica conserva dimensiones reales uniformes."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "panoramica_anatomia_normal",
+      "preferredName": "Anatomía normal en radiografía panorámica",
+      "category": "radiology",
+      "paUnits": ["Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "panoramica_anatomia_normal",
+      "terminology": {"preferred": "Anatomía panorámica normal", "synonyms": ["anatomía en ortopantomografía"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "La lectura panorámica debe ser sistemática y bilateral, recorriendo mandíbula, maxilar, cavidad nasal, senos, arcos cigomáticos, ramas y cóndilos antes de centrarse en dientes.", "blocks": [{"title": "Secuencia", "content": ["bordes mandibulares", "conductos y forámenes", "senos maxilares", "cavidad nasal", "arcos cigomáticos", "ATM", "dentición"]}]},
+        "development": {"summary": "Cada estructura debe reconocerse por localización, forma, densidad relativa y continuidad con referencias vecinas.", "blocks": [
+          {"title": "Mandíbula", "content": ["Borde inferior, ángulo, rama, escotadura, coronoides, cóndilo, conducto y foramen mentoniano."]},
+          {"title": "Maxilar", "content": ["Seno maxilar, tuberosidad, proceso cigomático y piso nasal."]},
+          {"title": "Cavidad nasal", "content": ["Piso, tabique y conchas se proyectan con superposiciones variables."]},
+          {"title": "Arco cigomático", "content": ["Se proyecta como banda radiopaca superior/posterior con variación según geometría."]}
+        ]},
+        "technical": {"summary": "La interpretación técnica exige identificar estructuras que pueden simular lesiones o relaciones falsas por superposición y conocer proyecciones esperables de tejidos no dentarios.", "blocks": [
+          {"title": "Foramen mentoniano", "content": ["Puede superponerse a ápices premolares y simular radiolucidez periapical si no se reconoce su continuidad anatómica."]},
+          {"title": "Canal incisivo", "content": ["Puede proyectarse entre incisivos superiores y variar en tamaño y forma aparente."]},
+          {"title": "Seno maxilar", "content": ["Su piso puede descender entre raíces; la superposición no demuestra contacto o protrusión tridimensional."]},
+          {"title": "Proceso cigomático del maxilar", "content": ["Puede verse como radiopacidad en forma de U/J sobre región molar superior."]},
+          {"title": "Hioides", "content": ["Puede proyectarse bilateralmente y generar imágenes dobles/ghost según técnica."]},
+          {"title": "Columna cervical", "content": ["Puede superponerse en región anterior, especialmente con mala posición cervical."]},
+          {"title": "Espacios aéreos", "content": ["Nasofaríngeo, orofaríngeo y palatogloso pueden crear zonas radiolúcidas que deben diferenciarse de anatomía ósea."]}
+        ]},
+        "oral": {"summary": "La respuesta debe seguir una secuencia de lectura y justificar cada estructura por forma, densidad y posición, no solo nombrarla.", "blocks": [{"title": "Orden", "content": ["mandíbula", "maxilar", "senos", "nariz", "cigoma", "ATM", "hioides", "dientes"]}]}
+      },
+      "relations": [
+        {"target": "panoramica_formacion_imagen", "type": "depends-on", "note": "La apariencia depende de geometría y posicionamiento."},
+        {"target": "seno_maxilar_radiologia", "type": "contains-example", "note": "El seno es una referencia principal en sector posterior superior."},
+        {"target": "conducto_mandibular_radiologia", "type": "contains-example", "note": "El conducto es una referencia principal mandibular."}
+      ],
+      "exam": {"questions": [{"prompt": "Proponga una secuencia sistemática para leer una panorámica normal y explique dos estructuras que puedan simular hallazgos patológicos por superposición.", "requiredElements": ["secuencia bilateral", "mandíbula", "maxilar", "seno", "cavidad nasal", "foramen mentoniano", "superposición"], "followUp": ["¿Cómo diferenciaría anatómicamente foramen mentoniano de una radiolucidez periapical?"], "modelAnswer": "La lectura debe recorrer primero contornos óseos y simetría, luego mandíbula, maxilar, senos, cavidad nasal, arcos cigomáticos y ATM, y finalmente dentición. El foramen mentoniano y el canal incisivo pueden superponerse a ápices; su posición, continuidad y correlación con otras vistas ayudan a reconocerlos."}], "criticalErrors": ["Interpretar una superposición 2D como contacto tridimensional demostrado."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "cbct_mpr_orientacion",
+      "preferredName": "CBCT · orientación y reconstrucción multiplanar",
+      "category": "radiology",
+      "paUnits": ["Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "cbct_mpr_orientacion",
+      "terminology": {"preferred": "Reconstrucción multiplanar en CBCT", "synonyms": ["MPR CBCT", "axial coronal sagital"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "El CBCT genera un volumen que debe estudiarse principalmente mediante cortes axiales, coronales y sagitales reorientados, además de reconstrucciones curvas cuando corresponda.", "blocks": [{"title": "Clave", "content": ["Una reconstrucción 3D no reemplaza el análisis multiplanar."]}]},
+        "development": {"summary": "La lectura exige orientar el volumen según la anatomía del paciente antes de medir o comparar relaciones.", "blocks": [
+          {"title": "Axial", "content": ["Útil para trayectos horizontales, posición bucolingual y forma transversal de arcadas."]},
+          {"title": "Coronal", "content": ["Útil para relaciones verticales y mediolaterales de raíces, seno, cavidad nasal y conducto mandibular."]},
+          {"title": "Sagital", "content": ["Útil para continuidad anteroposterior y relaciones raíz-estructura en cortes orientados."]},
+          {"title": "Reconstrucción curva", "content": ["Permite seguir estructuras a lo largo de una trayectoria arqueada, especialmente arcadas y conductos."]}
+        ]},
+        "technical": {"summary": "La técnica correcta implica reorientar ejes, recorrer el volumen corte a corte y correlacionar al menos dos planos ortogonales para cualquier relación espacial fina.", "blocks": [
+          {"title": "Reorientación", "content": ["Los planos deben adaptarse a la anatomía de interés; axial/coronal/sagital del escáner no siempre coinciden con el eje útil de la estructura."]},
+          {"title": "MPR ortogonal", "content": ["Una relación dudosa debe confirmarse en planos ortogonales para evitar errores por orientación parcial."]},
+          {"title": "Voxel", "content": ["El tamaño de voxel influye en resolución espacial y ruido, pero no debe interpretarse como precisión absoluta de toda medición."]},
+          {"title": "Reconstrucción 3D", "content": ["Es útil para orientación global y comunicación visual, pero depende de umbrales y no sustituye cortes fuente."]},
+          {"title": "Curved planar reformation", "content": ["La reconstrucción curva puede seguir arcadas/conductos, pero introduce una representación derivada y debe cotejarse con cortes nativos."]},
+          {"title": "Relaciones dentarias", "content": ["Raíz-seno, raíz-conducto y corticales requieren análisis multiplanar individual."]},
+          {"title": "ATM ósea", "content": ["Las superficies óseas deben estudiarse con cortes reorientados al eje condilar; el disco no se evalúa directamente como tejido blando en CBCT convencional."]}
+        ]},
+        "oral": {"summary": "El oral debe explicar qué aporta cada plano y por qué la reconstrucción 3D no reemplaza MPR.", "blocks": [{"title": "Orden", "content": ["volumen", "reorientación", "axial", "coronal", "sagital", "curva", "3D", "limitaciones"]}]}
+      },
+      "relations": [
+        {"target": "conducto_mandibular_radiologia", "type": "method-for", "note": "Permite definir posición bucolingual y vertical del conducto."},
+        {"target": "seno_maxilar_radiologia", "type": "method-for", "note": "Permite estudiar piso sinusal y raíces en tres dimensiones."},
+        {"target": "atm", "type": "method-for", "note": "Permite estudiar componentes óseos de la ATM."}
+      ],
+      "exam": {"questions": [{"prompt": "Explique qué aporta cada plano MPR en CBCT y por qué una reconstrucción 3D no debe usarse sola para relaciones finas.", "requiredElements": ["axial", "coronal", "sagital", "reorientación", "planos ortogonales", "reconstrucción 3D", "limitaciones"], "followUp": ["¿Qué plano usaría para confirmar posición bucolingual del conducto mandibular?"], "modelAnswer": "El volumen CBCT debe reorientarse y analizarse en axial, coronal y sagital según la estructura. Los planos ortogonales permiten confirmar relaciones espaciales; la reconstrucción 3D es derivada y útil para orientación, pero no sustituye la revisión de cortes fuente."}], "criticalErrors": ["Afirmar que el render 3D contiene más información que los cortes fuente."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "cbct_artefactos_limitaciones",
+      "preferredName": "CBCT · artefactos y limitaciones",
+      "category": "radiology",
+      "paUnits": ["Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "cbct_artefactos_limitaciones",
+      "terminology": {"preferred": "Artefactos en CBCT", "synonyms": ["artefactos tomográficos dentales"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "El CBCT ofrece alta resolución ósea pero puede presentar artefactos por movimiento, metales, endurecimiento del haz y limitaciones de contraste de tejidos blandos.", "blocks": [{"title": "Clave", "content": ["Una imagen volumétrica no elimina los errores técnicos ni convierte todos los valores de gris en HU confiables."]}]},
+        "development": {"summary": "El estudiante debe reconocer los artefactos principales porque pueden alterar la percepción de corticales, conductos y raíces.", "blocks": [
+          {"title": "Movimiento", "content": ["Produce borrosidad, duplicación o discontinuidad aparente de bordes."]},
+          {"title": "Metal", "content": ["Restauraciones e implantes pueden generar estrías y zonas de alta/baja intensidad que ocultan estructuras vecinas."]},
+          {"title": "Endurecimiento del haz", "content": ["Puede contribuir a bandas oscuras y streaks alrededor de materiales densos."]},
+          {"title": "Campo de visión", "content": ["El FOV limita la anatomía incluida; no debe inferirse sobre estructuras fuera del volumen."]}
+        ]},
+        "technical": {"summary": "El nivel técnico exige separar artefacto de anatomía y entender que resolución espacial, contraste, ruido y tamaño de voxel interactúan.", "blocks": [
+          {"title": "Valores de gris", "content": ["No deben equipararse de forma universal a unidades Hounsfield de TC médica; dependen del equipo, protocolo y reconstrucción."]},
+          {"title": "Partial volume", "content": ["Un voxel puede contener más de un tejido, generando un valor promedio y pérdida de borde fino."]},
+          {"title": "Scatter", "content": ["La radiación dispersa degrada contraste y puede ser mayor con objetos densos/campos amplios."]},
+          {"title": "Metal", "content": ["Las estrías pueden simular discontinuidades o esconder corticales; deben revisarse en múltiples planos."]},
+          {"title": "Movimiento", "content": ["Puede producir dobles contornos o escalones y debe sospecharse si la alteración no sigue anatomía coherente."]},
+          {"title": "Tejidos blandos", "content": ["CBCT convencional tiene contraste limitado para disco articular, glándulas o músculos frente a otras modalidades."]},
+          {"title": "Medición", "content": ["Las mediciones requieren reorientación correcta, voxel apropiado y reconocimiento de artefactos; la precisión no es absoluta."]}
+        ]},
+        "oral": {"summary": "El oral debe identificar artefactos principales y explicar cómo pueden producir falsos bordes o pérdida de detalle.", "blocks": [{"title": "Orden", "content": ["movimiento", "metal", "beam hardening", "partial volume", "scatter", "voxel", "tejidos blandos", "medición"]}]}
+      },
+      "relations": [
+        {"target": "cbct_mpr_orientacion", "type": "limits", "note": "Los artefactos deben reconocerse durante la revisión MPR."},
+        {"target": "conducto_mandibular_radiologia", "type": "can-obscure", "note": "Metal y movimiento pueden dificultar la corticalización del conducto."}
+      ],
+      "exam": {"questions": [{"prompt": "Nombre los principales artefactos del CBCT y explique cómo pueden afectar la identificación de una cortical o conducto.", "requiredElements": ["movimiento", "metal", "endurecimiento del haz", "partial volume", "scatter", "múltiples planos"], "followUp": ["¿Por qué los valores de gris de CBCT no deben llamarse HU universales?"], "modelAnswer": "Movimiento y metal pueden generar borrosidad, dobles bordes y estrías; el endurecimiento del haz, scatter y partial volume alteran contraste y definición. La coherencia anatómica debe comprobarse en múltiples planos y los valores de gris dependen del sistema/protocolo."}], "criticalErrors": ["Afirmar que todo valor de gris de CBCT equivale directamente a HU de TC médica."]},
+      "sourceDocs": ["17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "radiologia_maxila",
+      "preferredName": "Lectura radiográfica anatómica del maxilar",
+      "category": "radiology",
+      "paUnits": ["Unidad I · Osteología", "Unidad VIII · Anatomía dentaria", "Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "radiologia_maxila",
+      "terminology": {"preferred": "Anatomía radiográfica del maxilar", "synonyms": ["radiología del maxilar superior"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "En el maxilar deben correlacionarse dientes con seno maxilar, cavidad nasal, canal incisivo, tuberosidad y proceso cigomático.", "blocks": [{"title": "Mapa", "content": ["anterior: piso nasal/canal incisivo", "posterior: seno/tuberosidad", "superolateral: proceso cigomático"]}]},
+        "development": {"summary": "La anatomía varía entre sector anterior y posterior y debe evaluarse con técnica adecuada según la relación buscada.", "blocks": [
+          {"title": "Sector anterior", "content": ["Raíces incisivo-caninas se relacionan con piso nasal y canal nasopalatino en grados variables."]},
+          {"title": "Sector posterior", "content": ["Premolares y molares se relacionan con piso sinusal y septos con variación individual."]},
+          {"title": "Tuberosidad", "content": ["Se continúa con región posterior maxilar y vecindad de fosa infratemporal/pterigopalatina."]},
+          {"title": "Proceso cigomático", "content": ["Puede producir una radiopacidad intensa sobre región molar superior en panorámica."]}
+        ]},
+        "technical": {"summary": "El análisis técnico diferencia proyección 2D de relación 3D y reconoce trayectos neurovasculares y corticales del maxilar.", "blocks": [
+          {"title": "Piso sinusal", "content": ["Puede proyectarse entre raíces sin implicar protrusión real; MPR permite valorar distancia y continuidad cortical."]},
+          {"title": "Canal infraorbitario", "content": ["En CBCT puede seguirse por piso orbitario hacia foramen infraorbitario y relacionarse con seno."]},
+          {"title": "Canal incisivo", "content": ["Su morfología es variable y debe seguirse desde piso nasal a foramen incisivo."]},
+          {"title": "Cortical vestibular/palatina", "content": ["CBCT permite separarlas y valorar espesor; panorámica no resuelve su posición bucopalatina."]},
+          {"title": "Tuberosidad y PSA", "content": ["La región posterior se relaciona con forámenes alveolares y paquete PSA, no visible como nervio en radiografía convencional."]},
+          {"title": "Paladar duro", "content": ["Se forma por procesos palatinos y láminas horizontales; su proyección en panorámica puede superponerse al maxilar."]}
+        ]},
+        "oral": {"summary": "El oral debe recorrer el maxilar de anterior a posterior y terminar explicando qué relación requiere CBCT para resolución tridimensional.", "blocks": [{"title": "Orden", "content": ["piso nasal", "canal incisivo", "raíces", "seno", "infraorbitario", "tuberosidad", "cigoma", "CBCT"]}]}
+      },
+      "relations": [
+        {"target": "maxilar", "type": "images", "note": "Correlaciona accidentes óseos maxilares con su representación radiográfica."},
+        {"target": "seno_maxilar_radiologia", "type": "includes", "note": "El seno es la relación radiográfica principal posterior."},
+        {"target": "cbct_mpr_orientacion", "type": "uses", "note": "La MPR resuelve relaciones tridimensionales."}
+      ],
+      "exam": {"questions": [{"prompt": "Describa una lectura anatómica del maxilar en imagen desde incisivos hasta tuberosidad y explique qué relaciones requieren CBCT.", "requiredElements": ["piso nasal", "canal incisivo", "seno maxilar", "raíces posteriores", "tuberosidad", "proceso cigomático", "MPR"], "followUp": ["¿Por qué la superposición raíz-seno en panorámica no prueba contacto?"], "modelAnswer": "Anteriormente se revisan piso nasal y canal incisivo; hacia posterior, raíces premolares/molares, piso sinusal, tuberosidad y proceso cigomático. La panorámica orienta, pero la relación raíz-seno y corticales requiere análisis multiplanar para definir tridimensionalidad."}], "criticalErrors": ["Inferir contacto radicular-sinusal exclusivamente por superposición panorámica."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    },
+    {
+      "id": "radiologia_mandibula",
+      "preferredName": "Lectura radiográfica anatómica de la mandíbula",
+      "category": "radiology",
+      "paUnits": ["Unidad I · Osteología", "Unidad VIII · Anatomía dentaria", "Correlación didáctica radiográfica"],
+      "status": "technical-review",
+      "modelKey": "radiologia_mandibula",
+      "terminology": {"preferred": "Anatomía radiográfica mandibular", "synonyms": ["radiología de la mandíbula"], "classicTerms": [], "notes": []},
+      "levels": {
+        "review": {"summary": "La lectura mandibular integra borde inferior, sínfisis, conducto, foramen mentoniano, línea milohioidea, rama, coronoides, escotadura y cóndilo.", "blocks": [{"title": "Mapa", "content": ["anterior: sínfisis/foramen mentoniano", "cuerpo: conducto", "posterior: ángulo/rama/cóndilo"]}]},
+        "development": {"summary": "Debe seguirse la continuidad cortical y compararse bilateralmente, distinguiendo estructuras intraóseas de superposiciones.", "blocks": [
+          {"title": "Conducto mandibular", "content": ["Se sigue desde región del foramen mandibular hasta salida mentoniana y continuación incisiva según visibilidad."]},
+          {"title": "Foramen mentoniano", "content": ["Puede superponerse con premolares; su posición dentaria es variable."]},
+          {"title": "Línea milohioidea", "content": ["Puede verse como banda radiopaca oblicua en región posterior interna."]},
+          {"title": "Rama y ATM", "content": ["Coronoides, escotadura y cóndilo deben compararse en forma y proyección, considerando posicionamiento."]}
+        ]},
+        "technical": {"summary": "El nivel técnico integra trayecto del conducto, corticales, fosas linguales, región retromolar y limitaciones de la panorámica para posición bucolingual.", "blocks": [
+          {"title": "Cortical inferior", "content": ["Debe seguirse como referencia continua; su aparente grosor depende de proyección y anatomía individual."]},
+          {"title": "Conducto", "content": ["La corticalización puede ser desigual y la posición bucolingual solo se define con imagen 3D adecuada."]},
+          {"title": "Foramen mentoniano", "content": ["Su continuidad con el conducto y ubicación cortical vestibular se reconocen mejor en CBCT."]},
+          {"title": "Fosa submandibular", "content": ["Puede generar radiolucidez relativa bajo línea milohioidea sin representar lesión."]},
+          {"title": "Región retromolar", "content": ["Integra corticales, trigono retromolar y relación con tercer molar/ramo ascendente."]},
+          {"title": "Cóndilo", "content": ["La panorámica sirve para orientación comparativa general; no permite valorar con precisión fina el espacio articular."]},
+          {"title": "Tercer molar", "content": ["Signos 2D de proximidad al conducto orientan, pero la relación bucolingual requiere CBCT cuando existe indicación."]}
+        ]},
+        "oral": {"summary": "El oral debe recorrer la mandíbula de anterior a posterior y separar qué puede saberse en 2D de lo que exige CBCT.", "blocks": [{"title": "Orden", "content": ["sínfisis", "foramen mentoniano", "conducto", "línea milohioidea", "ángulo", "rama", "cóndilo", "limitación 2D"]}]}
+      },
+      "relations": [
+        {"target": "mandibula", "type": "images", "note": "Correlaciona accidentes mandibulares con su representación radiográfica."},
+        {"target": "conducto_mandibular_radiologia", "type": "includes", "note": "El conducto es la relación intraósea principal."},
+        {"target": "cbct_mpr_orientacion", "type": "uses", "note": "MPR resuelve posición bucolingual y corticales."}
+      ],
+      "exam": {"questions": [{"prompt": "Recorra anatómicamente una mandíbula en panorámica y explique qué relaciones no pueden resolverse en dos dimensiones.", "requiredElements": ["foramen mentoniano", "conducto mandibular", "línea milohioidea", "ángulo", "rama", "cóndilo", "posición bucolingual", "CBCT"], "followUp": ["¿Cómo puede la fosa submandibular presentarse radiográficamente?"], "modelAnswer": "La lectura recorre sínfisis y cuerpo, foramen mentoniano, conducto mandibular, línea milohioidea y borde inferior, luego ángulo, rama, coronoides y cóndilo. La panorámica no define posición bucolingual ni contacto tridimensional raíz-conducto; esas relaciones requieren MPR cuando está indicada."}], "criticalErrors": ["Afirmar que una panorámica define la posición bucolingual del conducto."]},
+      "sourceDocs": ["07-radiologia-anatomica.md", "17-profundizacion-radiologia-anatomica.md"],
+      "validationNotes": []
+    }
+  ]
+}
