@@ -61,7 +61,10 @@
     {"preferred": "Sistema muscular de la masticación", "target": "masticacion_integrada", "synonyms": ["músculos masticadores integrados", "mecánica muscular mandibular", "biomecánica masticatoria"], "classicTerms": []},
     {"preferred": "Cabestrillo pterigomaseterino", "target": "cabestrillo_pterigomaseterino", "synonyms": ["cabestrillo masetero-pterigoideo medial", "sling pterygomasseteric"], "classicTerms": []},
     {"preferred": "Sistema suprahioideo", "target": "sistema_suprahioideo_mandibular", "synonyms": ["músculos suprahioideos", "complejo suprahioideo mandibular"], "classicTerms": []},
-    {"preferred": "Complejo perioral y buccinador", "target": "complejo_perioral_buccinador", "synonyms": ["musculatura perioral", "músculos de labios y mejilla", "modíolo y buccinador"], "classicTerms": []}
+    {"preferred": "Complejo perioral y buccinador", "target": "complejo_perioral_buccinador", "synonyms": ["musculatura perioral", "músculos de labios y mejilla", "modíolo y buccinador"], "classicTerms": []},
+    {"preferred": "Base de cráneo", "target": "base_craneo_foramenes_integrada", "synonyms": ["base craneal", "base endocraneal", "forámenes de la base del cráneo"], "classicTerms": []},
+    {"preferred": "Arquitectura de resistencia del macizo facial", "target": "arquitectura_resistencia_macizo_facial", "synonyms": ["pilares faciales", "trayectorias de fuerza del macizo facial", "buttresses faciales"], "classicTerms": ["pilares de resistencia"]},
+    {"preferred": "Suturas y puntos craneométricos", "target": "suturas_puntos_craneometricos", "synonyms": ["pterion", "asterion", "bregma y lambda", "landmarks craneométricos"], "classicTerms": []}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
@@ -72,6 +75,7 @@
     "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino.",
     "En rutas topográficas, priorizar secuencias región→abertura→contenido→destino sobre listas aisladas.",
     "En lateralidad dentaria, exigir más de un criterio morfológico concordante antes de asignar lado.",
-    "En miología, describir origen/inserción, inervación y vector dentro del sistema funcional; evitar asignar movimientos complejos a un único músculo."
+    "En miología, describir origen/inserción, inervación y vector dentro del sistema funcional; evitar asignar movimientos complejos a un único músculo.",
+    "En osteología integrada, asociar cada foramen con hueso, contenido y región comunicada; los pilares faciales son modelos arquitectónicos y no huesos independientes."
   ]
 }
