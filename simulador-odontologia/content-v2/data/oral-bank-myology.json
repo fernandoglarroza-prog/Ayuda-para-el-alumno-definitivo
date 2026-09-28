@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-masticacion-integrada-01",
+      "topic": "masticacion_integrada",
+      "type": "biomechanics",
+      "prompt": "Explique apertura, cierre, protrusión, retrusión y lateralidad mandibular integrando músculos y comportamiento condilar.",
+      "mustInclude": ["masetero", "temporal", "pterigoideo medial", "pterigoideo lateral", "suprahioideos", "rotación", "traslación", "V3"],
+      "fatalErrors": ["atribuir toda la apertura exclusivamente al pterigoideo lateral"],
+      "followUps": ["¿Qué fascículos del temporal predominan en retrusión?", "¿Qué ocurre con el cóndilo del lado de no trabajo en lateralidad?"]
+    },
+    {
+      "id": "oral-cabestrillo-01",
+      "topic": "cabestrillo_pterigomaseterino",
+      "type": "comparison",
+      "prompt": "Defina el cabestrillo pterigomaseterino y compare sus componentes por origen, inserción, inervación y vector.",
+      "mustInclude": ["masetero", "pterigoideo medial", "cara lateral", "cara medial", "ángulo mandibular", "V3", "elevación"],
+      "fatalErrors": ["ubicar masetero y pterigoideo medial sobre la misma cara de la rama"],
+      "followUps": ["¿Qué ramas de V3 inervan cada componente?", "¿Qué papel tiene en estabilización del ángulo?"]
+    },
+    {
+      "id": "oral-suprahioideos-01",
+      "topic": "sistema_suprahioideo_mandibular",
+      "type": "muscle-system",
+      "prompt": "Organice los músculos suprahioideos por planos e inervación y explique qué cambia si se fija el hioides o la mandíbula.",
+      "mustInclude": ["milohioideo", "genihioideo", "digástrico", "estilohioideo", "V3", "VII", "C1 con XII", "hioides"],
+      "fatalErrors": ["afirmar que todos los suprahioideos comparten la misma inervación"],
+      "followUps": ["¿Qué vientre del digástrico recibe V3?", "¿Por qué genihioideo no debe describirse simplemente como músculo del XII?"]
+    },
+    {
+      "id": "oral-perioral-01",
+      "topic": "complejo_perioral_buccinador",
+      "type": "topographic-muscle",
+      "prompt": "Describa la organización funcional del complejo perioral y buccinador y diferencie motricidad facial de sensibilidad trigeminal.",
+      "mustInclude": ["orbicular", "buccinador", "modíolo", "VII", "nervio bucal V3", "conducto parotídeo", "rafe pterigomandibular"],
+      "fatalErrors": ["atribuir motricidad del buccinador al nervio bucal de V3"],
+      "followUps": ["¿Qué estructura perfora el buccinador?", "¿Qué músculo se inserta en el rafe por el lado faríngeo?"]
+    },
+    {
+      "id": "oral-masetero-02",
+      "topic": "masetero",
+      "type": "muscle",
+      "prompt": "Describa el masetero por porciones, inserciones, relaciones, inervación, irrigación y función.",
+      "mustInclude": ["arco cigomático", "rama mandibular", "ángulo", "nervio masetérico", "arteria maxilar", "conducto parotídeo", "elevación"],
+      "fatalErrors": ["atribuir la inervación motora al VII"],
+      "followUps": ["¿Cómo alcanza el nervio masetérico la cara profunda del músculo?", "¿Qué componente del cabestrillo se ubica medialmente?"]
+    },
+    {
+      "id": "oral-temporal-musculo-02",
+      "topic": "temporal_musculo",
+      "type": "muscle",
+      "prompt": "Describa el temporal y explique cómo la orientación de sus fascículos modifica su función.",
+      "mustInclude": ["fosa temporal", "fascia temporal", "coronoides", "borde anterior", "temporales profundos", "elevación", "retrusión"],
+      "fatalErrors": ["atribuir su inervación al facial"],
+      "followUps": ["¿Qué relación mantiene su tendón con el arco cigomático?", "¿Qué fascículos son más horizontales?"]
+    },
+    {
+      "id": "oral-pterigoideo-medial-02",
+      "topic": "pterigoideo_medial",
+      "type": "muscle",
+      "prompt": "Describa pterigoideo medial por cabezas/orígenes, inserción, inervación, irrigación y función y compárelo con masetero.",
+      "mustInclude": ["proceso pterigoideo", "tuberosidad maxilar", "cara medial del ángulo", "V3", "ramas pterigoideas", "elevación", "protrusión"],
+      "fatalErrors": ["atribuir su inervación al VII"],
+      "followUps": ["¿Qué otras estructuras reciben fibras del nervio para pterigoideo medial?", "¿Qué relación topográfica tiene con la región pterigomandibular?"]
+    }
+  ]
+}
