@@ -31,13 +31,30 @@
     {"preferred": "Seno maxilar", "target": "seno_maxilar_radiologia", "synonyms": ["antro maxilar"], "classicTerms": ["antro de Highmore"]},
     {"preferred": "Língula mandibular", "target": "mandibula", "synonyms": [], "classicTerms": ["espina de Spix"]},
     {"preferred": "Proceso condilar", "target": "mandibula", "synonyms": ["apófisis condilar"], "classicTerms": []},
-    {"preferred": "Reconstrucción multiplanar", "target": "conducto_mandibular_radiologia", "synonyms": ["MPR"], "classicTerms": []}
+    {"preferred": "Reconstrucción multiplanar", "target": "conducto_mandibular_radiologia", "synonyms": ["MPR"], "classicTerms": []},
+    {"preferred": "Dentición mixta", "target": "denticion_mixta", "synonyms": ["dentición de transición"], "classicTerms": []},
+    {"preferred": "Leeway space", "target": "denticion_mixta", "synonyms": ["espacio de deriva"], "classicTerms": []},
+    {"preferred": "Oclusión morfológica", "target": "oclusion_morfologica", "synonyms": ["oclusión dentaria", "relaciones oclusales"], "classicTerms": []},
+    {"preferred": "Máxima intercuspidación", "target": "oclusion_morfologica", "synonyms": ["MI", "máximo engranamiento dentario"], "classicTerms": []},
+    {"preferred": "Overjet", "target": "oclusion_morfologica", "synonyms": ["resalte horizontal"], "classicTerms": []},
+    {"preferred": "Overbite", "target": "oclusion_morfologica", "synonyms": ["sobremordida vertical"], "classicTerms": []},
+    {"preferred": "Curva de Spee", "target": "oclusion_morfologica", "synonyms": ["Spee"], "classicTerms": []},
+    {"preferred": "Curva de Wilson", "target": "oclusion_morfologica", "synonyms": ["Wilson"], "classicTerms": []},
+    {"preferred": "Área de contacto proximal", "target": "arcos_contactos", "synonyms": ["contacto proximal", "punto de contacto"], "classicTerms": []},
+    {"preferred": "Tronera", "target": "arcos_contactos", "synonyms": ["espacio de tronera"], "classicTerms": ["embrasure"]},
+    {"preferred": "Periodonto de inserción", "target": "periodonto_insercion", "synonyms": ["complejo cemento-ligamento-hueso alveolar"], "classicTerms": []},
+    {"preferred": "Gonfosis", "target": "periodonto_insercion", "synonyms": ["articulación dentoalveolar"], "classicTerms": []},
+    {"preferred": "Hueso alveolar propio", "target": "periodonto_insercion", "synonyms": ["pared alveolar propia"], "classicTerms": []},
+    {"preferred": "Configuración interna dentaria", "target": "anatomia_interna_dentaria", "synonyms": ["anatomía pulpar", "sistema de conductos radiculares"], "classicTerms": []},
+    {"preferred": "Cámara pulpar", "target": "anatomia_interna_dentaria", "synonyms": ["cámara de la pulpa"], "classicTerms": []},
+    {"preferred": "Reborde alveolar residual", "target": "anatomia_desdentado", "synonyms": ["reborde desdentado", "cresta residual"], "classicTerms": []}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
     "Indexar sinónimos y términos clásicos en búsqueda.",
     "Aceptar términos clásicos inequívocos en respuestas abiertas.",
     "No presentar términos próximos pero no equivalentes como sinónimos absolutos.",
-    "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra."
+    "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra.",
+    "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino."
   ]
 }
