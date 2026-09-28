@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-pterigomandibular-01",
+      "topic": "region_pterigomandibular",
+      "type": "topography",
+      "prompt": "Delimite la región pterigomandibular y explique la relación entre foramen mandibular, nervio alveolar inferior y nervio lingual.",
+      "mustInclude": ["rama mandibular", "pterigoideo medial", "foramen mandibular", "língula", "alveolar inferior", "lingual", "fosa infratemporal"],
+      "fatalErrors": ["afirmar que el nervio lingual ingresa al conducto mandibular"],
+      "followUps": ["¿Qué rama emite el alveolar inferior antes de entrar al foramen mandibular?", "¿Hacia qué región continúa el nervio lingual?"]
+    },
+    {
+      "id": "oral-orbita-topografia-01",
+      "topic": "orbita_region",
+      "type": "topography",
+      "prompt": "Describa la órbita por paredes y compare conducto óptico, fisura orbitaria superior y fisura orbitaria inferior.",
+      "mustInclude": ["techo", "piso", "pared medial", "pared lateral", "II", "arteria oftálmica", "V1", "V2", "fisura superior", "fisura inferior"],
+      "fatalErrors": ["ubicar V2 como contenido principal de la fisura orbitaria superior"],
+      "followUps": ["¿Qué relación tiene el piso orbitario con el seno maxilar?", "¿Qué estructura de V2 continúa como nervio infraorbitario?"]
+    },
+    {
+      "id": "oral-cavidad-nasal-01",
+      "topic": "cavidad_nasal_region",
+      "type": "topography",
+      "prompt": "Describa la cavidad nasal por paredes, conchas y meatos y explique sus comunicaciones con órbita, fosa pterigopalatina y paladar.",
+      "mustInclude": ["tabique", "piso", "conchas", "meatos", "conducto nasolagrimal", "foramen esfenopalatino", "nasopalatino", "V1", "V2"],
+      "fatalErrors": ["afirmar que el conducto nasolagrimal desemboca en el meato medio"],
+      "followUps": ["¿Dónde drena el seno maxilar?", "¿Qué estructura comunica fosa pterigopalatina y cavidad nasal?"]
+    },
+    {
+      "id": "oral-ruta-v2-02",
+      "topic": "ruta_v2_craneo_cara",
+      "type": "trajectory",
+      "prompt": "Recorra V2 desde la fosa craneal media hasta cara, dientes superiores, paladar y cavidad nasal indicando la abertura usada en cada transición.",
+      "mustInclude": ["foramen redondo", "fosa pterigopalatina", "fisura orbitaria inferior", "infraorbitario", "PSA", "conductos palatinos", "foramen esfenopalatino"],
+      "fatalErrors": ["intercambiar foramen redondo y oval"],
+      "followUps": ["¿Qué ocurre con las fibras parasimpáticas en el ganglio pterigopalatino?", "¿Qué ramas alveolares puede emitir el infraorbitario?"]
+    },
+    {
+      "id": "oral-ruta-v3-02",
+      "topic": "ruta_v3_craneo_mandibula",
+      "type": "trajectory",
+      "prompt": "Recorra V3 desde foramen oval hasta mandíbula y piso de boca y organice sus ramas en tronco, división anterior y posterior.",
+      "mustInclude": ["foramen oval", "fosa infratemporal", "división anterior", "bucal sensitivo", "división posterior", "auriculotemporal", "lingual", "alveolar inferior"],
+      "fatalErrors": ["atribuir al nervio bucal la motricidad del buccinador"],
+      "followUps": ["¿Qué nervio recibe la cuerda del tímpano?", "¿Cuál entra al conducto mandibular?"]
+    },
+    {
+      "id": "oral-ruta-palatina-01",
+      "topic": "ruta_palatina_pterigopalatina",
+      "type": "trajectory",
+      "prompt": "Compare la vía del palatino mayor con la del nasopalatino desde la fosa pterigopalatina hasta la cavidad oral.",
+      "mustInclude": ["V2", "fosa pterigopalatina", "canal palatino", "foramen palatino mayor", "foramen esfenopalatino", "tabique nasal", "canal incisivo"],
+      "fatalErrors": ["afirmar que el nasopalatino emerge por el foramen palatino mayor"],
+      "followUps": ["¿Qué arteria acompaña al nervio palatino mayor?", "¿De qué rama de la carótida externa deriva?"]
+    },
+    {
+      "id": "oral-ruta-lagrimal-01",
+      "topic": "ruta_orbita_nariz_lagrimal",
+      "type": "integration",
+      "prompt": "Recorra el drenaje lagrimal hasta la cavidad nasal y diferéncielo de la vía parasimpática secretomotora de la glándula lagrimal.",
+      "mustInclude": ["puntos lagrimales", "canalículos", "saco lagrimal", "conducto nasolagrimal", "meato inferior", "VII", "ganglio pterigopalatino", "V2", "V1"],
+      "fatalErrors": ["confundir el conducto nasolagrimal con una vía nerviosa"],
+      "followUps": ["¿Qué papel cumple el nervio cigomático de V2?", "¿Qué rama de V1 recibe finalmente las fibras secretomotoras?"]
+    }
+  ]
+}
