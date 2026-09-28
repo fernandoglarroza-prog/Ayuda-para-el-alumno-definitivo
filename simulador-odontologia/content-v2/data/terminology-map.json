@@ -47,7 +47,14 @@
     {"preferred": "Hueso alveolar propio", "target": "periodonto_insercion", "synonyms": ["pared alveolar propia"], "classicTerms": []},
     {"preferred": "Configuración interna dentaria", "target": "anatomia_interna_dentaria", "synonyms": ["anatomía pulpar", "sistema de conductos radiculares"], "classicTerms": []},
     {"preferred": "Cámara pulpar", "target": "anatomia_interna_dentaria", "synonyms": ["cámara de la pulpa"], "classicTerms": []},
-    {"preferred": "Reborde alveolar residual", "target": "anatomia_desdentado", "synonyms": ["reborde desdentado", "cresta residual"], "classicTerms": []}
+    {"preferred": "Reborde alveolar residual", "target": "anatomia_desdentado", "synonyms": ["reborde desdentado", "cresta residual"], "classicTerms": []},
+    {"preferred": "Región pterigomandibular", "target": "region_pterigomandibular", "synonyms": ["espacio pterigomandibular"], "classicTerms": []},
+    {"preferred": "Órbita", "target": "orbita_region", "synonyms": ["cavidad orbitaria", "región orbitaria"], "classicTerms": []},
+    {"preferred": "Cavidad nasal", "target": "cavidad_nasal_region", "synonyms": ["fosas nasales", "región nasal interna"], "classicTerms": []},
+    {"preferred": "Ruta topográfica V2", "target": "ruta_v2_craneo_cara", "synonyms": ["recorrido de V2", "trayecto de V2 desde cráneo a cara"], "classicTerms": []},
+    {"preferred": "Ruta topográfica V3", "target": "ruta_v3_craneo_mandibula", "synonyms": ["recorrido de V3", "trayecto de V3 a mandíbula"], "classicTerms": []},
+    {"preferred": "Ruta palatina", "target": "ruta_palatina_pterigopalatina", "synonyms": ["trayecto palatino mayor", "trayecto nasopalatino", "vía palatina"], "classicTerms": []},
+    {"preferred": "Vía nasolagrimal", "target": "ruta_orbita_nariz_lagrimal", "synonyms": ["ruta órbita nariz", "drenaje lagrimal", "conducto nasolagrimal"], "classicTerms": []}
   ],
   "editorialRules": [
     "Mostrar el término preferido como título principal.",
@@ -55,6 +62,7 @@
     "Aceptar términos clásicos inequívocos en respuestas abiertas.",
     "No presentar términos próximos pero no equivalentes como sinónimos absolutos.",
     "La equivalencia relación céntrica/oclusión céntrica queda deliberadamente fuera hasta validación con cátedra.",
-    "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino."
+    "En términos ambiguos como alveolar inferior, pedir contexto nervioso o arterial antes de resolver el destino.",
+    "En rutas topográficas, priorizar secuencias región→abertura→contenido→destino sobre listas aisladas."
   ]
 }
