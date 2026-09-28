@@ -13,7 +13,7 @@
 <header class="top"><div class="wrap"><a class="brand" href="/simuladores/"><span class="icon">🤟</span><span><b>Aprender LSA</b><small>Ayuda para el Alumno</small></span></a><a class="back" href="/simuladores/">← Simuladores</a></div></header>
 <main class="wrap">
 <section class="hero">
- <div class="heroMain"><span class="ey">Lengua de Señas Argentina · v3</span><h1>Aprender mirando, practicando y comunicando.</h1><p>Una ruta de aprendizaje que acompaña recursos visuales producidos por la comunidad sorda argentina. No reemplazamos las señas con dibujos inventados: usamos fuentes validadas y entrenamos comprensión, memoria, producción y fluidez.</p><div class="heroActions"><a class="primary" href="#empezar">Empezar →</a><a class="secondary" href="https://senario.cas.org.ar/" target="_blank" rel="noopener">Abrir Señario CAS ↗</a></div></div>
+ <div class="heroMain"><span class="ey">Lengua de Señas Argentina · v4</span><h1>Aprender mirando, practicando y comunicando.</h1><p>Una ruta de aprendizaje que acompaña recursos visuales producidos por la comunidad sorda argentina. No reemplazamos las señas con dibujos inventados: usamos fuentes validadas y entrenamos comprensión, memoria, producción y fluidez.</p><div class="heroActions"><a class="primary" href="#empezar">Empezar →</a><a class="secondary" href="https://senario.cas.org.ar/" target="_blank" rel="noopener">Abrir Señario CAS ↗</a></div></div>
  <aside class="principle"><span class="ey">Punto de partida</span><h2>LSA no es castellano con gestos.</h2><p>La Ley 27.710 reconoce a la LSA como lengua natural y originaria, de modalidad visoespacial y con estructura gramatical completa, compleja y distinta del castellano.</p><span class="sourcePill">Fuente: Ley 27.710</span></aside>
 </section>
 
@@ -36,7 +36,7 @@
 </section>
 
 <section class="sectionCard">
- <div class="sectionHead"><div><span class="ey">Módulo 2 · disponible</span><h2>Práctica de producción</h2><p>Pasá del reconocimiento a producir señas. Usá siempre el alfabeto y el Señario como referencias visuales cuando necesites comprobar tu ejecución.</p></div><span class="available">LSA v3</span></div>
+ <div class="sectionHead"><div><span class="ey">Módulo 2 · disponible</span><h2>Práctica de producción</h2><p>Pasá del reconocimiento a producir señas. Usá siempre el alfabeto y el Señario como referencias visuales cuando necesites comprobar tu ejecución.</p></div><span class="available">LSA v4</span></div>
  <div class="practiceSuite">
   <article class="practiceTool"><span class="ey">Deletreo personal</span><h3>Practicá tu nombre</h3><p>Ingresá tu nombre y el simulador te lo irá mostrando letra por letra para que practiques dactilología sin apurarte.</p><form id="nameForm" class="nameSetup"><input id="nameInput" maxlength="30" autocomplete="name" placeholder="Tu nombre"><button type="submit">Preparar</button></form><p id="nameHelp">Podés consultar el alfabeto oficial antes de empezar.</p><div class="spellTrainer hidden" id="spellTrainer"><div class="spellMeta"><span id="spellWord"></span><span id="spellPosition"></span></div><div class="spellLetter" id="spellLetter">A</div><div class="spellActions" id="spellActions"><button id="spellGood">✓ Me salió</button><button id="spellAgain">↻ Repetir después</button></div><div class="spellResult hidden" id="spellResult"></div><button class="secondaryButton" id="spellRestart">Reiniciar nombre</button></div></article>
   <article class="practiceTool"><span class="ey">Modo espejo</span><h3>Practicá viéndote</h3><p>Activá la cámara frontal para observar configuración, orientación y movimiento mientras comparás tu ejecución con una referencia validada.</p><div class="mirrorWrap" id="mirrorWrap"><span class="mirrorBadge">Vista espejo · local</span><div class="mirrorPlaceholder">La cámara está apagada.<br>No hace falta activarla para usar el resto del simulador.</div><video id="mirrorVideo" autoplay muted playsinline></video></div><div class="mirrorControls"><button class="cameraStart" id="mirrorStart">Activar cámara</button><button id="mirrorStop" disabled>Apagar cámara</button><a class="secondary" href="https://senario.cas.org.ar/" target="_blank" rel="noopener">Abrir referencia CAS ↗</a></div><div class="mirrorStatus" id="mirrorStatus">La cámara solo se solicita cuando tocás “Activar cámara”.</div><div class="privacyMini"><b>Privacidad:</b> esta versión usa la cámara solamente como espejo dentro del navegador. No graba, no analiza y no envía imágenes a un servidor.</div></article>
@@ -73,5 +73,6 @@
 <script src="./app.js"></script>
 <script src="./app-v2.js"></script>
 <script src="./app-v3.js"></script>
+<script src="./app-v4.js"></script>
 </body>
 </html>
