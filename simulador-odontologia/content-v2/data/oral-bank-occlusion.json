@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-denticion-mixta-01",
+      "topic": "denticion_mixta",
+      "type": "development",
+      "prompt": "Defina dentición mixta y explique sus periodos transicionales y los cambios espaciales de la arcada.",
+      "mustInclude": ["temporarios y permanentes", "primer periodo transicional", "fase intertransicional", "segundo periodo transicional", "primeros molares permanentes", "leeway space", "variabilidad"],
+      "fatalErrors": ["afirmar que el primer molar permanente reemplaza un molar temporario"],
+      "followUps": ["Explique qué son los espacios primates.", "¿Por qué la cronología debe expresarse en rangos?"]
+    },
+    {
+      "id": "oral-oclusion-01",
+      "topic": "oclusion_morfologica",
+      "type": "integration",
+      "prompt": "Diferencie máxima intercuspidación, overjet, overbite, curvas de Spee y Wilson y relacione estos conceptos con protrusión y lateralidad.",
+      "mustInclude": ["máxima intercuspidación", "overjet horizontal", "overbite vertical", "Spee anteroposterior", "Wilson mediolateral", "protrusión", "lateralidad", "ATM"],
+      "fatalErrors": ["intercambiar overjet y overbite", "equiparar sin aclaración máxima intercuspidación con una posición articular específica"],
+      "followUps": ["¿Qué papel cumple la guía anterior?", "¿Por qué no debe imponerse una única definición de relación céntrica sin conocer el marco docente?"]
+    },
+    {
+      "id": "oral-contactos-01",
+      "topic": "arcos_contactos",
+      "type": "description",
+      "prompt": "Explique los contactos proximales, las cuatro troneras y su relación con papila interdental y forma de arco.",
+      "mustInclude": ["área de contacto", "tronera vestibular", "tronera lingual o palatina", "tronera oclusal o incisal", "tronera gingival", "papila interdental", "variación por grupo dentario"],
+      "fatalErrors": [],
+      "followUps": ["¿Por qué es más correcto hablar de área que de punto de contacto en una dentición funcional?"]
+    },
+    {
+      "id": "oral-periodonto-01",
+      "topic": "periodonto_insercion",
+      "type": "articulation",
+      "prompt": "Defina gonfosis y describa el periodonto de inserción desde cemento radicular hasta hueso alveolar.",
+      "mustInclude": ["articulación fibrosa", "cemento", "ligamento periodontal", "hueso alveolar propio", "hueso de sostén", "tabiques interalveolares", "tabiques interradiculares", "remodelado"],
+      "fatalErrors": ["definir la gonfosis como articulación sinovial"],
+      "followUps": ["Relacione hueso alveolar propio con lámina dura.", "Explique qué ocurre con el proceso alveolar después de perder el diente."]
+    },
+    {
+      "id": "oral-anatomia-interna-01",
+      "topic": "anatomia_interna_dentaria",
+      "type": "comparison",
+      "prompt": "Explique por qué número de raíces y número de conductos no son equivalentes y compare patrones internos de molares superiores e inferiores.",
+      "mustInclude": ["cámara pulpar", "conductos radiculares", "variación", "tres raíces superiores", "raíz mesiovestibular", "dos raíces inferiores", "raíz mesial", "foramen apical"],
+      "fatalErrors": ["afirmar que cada raíz contiene obligatoriamente un solo conducto"],
+      "followUps": ["¿El foramen apical coincide necesariamente con el vértice anatómico?", "¿Cómo cambia la cavidad pulpar con la edad?"]
+    },
+    {
+      "id": "oral-desdentado-01",
+      "topic": "anatomia_desdentado",
+      "type": "integration",
+      "prompt": "Describa el reborde alveolar residual y explique cómo cambian sus relaciones con seno maxilar, foramen mentoniano, conducto mandibular y músculos paraprotéticos.",
+      "mustInclude": ["reabsorción", "altura y anchura", "seno maxilar", "foramen mentoniano", "conducto mandibular", "buccinador", "milohioideo", "lengua"],
+      "fatalErrors": ["describir el reborde desdentado como anatómicamente idéntico al proceso alveolar dentado"],
+      "followUps": ["¿Por qué el foramen mentoniano puede quedar relativamente más superficial?", "Nombre músculos que condicionan el espacio funcional periprotético."]
+    }
+  ]
+}
