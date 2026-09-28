@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0-structured-draft",
+  "questions": [
+    {
+      "id": "oral-incisivos-inferiores-01",
+      "topic": "incisivos_inferiores",
+      "type": "tooth",
+      "prompt": "Compare incisivo central y lateral inferior permanentes y justifique cómo orienta y lateraliza la pieza.",
+      "mustInclude": ["31/41", "32/42", "central simétrico", "lateral asimétrico", "torsión distolingual", "cara lingual poco marcada", "raíz aplanada", "depresiones proximales"],
+      "fatalErrors": ["decir que el lateral es más simétrico que el central"],
+      "followUps": ["¿Puede existir más de un conducto en una raíz única?", "¿Qué criterio evita usar de forma aislada?"]
+    },
+    {
+      "id": "oral-lateralidad-dentaria-01",
+      "topic": "criterios_lateralidad_dentaria",
+      "type": "identification",
+      "prompt": "Explique un método sistemático para identificar grupo, arcada, caras y lado de una pieza dentaria aislada.",
+      "mustInclude": ["grupo", "arcada", "vestibular/lingual", "mesial/distal", "contactos", "CEJ", "raíz", "múltiples criterios"],
+      "fatalErrors": ["usar un único rasgo como criterio universal de lado"],
+      "followUps": ["¿Qué hace si el desgaste vuelve discordantes los criterios?", "¿Qué rasgos son útiles en primer premolar superior?"]
+    },
+    {
+      "id": "oral-proximal-dentaria-01",
+      "topic": "morfologia_proximal_dentaria",
+      "type": "morphology",
+      "prompt": "Describa la anatomía proximal dentaria integrando áreas de contacto, troneras, CEJ, alturas de contorno y transición a la raíz.",
+      "mustInclude": ["contacto mesial", "contacto distal", "troneras", "CEJ", "curvatura mesial", "altura de contorno", "raíz", "papila interdental"],
+      "fatalErrors": ["afirmar que la CEJ tiene idéntica curvatura en todas las superficies"],
+      "followUps": ["¿Cómo cambia la curvatura cervical desde anteriores hacia posteriores?", "¿Dónde suele ubicarse la altura de contorno vestibular?"]
+    }
+  ]
+}
