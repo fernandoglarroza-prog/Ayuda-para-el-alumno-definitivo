@@ -15,7 +15,7 @@
     "./dentition-extended.json",
     "./occlusion-alveolodentary.json",
     "./radiology-advanced.json",
-    "./topographic-routes.json"
+    "./topographic-routes-v2.json"
   ],
   "terminology": "./terminology-map.json",
   "oralBank": "./oral-bank.json",
