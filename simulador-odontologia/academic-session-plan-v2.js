@@ -15,6 +15,7 @@
 
   let state = loadState();
   let active3DStep = null;
+  let booted = false;
 
   const $ = (id) => document.getElementById(id);
   const normalize = (value = '') => value.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -26,9 +27,9 @@
     try { return { ...emptyState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }; }
     catch { return emptyState(); }
   }
-  function saveState() {
+  function saveState(renderNow = true) {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-    render();
+    if (renderNow) render();
   }
   function entries() { return window.AcademicV2?.entries?.() || []; }
   function mastery() { return window.AcademicMasteryV2; }
@@ -145,10 +146,13 @@
     const score = required.length ? matched.length / required.length : 1;
     step.score = score;
     step.done = Boolean(step.technicalSeen && step.oralSeen && score >= TARGET);
-    saveState();
-    if (feedback) feedback.innerHTML = `<div class="academicSessionFeedback ${score >= TARGET ? 'ok' : 'bad'}"><b>Cobertura estimada: ${Math.round(score * 100)}%</b>${missed.length ? `<p><strong>Falta reforzar:</strong> ${missed.map(escapeHTML).join(' · ')}</p>` : '<p>No quedaron elementos obligatorios sin detectar.</p>'}${question?.modelAnswer ? `<details><summary>Comparar con respuesta modelo</summary><p>${escapeHTML(question.modelAnswer)}</p></details>` : ''}${score >= TARGET && (!step.technicalSeen || !step.oralSeen) ? '<p>La cobertura alcanzó el objetivo, pero todavía falta completar Técnico y/o Oral.</p>' : ''}</div>`;
+    saveState(false);
+    if (feedback) {
+      feedback.innerHTML = `<div class="academicSessionFeedback ${score >= TARGET ? 'ok' : 'bad'}"><b>Cobertura estimada: ${Math.round(score * 100)}%</b>${missed.length ? `<p><strong>Falta reforzar:</strong> ${missed.map(escapeHTML).join(' · ')}</p>` : '<p>No quedaron elementos obligatorios sin detectar.</p>'}${question?.modelAnswer ? `<details><summary>Comparar con respuesta modelo</summary><p>${escapeHTML(question.modelAnswer)}</p></details>` : ''}${score >= TARGET && (!step.technicalSeen || !step.oralSeen) ? '<p>La cobertura alcanzó el objetivo, pero todavía falta completar Técnico y/o Oral.</p>' : ''}<button id="sessionContinue" type="button">Continuar sesión</button></div>`;
+      $('sessionContinue')?.addEventListener('click', render);
+    }
     document.dispatchEvent(new CustomEvent('simulator:practice-result', { detail: { mode: 'Plan de sesión V2', target: entry?.preferredName || step.title, correct: step.done, score } }));
-    checkCompletion();
+    checkCompletion(false);
   }
 
   function render3D(step, host) {
@@ -177,14 +181,14 @@
     checkCompletion();
   }
 
-  function checkCompletion() {
+  function checkCompletion(renderNow = true) {
     if (!state.steps.length || state.steps.some(step => !step.done)) return;
     if (!state.completedAt) {
       state.completedAt = new Date().toISOString();
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
       document.dispatchEvent(new CustomEvent('academic-session-v2:completed', { detail: { sessionId: state.sessionId } }));
     }
-    render();
+    if (renderNow) render();
   }
 
   function render() {
@@ -196,14 +200,15 @@
     const current = state.steps.find(step => !step.done) || state.steps[state.steps.length - 1];
     const generated = state.generatedAt ? new Date(state.generatedAt).toLocaleString('es-AR') : '—';
     host.innerHTML = `<div class="academicSessionHead"><div><span class="simEy">Sesión adaptativa V2 · 10–15 minutos</span><h3>Plan automático de estudio</h3><p>Generado desde tu perfil de dominio: dos prioridades, un mantenimiento y un desafío 3D. Sesión #${state.sessionId} · ${escapeHTML(generated)}.</p></div><div class="academicSessionProgress"><b>${done}/4</b><span>${state.completedAt ? 'sesión completa' : 'pasos completos'}</span></div></div><div class="academicSessionTrack"><span style="width:${done / 4 * 100}%"></span></div><div class="academicSessionLayout"><div class="academicSessionList">${state.steps.map((step,index) => `<button type="button" data-session-step="${step.id}" class="${step.id === current.id ? 'active' : ''} ${step.done ? 'done' : ''}"><span><b>${index + 1}. ${escapeHTML(step.type === '3d' ? step.target : step.title)}</b><small>${escapeHTML(step.type === '3d' ? 'Identificación 3D' : step.role)}</small></span><em>${step.done ? '✓' : step.score == null ? 'pendiente' : Math.round(step.score * 100) + '%'}</em></button>`).join('')}</div><div id="academicSessionDetail" class="academicSessionDetail"></div></div><div class="academicSessionFooter"><span>${state.completedAt ? '✓ Sesión completada. El perfil de dominio ya incorporó estas evidencias.' : 'Completá los cuatro pasos para cerrar la sesión.'}</span><button id="sessionNew" type="button">${state.completedAt ? 'Generar nueva sesión' : 'Recalcular plan'}</button></div>`;
-    let selectedId = current.id;
-    host.querySelectorAll('[data-session-step]').forEach(button => button.addEventListener('click', () => { selectedId = button.dataset.sessionStep; const step = state.steps.find(item => item.id === selectedId); const detail = $('academicSessionDetail'); if (step?.type === '3d') render3D(step, detail); else if (step) renderTopic(step, detail); }));
+    host.querySelectorAll('[data-session-step]').forEach(button => button.addEventListener('click', () => { const step = state.steps.find(item => item.id === button.dataset.sessionStep); const detail = $('academicSessionDetail'); if (step?.type === '3d') render3D(step, detail); else if (step) renderTopic(step, detail); }));
     const detail = $('academicSessionDetail');
     if (current.type === '3d') render3D(current, detail); else renderTopic(current, detail);
     $('sessionNew')?.addEventListener('click', () => { active3DStep = null; document.body.classList.remove('academicSession3DActive'); generateSession(true); });
   }
 
   function boot() {
+    if (booted) return;
+    booted = true;
     generateSession(false); render();
     document.addEventListener('simulator:select', answer3D);
     document.addEventListener('academic-mastery-v2:updated', () => { if (state.completedAt) return; render(); });
