@@ -1,5 +1,5 @@
 let mirrorStream=null;
-let spelling={letters:[],index:0,success:0,repeat:0};
+let spelling={letters:[],index:0,success:0,repeat:0,counted:false};
 let activeMission=null,missionIndex=0,missionFluent=0,missionRepeat=0;
 
 function updatePracticeSessions(){
@@ -13,7 +13,13 @@ function addPracticeSession(){
  updatePracticeSessions();
 }
 
-const normalizeName=value=>value.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-ZÑ]/g,'');
+const normalizeName=value=>value.toUpperCase()
+ .replace(/[ÁÀÂÄÃ]/g,'A')
+ .replace(/[ÉÈÊË]/g,'E')
+ .replace(/[ÍÌÎÏ]/g,'I')
+ .replace(/[ÓÒÔÖÕ]/g,'O')
+ .replace(/[ÚÙÛÜ]/g,'U')
+ .replace(/[^A-ZÑ]/g,'');
 function renderSpelling(){
  if(!spelling.letters.length)return;
  const done=spelling.index>=spelling.letters.length;
@@ -25,7 +31,7 @@ function renderSpelling(){
   $('spellActions').classList.add('hidden');
   $('spellResult').classList.remove('hidden');
   $('spellResult').textContent=`Nombre completado: ${spelling.success} letras fluidas · ${spelling.repeat} para repetir.`;
-  addPracticeSession();
+  if(!spelling.counted){spelling.counted=true;addPracticeSession()}
   return;
  }
  $('spellActions').classList.remove('hidden');$('spellResult').classList.add('hidden');
@@ -37,13 +43,13 @@ $('nameForm').onsubmit=e=>{
  e.preventDefault();
  const clean=normalizeName($('nameInput').value.trim());
  if(!clean){$('nameHelp').textContent='Ingresá un nombre usando letras.';return}
- spelling={letters:[...clean],index:0,success:0,repeat:0};
+ spelling={letters:[...clean],index:0,success:0,repeat:0,counted:false};
  $('nameHelp').textContent='Hacé cada letra usando el alfabeto oficial como referencia cuando lo necesites.';
  renderSpelling();
 };
 $('spellGood').onclick=()=>{spelling.success++;spelling.index++;renderSpelling()};
 $('spellAgain').onclick=()=>{spelling.repeat++;spelling.index++;renderSpelling()};
-$('spellRestart').onclick=()=>{if(spelling.letters.length){spelling.index=0;spelling.success=0;spelling.repeat=0;renderSpelling()}};
+$('spellRestart').onclick=()=>{if(spelling.letters.length){spelling.index=0;spelling.success=0;spelling.repeat=0;spelling.counted=false;renderSpelling()}};
 
 async function startMirror(){
  const status=$('mirrorStatus');
