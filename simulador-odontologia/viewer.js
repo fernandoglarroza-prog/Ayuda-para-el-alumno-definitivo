@@ -84,7 +84,9 @@ const COLORS = {
   landmarkSelected: 0xe33f35,
   landmarkHover: 0xffc15b,
   nerve: 0xd4ad2d,
+  nerveSelected: 0xffd34f,
   vessel: 0xc84b45,
+  vesselSelected: 0xff7066,
   canal: 0x3e8dc5,
   canalSelected: 0x185ca0,
   disc: 0x9b66b2,
@@ -266,7 +268,7 @@ function tubeMesh(path, color, radius, opacity, overlayType, keyField) {
     new THREE.TubeGeometry(curve, Math.max(24, clean.length * 10), radius, 8, false),
     new THREE.MeshStandardMaterial({ color, roughness: 0.48, metalness: 0, transparent: true, opacity, depthTest: true })
   );
-  mesh.userData = { overlayType, [keyField]: path.key, sourceName: path.name, side: path.side, schematic: true };
+  mesh.userData = { overlayType, infoKey: path.key, [keyField]: path.key, sourceName: path.name, side: path.side, schematic: true };
   overlayRoot.add(mesh);
   return mesh;
 }
@@ -343,6 +345,16 @@ function applyVisualState() {
     marker.scale.setScalar(selectedMarker === marker ? 1.55 : selected ? 1.28 : hovered === marker ? 1.18 : 1);
     marker.material.color.setHex(selected ? COLORS.landmarkSelected : hovered === marker ? COLORS.landmarkHover : COLORS.landmark);
   }
+  for (const nerve of nerveMeshes) {
+    const selected = selectedSpecialKey && nerve.userData.nerveKey === selectedSpecialKey;
+    nerve.material.color.setHex(selected ? COLORS.nerveSelected : COLORS.nerve);
+    nerve.material.opacity = selected ? 1 : 0.92;
+  }
+  for (const vessel of vesselMeshes) {
+    const selected = selectedSpecialKey && vessel.userData.vesselKey === selectedSpecialKey;
+    vessel.material.color.setHex(selected ? COLORS.vesselSelected : COLORS.vessel);
+    vessel.material.opacity = selected ? 1 : 0.92;
+  }
   for (const canal of canalMeshes) {
     const selected = selectedPathKey && canal.userData.infoKey === selectedPathKey;
     canal.material.color.setHex(selected ? COLORS.canalSelected : COLORS.canal); canal.material.opacity = selected ? 0.96 : 0.76;
@@ -369,10 +381,43 @@ function selectPathKey(key, emit = false, exact = null) {
   if (emit) { const m = selectedSpecialMesh || candidates[0]; document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: m.userData.sourceName, side: m.userData.side, path: true } })); }
   return true;
 }
-function selectSpecial(key, mesh = null) {
-  clearOverlaySelection(); selectedSpecialKey = key; selectedSpecialMesh = mesh; isolated = false;
-  if (key === 'disco_articular_atm') tmjVisible = true; else musclesVisible = true;
-  applyVisualState(); renderSpecialInfo(key, mesh?.userData.side || null);
+function selectSpecial(key, mesh = null, emit = false) {
+  const pool = key === 'disco_articular_atm' ? jointMeshes : muscleMeshes;
+  const candidates = pool.filter((m) => m.userData.infoKey === key);
+  const chosen = mesh || candidates[0] || null;
+  if (!chosen && key !== 'atm') return false;
+  clearOverlaySelection(); selectedSpecialKey = key; selectedSpecialMesh = chosen; isolated = false;
+  if (key === 'disco_articular_atm' || key === 'atm') tmjVisible = true; else musclesVisible = true;
+  applyVisualState(); renderSpecialInfo(key === 'atm' ? 'atm' : key, chosen?.userData.side || null);
+  if (emit) document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: chosen?.userData.sourceName || key, side: chosen?.userData.side || null, overlay: chosen?.userData.overlayType || 'joint' } }));
+  return true;
+}
+function renderNetworkInfo(mesh) {
+  if (!mesh) return;
+  const isNerve = mesh.userData.overlayType === 'nerve';
+  const label = `${mesh.userData.sourceName}${mesh.userData.side ? ` · ${mesh.userData.side}` : ''}`;
+  if ($('viewerTitle')) $('viewerTitle').textContent = label;
+  if ($('infoTitle')) $('infoTitle').textContent = label;
+  if ($('infoMeta')) $('infoMeta').textContent = isNerve ? 'Nervio · trayecto esquemático 3D' : 'Arteria · trayecto esquemático 3D';
+  if ($('infoSummary')) $('infoSummary').textContent = isNerve ? 'Trayecto educativo calculado sobre referencias del atlas para relacionar la estructura nerviosa con huesos, dientes y regiones profundas.' : 'Trayecto arterial educativo calculado sobre referencias del atlas para estudiar relaciones regionales; no representa una segmentación vascular de un paciente.';
+  if ($('infoLocation')) $('infoLocation').textContent = 'La posición mostrada es una reconstrucción didáctica anclada a referencias anatómicas del mismo cráneo 3D.';
+  if ($('infoParts')) $('infoParts').textContent = 'Usá la ficha académica V2 vinculada para estudiar origen, trayecto, ramas, territorio y relaciones con terminología anatómica completa.';
+  if ($('infoRelations')) $('infoRelations').textContent = 'La capa 3D sirve para orientación espacial. Las relaciones finas y variaciones anatómicas se desarrollan en el contenido técnico V2.';
+  if ($('infoClinical')) $('infoClinical').textContent = 'Correlación anatómica educativa para Odontología; no es una representación clínica individual ni una guía de procedimiento.';
+  if ($('infoBooks')) $('infoBooks').textContent = BOOKS;
+  const bc = $('infoBreadcrumb'); if (bc) { bc.hidden = false; bc.textContent = isNerve ? 'Neurología → capa nerviosa educativa' : 'Angiología → capa arterial educativa'; }
+  const tips = $('infoExamTips'); if (tips) { tips.innerHTML = ''; ['Nombrá el trayecto por regiones, no solo el nombre de la estructura.', 'Relacioná cada cambio de región con forámenes, fosas o referencias óseas.', 'Abrí la ficha V2 para pasar de reconocimiento visual a desarrollo oral.'].forEach((tip) => { const li = document.createElement('li'); li.textContent = tip; tips.appendChild(li); }); }
+}
+function selectNetwork(type, key, emit = false, exact = null) {
+  const list = type === 'nerve' ? nerveMeshes : vesselMeshes;
+  const field = type === 'nerve' ? 'nerveKey' : 'vesselKey';
+  const candidates = list.filter((m) => m.userData[field] === key || m.userData.infoKey === key);
+  if (!candidates.length) return false;
+  clearOverlaySelection(); selectedSpecialKey = key; selectedSpecialMesh = exact && candidates.includes(exact) ? exact : candidates[0]; isolated = false;
+  if (type === 'nerve') nervesVisible = true; else vesselsVisible = true;
+  applyVisualState(); renderNetworkInfo(selectedSpecialMesh);
+  if (emit) document.dispatchEvent(new CustomEvent('simulator:select', { detail: { key, sourceName: selectedSpecialMesh.userData.sourceName, side: selectedSpecialMesh.userData.side, overlay: type } }));
+  return true;
 }
 function selectKey(key, emit = false) {
   if (LANDMARK_PARENT[key] && selectLandmarkKey(key, emit)) return true;
@@ -417,7 +462,7 @@ function fitCamera() {
 function selectedBox() {
   let targets = [];
   if (selectedSpecialMesh?.visible) targets = [selectedSpecialMesh];
-  else if (selectedSpecialKey) targets = [...muscleMeshes, ...jointMeshes].filter((m) => m.visible && m.userData.infoKey === selectedSpecialKey);
+  else if (selectedSpecialKey) targets = [...nerveMeshes, ...vesselMeshes, ...muscleMeshes, ...jointMeshes].filter((m) => m.visible && (m.userData.infoKey === selectedSpecialKey || m.userData.nerveKey === selectedSpecialKey || m.userData.vesselKey === selectedSpecialKey));
   else if (selectedLandmarkKey) targets = selectedMarker ? [selectedMarker] : markerMeshes.filter((m) => m.visible && m.userData.infoKey === selectedLandmarkKey);
   else if (selectedPathKey) targets = canalMeshes.filter((m) => m.visible && m.userData.infoKey === selectedPathKey);
   else if (selectedKey) targets = meshes.filter((m) => m.visible && m.userData.infoKey === selectedKey);
@@ -470,16 +515,16 @@ async function loadAtlas() {
 function normalizedPointer(event) { const rect = canvas.getBoundingClientRect(); pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1; pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1; }
 function hitTest(event) {
   if (!meshes.length) return null; normalizedPointer(event); raycaster.setFromCamera(pointer, camera);
-  const targets = [...markerMeshes, ...canalMeshes, ...muscleMeshes, ...jointMeshes, ...meshes].filter((m) => m.visible);
+  const targets = [...markerMeshes, ...canalMeshes, ...nerveMeshes, ...vesselMeshes, ...muscleMeshes, ...jointMeshes, ...meshes].filter((m) => m.visible);
   return raycaster.intersectObjects(targets, false)[0]?.object || null;
 }
 function directTooltip(object, event) {
   if (!tooltip) return;
-  if (!object || !['muscle','joint'].includes(object.userData.overlayType)) { tooltip.hidden = true; return; }
+  if (!object || !['muscle','joint','nerve','vessel'].includes(object.userData.overlayType)) { tooltip.hidden = true; return; }
   const rect = stage.getBoundingClientRect(); tooltip.textContent = `${object.userData.sourceName}${object.userData.side ? ` · ${object.userData.side}` : ''}`; tooltip.style.left = `${Math.max(0, Math.min(rect.width - 20, event.clientX - rect.left))}px`; tooltip.style.top = `${Math.max(0, Math.min(rect.height - 20, event.clientY - rect.top))}px`; tooltip.hidden = false;
 }
 function emitHover(object, event) {
-  if (object && ['muscle','joint'].includes(object.userData.overlayType)) { directTooltip(object, event); return; }
+  if (object && ['muscle','joint','nerve','vessel'].includes(object.userData.overlayType)) { directTooltip(object, event); return; }
   directTooltip(null, event);
   const rect = stage.getBoundingClientRect();
   document.dispatchEvent(new CustomEvent('simulator:hover', { detail: object ? { key: object.userData.infoKey, x: Math.max(0, Math.min(rect.width - 20, event.clientX - rect.left)), y: Math.max(0, Math.min(rect.height - 20, event.clientY - rect.top)), marker: object.userData.overlayType === 'landmark', side: object.userData.side || null } : { key: null } }));
@@ -516,7 +561,9 @@ canvas.addEventListener('pointerup', (event) => {
   const object = hitTest(event); if (!object) return;
   if (object.userData.overlayType === 'landmark') selectLandmarkKey(object.userData.infoKey, true, object);
   else if (object.userData.overlayType === 'canal') selectPathKey(object.userData.infoKey, true, object);
-  else if (object.userData.overlayType === 'muscle' || object.userData.overlayType === 'joint') selectSpecial(object.userData.infoKey, object);
+  else if (object.userData.overlayType === 'nerve') selectNetwork('nerve', object.userData.nerveKey || object.userData.infoKey, true, object);
+  else if (object.userData.overlayType === 'vessel') selectNetwork('vessel', object.userData.vesselKey || object.userData.infoKey, true, object);
+  else if (object.userData.overlayType === 'muscle' || object.userData.overlayType === 'joint') selectSpecial(object.userData.infoKey, object, true);
   else selectKey(object.userData.infoKey, true);
 });
 canvas.addEventListener('pointermove', (event) => { if (event.buttons || jawDemoRunning) return; const next = hitTest(event); if (next !== hovered) { hovered = next; canvas.style.cursor = hovered ? 'pointer' : 'grab'; applyVisualState(); } emitHover(next, event); });
@@ -537,6 +584,9 @@ resetButton?.addEventListener('click', () => { if (jawDemoRunning) stopJawDemo()
 
 window.skull3dSelectByKey = (key) => selectKey(key, false);
 window.skull3dSelectLandmark = (key) => selectLandmarkKey(key, false);
+window.skull3dSelectNerve = (key) => selectNetwork('nerve', key, false);
+window.skull3dSelectVessel = (key) => selectNetwork('vessel', key, false);
+window.skull3dSelectSpecial = (key) => selectSpecial(key, null, false);
 window.skull3dFocusSelection = focusSelection;
 window.skull3dIsolate = () => { if (!selectedKey) return false; isolated = true; contextDimmed = false; applyVisualState(); return true; };
 window.skull3dReset = () => resetButton?.click();
@@ -553,7 +603,7 @@ if (infoTitle) new MutationObserver(() => {
 }).observe(infoTitle, { childList: true, characterData: true, subtree: true });
 
 const hint = document.querySelector('.simViewerHint');
-if (hint) { const muscleHint = document.createElement('span'); muscleHint.textContent = '🔴 Músculo = volumen educativo esquemático'; hint.appendChild(muscleHint); const atmHint = document.createElement('span'); atmHint.textContent = '🟣 ATM = disco esquemático + demo de movimiento'; hint.appendChild(atmHint); }
+if (hint) { const muscleHint = document.createElement('span'); muscleHint.textContent = '🔴 Músculo = volumen educativo esquemático'; hint.appendChild(muscleHint); const atmHint = document.createElement('span'); atmHint.textContent = '🟣 ATM = disco esquemático + demo de movimiento'; hint.appendChild(atmHint); const nvHint = document.createElement('span'); nvHint.textContent = '🟡/🔴 Nervios y arterias visibles también se pueden tocar'; hint.appendChild(nvHint); }
 
 new ResizeObserver(resize).observe(stage);
 buildRenderer();
