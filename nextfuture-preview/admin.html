@@ -14,7 +14,7 @@
     <div class="logo">NF</div>
     <span class="kicker">NEXTFUTURE · ACCESO PRIVADO</span>
     <h1>Panel técnico</h1>
-    <p>Gestioná reparaciones, señas, repuestos y estados.</p>
+    <p>Gestioná reparaciones, presupuestos, señas, repuestos y entregas.</p>
     <form id="loginForm">
       <label>Email</label><input id="loginEmail" type="email" autocomplete="username" required>
       <label>Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" required>
@@ -25,18 +25,18 @@
 </section>
 
 <section id="appView" class="app hidden">
-  <header class="topbar"><div class="top-inner"><div class="brand"><span class="logo mini">NF</span><div><b>Nextfuture</b><small>Centro de operaciones</small></div></div><div class="top-actions"><button id="refreshBtn" class="ghost">Actualizar</button><button id="logoutBtn" class="dark">Salir</button></div></div></header>
+  <header class="topbar"><div class="top-inner"><div class="brand"><span class="logo mini">NF</span><div><b>Nextfuture</b><small>Centro de operaciones</small></div></div><div class="top-actions"><button id="newOrderBtn" class="ghost">+ Nueva orden</button><button id="refreshBtn" class="ghost">Actualizar</button><button id="logoutBtn" class="dark">Salir</button></div></div></header>
   <main class="shell">
-    <section class="hero"><div><span class="kicker">PANEL TÉCNICO</span><h1>Reparaciones en curso</h1><p>Mové el trabajo desde recepción hasta entrega y registrá pagos/repuestos desde cada orden.</p></div><div id="syncState" class="sync">Sincronizando…</div></section>
+    <section class="hero"><div><span class="kicker">PANEL TÉCNICO · V2.7</span><h1>Reparaciones en curso</h1><p>Cargá una orden cuando recibís o coordinás un equipo y seguí todo el proceso hasta la entrega.</p></div><div id="syncState" class="sync">Sincronizando…</div></section>
     <section id="stats" class="stats"></section>
-    <section class="filters"><input id="searchInput" placeholder="Buscar por código, cliente, equipo o localidad"><select id="statusFilter"><option value="all">Todos los estados</option></select></section>
+    <section class="filters"><input id="searchInput" placeholder="Buscar por código, cliente, teléfono, equipo o localidad"><select id="statusFilter"><option value="all">Todos los estados</option></select></section>
     <section id="board" class="board"></section>
   </main>
 </section>
 
 <div id="drawerBackdrop" class="backdrop hidden"></div>
 <aside id="drawer" class="drawer hidden">
-  <div class="drawer-head"><div><span class="kicker">ORDEN</span><h2 id="drawerCode">—</h2></div><button id="closeDrawer" class="close">×</button></div>
+  <div class="drawer-head"><div><span class="kicker">NEXTFUTURE</span><h2 id="drawerCode">—</h2></div><button id="closeDrawer" class="close">×</button></div>
   <div id="drawerBody" class="drawer-body"></div>
 </aside>
 </body>
