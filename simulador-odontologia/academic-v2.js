@@ -22,6 +22,7 @@
     if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
     return response.json();
   };
+  const validLevel = (level) => LEVELS.some(([key]) => key === level);
 
   function mountShell() {
     if (byId('academicV2')) return;
@@ -82,7 +83,7 @@
         button.dataset.entryId = entry.id;
         button.append(el('b', '', entry.preferredName));
         button.append(el('small', '', (entry.paUnits || []).join(' · ') || entry.category || 'Anatomía'));
-        button.addEventListener('click', () => selectEntry(entry.id, true));
+        button.addEventListener('click', () => selectEntry(entry.id, { scroll: true }));
         host.append(button);
       });
     }
@@ -117,9 +118,7 @@
       const details = document.createElement('details');
       const summary = el('summary', '', 'Ver respuesta modelo y criterios');
       details.append(summary);
-      if (question.requiredElements?.length) {
-        details.append(el('p', '', `Elementos esperados: ${question.requiredElements.join(' · ')}`));
-      }
+      if (question.requiredElements?.length) details.append(el('p', '', `Elementos esperados: ${question.requiredElements.join(' · ')}`));
       if (question.modelAnswer) details.append(el('p', '', question.modelAnswer));
       if (question.followUp?.length) details.append(el('p', '', `Repreguntas: ${question.followUp.join(' · ')}`));
       box.append(details);
@@ -149,7 +148,8 @@
     LEVELS.forEach(([key, label]) => {
       const button = el('button', 'academicV2Tab' + (state.level === key ? ' active' : ''), label);
       button.type = 'button';
-      button.addEventListener('click', () => { state.level = key; renderEntry(); });
+      button.dataset.academicLevel = key;
+      button.addEventListener('click', () => setLevel(key));
       tabs.append(button);
     });
     card.append(tabs);
@@ -168,14 +168,33 @@
     card.append(content);
   }
 
-  function selectEntry(id, scroll = false) {
+  function emitSelection() {
+    if (!state.selected) return;
+    document.dispatchEvent(new CustomEvent('academic-v2:select', {
+      detail: { id: state.selected.id, level: state.level, entry: state.selected }
+    }));
+  }
+
+  function setLevel(level, options = {}) {
+    if (!validLevel(level)) return false;
+    state.level = level;
+    renderEntry();
+    emitSelection();
+    if (options.scroll) byId('academicV2Card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return true;
+  }
+
+  function selectEntry(id, options = {}) {
+    if (typeof options === 'boolean') options = { scroll: options };
     const entry = state.entries.find(item => item.id === id || item.modelKey === id) ||
       state.entries.find(item => normalize(item.preferredName) === normalize(id));
     if (!entry) return false;
     state.selected = entry;
+    if (options.level && validLevel(options.level)) state.level = options.level;
     renderResults();
     renderEntry();
-    if (scroll) byId('academicV2Card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    emitSelection();
+    if (options.scroll) byId('academicV2Card')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return true;
   }
 
@@ -215,10 +234,18 @@
       state.selected = initial || null;
       filterEntries();
       renderEntry();
-      window.AcademicV2 = { open: (id) => selectEntry(id, true), entries: () => [...state.entries] };
+      window.AcademicV2 = {
+        open: (id, options = { scroll: true }) => selectEntry(id, options),
+        setLevel,
+        current: () => ({ entry: state.selected, level: state.level }),
+        entries: () => [...state.entries],
+        levels: () => LEVELS.map(([key, label]) => ({ key, label }))
+      };
+      emitSelection();
+      document.dispatchEvent(new CustomEvent('academic-v2:ready', { detail: { entries: state.entries.length } }));
       window.addEventListener('simulator:selection', event => {
         const detail = event.detail || {};
-        selectEntry(detail.id || detail.key || detail.modelKey || detail.name || '');
+        selectEntry(detail.id || detail.key || detail.modelKey || detail.name || '', { scroll: false });
       });
     } catch (error) {
       console.error('[Academic V2]', error);
