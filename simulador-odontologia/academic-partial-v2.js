@@ -77,14 +77,37 @@
     };
   }
 
+  function weightedRecognitionPick(pool, count, entries) {
+    const mastery = window.AcademicMasteryV2;
+    if (!mastery?.entryWeight) return shuffle(pool).slice(0, count);
+    const remaining = [...pool];
+    const chosen = [];
+    while (remaining.length && chosen.length < count) {
+      const weights = remaining.map(item => {
+        const entry = entries.find(candidate => candidate.id === item.review || candidate.modelKey === item.review);
+        return entry ? Math.max(0.15, mastery.entryWeight(entry)) : 1;
+      });
+      const total = weights.reduce((sum, value) => sum + value, 0);
+      let cursor = Math.random() * total;
+      let idx = 0;
+      for (; idx < remaining.length; idx += 1) {
+        cursor -= weights[idx];
+        if (cursor <= 0) break;
+      }
+      chosen.push(remaining.splice(Math.min(idx, remaining.length - 1), 1)[0]);
+    }
+    return chosen;
+  }
+
   function buildExam(entries) {
     const usable = entries.filter(entry => entry.exam?.questions?.length);
     const dentition = usable.filter(entry => (entry.paUnits || []).some(unit => unit.includes('Unidad VIII')));
     const radiology = usable.filter(entry => entry.category === 'radiology' || (entry.paUnits || []).some(unit => unit.includes('Correlación didáctica radiográfica')));
     const general = usable.filter(entry => !dentition.includes(entry) && !radiology.includes(entry) && entry.status === 'technical-review');
     const fallbackGeneral = usable.filter(entry => !dentition.includes(entry) && !radiology.includes(entry));
-    const pickWritten = (pool, n, family) => shuffle(pool).slice(0, n).map(entry => writtenQuestion(entry, family)).filter(Boolean);
-    const recognition = shuffle(RECOGNITION_BANK).slice(0, 4).map(item => ({ type: '3d', family: 'Reconocimiento 3D', category: 'Reconocimiento 3D', ...item }));
+    const adaptivePick = (pool, n) => window.AcademicMasteryV2?.weightedPick ? window.AcademicMasteryV2.weightedPick(pool, n) : shuffle(pool).slice(0, n);
+    const pickWritten = (pool, n, family) => adaptivePick(pool, n).map(entry => writtenQuestion(entry, family)).filter(Boolean);
+    const recognition = weightedRecognitionPick(RECOGNITION_BANK, 4, entries).map(item => ({ type: '3d', family: 'Reconocimiento 3D', category: 'Reconocimiento 3D', ...item }));
     const oral = pickWritten(general.length >= 4 ? general : fallbackGeneral, 4, 'Oral técnico');
     const teeth = pickWritten(dentition, 4, 'Anatomía dentaria');
     const radio = pickWritten(radiology, 4, 'Radiología anatómica');
@@ -121,7 +144,7 @@
     panel.className = 'academicPartialV2Panel';
     panel.innerHTML = `
       <div class="academicPartialHead">
-        <div><span class="simEy">Parcial V2 · integración académica</span><h2>Simulacro técnico de Anatomía Odontológica</h2><p>16 consignas: reconocimiento 3D, desarrollo oral/técnico, anatomía dentaria y radiología. Las respuestas escritas se comparan con elementos obligatorios del corpus; la cobertura es orientativa y no reemplaza corrección docente.</p></div>
+        <div><span class="simEy">Parcial V2 · integración académica adaptativa</span><h2>Simulacro técnico de Anatomía Odontológica</h2><p>16 consignas equilibradas: reconocimiento 3D, desarrollo oral/técnico, anatomía dentaria y radiología. Dentro de cada bloque, el perfil de dominio aumenta la frecuencia de los temas más débiles sin dejar de explorar áreas todavía poco evaluadas.</p></div>
         <div class="academicPartialStats"><span>Intentos <b id="academicPartialAttempts">0</b></span><span>Último <b id="academicPartialLast">—</b></span><span>Mejor <b id="academicPartialBest">—</b></span></div>
       </div>
       <div class="academicPartialStart"><button id="academicPartialStart" type="button">Comenzar parcial V2</button><span>⏱️ Cronómetro informativo · sin límite automático · objetivo interno 70%</span></div>
@@ -198,7 +221,7 @@
       answered = true; clearRecognitionState();
       const safePoints = Math.max(0, Math.min(1, Number(points) || 0));
       results.push({ q, points: safePoints, detail });
-      document.dispatchEvent(new CustomEvent('simulator:practice-result', { detail: { mode: 'Parcial V2', target: q.target, correct: safePoints >= 0.6, score: safePoints } }));
+      document.dispatchEvent(new CustomEvent('simulator:practice-result', { detail: { mode: 'Parcial V2', target: q.target, category: q.category, correct: safePoints >= 0.6, score: safePoints } }));
       nextBtn.disabled = false;
     }
 
@@ -263,7 +286,7 @@
       });
       const weak = results.filter(item => item.points < 0.7).sort((a, b) => a.points - b.points);
       result.hidden = false;
-      result.innerHTML = `<div class="academicPartialScore"><div><span class="simEy">Resultado del parcial V2</span><h2>${pct}% · ${totalPoints.toFixed(1)}/${questions.length} puntos</h2><p>${pct >= TARGET ? 'Objetivo interno de entrenamiento alcanzado.' : 'Conviene reforzar los bloques de menor cobertura antes de repetirlo.'} Tiempo: ${fmtTime(elapsed)}.</p></div><span class="${pct >= TARGET ? 'pass' : 'retry'}">${pct >= TARGET ? '✓ ≥ 70%' : '↻ < 70%'}</span></div><div class="academicPartialCategoryGrid">${Object.entries(categories).map(([name, value]) => `<div><span>${escapeHTML(name)}</span><b>${Math.round(value.points / value.total * 100)}%</b><small>${value.points.toFixed(1)}/${value.total}</small></div>`).join('')}</div><div class="academicPartialRecovery"><h3>Plan de recuperación</h3>${weak.length ? `<p>Estas consignas tuvieron menos de 70% de cobertura y pasan al repaso:</p><div class="academicPartialRecoveryList">${weak.slice(0, 8).map((item, idx) => `<article><div><b>${escapeHTML(item.q.target)}</b><small>${escapeHTML(item.q.category)} · ${Math.round(item.points * 100)}%</small></div>${item.q.entryId || item.q.review ? `<button type="button" data-academic-review="${escapeHTML(item.q.entryId || item.q.review)}">Repasar V2</button>` : ''}</article>`).join('')}</div>` : '<p>No quedaron consignas por debajo del 70%.</p>'}<div class="academicPartialResultActions"><button id="academicPartialStudy" type="button">Volver a Estudiar</button><button id="academicPartialAgain" class="primary" type="button">Nuevo parcial V2</button></div></div><small class="academicPartialDisclaimer">La cobertura de respuestas escritas es una estimación por elementos anatómicos esperados. No equivale a corrección semántica exhaustiva ni a una calificación oficial de la cátedra.</small>`;
+      result.innerHTML = `<div class="academicPartialScore"><div><span class="simEy">Resultado del parcial V2</span><h2>${pct}% · ${totalPoints.toFixed(1)}/${questions.length} puntos</h2><p>${pct >= TARGET ? 'Objetivo interno de entrenamiento alcanzado.' : 'Conviene reforzar los bloques de menor cobertura antes de repetirlo.'} Tiempo: ${fmtTime(elapsed)}.</p></div><span class="${pct >= TARGET ? 'pass' : 'retry'}">${pct >= TARGET ? '✓ ≥ 70%' : '↻ < 70%'}</span></div><div class="academicPartialCategoryGrid">${Object.entries(categories).map(([name, value]) => `<div><span>${escapeHTML(name)}</span><b>${Math.round(value.points / value.total * 100)}%</b><small>${value.points.toFixed(1)}/${value.total}</small></div>`).join('')}</div><div class="academicPartialRecovery"><h3>Plan de recuperación</h3>${weak.length ? `<p>Estas consignas tuvieron menos de 70% de cobertura y pasan al repaso:</p><div class="academicPartialRecoveryList">${weak.slice(0, 8).map(item => `<article><div><b>${escapeHTML(item.q.target)}</b><small>${escapeHTML(item.q.category)} · ${Math.round(item.points * 100)}%</small></div>${item.q.entryId || item.q.review ? `<button type="button" data-academic-review="${escapeHTML(item.q.entryId || item.q.review)}">Repasar V2</button>` : ''}</article>`).join('')}</div>` : '<p>No quedaron consignas por debajo del 70%.</p>'}<div class="academicPartialResultActions"><button id="academicPartialStudy" type="button">Volver a Estudiar</button><button id="academicPartialAgain" class="primary" type="button">Nuevo parcial V2</button></div></div><small class="academicPartialDisclaimer">La cobertura de respuestas escritas es una estimación por elementos anatómicos esperados. No equivale a corrección semántica exhaustiva ni a una calificación oficial de la cátedra. La selección adaptativa modifica frecuencia de temas, no el criterio de aprobación.</small>`;
       result.querySelectorAll('[data-academic-review]').forEach(button => button.addEventListener('click', () => window.AcademicV2?.open(button.dataset.academicReview, { level: 'technical', scroll: true })));
       result.querySelector('#academicPartialStudy')?.addEventListener('click', () => document.querySelector('.simMode[data-mode="estudiar"]')?.click());
       result.querySelector('#academicPartialAgain')?.addEventListener('click', start);
@@ -281,7 +304,7 @@
     document.addEventListener('simulator:select', answer3D);
     document.querySelectorAll('.simMode[data-mode]').forEach(button => button.addEventListener('click', () => { if (active) abort(); }));
     updateHistoryUI();
-    document.dispatchEvent(new CustomEvent('academic-partial-v2:ready', { detail: { questions: 16 } }));
+    document.dispatchEvent(new CustomEvent('academic-partial-v2:ready', { detail: { questions: 16, adaptive: Boolean(window.AcademicMasteryV2) } }));
     return true;
   }
 
@@ -291,6 +314,7 @@
     observer.observe(document.body, { childList: true, subtree: true });
     const onReady = () => { if (init()) observer.disconnect(); };
     document.addEventListener('academic-v2:ready', onReady, { once: true });
+    document.addEventListener('academic-mastery-v2:ready', onReady, { once: true });
     setTimeout(() => observer.disconnect(), 20000);
   };
 
