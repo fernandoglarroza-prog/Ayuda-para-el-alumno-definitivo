@@ -28,11 +28,14 @@
   addCss('academic-study-route-css', '/simulador-odontologia/academic-study-route.css');
   addCss('academic-partial-v2-css', '/simulador-odontologia/academic-partial-v2.css');
   addCss('academic-recovery-v2-css', '/simulador-odontologia/academic-recovery-v2.css');
+  addCss('academic-mastery-v2-css', '/simulador-odontologia/academic-mastery-v2.css');
 
   addScript('academic-v2-js', '/simulador-odontologia/academic-v2.js', () => {
     addScript('academic-v2-sync-js', '/simulador-odontologia/academic-v2-sync.js');
-    addScript('academic-study-route-js', '/simulador-odontologia/academic-study-route.js');
-    addScript('academic-partial-v2-js', '/simulador-odontologia/academic-partial-v2.js');
-    addScript('academic-recovery-v2-js', '/simulador-odontologia/academic-recovery-v2.js');
+    addScript('academic-mastery-v2-js', '/simulador-odontologia/academic-mastery-v2.js', () => {
+      addScript('academic-study-route-js', '/simulador-odontologia/academic-study-route.js');
+      addScript('academic-partial-v2-js', '/simulador-odontologia/academic-partial-v2.js');
+      addScript('academic-recovery-v2-js', '/simulador-odontologia/academic-recovery-v2.js');
+    });
   });
 })();
