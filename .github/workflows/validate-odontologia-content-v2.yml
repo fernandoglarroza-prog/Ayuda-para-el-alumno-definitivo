@@ -15,6 +15,8 @@ on:
       - 'simulador-odontologia/academic-partial-v2.css'
       - 'simulador-odontologia/academic-recovery-v2.js'
       - 'simulador-odontologia/academic-recovery-v2.css'
+      - 'simulador-odontologia/academic-mastery-v2.js'
+      - 'simulador-odontologia/academic-mastery-v2.css'
       - 'simulador-odontologia/deep-osteology.js'
       - '.github/workflows/validate-odontologia-content-v2.yml'
   pull_request:
@@ -29,6 +31,8 @@ on:
       - 'simulador-odontologia/academic-partial-v2.css'
       - 'simulador-odontologia/academic-recovery-v2.js'
       - 'simulador-odontologia/academic-recovery-v2.css'
+      - 'simulador-odontologia/academic-mastery-v2.js'
+      - 'simulador-odontologia/academic-mastery-v2.css'
       - 'simulador-odontologia/deep-osteology.js'
       - '.github/workflows/validate-odontologia-content-v2.yml'
 
@@ -55,6 +59,7 @@ jobs:
           node --check simulador-odontologia/academic-study-route.js
           node --check simulador-odontologia/academic-partial-v2.js
           node --check simulador-odontologia/academic-recovery-v2.js
+          node --check simulador-odontologia/academic-mastery-v2.js
           node --check simulador-odontologia/deep-osteology.js
           cp simulador-odontologia/viewer.js /tmp/odontologia-viewer.mjs
           node --check /tmp/odontologia-viewer.mjs
