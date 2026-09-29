@@ -26,9 +26,11 @@
   addCss('academic-v2-css', '/simulador-odontologia/academic-v2.css');
   addCss('academic-v2-sync-css', '/simulador-odontologia/academic-v2-sync.css');
   addCss('academic-study-route-css', '/simulador-odontologia/academic-study-route.css');
+  addCss('academic-partial-v2-css', '/simulador-odontologia/academic-partial-v2.css');
 
   addScript('academic-v2-js', '/simulador-odontologia/academic-v2.js', () => {
     addScript('academic-v2-sync-js', '/simulador-odontologia/academic-v2-sync.js');
     addScript('academic-study-route-js', '/simulador-odontologia/academic-study-route.js');
+    addScript('academic-partial-v2-js', '/simulador-odontologia/academic-partial-v2.js');
   });
 })();
