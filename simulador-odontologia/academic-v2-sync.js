@@ -18,20 +18,20 @@
     cigomatico: { focus: ['key', 'cigomatico'] }, parietal: { focus: ['key', 'parietal'] }, etmoides: { focus: ['key', 'etmoides'] },
     nasal: { focus: ['key', 'nasal'] }, lagrimal: { focus: ['key', 'lagrimal'] }, palatino: { focus: ['key', 'palatino'] },
     vomer: { focus: ['key', 'vomer'] }, concha_inferior: { focus: ['key', 'concha_inferior'] },
-    atm: { layers: ['tmj'], focus: ['landmark', 'condilo_mandibular'] },
-    v2: { layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_infraorbitario'] },
-    v3: { layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_oval'] },
-    ruta_v2_craneo_cara: { layers: ['nerves'], focus: ['key', 'maxilar'] },
-    ruta_v3_craneo_mandibula: { layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_oval'] },
-    region_pterigomandibular: { layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_mandibular'] },
+    atm: { layers: ['tmj'], focus: ['special', 'disco_articular_atm'] },
+    v2: { layers: ['nerves','landmarks'], focus: ['nerve', 'v2'] },
+    v3: { layers: ['nerves','landmarks'], focus: ['nerve', 'v3'] },
+    ruta_v2_craneo_cara: { layers: ['nerves'], focus: ['nerve', 'v2'] },
+    ruta_v3_craneo_mandibula: { layers: ['nerves','landmarks'], focus: ['nerve', 'v3'] },
+    region_pterigomandibular: { layers: ['nerves','landmarks'], focus: ['nerve', 'ian'] },
     conducto_mandibular_radiologia: { layers: ['canal'], focus: ['key', 'conducto_mandibular'] },
-    arteria_maxilar: { layers: ['vessels'], focus: ['key', 'esfenoides'] },
+    arteria_maxilar: { layers: ['vessels'], focus: ['vessel', 'maxillary_artery'] },
     arteria_lingual: { layers: ['vessels'], focus: ['key', 'mandibula'] },
     arteria_facial: { layers: ['vessels'], focus: ['key', 'mandibula'] },
     plexo_pterigoideo: { layers: ['vessels'], focus: ['key', 'esfenoides'] },
-    masticacion_integrada: { layers: ['muscles'], focus: ['key', 'mandibula'] },
-    cabestrillo_pterigomaseterino: { layers: ['muscles'], focus: ['key', 'mandibula'] },
-    pterigoideo_lateral: { layers: ['muscles','tmj'], focus: ['landmark', 'condilo_mandibular'] },
+    masticacion_integrada: { layers: ['muscles'], focus: ['special', 'masetero'] },
+    cabestrillo_pterigomaseterino: { layers: ['muscles'], focus: ['special', 'pterigoideo_medial'] },
+    pterigoideo_lateral: { layers: ['muscles','tmj'], focus: ['special', 'pterigoideo_lateral'] },
     base_craneo_foramenes_integrada: { layers: ['landmarks','nerves','vessels'], focus: ['key', 'esfenoides'] },
     fosa_infratemporal: { layers: ['nerves','vessels','muscles'], focus: ['key', 'esfenoides'] },
     fosa_pterigopalatina: { layers: ['nerves','vessels'], focus: ['key', 'maxilar'] },
@@ -90,6 +90,9 @@
     let ok = false;
     if (kind === 'landmark') ok = Boolean(window.skull3dSelectLandmark?.(key));
     else if (kind === 'key') ok = Boolean(window.skull3dSelectByKey?.(key));
+    else if (kind === 'nerve') ok = Boolean(window.skull3dSelectNerve?.(key));
+    else if (kind === 'vessel') ok = Boolean(window.skull3dSelectVessel?.(key));
+    else if (kind === 'special') ok = Boolean(window.skull3dSelectSpecial?.(key));
     if (ok) window.skull3dFocusSelection?.();
     return ok || Boolean(instruction.layers?.length);
   }
