@@ -10,49 +10,49 @@
     {
       id: 'v3', entry: 'v3', title: 'V3: del foramen oval a sus ramas odontológicas', unit: 'Neurología',
       objective: 'Seguir V3 desde la base craneal hacia la fosa infratemporal y distinguir tronco, división anterior y posterior.',
-      layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_oval'],
+      layers: ['nerves','landmarks'], focus: ['nerve', 'v3'],
       tasks: ['Ubicá el foramen oval como salida de V3.', 'Separá ramas motoras y sensitivas.', 'Reconstruí alveolar inferior, lingual y auriculotemporal.']
     },
     {
       id: 'pterigomandibular', entry: 'region_pterigomandibular', title: 'Región pterigomandibular', unit: 'Topografía',
       objective: 'Entender el espacio por límites, contenido y relaciones, no como un punto aislado de anestesia.',
-      layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_mandibular'],
+      layers: ['nerves','landmarks'], focus: ['nerve', 'ian'],
       tasks: ['Reconocé rama mandibular y pterigoideo medial como referencias.', 'Ubicá el paquete alveolar inferior antes de entrar al foramen.', 'Relacioná nervio lingual con el plano medial de la rama.']
     },
     {
       id: 'v2', entry: 'v2', title: 'V2: base craneal, fosa pterigopalatina y cara', unit: 'Neurología',
       objective: 'Recorrer V2 sin saltos topográficos y vincular sus ramas dentarias, palatinas, nasales e infraorbitarias.',
-      layers: ['nerves','landmarks'], focus: ['landmark', 'foramen_infraorbitario'],
+      layers: ['nerves','landmarks'], focus: ['nerve', 'v2'],
       tasks: ['Partí del foramen redondo y la fosa pterigopalatina.', 'Diferenciá PSA, MSA variable y ASA.', 'Separá fibras sensitivas propias de V2 de fibras autonómicas que viajan con sus ramas.']
     },
     {
       id: 'arteria_maxilar', entry: 'arteria_maxilar', title: 'Arteria maxilar: tres porciones y ramas', unit: 'Angiología',
       objective: 'Estudiar la arteria maxilar por trayecto regional y no como una lista desordenada de ramas.',
-      layers: ['vessels'], focus: ['key', 'esfenoides'],
+      layers: ['vessels'], focus: ['vessel', 'maxillary_artery'],
       tasks: ['Reconstruí primera, segunda y tercera porción.', 'Relacioná meníngea media, alveolar inferior y ramas pterigopalatinas.', 'Vinculá arteria maxilar con fosa infratemporal y pterigopalatina.']
     },
     {
       id: 'atm', entry: 'atm', title: 'ATM: estructura y biomecánica', unit: 'Artrología',
       objective: 'Integrar superficies articulares, disco, cápsula, ligamentos y movimientos de rotación/traslación.',
-      layers: ['tmj'], focus: ['landmark', 'condilo_mandibular'],
+      layers: ['tmj'], focus: ['special', 'disco_articular_atm'],
       tasks: ['Ubicá cóndilo, fosa mandibular y eminencia articular.', 'Diferenciá compartimento superior e inferior.', 'Explicá por qué la apertura no es una bisagra pura.']
     },
     {
       id: 'masticacion', entry: 'masticacion_integrada', title: 'Sistema muscular de la masticación', unit: 'Miología',
       objective: 'Comparar músculos por origen, inserción, vector, inervación y efecto sobre la mandíbula.',
-      layers: ['muscles'], focus: ['key', 'mandibula'],
+      layers: ['muscles'], focus: ['special', 'masetero'],
       tasks: ['Compará masetero, temporal y pterigoideos.', 'Relacioná el cabestrillo pterigomaseterino con el ángulo.', 'Separá elevación, retrusión, protrusión y lateralidad como acciones coordinadas.']
     },
     {
       id: 'pterigoideo_lateral', entry: 'pterigoideo_lateral', title: 'Pterigoideo lateral y complejo disco-condilar', unit: 'Miología + ATM',
       objective: 'Profundizar el músculo que más se cruza con ATM, V3 y arteria maxilar.',
-      layers: ['muscles','tmj'], focus: ['landmark', 'condilo_mandibular'],
+      layers: ['muscles','tmj'], focus: ['special', 'pterigoideo_lateral'],
       tasks: ['Diferenciá cabezas superior e inferior.', 'Relacioná fóvea pterigoidea con cuello condilar.', 'Explicá su participación en protrusión, apertura coordinada y lateralidad.']
     },
     {
       id: 'ruta_v2', entry: 'ruta_v2_craneo_cara', title: 'Ruta integradora V2: región por región', unit: 'Topografía integradora',
       objective: 'Pasar de memorizar ramas a reconstruir una ruta anatómica continua desde cráneo hasta cara, dientes, paladar y nariz.',
-      layers: ['nerves'], focus: ['key', 'maxilar'],
+      layers: ['nerves'], focus: ['nerve', 'v2'],
       tasks: ['Nombrá cada región atravesada.', 'Indicá qué rama aparece en cada nodo.', 'Vinculá fosa pterigopalatina con órbita, nariz y paladar.']
     },
     {
@@ -97,6 +97,9 @@
     let ok = false;
     if (kind === 'landmark') ok = Boolean(window.skull3dSelectLandmark?.(key));
     else if (kind === 'key') ok = Boolean(window.skull3dSelectByKey?.(key));
+    else if (kind === 'nerve') ok = Boolean(window.skull3dSelectNerve?.(key));
+    else if (kind === 'vessel') ok = Boolean(window.skull3dSelectVessel?.(key));
+    else if (kind === 'special') ok = Boolean(window.skull3dSelectSpecial?.(key));
     if (ok) window.skull3dFocusSelection?.();
     $('skullStage')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -112,21 +115,16 @@
   function mount() {
     if ($('academicStudyRoute')) return $('academicStudyRoute');
     const section = document.createElement('section');
-    section.id = 'academicStudyRoute';
-    section.className = 'academicStudyRoute';
+    section.id = 'academicStudyRoute'; section.className = 'academicStudyRoute';
     const guide = $('studyGuide');
-    if (guide) guide.after(section);
-    else document.querySelector('.simViewerColumn')?.append(section);
+    if (guide) guide.after(section); else document.querySelector('.simViewerColumn')?.append(section);
     document.body.classList.add('academicRouteReady');
     return section;
   }
 
   function render() {
     if (!host) return;
-    const step = STEPS[index];
-    const done = completed.has(step.id);
-    const pct = Math.round((completed.size / STEPS.length) * 100);
-    const question = questionFor(step);
+    const step = STEPS[index], done = completed.has(step.id), pct = Math.round((completed.size / STEPS.length) * 100), question = questionFor(step);
     host.innerHTML = `
       <div class="academicStudyRouteHead">
         <span class="simEy">Modo Estudiar · ruta 3D + teoría + oral</span>
@@ -152,24 +150,16 @@
     $('academicStudy3d')?.addEventListener('click', () => focusStep(step));
     $('academicStudyTechnical')?.addEventListener('click', () => openAcademic(step, 'technical'));
     $('academicStudyOral')?.addEventListener('click', () => openAcademic(step, 'oral'));
-    $('academicStudyDone')?.addEventListener('click', () => {
-      if (done) completed.delete(step.id); else completed.add(step.id);
-      saveState(); render();
-    });
+    $('academicStudyDone')?.addEventListener('click', () => { if (done) completed.delete(step.id); else completed.add(step.id); saveState(); render(); });
     $('academicStudyPrev')?.addEventListener('click', () => { if (index > 0) { index -= 1; saveState(); render(); } });
     $('academicStudyNext')?.addEventListener('click', () => { if (index < STEPS.length - 1) { index += 1; saveState(); render(); } });
   }
 
   function boot() {
-    readState();
-    host = mount();
-    render();
+    readState(); host = mount(); render();
     document.addEventListener('academic-v2:ready', render);
-    document.addEventListener('academic-v2:select', () => {
-      if (document.body.dataset.simMode === 'estudiar') render();
-    });
+    document.addEventListener('academic-v2:select', () => { if (document.body.dataset.simMode === 'estudiar') render(); });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
-  else boot();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true }); else boot();
 })();
