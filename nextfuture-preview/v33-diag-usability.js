@@ -122,3 +122,13 @@
   document.getElementById('diagResultCard')?.setAttribute('aria-live','polite');
   document.getElementById('requestMsg')?.setAttribute('aria-live','polite');
 })();
+
+// Carga desacoplada de V3.4: si la capa adaptativa falla, el diagnóstico V3.3 sigue operativo.
+(function loadAdaptiveV34(){
+  if(!document.querySelector('link[data-nf-v34]')){
+    const link=document.createElement('link');link.rel='stylesheet';link.href='./v34-adaptive-diagnosis.css';link.dataset.nfV34='1';document.head.appendChild(link);
+  }
+  if(!document.querySelector('script[data-nf-v34]')){
+    const script=document.createElement('script');script.src='./v34-adaptive-diagnosis.js';script.dataset.nfV34='1';script.async=false;document.head.appendChild(script);
+  }
+})();
