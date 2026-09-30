@@ -36,4 +36,5 @@ function nfV37OrderEvidence(code){
   body.insertAdjacentHTML('beforeend',`<div class="box nf37-evidence" id="nfV37Evidence"><span class="kicker">DIAGNÓSTICO PREVIO REGISTRADO</span><h3>${esc(rec.primary_symptom_label||rec.primary_symptom_key||'Sin síntoma principal')}</h3><div class="nf37-evidence-grid"><div><small>Equipo reconocido</small><b>${esc(rec.family||[rec.brand,rec.model].filter(Boolean).join(' ')||'Sin identificar')}</b></div><div><small>Síntomas secundarios</small><b>${esc(sec.join(' · ')||'Ninguno')}</b></div><div><small>Antecedente</small><b>${esc(rec.antecedent||'No indicado')}</b></div><div><small>Datos del cuestionario</small><b>${known} confirmados · ${unknown} sin saber · ${adaptive} adaptativos</b></div></div>${hs?`<div class="nf37-hyp"><small>HIPÓTESIS QUE MOSTRÓ NEXTFUTURE</small><ol>${hs}</ol></div>`:''}<p class="mgmt-note">Usá esta evidencia al marcar “Coincidió / Parcial / Causa diferente” en el cierre del caso. La clasificación final sigue siendo técnica y manual.</p></div>`);
 }
 document.getElementById('learningBtn')?.addEventListener('click',nfOpenDiagnosticLearning);
+document.getElementById('refreshBtn').onclick=load;
 load();
