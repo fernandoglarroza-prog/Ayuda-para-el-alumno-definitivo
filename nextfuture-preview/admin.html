@@ -29,13 +29,14 @@
       <label>Email</label><input id="loginEmail" type="email" autocomplete="username" placeholder="Cuenta administrativa" required>
       <label>Contraseña</label><div style="display:flex;gap:.5rem;align-items:center"><input id="loginPassword" type="password" autocomplete="current-password" required style="flex:1"><button class="btn" id="togglePassword" type="button">Mostrar</button></div>
       <button class="btn primary" type="submit">Ingresar</button>
+      <button class="btn" id="magicOwnerLogin" type="button">Entrar con enlace al correo propietario</button>
       <button class="btn" id="forgotPassword" type="button">Olvidé mi contraseña</button>
       <div id="loginMsg" class="msg"></div>
     </form>
   </main>
 </section>
 <section id="appView" class="hidden">
-<header class="topbar"><div class="top-inner"><div class="brand"><span class="logo mini">NF</span><div><b>Nextfuture</b><small>Centro de operaciones V4.0</small></div></div><div class="actions"><button class="btn" id="newOrderBtn">+ Nueva orden</button><button class="btn" id="mgmtBtn">Gestión</button><button class="btn" id="learningBtn">Diagnóstico</button><button class="btn" id="refreshBtn">Actualizar</button><button class="btn dark" id="logoutBtn">Salir</button></div></div></header>
+<header class="topbar"><div class="top-inner"><div class="brand"><span class="logo mini">NF</span><div><b>Nextfuture</b><small>Centro de operaciones V4.1</small></div></div><div class="actions"><button class="btn" id="newOrderBtn">+ Nueva orden</button><button class="btn" id="mgmtBtn">Gestión</button><button class="btn" id="learningBtn">Diagnóstico</button><button class="btn" id="refreshBtn">Actualizar</button><button class="btn dark" id="logoutBtn">Salir</button></div></div></header>
 <main class="shell">
   <section class="hero"><div><span class="kicker">TRABAJO DIARIO</span><h1>Recepción, diagnóstico y seguimiento.</h1><p>Reparaciones, clientes, caja, stock, casos reales, devoluciones y aprendizaje por modelo desde el mismo panel.</p></div><div id="syncState" class="sync">—</div></section>
   <section id="stats" class="stats"></section>
