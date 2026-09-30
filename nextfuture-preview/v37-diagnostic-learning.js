@@ -1,4 +1,4 @@
-// Nextfuture V3.7 — snapshot estructurado del diagnóstico para aprendizaje sobre reparaciones reales
+// Nextfuture V3.9 — snapshot estructurado del diagnóstico para aprendizaje sobre reparaciones reales
 (function(){
   'use strict';
   const clean=s=>String(s??'').trim();
@@ -17,8 +17,15 @@
       const brandLabel=clean(identity?.brandLabel||'');
       const level=rule?'family':brandLabel?'brand':(brand||model)?'partial':'generic';
       const hypotheses=(adaptive.hypotheses?.()||[]).slice(0,3).map(h=>({title:clean(h?.title),reason:clean(h?.reason),priority:Number(h?.priority)||0}));
+      const questionLabels={};
+      (symptom?.questions||[]).slice(0,50).forEach(q=>{if(q?.id&&q?.text)questionLabels[clean(q.id)]=clean(q.text)});
+      const adaptiveQuestionLabels={};
+      document.querySelectorAll('#diagAdaptivePanel [data-aqid]').forEach(el=>{
+        const id=clean(el.getAttribute('data-aqid'));const text=clean(el.querySelector('b')?.textContent||'');
+        if(id&&text)adaptiveQuestionLabels[id]=text;
+      });
       return {
-        engine_version:'3.7',
+        engine_version:'3.9',
         device_type:device,
         brand:brand||null,
         model:model||null,
@@ -32,9 +39,11 @@
         data_important:!!ctx.dataImportant,
         answers:{...(diagState.answers||{})},
         adaptive_answers:{...(adaptive.answers?.()||{})},
+        question_labels:questionLabels,
+        adaptive_question_labels:adaptiveQuestionLabels,
         hypotheses
       };
-    }catch(e){console.warn('Nextfuture V3.7 snapshot',e);return null}
+    }catch(e){console.warn('Nextfuture V3.9 snapshot',e);return null}
   }
   window.NextfutureLearning={snapshot};
 })();
