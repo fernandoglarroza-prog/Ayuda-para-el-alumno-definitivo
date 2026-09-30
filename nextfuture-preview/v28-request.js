@@ -15,3 +15,9 @@ document.addEventListener('DOMContentLoaded',()=>rq('#requestForm')?.addEventLis
 (function(){
  const s=document.createElement('script');s.src='./v37-diagnostic-learning.js';s.defer=true;document.head.appendChild(s);
 })();
+
+// V3.8: evidencia histórica visible únicamente cuando existen muestras mínimas suficientes.
+(function(){
+ const l=document.createElement('link');l.rel='stylesheet';l.href='./v38-diagnostic-evidence.css';document.head.appendChild(l);
+ const s=document.createElement('script');s.src='./v38-diagnostic-evidence.js';s.defer=true;document.head.appendChild(s);
+})();
