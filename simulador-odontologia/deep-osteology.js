@@ -23,6 +23,23 @@
     return script;
   };
 
+  const ensureExamPrepNav = () => {
+    if (document.getElementById('examPrepNav')) return;
+    const nav = document.querySelector('.simModes');
+    if (!nav) return;
+    const button = document.createElement('button');
+    button.id = 'examPrepNav';
+    button.type = 'button';
+    button.className = 'simMode examPrepNav';
+    button.textContent = 'Preparar parcial';
+    button.setAttribute('aria-label', 'Abrir plan de preparación para el parcial');
+    button.addEventListener('click', () => {
+      document.querySelector('.simMode[data-mode="estudiar"]')?.click();
+      setTimeout(() => document.getElementById('academicExamPrepV2')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    });
+    nav.appendChild(button);
+  };
+
   addCss('academic-v2-css', '/simulador-odontologia/academic-v2.css');
   addCss('academic-v2-sync-css', '/simulador-odontologia/academic-v2-sync.css');
   addCss('academic-study-route-css', '/simulador-odontologia/academic-study-route.css');
@@ -38,7 +55,7 @@
     addScript('academic-mastery-v2-js', '/simulador-odontologia/academic-mastery-v2.js', () => {
       addScript('academic-spaced-v2-js', '/simulador-odontologia/academic-spaced-v2.js', () => {
         addScript('academic-session-plan-v2-js', '/simulador-odontologia/academic-session-plan-v2.js', () => {
-          addScript('academic-exam-prep-v2-js', '/simulador-odontologia/academic-exam-prep-v2.js');
+          addScript('academic-exam-prep-v2-js', '/simulador-odontologia/academic-exam-prep-v2.js', ensureExamPrepNav);
         });
       });
       addScript('academic-study-route-js', '/simulador-odontologia/academic-study-route.js');
