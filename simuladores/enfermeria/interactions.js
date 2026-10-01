@@ -96,3 +96,4 @@ loadNursingScript('./advanced-procedures.js', 'advancedProcedures');
 loadNursingScript('./device-care.js', 'deviceCare');
 loadNursingScript('./exam-mode.js', 'examMode');
 loadNursingScript('./dynamic-scenarios.js', 'dynamicScenarios');
+loadNursingScript('./branching-scenarios.js', 'branchingScenarios');
