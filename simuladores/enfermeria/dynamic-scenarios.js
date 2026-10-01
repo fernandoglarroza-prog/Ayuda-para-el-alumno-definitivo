@@ -52,7 +52,7 @@
   let hookAttempts = 0;
 
   function freshRuntime(){
-    return { caseId:null, minute:0, severity:20, events:[], fired:new Set(), badChoices:0, timely:0, recovered:false, lastTick:Date.now() };
+    return { caseId:null, minute:0, severity:20, events:[], fired:new Set(), badChoices:0, timely:0, recovered:false, lastTick:Date.now(), currentVitals:{}, currentStatus:'' };
   }
 
   function ensureStyles(){
@@ -80,7 +80,7 @@
     root.innerHTML=`
       <div class="dynamicTop"><div><span class="eyebrow">Paciente dinámico</span><h3>${cfg.label}</h3></div><div class="simClock"><small>Tiempo simulado</small><b>${runtime.minute} min</b></div></div>
       <div class="dynamicMeter"><i style="width:${Math.max(8,Math.min(100,runtime.severity))}%"></i></div>
-      <div class="dynamicState"><span class="stateDot"></span><b>${document.querySelector('#patientMood')?.textContent || currentCase.patient.status}</b></div>
+      <div class="dynamicState"><span class="stateDot"></span><b>${runtime.currentStatus || document.querySelector('#patientMood')?.textContent || currentCase.patient.status}</b></div>
       <p class="dynamicPriority">${exam?'El estado puede cambiar durante la evaluación. Observá y reevaluá.':`<b>Prioridad del ejercicio:</b> ${cfg.priority}`}</p>
       <div class="dynamicEvents">${renderEvents(exam)}</div>
       <div class="dynamicFooter"><span>${runtime.timely} prioridades resueltas antes del evento</span><span>${runtime.badChoices} decisiones de seguridad a revisar</span></div>`;
@@ -100,6 +100,7 @@
   function clearPatientTone(){const room=document.querySelector('.patientRoom');const figure=document.querySelector('#patientFigure');if(room){delete room.dataset.dynamicLevel;delete room.dataset.dynamicTone;}figure?.classList.remove('dynamicStress');}
 
   function setVitals(values={}){
+    runtime.currentVitals={...runtime.currentVitals,...values};
     const map={bp:'#vitalBp',hr:'#vitalHr',rr:'#vitalRr',temp:'#vitalTemp',sat:'#vitalSat'};
     Object.entries(values).forEach(([key,value])=>{const el=document.querySelector(map[key]);if(el)el.textContent=value;});
     if(values.sat!==undefined){const monitor=document.querySelector('#monitorSat');if(monitor)monitor.textContent=`${values.sat}%`;}
@@ -129,7 +130,13 @@
     render();
   }
 
-  function setMood(text,type){const mood=document.querySelector('#patientMood');if(mood){mood.textContent=text;mood.className=`statusPill ${type==='good'?'good':'warning'}`;}}
+  function setMood(text,type){runtime.currentStatus=text;const mood=document.querySelector('#patientMood');if(mood){mood.textContent=text;mood.className=`statusPill ${type==='good'?'good':'warning'}`;}}
+
+  function restoreDynamicDisplay(){
+    if(!config()) return;
+    setVitals(runtime.currentVitals);
+    setMood(runtime.currentStatus || currentCase.patient.status,runtime.recovered?'good':'warning');
+  }
 
   function advance(amount=1,source='interaction'){
     if(!config()) return;
@@ -143,13 +150,14 @@
 
   function resetForCase(){
     runtime=freshRuntime();runtime.caseId=currentCase?.id||null;runtime.severity=config()?28:20;
+    if(currentCase){runtime.currentVitals={...currentCase.vitals};runtime.currentStatus=currentCase.patient.status;}
     const root=document.querySelector('.dynamicScenarioCard');if(root)root.remove();clearPatientTone();setTimeout(()=>{mount();render();},20);
   }
 
   function hookFunctions(){
     let hooked=false;
     if(typeof loadCase==='function' && !loadCase.__dynamicWrapped){const original=loadCase;loadCase=function(id,scroll=false){const r=original(id,scroll);setTimeout(resetForCase,0);return r;};loadCase.__dynamicWrapped=true;hooked=true;}
-    if(typeof doAction==='function' && !doAction.__dynamicWrapped){const original=doAction;doAction=function(id,source='panel'){const wasDone=typeof state!=='undefined'&&state.actions?.has(id);const r=original(id,source);if(config()&&!wasDone){advance(1,'action');registerUnsafe(id);evaluate();}return r;};doAction.__dynamicWrapped=true;hooked=true;}
+    if(typeof doAction==='function' && !doAction.__dynamicWrapped){const original=doAction;doAction=function(id,source='panel'){const wasDone=typeof state!=='undefined'&&state.actions?.has(id);const action=currentCase?.actions?.find(a=>a.id===id);const r=original(id,source);if(config()&&!wasDone){const cfg=config();if(action?.evolves && cfg?.recovery && !allDone(cfg.recovery.requires))restoreDynamicDisplay();advance(1,'action');registerUnsafe(id);evaluate();}return r;};doAction.__dynamicWrapped=true;hooked=true;}
     if(typeof askQuestion==='function' && !askQuestion.__dynamicWrapped){const original=askQuestion;askQuestion=function(id){const wasDone=typeof state!=='undefined'&&state.questions?.has(id);const r=original(id);if(config()&&!wasDone)advance(1,'question');return r;};askQuestion.__dynamicWrapped=true;hooked=true;}
     if(typeof exploreZone==='function' && !exploreZone.__dynamicWrapped){const original=exploreZone;exploreZone=function(zone){const before=typeof state!=='undefined'?state.explorations?.size:0;const r=original(zone);const after=typeof state!=='undefined'?state.explorations?.size:0;if(config()&&after>before)advance(1,'exploration');return r;};exploreZone.__dynamicWrapped=true;hooked=true;}
     if(typeof showResults==='function' && !showResults.__dynamicWrapped){const original=showResults;showResults=function(){const r=original();setTimeout(appendDebrief,0);return r;};showResults.__dynamicWrapped=true;hooked=true;}
