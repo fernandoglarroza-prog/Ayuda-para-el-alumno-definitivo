@@ -33,6 +33,7 @@
   }
   function entries() { return window.AcademicV2?.entries?.() || []; }
   function mastery() { return window.AcademicMasteryV2; }
+  function spaced() { return window.AcademicSpacedV2; }
   function profile() { return mastery()?.profile?.() || { areas: [] }; }
   function entryById(id) { return entries().find(entry => entry.id === id || entry.modelKey === id); }
 
@@ -58,17 +59,27 @@
     return { weak, maintenance: strongest };
   }
 
-  function topicStep(area, role, ordinal) {
-    let entry = area ? mastery()?.weakestEntry?.(area.id) : null;
+  function buildTopicStep(entry, role, ordinal, areaId = null, areaLabel = 'Área general') {
     if (!entry) entry = entries().find(item => item.exam?.questions?.length) || entries()[0];
     const question = entry?.exam?.questions?.[0] || null;
     return {
       id: `topic-${ordinal}`,
-      type: 'topic', role, areaId: area?.id || null, areaLabel: area?.label || 'Área general',
+      type: 'topic', role, areaId, areaLabel,
       entryId: entry?.id || null, title: entry?.preferredName || 'Tema de repaso',
       question: question ? { prompt: question.prompt, requiredElements: question.requiredElements || [], modelAnswer: question.modelAnswer || '' } : null,
       technicalSeen: false, oralSeen: false, score: null, done: false
     };
+  }
+
+  function topicStep(area, role, ordinal) {
+    let entry = area ? mastery()?.weakestEntry?.(area.id) : null;
+    return buildTopicStep(entry, role, ordinal, area?.id || null, area?.label || 'Área general');
+  }
+
+  function spacedTopicStep(entry, ordinal) {
+    const topic = spaced()?.getTopic?.(entry?.id);
+    const dueText = topic?.nextDue ? new Date(topic.nextDue).toLocaleDateString('es-AR') : 'programado';
+    return buildTopicStep(entry, 'Repaso espaciado', ordinal, 'retencion', `Retención programada · vencimiento ${dueText}`);
   }
 
   function challengeStep(weakAreas) {
@@ -82,15 +93,20 @@
     const active = state.steps?.length && !state.completedAt && state.steps.some(step => !step.done);
     if (active && !force) return;
     const { weak, maintenance } = pickAreas();
-    const steps = [
-      topicStep(weak[0], 'Tema débil prioritario', 1),
-      topicStep(weak[1] || weak[0], 'Segundo tema débil', 2),
-      topicStep(maintenance, 'Mantenimiento', 3),
-      challengeStep(weak)
-    ];
+    const first = topicStep(weak[0], 'Tema débil prioritario', 1);
+    const dueEntry = spaced()?.nextDueEntry?.() || null;
+    const second = dueEntry && dueEntry.id !== first.entryId
+      ? spacedTopicStep(dueEntry, 2)
+      : topicStep(weak[1] || weak[0], 'Segundo tema débil', 2);
+    let third = topicStep(maintenance, 'Mantenimiento', 3);
+    if (third.entryId === first.entryId || third.entryId === second.entryId) {
+      const alternative = entries().find(entry => entry.exam?.questions?.length && entry.id !== first.entryId && entry.id !== second.entryId);
+      if (alternative) third = buildTopicStep(alternative, 'Mantenimiento', 3, null, 'Rotación de contenidos');
+    }
+    const steps = [first, second, third, challengeStep(weak)];
     state = { sessionId: (state.sessionId || 0) + 1, generatedAt: new Date().toISOString(), completedAt: null, steps };
     saveState();
-    document.dispatchEvent(new CustomEvent('academic-session-v2:generated', { detail: { sessionId: state.sessionId, steps: steps.length } }));
+    document.dispatchEvent(new CustomEvent('academic-session-v2:generated', { detail: { sessionId: state.sessionId, steps: steps.length, includesSpacedReview: second.role === 'Repaso espaciado' } }));
   }
 
   function setLayer(layer, desired) {
@@ -199,7 +215,9 @@
     const done = state.steps.filter(step => step.done).length;
     const current = state.steps.find(step => !step.done) || state.steps[state.steps.length - 1];
     const generated = state.generatedAt ? new Date(state.generatedAt).toLocaleString('es-AR') : '—';
-    host.innerHTML = `<div class="academicSessionHead"><div><span class="simEy">Sesión adaptativa V2 · 10–15 minutos</span><h3>Plan automático de estudio</h3><p>Generado desde tu perfil de dominio: dos prioridades, un mantenimiento y un desafío 3D. Sesión #${state.sessionId} · ${escapeHTML(generated)}.</p></div><div class="academicSessionProgress"><b>${done}/4</b><span>${state.completedAt ? 'sesión completa' : 'pasos completos'}</span></div></div><div class="academicSessionTrack"><span style="width:${done / 4 * 100}%"></span></div><div class="academicSessionLayout"><div class="academicSessionList">${state.steps.map((step,index) => `<button type="button" data-session-step="${step.id}" class="${step.id === current.id ? 'active' : ''} ${step.done ? 'done' : ''}"><span><b>${index + 1}. ${escapeHTML(step.type === '3d' ? step.target : step.title)}</b><small>${escapeHTML(step.type === '3d' ? 'Identificación 3D' : step.role)}</small></span><em>${step.done ? '✓' : step.score == null ? 'pendiente' : Math.round(step.score * 100) + '%'}</em></button>`).join('')}</div><div id="academicSessionDetail" class="academicSessionDetail"></div></div><div class="academicSessionFooter"><span>${state.completedAt ? '✓ Sesión completada. El perfil de dominio ya incorporó estas evidencias.' : 'Completá los cuatro pasos para cerrar la sesión.'}</span><button id="sessionNew" type="button">${state.completedAt ? 'Generar nueva sesión' : 'Recalcular plan'}</button></div>`;
+    const hasSpaced = state.steps.some(step => step.role === 'Repaso espaciado');
+    const composition = hasSpaced ? 'una prioridad, un repaso espaciado, un mantenimiento y un desafío 3D' : 'dos prioridades, un mantenimiento y un desafío 3D';
+    host.innerHTML = `<div class="academicSessionHead"><div><span class="simEy">Sesión adaptativa V2 · 10–15 minutos</span><h3>Plan automático de estudio</h3><p>Generado desde tu perfil de dominio y calendario de retención: ${composition}. Sesión #${state.sessionId} · ${escapeHTML(generated)}.</p></div><div class="academicSessionProgress"><b>${done}/4</b><span>${state.completedAt ? 'sesión completa' : 'pasos completos'}</span></div></div><div class="academicSessionTrack"><span style="width:${done / 4 * 100}%"></span></div><div class="academicSessionLayout"><div class="academicSessionList">${state.steps.map((step,index) => `<button type="button" data-session-step="${step.id}" class="${step.id === current.id ? 'active' : ''} ${step.done ? 'done' : ''}"><span><b>${index + 1}. ${escapeHTML(step.type === '3d' ? step.target : step.title)}</b><small>${escapeHTML(step.type === '3d' ? 'Identificación 3D' : step.role)}</small></span><em>${step.done ? '✓' : step.score == null ? 'pendiente' : Math.round(step.score * 100) + '%'}</em></button>`).join('')}</div><div id="academicSessionDetail" class="academicSessionDetail"></div></div><div class="academicSessionFooter"><span>${state.completedAt ? '✓ Sesión completada. El perfil de dominio y la programación de retención ya incorporaron estas evidencias.' : 'Completá los cuatro pasos para cerrar la sesión.'}</span><button id="sessionNew" type="button">${state.completedAt ? 'Generar nueva sesión' : 'Recalcular plan'}</button></div>`;
     host.querySelectorAll('[data-session-step]').forEach(button => button.addEventListener('click', () => { const step = state.steps.find(item => item.id === button.dataset.sessionStep); const detail = $('academicSessionDetail'); if (step?.type === '3d') render3D(step, detail); else if (step) renderTopic(step, detail); }));
     const detail = $('academicSessionDetail');
     if (current.type === '3d') render3D(current, detail); else renderTopic(current, detail);
@@ -212,9 +230,11 @@
     generateSession(false); render();
     document.addEventListener('simulator:select', answer3D);
     document.addEventListener('academic-mastery-v2:updated', () => { if (state.completedAt) return; render(); });
+    document.addEventListener('academic-spaced-v2:updated', () => { if (state.completedAt || state.steps?.some(step => step.done)) return; generateSession(true); });
     window.AcademicSessionPlanV2 = { get: () => state, regenerate: () => generateSession(true) };
   }
 
-  document.addEventListener('academic-mastery-v2:ready', boot, { once: true });
-  if (window.AcademicMasteryV2 && window.AcademicV2) boot();
+  document.addEventListener('academic-spaced-v2:ready', boot, { once: true });
+  document.addEventListener('academic-mastery-v2:ready', () => { if (window.AcademicSpacedV2) boot(); }, { once: true });
+  if (window.AcademicMasteryV2 && window.AcademicV2 && window.AcademicSpacedV2) boot();
 })();
