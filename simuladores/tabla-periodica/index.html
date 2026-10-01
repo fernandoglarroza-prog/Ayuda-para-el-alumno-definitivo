@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b4bb3">
 <title>Tabla periódica interactiva · Ayuda para el Alumno</title>
-<meta name="description" content="Simulador pedagógico de tabla periódica: elementos, grupos, períodos, tendencias, comparación, estructura electrónica y práctica razonada.">
+<meta name="description" content="Simulador pedagógico de tabla periódica: elementos, tendencias, estructura electrónica, enlaces, fórmulas, isótopos y práctica razonada.">
 <link rel="stylesheet" href="./styles.css">
 <link rel="stylesheet" href="./v2.css">
+<link rel="stylesheet" href="./v3.css">
 </head>
 <body>
 <header class="top"><div class="wrap topin"><a class="brand" href="/simuladores/"><span class="mark">⚛</span><span><b>Tabla periódica interactiva</b><small>Ayuda para el Alumno</small></span></a><a class="back" href="/simuladores/">← Simuladores</a></div></header>
 <main class="wrap">
-<section class="hero"><div><span class="ey">Química · simulador v2</span><h1>No memorices una tabla: entendé por qué está ordenada así.</h1><p>Explorá los 118 elementos, compará propiedades, interpretá estructura electrónica y usá grupos y períodos para razonar tendencias químicas. Los datos técnicos se enriquecen con la tabla periódica de PubChem.</p><div class="heroActions"><button id="jumpTable">Explorar tabla →</button><button class="ghost" id="startQuizHero">Modo práctica</button></div></div><aside><b>Idea central</b><p>La posición de un elemento relaciona estructura electrónica y propiedades. La tabla se vuelve mucho más útil cuando la leés como un mapa de tendencias y no como una lista para memorizar.</p><span id="dataStatus">Cargando datos de referencia…</span></aside></section>
+<section class="hero"><div><span class="ey">Química · simulador v3</span><h1>No memorices una tabla: entendé por qué está ordenada así.</h1><p>Explorá los 118 elementos, interpretá estructura electrónica, compará propiedades y usá la tabla para razonar enlaces, fórmulas e isótopos. Los datos técnicos se enriquecen con PubChem y referencias de NIST.</p><div class="heroActions"><button id="jumpTable">Explorar tabla →</button><button class="ghost" id="startQuizHero">Modo práctica</button></div></div><aside><b>Idea central</b><p>La posición de un elemento conecta estructura electrónica, tendencias y comportamiento químico. La tabla se vuelve más útil cuando permite explicar y predecir, no solo memorizar.</p><span id="dataStatus">Cargando datos de referencia…</span></aside></section>
 
 <section class="controlPanel" id="explorar"><div class="searchBox"><label for="search">Buscar elemento</label><input id="search" autocomplete="off" placeholder="Nombre, símbolo o número atómico"></div><div class="control"><label for="property">Visualizar</label><select id="property"><option value="family">Familias químicas</option><option value="electronegativity">Electronegatividad</option><option value="atomicRadius">Radio atómico</option><option value="ionizationEnergy">Energía de ionización</option><option value="electronAffinity">Afinidad electrónica</option><option value="meltingPoint">Punto de fusión</option><option value="boilingPoint">Punto de ebullición</option><option value="density">Densidad</option><option value="year">Año de descubrimiento</option></select></div><div class="control"><label for="filter">Filtrar</label><select id="filter"><option value="all">Todos los elementos</option><option value="metal">Metales</option><option value="nonmetal">No metales</option><option value="metalloid">Metaloides</option><option value="gas">Gases a 25 °C aprox.</option><option value="solid">Sólidos</option><option value="liquid">Líquidos</option></select></div><button class="compareToggle" id="compareToggle">⇄ Comparar elementos</button></section>
 
@@ -31,9 +32,10 @@
 
 <section class="quizPanel" id="quiz"><div class="sectionHead"><div><span class="ey">Modo práctica</span><h2>Entrená sin memorizar a ciegas</h2><p>Preguntas de símbolo, número atómico, familia y propiedades. La dificultad se adapta a los datos disponibles.</p></div><button id="startQuiz">Nueva ronda</button></div><div class="quizBox"><div class="quizMeta"><span id="quizProgress">Listo para empezar</span><span id="quizScore">0 puntos</span></div><h3 id="quizQuestion">Iniciá una ronda de 8 preguntas.</h3><div class="quizOptions" id="quizOptions"></div><div class="quizFeedback" id="quizFeedback"></div></div></section>
 
-<aside class="sourceNote"><b>Fuentes y alcance:</b> la estructura pedagógica es propia. Las propiedades atómicas se consultan desde PubChem PUG REST, que reúne datos de fuentes de referencia como IUPAC, NIST, IAEA y laboratorios nacionales. Los valores de propiedades pueden depender de definición, estado y condiciones experimentales; se muestran como apoyo de estudio. Las comparaciones átomo/ion de la v2 son cualitativas salvo cuando se muestra explícitamente un valor tabulado.</aside>
+<aside class="sourceNote"><b>Fuentes y alcance:</b> la estructura pedagógica es propia. Las propiedades atómicas se consultan desde PubChem PUG REST y las fichas ampliadas desde PubChem PUG-View; PubChem integra fuentes como IUPAC, NIST e IAEA. Las abundancias isotópicas curadas de la v3 se basan en NIST Atomic Weights and Isotopic Compositions. Los umbrales de ΔEN son una heurística educativa y no una frontera física exacta. Las fórmulas generadas por balance de estados de oxidación expresan una relación formal de cargas y no prueban por sí solas la existencia o estructura de un compuesto.</aside>
 </main>
 <script src="./app.js"></script>
 <script src="./app-v2.js"></script>
+<script src="./app-v3.js"></script>
 </body>
 </html>
