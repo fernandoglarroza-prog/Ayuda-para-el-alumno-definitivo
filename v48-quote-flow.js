@@ -46,8 +46,8 @@ function render(){
  }
  const range=e.economy;out.innerHTML=`<small>ESTIMACIÓN ORIENTATIVA CON REPUESTO DE REFERENCIA</small><strong>${money(range[0])} – ${money(range[1])}</strong><p>${model} · ${label}. Incluye repuesto de referencia, margen operativo e instalación.</p>${e.premium?`<div class="qp-options"><div class="qp-option"><small>Opción económica</small><b>${money(range[0])} – ${money(range[1])}</b></div><div class="qp-option"><small>Superior / original</small><b>${money(e.premium[0])} – ${money(e.premium[1])}</b></div></div>`:''}<div class="qp-actions"><a class="btn btn-primary" href="#solicitud">Solicitar reparación</a></div><div class="qp-meta">Referencia de repuesto revisada 02/10/2026. Se reconfirma disponibilidad antes de presupuestar.</div>`;
 }
-function init(){
- ensureControls(); const d=$('qpDeviceV48'),j=$('qpJobV48'),m=$('qpModelV48');if(!d)return;
+function prefillRequest(device,model,job,summary){const d=$('rqDevice'),b=$('rqBrand'),m=$('rqModel'),i=$('rqIssue');if(d)d.value=device;if(model){const parts=model.trim().split(/\s+/);if(b&&!b.value)b.value=parts[0]||'';if(m&&!m.value)m.value=parts.slice(1).join(' ');}if(i&&!i.value)i.value=summary||('Cotización solicitada: '+(JOB_LABEL[job]||job)+(model?' · '+model:''));location.hash='solicitud';}\nfunction bindQuoteActions(){document.addEventListener('click',e=>{const a=e.target.closest?.('#qpResult a[href="#solicitud"]');if(!a)return;e.preventDefault();const d=$('qpDeviceV48')?.value||'phone',j=$('qpJobV48')?.value||'diagnosis',model=$('qpModelV48')?.value.trim()||'';prefillRequest(d,model,j,'Solicitud desde cotizador: '+(JOB_LABEL[j]||j)+(model?' · '+model:'')+'. Presupuesto orientativo sujeto a confirmación de repuesto y diagnóstico técnico.');});}\nfunction init(){
+ ensureControls();bindQuoteActions(); const d=$('qpDeviceV48'),j=$('qpJobV48'),m=$('qpModelV48');if(!d)return;
  const refreshJobs=()=>{j.innerHTML=jobsFor(d.value);render()}; d.addEventListener('change',refreshJobs);j.addEventListener('change',render);m.addEventListener('input',render);refreshJobs();
 }
 function bridge(){
@@ -61,5 +61,5 @@ function bridge(){
 }
 document.addEventListener('DOMContentLoaded',init);
 const card=$('diagResultCard');if(card)new MutationObserver(()=>setTimeout(bridge,100)).observe(card,{childList:true,subtree:true});
-window.NextfutureQuoteV48={estimate,jobFromSymptom,render};
+window.NextfutureQuoteV48={estimate,jobFromSymptom,render,prefillRequest};
 })();
