@@ -1,0 +1,11 @@
+/* Nextfuture V4.6 — agente administrativo */
+.nf46-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:.8rem 0}
+.nf46-kpis>div,.nf46-analysis{border:1px solid rgba(20,59,48,.12);background:#f8fbfa;border-radius:14px;padding:.85rem}
+.nf46-kpis small{display:block;color:#6a7d76}.nf46-kpis b{display:block;font-size:1.35rem;margin-top:.2rem}
+.nf46-orders{display:grid;gap:.55rem}.nf46-order{display:flex;align-items:center;justify-content:space-between;gap:.7rem;border:1px solid rgba(20,59,48,.12);border-radius:12px;padding:.75rem;background:#fff}
+.nf46-order span{display:block;font-size:.85rem;color:#64766f}.nf46-order button{white-space:nowrap}
+.nf46-analysis h4{margin:.2rem 0 .6rem}.nf46-confidence{font-weight:700}
+.nf46-ref{padding:.7rem;border-radius:12px;background:#fff;border:1px solid rgba(20,59,48,.1);margin:.55rem 0}
+.nf46-rec{padding:.75rem;border-left:4px solid #315f50;background:#fff;border-radius:8px;margin:.55rem 0}
+.nf46-rec.alert{border-left-color:#bb7b18}.nf46-rec.budget{border-left-color:#7b5fbd}.nf46-rec.part{border-left-color:#2c6aa0}
+@media(max-width:600px){.nf46-kpis{grid-template-columns:1fr}.nf46-order{align-items:flex-start;flex-direction:column}}
