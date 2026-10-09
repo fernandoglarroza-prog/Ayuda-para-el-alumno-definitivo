@@ -9,3 +9,9 @@
 - Pendiente crítico: automatizar despacho de emails a clientes con consentimiento y remitente verificado.
 - Pendiente externo: dominio/remitente Resend y WhatsApp Business Cloud API.
 - Regla: no enviar a clientes sin consentimiento y no afirmar envío automático hasta verificarlo.
+
+- Cron de notificaciones corregido: ahora usa publishable key para gateway + secreto interno en Supabase Vault.
+- Verificación técnica: llamada del cron al dispatcher respondió HTTP 200.
+- Seguridad: el cron no envía a clientes mientras `RESEND_FROM` no sea un remitente de dominio verificado.
+- Se agregó V4.5 de alertas operativas: solicitudes sin coordinar, presupuestos sin respuesta, repuestos demorados, ETA de reparación vencida, equipos listos sin retirar y tareas vencidas.
+- V4.5 desplegada en Vercel y estado READY.
