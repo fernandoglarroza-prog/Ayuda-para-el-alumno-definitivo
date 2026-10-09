@@ -31,10 +31,30 @@ test('Escapa texto malicioso en el cotizador',()=>{
  assert.ok(els.qpResult.innerHTML.includes('&lt;img'));
 });
 test('Escapa datos del cliente en el resumen de solicitud',()=>{
- const input={rqDevice:{selectedOptions:[{textContent:'Celular'}]},rqBrand:{value:'<svg onload=alert(1)>'},rqModel:{value:'G52'},rqMode:{selectedOptions:[{textContent:'En local'}]},rqLocality:{value:'Moreno'},rqIssue:{value:'pantalla'}};
- const summary={innerHTML:''};const handlers={};const document={getElementById:id=>id==='nf49RequestSummary'?summary:input[id],addEventListener(k,f){handlers[k]=f}};
+ const nodes={
+  rqDevice:{selectedOptions:[{textContent:'Celular'}]},rqBrand:{value:'<svg onload=alert(1)>'},
+  rqModel:{value:'G52'},rqMode:{selectedOptions:[{textContent:'En local'}]},
+  rqLocality:{value:'<script>alert(1)</script>'},rqIssue:{value:'Falla <img src=x>'},
+  rqPhone:{value:'1130112951'},rqName:{value:'Cliente de prueba'},rqEmail:{value:''}
+ };
+ for(const el of Object.values(nodes)){el.addEventListener=()=>{};el.setAttribute=()=>{}}
+ const box={innerHTML:''};
+ nodes.requestForm={
+  querySelector:s=>s==='.request-actions'?{insertAdjacentElement:(_,el)=>{nodes.nf49RequestSummary=el}}:null,
+  addEventListener:()=>{}
+ };
+ let init;
+ const document={
+  getElementById:id=>nodes[id]||null,
+  createElement:()=>box,
+  addEventListener:(type,callback)=>{if(type==='DOMContentLoaded')init=callback}
+ };
  vm.runInNewContext(fs.readFileSync(path.join(root,'v49-request-ux.js'),'utf8'),{document});
- const code=fs.readFileSync(path.join(root,'v49-request-ux.js'),'utf8');
- assert.match(code,/escHtml\(\[device,brand,model\]/);
- assert.ok(!code.includes('${issue||'));
+ assert.equal(typeof init,'function');init();
+ assert.ok(!box.innerHTML.includes('<svg'));
+ assert.ok(!box.innerHTML.includes('<script'));
+ assert.ok(!box.innerHTML.includes('<img'));
+ assert.ok(box.innerHTML.includes('&lt;svg'));
+ assert.ok(box.innerHTML.includes('&lt;script'));
+ assert.ok(box.innerHTML.includes('&lt;img'));
 });

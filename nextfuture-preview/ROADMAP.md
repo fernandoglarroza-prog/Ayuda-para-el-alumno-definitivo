@@ -35,7 +35,8 @@
 
 ## Infraestructura
 - [x] V4.7 desplegada en Vercel staging, sin pasar a producción (9/10/2026).
-- [ ] Verificar V5.3 integrado en Vercel staging y completar prueba de cliente-panel con cuenta real.
+- [x] V5.3 integrado en Vercel staging; build confirmado READY (9/10/2026).
+- [ ] Completar recorrido visual autenticado de cliente y panel y prueba de notificaciones con datos de demostración.
 - [ ] URL permanente e independiente para Nextfuture.
 - [ ] Restringir CORS al dominio definitivo.
 - [ ] Configurar SMTP/Auth de producción.
