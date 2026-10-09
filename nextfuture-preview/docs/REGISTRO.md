@@ -1,5 +1,14 @@
 # Registro de ejecución — Nextfuture
 
+## 2026-10-09 — V4.7 en GitHub, pendiente de desplegar y probar en navegador
+- Reparados dos separadores `\\n` literales en `admin.html` que interferían con el parseo limpio de los assets del panel.
+- Se agregó escape de datos en el resultado de solicitudes públicas y la identificación de una orden en el cotizador interno. Los mensajes de error ahora se dibujan como texto, no como HTML.
+- Nuevo botón **Reportes** en el panel: conteos de órdenes ingresadas, entregadas y pendientes; suma de presupuestos de las órdenes ingresadas en el mes; desglose por orden y exportación CSV local sin nombre, email ni teléfono.
+- Limitación declarada en interfaz: el dashboard sólo entrega las últimas 200 órdenes; no interpretar los presupuestos como ingreso mensual, ni los pagos por orden como cobros exclusivamente del mes.
+- Verificaciones realizadas: sintaxis JavaScript para scripts intervenidos, 8 comprobaciones funcionales con datos simulados (fecha Argentina, conteos, presupuesto, protección CSV y ausencia de datos personales). Pruebas de navegador y despliegue Vercel aún **pendientes**.
+- No se modificó Supabase ni se envió información a clientes. Cambios aislados a `nextfuture-preview/` en rama `nextfuture-preview`.
+
+
 ## 2026-10-09
 - Se adoptó para Nextfuture el mismo patrón de autonomía de la Fábrica de Apps Android, manteniendo repositorios/proyectos separados.
 - Estado heredado: página pública con diagnóstico adaptativo, solicitud y seguimiento; panel de órdenes, presupuesto, pagos, repuestos, stock, caja, agenda, tareas, casos reales y aprendizaje diagnóstico.
