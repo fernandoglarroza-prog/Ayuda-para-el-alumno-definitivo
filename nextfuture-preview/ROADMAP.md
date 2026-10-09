@@ -13,7 +13,8 @@
 - [x] Agenda, tareas y cierre de caja.
 - [x] Centro de avisos.
 - [ ] Alertas por demoras: presupuestos sin respuesta, repuestos atrasados, equipos listos sin retirar y tareas vencidas.
-- [ ] Reporte mensual exportable.
+- [x] Reporte operativo mensual de órdenes con descarga CSV (alcance: últimas 200 órdenes cargadas).
+- [ ] Reporte contable mensual exhaustivo: conciliación de pagos/egresos por fecha y paginación completa.
 
 ## Diagnóstico
 - [x] Diagnóstico ampliado y adaptativo.
