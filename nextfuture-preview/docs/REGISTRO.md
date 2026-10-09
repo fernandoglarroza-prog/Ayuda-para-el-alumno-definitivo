@@ -1,5 +1,13 @@
 # Registro de ejecución — Nextfuture
 
+## 2026-10-09 — Integración de diagnóstico V5.3 en rama de panel
+- Se recuperaron módulos de diagnóstico técnico, riesgo, diferencial, cotización por modelo y resumen de solicitud desde `nextfuture-deploy` hacia `nextfuture-preview/ ` sin modificar esa rama ni `main`.
+- Los módulos de aprendizaje y evidencia existentes en `nextfuture-preview/` se enlazaron a la página. Se conserva el agente público V4.3 y el panel V4.7.
+- Seguridad: se escaparon marca, modelo, ubicación y problema de la solicitud antes de insertarlos en HTML; el cotizador escapa el texto del modelo. La detección de trabajo ya no depende del antiguo módulo V4.8.
+- Se agregaron pruebas de integración; se comprobaron sintaxis JS de los scripts modificados, coincidencia por modelo y que la entrada HTML maliciosa se escapa. Las pruebas automáticas en CI y el recorrido real en navegador siguen pendientes.
+- El primer despliegue de V4.7 en Vercel staging quedó en READY (commit `739d49f`). Esta integración todavía no se considera probada en producción.
+
+
 ## 2026-10-09 — V4.7 en GitHub, pendiente de desplegar y probar en navegador
 - Reparados dos separadores `\\n` literales en `admin.html` que interferían con el parseo limpio de los assets del panel.
 - Se agregó escape de datos en el resultado de solicitudes públicas y la identificación de una orden en el cotizador interno. Los mensajes de error ahora se dibujan como texto, no como HTML.

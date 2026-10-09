@@ -17,6 +17,7 @@
 - [ ] Reporte contable mensual exhaustivo: conciliación de pagos/egresos por fecha y paginación completa.
 
 ## Diagnóstico
+- [x] Integración en la rama de panel de diagnóstico diferencial, riesgo, biblioteca técnica y resguardo para modelos desconocidos (V5.3); requiere prueba de navegador.
 - [x] Diagnóstico ampliado y adaptativo.
 - [x] Síntomas múltiples y respuestas Sí/No/No sé.
 - [x] Familias/modelos.
@@ -33,6 +34,8 @@
 - [ ] Términos, privacidad y garantía revisados para lanzamiento.
 
 ## Infraestructura
+- [x] V4.7 desplegada en Vercel staging, sin pasar a producción (9/10/2026).
+- [ ] Verificar V5.3 integrado en Vercel staging y completar prueba de cliente-panel con cuenta real.
 - [ ] URL permanente e independiente para Nextfuture.
 - [ ] Restringir CORS al dominio definitivo.
 - [ ] Configurar SMTP/Auth de producción.
