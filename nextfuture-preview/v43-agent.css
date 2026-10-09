@@ -1,0 +1,16 @@
+/* Nextfuture V4.3 — agente operativo */
+.nf43-agent-card{margin:1rem 0;padding:1rem;border:1px solid rgba(19,73,55,.16);border-radius:16px;background:linear-gradient(180deg,#f8fbfa,#eef6f2)}
+.nf43-agent-card small{display:block;font-size:.72rem;letter-spacing:.08em;color:#527266;margin-bottom:.3rem}
+.nf43-agent-card h4{margin:.1rem 0 .45rem}
+.nf43-agent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.8rem}
+.nf43-agent-metric{padding:.8rem;border-radius:12px;background:#fff;border:1px solid rgba(19,73,55,.1)}
+.nf43-agent-metric span{display:block;color:#60776f;font-size:.82rem}.nf43-agent-metric b{display:block;margin-top:.2rem}
+.nf43-agent-note{margin-top:.75rem;font-size:.88rem;color:#566d64;line-height:1.45}
+.nf43-agent-alert{margin-top:.75rem;padding:.75rem;border-radius:12px;background:#fff6e8;color:#76521d}
+.nf43-launch{position:fixed;right:16px;bottom:18px;z-index:50;border:0;border-radius:999px;padding:.85rem 1rem;background:#123d31;color:#fff;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.nf43-panel{position:fixed;right:16px;bottom:78px;z-index:51;width:min(360px,calc(100vw - 32px));max-height:70vh;overflow:auto;border:1px solid rgba(19,73,55,.14);border-radius:18px;background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.22);padding:1rem}
+.nf43-panel.hidden{display:none}.nf43-panel-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.nf43-panel-head button{border:0;background:transparent;font-size:1.4rem}.nf43-actions{display:grid;gap:.55rem;margin-top:.8rem}
+.nf43-actions button{width:100%;text-align:left;border:1px solid rgba(19,73,55,.15);border-radius:12px;padding:.75rem;background:#f7faf9}
+.nf43-answer{margin-top:.8rem;padding:.8rem;border-radius:12px;background:#f2f7f5;line-height:1.45}
+@media(max-width:520px){.nf43-agent-grid{grid-template-columns:1fr}}
