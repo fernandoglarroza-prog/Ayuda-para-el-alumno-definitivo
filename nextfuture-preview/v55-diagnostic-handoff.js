@@ -12,11 +12,13 @@
     if (byId('rqBrand') && brand) byId('rqBrand').value = brand;
     if (byId('rqModel') && model) byId('rqModel').value = model;
     const issue = byId('rqIssue');
-    if (issue && !issue.value.trim()) {
-      issue.value = 'Diagnostico previo: ' + (symptom || diagState.symptom) +
+    if (issue && (!issue.value.trim() || issue.dataset.nf55Generated === '1')) {
+      issue.value = 'Diagnóstico previo: ' + (symptom || diagState.symptom) +
         '. Respuestas: ' + Object.entries(diagState.answers || {})
-          .map(([question, answer]) => question + ': ' + answer).join('; ');
+          .map(([question, answer]) => { const q = typeof DIAG_DATA !== 'undefined' ? DIAG_DATA[diagState.device]?.symptoms?.[diagState.symptom]?.questions?.find(x => x.id === question) : null; return (q?.text || question) + ': ' + (answer === 'yes' ? 'Sí' : answer === 'no' ? 'No' : answer); }).join('; ');
+      issue.dataset.nf55Generated = '1';
     }
+    issue?.dispatchEvent(new Event('input', { bubbles: true }));
   }
   function init() {
     const root = byId('diagResultCard');
@@ -35,6 +37,7 @@
       if (result && !byId('nf55Continue')) result.appendChild(button);
     });
     observer.observe(root, { childList: true, subtree: true });
+    byId('rqIssue')?.addEventListener('input', function(e) { if (e.isTrusted) e.target.dataset.nf55Generated = '0'; });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
