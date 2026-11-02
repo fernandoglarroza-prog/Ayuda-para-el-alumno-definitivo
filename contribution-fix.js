@@ -141,7 +141,7 @@
     const q=search.value.toLowerCase().trim();
     const items=flat().filter(x=>(!selectedSchool||x.schoolSlug===selectedSchool)&&(!selectedCareer||x.careerSlug===selectedCareer)&&(!selectedYear||String(x.year)===selectedYear)&&(!q||String(x.name||'').toLowerCase().includes(q)));
     count.textContent=items.length+' materias';
-    results.innerHTML=items.slice(0,180).map((x,i)=>'<article class="subjectCard"><div class="subjectMeta"><span class="badge blue">'+esc(x.career)+'</span><span class="badge">'+esc(x.year)+'° año</span></div><h3>'+esc(x.name)+'</h3><p>'+esc(x.school)+'</p><div class="subjectActions"><button type="button" data-material-fix="'+i+'">Ver material</button><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Abrir Drive</a></div></article>').join('')||'<div class="notice">No encontramos una materia con esos filtros.</div>';
+    results.innerHTML=items.slice(0,180).map((x,i)=>'<article class="subjectCard"><div class="subjectMeta"><span class="badge blue">'+esc(x.career)+'</span><span class="badge">'+esc(x.year)+'° año</span></div><h3>'+esc(x.name)+'</h3><p>'+esc(x.school)+'</p><div class="subjectActions"><button type="button" data-material-fix="'+i+'">Ver material</button><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Abrir repositorio</a></div></article>').join('')||'<div class="notice">No encontramos una materia con esos filtros.</div>';
     results.querySelectorAll('[data-material-fix]').forEach(button=>{
       button.addEventListener('click',()=>{
         const item=items[Number(button.dataset.materialFix)];
@@ -155,7 +155,7 @@
   async function loadHierarchy(){
     count.textContent='Cargando estructura…';
     try{
-      const response=await fetch(SUPABASE_URL+'/rest/v1/rpc/get_drive_material_hierarchy',{
+      const response=await fetch(SUPABASE_URL+'/rest/v1/rpc/get_material_hierarchy',{
         method:'POST',
         headers:{
           apikey:PUBLIC_KEY,
