@@ -95,6 +95,48 @@ function Find-MaterialRoot {
   return $best.Candidate
 }
 
+function Find-ExtraMaterial {
+  param(
+    [Parameter(Mandatory=$true)][string]$MaterialId,
+    [Parameter(Mandatory=$true)][string]$Name,
+    [Parameter(Mandatory=$true)][int64]$Size
+  )
+  $query = [Uri]::EscapeDataString($Name)
+  $uri = "https://graph.microsoft.com/v1.0/me/drive/root/search(q='$query')?`$top=200&`$select=id,name,size,webUrl,parentReference,folder,file,lastModifiedDateTime"
+  $candidates = @(Invoke-GraphPaged -Uri $uri | Where-Object {
+    -not $_.folder -and $_.name -eq $Name -and [int64]$_.size -eq $Size
+  })
+  if ($candidates.Count -ne 1) {
+    return [pscustomobject]@{
+      material_id = $MaterialId
+      source_name = $Name
+      source_size = $Size
+      status = if ($candidates.Count -eq 0) { "missing" } else { "ambiguous" }
+      id = $null
+      parent_id = $null
+      name = $null
+      size = $null
+      mime_type = $null
+      web_url = $null
+      public_url = $null
+    }
+  }
+  $item = $candidates[0]
+  $publicUrl = if ($CreateAnonymousLinks) { Get-PublicLink -ItemId $item.id } else { $null }
+  return [pscustomobject]@{
+    material_id = $MaterialId
+    source_name = $Name
+    source_size = $Size
+    status = "matched"
+    id = $item.id
+    parent_id = $item.parentReference.id
+    name = $item.name
+    size = [int64]$item.size
+    mime_type = $item.file.mimeType
+    web_url = $item.webUrl
+    public_url = $publicUrl
+  }
+}
 function Walk-OneDriveTree {
   param(
     [Parameter(Mandatory=$true)][object]$Item,
@@ -140,6 +182,19 @@ try {
   $root = Find-MaterialRoot -FolderName $RootFolderName
   $script:Rows = [System.Collections.Generic.List[object]]::new()
   Walk-OneDriveTree -Item $root -Path $RootFolderName
+  $extraSpecs = @(
+    @{ material_id = "e15c7497-5bed-4c5e-9164-ce477cdcbaa3"; name = "1° Parcial"; size = 487781 },
+    @{ material_id = "24d3791c-c2fb-40ce-9fc4-02a90ef01b71"; name = "2° Parcial"; size = 674252 },
+    @{ material_id = "8524a3b7-7e20-4601-916d-dd7833f918bf"; name = "Finales"; size = 319375 },
+    @{ material_id = "6fe9fa18-3bf6-4588-b332-b0344a1445d4"; name = "Finales"; size = 100758 },
+    @{ material_id = "630a0eaa-d2ad-4894-887d-086bafae6e6f"; name = "Qmca.Org-Wade7seven Tom.2"; size = 90672586 },
+    @{ material_id = "35ad9894-0e99-4f8f-a235-a42355741ed0"; name = "Química Orgánica Carey 9a Edición"; size = 54290327 },
+    @{ material_id = "5829c6ac-9035-4f88-9ee4-e41bd980e036"; name = "Recuperatorios"; size = 308177 }
+  )
+  $extraMaterials = @()
+  foreach ($spec in $extraSpecs) {
+    $extraMaterials += Find-ExtraMaterial -MaterialId $spec.material_id -Name $spec.name -Size ([int64]$spec.size)
+  }
   $payload = [ordered]@{
     generated_at = (Get-Date).ToUniversalTime().ToString("o")
     account = $context.Account
@@ -151,6 +206,7 @@ try {
     anonymous_links_requested = [bool]$CreateAnonymousLinks
     item_count = $Rows.Count
     items = $Rows
+    extra_materials = $extraMaterials
   }
   $payload | ConvertTo-Json -Depth 12 | Set-Content -Path $OutputPath -Encoding UTF8
   Write-Host ""
